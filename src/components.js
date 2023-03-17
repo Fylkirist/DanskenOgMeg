@@ -41,8 +41,8 @@ function loginView(){
 
 }
 
-function registerForm (){
+/*function registerForm (){
 
 
     
-}
+}*/
