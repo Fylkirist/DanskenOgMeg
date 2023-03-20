@@ -3,7 +3,7 @@ const model = {
         currentView:'frontPage',
         loggedInStatus:'',
         userId:false,
-        zoomedPic:false
+        zoomedPic:false,
         userId: false,
         },
 
