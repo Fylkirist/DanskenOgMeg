@@ -1,6 +1,6 @@
 const model = {
     app:{
-        currentView:'frontPage',
+        currentView:'filteredPage',
         loggedInStatus:'',
         },
 
@@ -29,6 +29,9 @@ const model = {
                 password:"",
                 dropdown:false
             },
+            filteredProductPage: {
+                selectedCategories: [],
+            },
             category:{ 
 
                 wholeCategoryShow : false,
@@ -48,6 +51,7 @@ const model = {
                                             checked: false, 
                                             showSubCategories: false, 
                                             selectSubCategories: [
+                                                {title: '', checked: false},
                                                 {title: '', checked: false},
                                                 {title: '', checked: false},
                                             ]
@@ -176,7 +180,7 @@ const model = {
                 title: 'Krone til dronningen av England',
                 description: 'ipsum lorem',
                 price: 000000,
-                category:['bord','stoler'],
+                category:['Små ting','Tilbehør'],
                 auction:false,
                 deadline:'3/18/2024',
                 images:['assets/kronebilde1.png','assets/kronebilde2.png'],
@@ -212,6 +216,7 @@ const model = {
                 subCategory: [
                     {title: 'Vaser', checked: false},
                     {title: 'Lamper', checked: false},
+                    {title: 'Tilbehør', checked: false},
                 ]
             },
             {

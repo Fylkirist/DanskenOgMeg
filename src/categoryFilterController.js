@@ -6,8 +6,16 @@ function showHideCategories(){
     updateView();
 }
 function selectMainCategory(mainCategoryIndex, trueOrFalse){
-    model.inputs.category.selectedMainCategories[mainCategoryIndex].title = model.data.itemsCategory[mainCategoryIndex].title;    
-    model.inputs.category.selectedMainCategories[mainCategoryIndex].checked = trueOrFalse;
+    if(trueOrFalse){
+        model.inputs.category.selectedMainCategories[mainCategoryIndex].title = model.data.itemsCategory[mainCategoryIndex].title;    
+        model.inputs.category.selectedMainCategories[mainCategoryIndex].checked = true;
+        filteredCategories();
+    }
+    else if(!trueOrFalse){
+        model.inputs.category.selectedMainCategories[mainCategoryIndex].title = '';    
+        model.inputs.category.selectedMainCategories[mainCategoryIndex].checked = false;
+        filteredCategories();
+    }
     
 
     updateView();
@@ -22,8 +30,20 @@ function showHideSubCategories(mainCategoryIndex){
     updateView();
 }
 function selectSubCategory(mainCategoryIndex, subCategoryIndex, trueOrFalse){
-    model.inputs.category.selectedMainCategories[mainCategoryIndex].selectSubCategories[subCategoryIndex].title = model.data.itemsCategory[mainCategoryIndex].subCategory[subCategoryIndex].title;    
-    model.inputs.category.selectedMainCategories[mainCategoryIndex].selectSubCategories[subCategoryIndex].checked = trueOrFalse;
+    if(trueOrFalse){
+        model.inputs.category.selectedMainCategories[mainCategoryIndex].title = model.data.itemsCategory[mainCategoryIndex].title;
+        model.inputs.category.selectedMainCategories[mainCategoryIndex].checked = true;
+        model.inputs.category.selectedMainCategories[mainCategoryIndex].selectSubCategories[subCategoryIndex].title = model.data.itemsCategory[mainCategoryIndex].subCategory[subCategoryIndex].title;    
+        model.inputs.category.selectedMainCategories[mainCategoryIndex].selectSubCategories[subCategoryIndex].checked = true;
+        filteredCategories();
+    }
+    else if(!trueOrFalse){
+        // model.inputs.category.selectedMainCategories[mainCategoryIndex].title = '';
+        // model.inputs.category.selectedMainCategories[mainCategoryIndex].checked = false;
+        model.inputs.category.selectedMainCategories[mainCategoryIndex].selectSubCategories[subCategoryIndex].title = '';    
+        model.inputs.category.selectedMainCategories[mainCategoryIndex].selectSubCategories[subCategoryIndex].checked = false;
+        filteredCategories();
+    }
     
 
     updateView();

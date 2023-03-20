@@ -6,6 +6,8 @@
     <script src="src/components.js" defer></script>
     <script src="src/categoryFilter.js"></script>
     <script src="src/categoryFilterController.js"></script>
+    <script src="src/filteredPageView.js"></script>
+    <script src="src/filteredPageController.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +25,10 @@
         function updateView(){
             infoDiv.innerHTML = '';
 
-            infoDiv.appendChild(showCategory());
+            if(model.app.currentView === 'filteredPage') { 
+                infoDiv.appendChild(filteredPageUpdateView());
+            }
+            
 
 
         }
