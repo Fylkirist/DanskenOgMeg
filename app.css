@@ -1,0 +1,36 @@
+#categoryContainer{
+    position: absolute;
+    left: 5%;
+    top: 20%;
+    border: 1px solid gray;
+    border-radius: 15%;
+    padding: 10px;
+
+}
+.categoryText:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+#mainCategoriesContainer{
+    transition: all .9s;
+}
+#CategoryContainer{
+    position: relative;
+    left: 5%;
+    padding: 5px;
+
+}
+.categoryNameMain{
+    display: inline;
+
+}
+.categoryNameMain:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+#subCategoryContainer{
+    position: relative;
+    left: 5%;
+    padding: 5px;
+
+}

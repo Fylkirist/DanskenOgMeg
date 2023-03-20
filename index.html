@@ -4,6 +4,8 @@
     <link rel = "stylesheet" href="app.css"/>
     <script src="src/model.js"></script>
     <script src="src/components.js" defer></script>
+    <script src="src/categoryFilter.js"></script>
+    <script src="src/categoryFilterController.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,5 +13,20 @@
 </head>
 <body>
     <div id = "app"></div>
+
+    <script>
+        let infoDiv = document.getElementById('app');
+        updateView();
+
+        
+
+        function updateView(){
+            infoDiv.innerHTML = '';
+
+            infoDiv.appendChild(showCategory());
+
+
+        }
+    </script>
 </body>
 </html>

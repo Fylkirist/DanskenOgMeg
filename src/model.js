@@ -29,9 +29,43 @@ const model = {
                 password:"",
                 dropdown:false
             },
-            category: [
-                        {name:"ting",checked:true}
-                    ],
+            category:{ 
+
+                wholeCategoryShow : false,
+            
+                selectedMainCategories: [
+                                        {
+                                            title: '', 
+                                            checked: false, 
+                                            showSubCategories: false, 
+                                            selectSubCategories: [
+                                                {title: '', checked: false},
+                                                {title: '', checked: false},
+                                            ]
+                                        },
+                                        {
+                                            title: '', 
+                                            checked: false, 
+                                            showSubCategories: false, 
+                                            selectSubCategories: [
+                                                {title: '', checked: false},
+                                                {title: '', checked: false},
+                                            ]
+                                        },
+                                        {
+                                            title: '', 
+                                            checked: false, 
+                                            showSubCategories: false, 
+                                            selectSubCategories: [
+                                                {title: '', checked: false},
+                                                {title: '', checked: false},
+                                            ]
+                                        },
+                  
+                                    ],
+                
+                    
+                },
                     
               
            
@@ -163,9 +197,33 @@ const model = {
             },
         ],
         itemsCategory: [
-            {name: 'ting', checked: false, type: 'parent'}, 
-            {name: 'små ting', checked: false, type: 'child'}, 
 
-        ],
+            {
+                title : 'Møbler',
+                checked: false,
+                subCategory: [
+                    {title: 'Bord', checked: false},
+                    {title: 'Stoler', checked: false},
+                ]
+            },
+            {
+                title : 'Små ting',
+                checked: false,
+                subCategory: [
+                    {title: 'Vaser', checked: false},
+                    {title: 'Lamper', checked: false},
+                ]
+            },
+            {
+                title : 'Klær og tilbehør',
+                checked: false,
+                subCategory: [
+                    {title: 'Bukser', checked: false},
+                    {title: 'Jakker', checked: false},
+                ]
+            },
+        
+        
+        ]
     }
 }
