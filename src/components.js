@@ -51,6 +51,14 @@ function productDisplay(product){
     let container = document.createElement("div")
     container.className = "productDisplayContainer"
 
+    if(model.app.zoomedPic){
+        let bigPic = document.createElement("img")
+        bigPic.id = "zoomedPic"
+        bigPic.src = model.data.items[product].images[model.app.zoomedPic]
+        bigPic.onclick = unZoom()
+        container.appendChild(bigPic)
+    }
+
     let productTitle = document.createElement("div")
     productTitle.className ="productDisplayTitle"
     productTitle.textContent = model.data.items[product].title
@@ -61,6 +69,7 @@ function productDisplay(product){
     let imageContainer = document.createElement("img")
     imageContainer.className = "productDisplayImage"
     imageContainer.src = model.data.items[product].images[0]
+    imageContainer.onclick = blowUpGalleryImg(0)
 
     let descriptionTitle = document.createElement("h1")
     descriptionTitle.className = "productDisplayDescriptionTitle"
@@ -104,7 +113,7 @@ function productDisplay(product){
         let img = document.createElement("img")
         img.className = "productDisplayGalleryElement"
         img.src = model.data.items[product].images[i]
-        img.onclick = blowUpGalleryImg(this)
+        img.onclick = blowUpGalleryImg(i)
         galleryContainer.appendChild(img)
     }
 
@@ -115,20 +124,24 @@ function productDisplay(product){
         priceLabel.textContent = "Nåværende bud: "
         
         buyButton.textContent = "Legg inn bud"
-        buyButton.onclick = raiseBid(product)
+        buyButton.onclick = raiseBid(model.data.items[product].id)
         
         let increaseBid = document.createElement("input")
         increaseBid.placeholder = "Øk bud"
         increaseBid.oninput = model.inputs.product.bidIncrease = increaseBid.value
 
+        let deadline = document.createElement("div")
+        deadline.textContent = "Auksjonen stenges: " + model.data.items[product].deadline
+        deadline.className = "productDisplayDeadline"
+
+        descriptionContainer.appendChild(deadline)
         purchaseContainer.appendChild(increaseBid)
     }
     else{
         priceLabel.textContent = "Pris: "
         
         buyButton.textContent = "Legg til i handlekurv"
-        
-        buyButton.onclick = addToShoppingCart(product)
+        buyButton.onclick = addToShoppingCart(model.data.items[product].id)
     }
     purchaseContainer.appendChild(buyButton)
     

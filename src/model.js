@@ -2,6 +2,8 @@ const model = {
     app:{
         currentView:'frontPage',
         loggedInStatus:'',
+        userId:false,
+        zoomedPic:false
         },
 
         inputs:{
@@ -131,7 +133,7 @@ const model = {
         auctionListe: [
             {
                 itemId: '000002',
-                bids: {
+                    bids: {
                     '0000001': [1000, 10000],
                 },
                 
