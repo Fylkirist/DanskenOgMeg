@@ -4,6 +4,7 @@ const model = {
         loggedInStatus:'',
         userId:false,
         zoomedPic:false
+        userId: false,
         },
 
         inputs:{
