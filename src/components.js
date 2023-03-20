@@ -10,7 +10,7 @@ function loginView(){
     container.className = "LoginRegContainer";
     login.id="loginButton";
     register.id="registerButton";
-    meny.id="dropdownList";
+    meny.className="dropdownList";
     inputUser.id="userNameInput";
     inputPass.id="passwordInput";
     loginEnter.id="LoginKnapp"
@@ -20,37 +20,39 @@ function loginView(){
     inputUser.textContent = "Username";
     inputPass.textContent = "Password";
     loginEnter.textContent = "confirm"
+   
 
+    inputUser.oninput = function ()
+    {model.inputs.login.username = inputUser.value;}
+
+    inputPass.oninput = function ()
+    {model.inputs.login.password = inputPass.value;}
+
+    loginEnter.onclick = function() {
+        checkLogin();
+        container.innerHTML="";
+        model.inputs.login.dropdown=false;
+        container.appendChild(loginView())
+    };
+    
+    login.onclick = function(){
+        model.inputs.login.dropdown = true;
+        container.innerHTML = "";
+        container.appendChild(loginView());
+    }
+
+    
     meny.appendChild(inputUser);
     meny.appendChild(inputPass);
     meny.appendChild(loginEnter)
-    meny.style.display = "none";
-    console.log(meny)
 
-    login.addEventListener('click', function() {
-        if (meny.style.display === 'none')
-            {
-                meny.style.display = 'block';
-            }
-         else
-            {
-               meny.style.display = 'none';
-            }
-        }
-    );
-   loginEnter.addEventListener('click', function(){
-        if (inputPass && inputUser != "")
-            {
-            const username = inputUser.value;
-            const passord = inputPass.value;
-            checkLogin(username,passord)
-            }
-   }
-   );
-    
     container.appendChild(register)
     container.appendChild(login);
-    container.appendChild(meny);
+
+    if(model.inputs.login.dropdown)
+    {
+        container.appendChild(meny)
+    }
     
     return container;
 
