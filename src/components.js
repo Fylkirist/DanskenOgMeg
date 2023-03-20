@@ -1,3 +1,15 @@
+function updateView(){
+    let container = document.getElementById('app');
+    container.innerHTML = '';
+
+    switch (model.app.currentView){
+        case 'frontPage':
+        container.appendChild(frontpage())
+        break;
+    }
+
+
+}
 function loginView(){
     let container=document.createElement('div');
     let login = document.createElement('button');
@@ -29,16 +41,12 @@ function loginView(){
     {model.inputs.login.password = inputPass.value;}
 
     loginEnter.onclick = function() {
-        checkLogin();
-        container.innerHTML="";
-        model.inputs.login.dropdown=false;
-        container.appendChild(loginView())
+        loginCheck();
     };
     
     login.onclick = function(){
         model.inputs.login.dropdown = true;
-        container.innerHTML = "";
-        container.appendChild(loginView());
+        updateView();
     }
 
     
@@ -48,12 +56,10 @@ function loginView(){
 
     container.appendChild(register)
     container.appendChild(login);
-
     if(model.inputs.login.dropdown)
     {
         container.appendChild(meny)
     }
-    
     return container;
 
 }
