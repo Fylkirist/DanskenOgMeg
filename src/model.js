@@ -51,6 +51,9 @@ const model = {
                 input:'',
                 
             },
+            product:{
+                bidIncrease:""
+            }
         },
 
     data:{
