@@ -25,6 +25,7 @@ function loginView(){
     meny.appendChild(inputPass);
     meny.appendChild(loginEnter)
     meny.style.display = "none";
+    console.log(meny)
 
     login.addEventListener('click', function() {
         if (meny.style.display === 'none')
@@ -41,8 +42,8 @@ function loginView(){
         if (inputPass && inputUser != "")
             {
             const username = inputUser.value;
-            const password = inputPass.value;
-            checkLogin(bruker,password)
+            const passord = inputPass.value;
+            checkLogin(username,passord)
             }
    }
    );
