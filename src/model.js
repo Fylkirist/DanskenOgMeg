@@ -2,6 +2,7 @@ const model = {
     app:{
         currentView:'frontPage',
         loggedInStatus:'',
+        userId: false,
         },
 
         inputs:{
