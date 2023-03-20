@@ -30,7 +30,7 @@ const model = {
                 dropdown:false
             },
             filteredProductPage: {
-                selectedCategories: [],
+                selectedCategories: [''],
             },
             category:{ 
 
@@ -192,7 +192,7 @@ const model = {
                 title: 'auction prime time',
                 description: 'ipsum lorem',
                 price: 000000,
-                category:['bord','stoler'],
+                category:['Møbler','Stoler'],
                 auction:true,
                 deadline:'3/18/2024',
                 images:['assets/kronebilde1.png','assets/kronebilde2.png'],
