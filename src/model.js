@@ -1,6 +1,6 @@
 const model = {
     app:{
-        currentView:'frontPage',
+        currentView:'filteredPage',
         loggedInStatus:'',
         userId:false,
         zoomedPic:false,
@@ -32,9 +32,52 @@ const model = {
                 password:"",
                 dropdown:false
             },
-            category: [
-                        {name:"ting",checked:true}
-                    ],
+            filteredProductPage: {
+                selectedMainCategories: [],
+                selectedSubCategories: [],
+                priceRange: {
+                    min: 0,
+                    max: 99999,
+                },
+            },
+            category:{ 
+
+                wholeCategoryShow : false,
+            
+                selectedMainCategories: [
+                                        {
+                                            title: '', 
+                                            checked: false, 
+                                            showSubCategories: false, 
+                                            selectSubCategories: [
+                                                {title: '', checked: false},
+                                                {title: '', checked: false},
+                                            ]
+                                        },
+                                        {
+                                            title: '', 
+                                            checked: false, 
+                                            showSubCategories: false, 
+                                            selectSubCategories: [
+                                                {title: '', checked: false},
+                                                {title: '', checked: false},
+                                                {title: '', checked: false},
+                                            ]
+                                        },
+                                        {
+                                            title: '', 
+                                            checked: false, 
+                                            showSubCategories: false, 
+                                            selectSubCategories: [
+                                                {title: '', checked: false},
+                                                {title: '', checked: false},
+                                            ]
+                                        },
+                  
+                                    ],
+                
+                    
+                },
                     
               
            
@@ -147,8 +190,8 @@ const model = {
                 id: "000001",
                 title: 'Krone til dronningen av England',
                 description: 'ipsum lorem',
-                price: 000000,
-                category:['bord','stoler'],
+                price: 70000,
+                category:['Små ting','Tilbehør'],
                 auction:false,
                 deadline:'3/18/2024',
                 images:['assets/kronebilde1.png','assets/kronebilde2.png'],
@@ -159,8 +202,8 @@ const model = {
                 id: "000002",
                 title: 'auction prime time',
                 description: 'ipsum lorem',
-                price: 000000,
-                category:['bord','stoler'],
+                price: 5000,
+                category:['Møbler','Stoler'],
                 auction:true,
                 deadline:'3/18/2024',
                 images:['assets/kronebilde1.png','assets/kronebilde2.png'],
@@ -169,9 +212,38 @@ const model = {
             },
         ],
         itemsCategory: [
-            {name: 'ting', checked: false, type: 'parent'}, 
-            {name: 'små ting', checked: false, type: 'child'}, 
 
+            {
+                title : 'Møbler',
+                checked: false,
+                subCategory: [
+                    {title: 'Bord', checked: false},
+                    {title: 'Stoler', checked: false},
+                ]
+            },
+            {
+                title : 'Små ting',
+                checked: false,
+                subCategory: [
+                    {title: 'Vaser', checked: false},
+                    {title: 'Lamper', checked: false},
+                    {title: 'Tilbehør', checked: false},
+                ]
+            },
+            {
+                title : 'Klær og tilbehør',
+                checked: false,
+                subCategory: [
+                    {title: 'Bukser', checked: false},
+                    {title: 'Jakker', checked: false},
+                ]
+            },
+        
+        
         ],
+        priceRange: {
+            min: 0,
+            max: 999999,
+        },
     }
 }
