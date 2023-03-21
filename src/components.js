@@ -63,9 +63,3 @@ function loginView(){
     return container;
 
 }
-
-/*function registerForm (){
-
-
-    
-}*/
