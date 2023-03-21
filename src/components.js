@@ -4,169 +4,103 @@ function updateView(){
 
     switch (model.app.currentView){
         case 'frontPage':
-        container.appendChild(frontpage())
+        container.appendChild(registerFormView())
         break;
     }
 
 
 }
-function loginView(){
-    let container=document.createElement('div');
-    let login = document.createElement('button');
-    let register = document.createElement('button');
-    let meny = document.createElement('div');
-    let inputUser = document.createElement('input');
-    let inputPass = document.createElement('input');
-    let loginEnter = document.createElement('button');
-
-    container.className = "LoginRegContainer";
-    login.id="loginButton";
-    register.id="registerButton";
-    meny.className="dropdownList";
-    inputUser.id="userNameInput";
-    inputPass.id="passwordInput";
-    loginEnter.id="LoginKnapp"
-
-    login.textContent = "Login";
-    register.textContent = "Register";
-    inputUser.textContent = "Username";
-    inputPass.textContent = "Password";
-    loginEnter.textContent = "confirm"
-   
-
-    inputUser.oninput = function ()
-    {model.inputs.login.username = inputUser.value;}
-
-    inputPass.oninput = function ()
-    {model.inputs.login.password = inputPass.value;}
-
-    loginEnter.onclick = function() {
-        loginCheck();
-    };
-    
-    login.onclick = function(){
-        model.inputs.login.dropdown = true;
-        updateView();
-    }
-
-    
-    meny.appendChild(inputUser);
-    meny.appendChild(inputPass);
-    meny.appendChild(loginEnter)
-
-    container.appendChild(register)
-    container.appendChild(login);
-    if(model.inputs.login.dropdown)
-    {
-        container.appendChild(meny)
-    }
-    return container;
-
-}
-
-/*function registerForm (){
 
 
-    
-}*/
+function registerFormView(){
+let container = document.createElement("div");
 
-function productDisplay(product){
-    let container = document.createElement("div")
-    container.className = "productDisplayContainer"
+let contName = document.createElement('div')
+let inputFirstName = document.createElement('input');
+let inputLastName = document.createElement('input');
 
-    if(model.app.zoomedPic){
-        let bigPic = document.createElement("img")
-        bigPic.id = "zoomedPic"
-        bigPic.src = model.data.items[product].images[model.app.zoomedPic]
-        bigPic.onclick = unZoom()
-        container.appendChild(bigPic)
-    }
+inputFirstName.placeholder = "First Name";
+inputLastName.placeholder= "Last Name"
 
-    let productTitle = document.createElement("div")
-    productTitle.className ="productDisplayTitle"
-    productTitle.textContent = model.data.items[product].title
-    
-    let descriptionContainer = document.createElement("div")
-    descriptionContainer.className = "productDisplayDescriptionContainer"
+contName.appendChild(inputFirstName);
+contName.appendChild(inputLastName);
 
-    let imageContainer = document.createElement("img")
-    imageContainer.className = "productDisplayImage"
-    imageContainer.src = model.data.items[product].images[0]
-    imageContainer.onclick = blowUpGalleryImg(0)
+let contPhoneMail = document.createElement('div')
+let inputMail = document.createElement('input');
+let inputPhone = document.createElement('input');
 
-    let descriptionTitle = document.createElement("h1")
-    descriptionTitle.className = "productDisplayDescriptionTitle"
-    descriptionTitle.textContent = "Beskrivelse"
+inputMail.placeholder="Email"
+inputPhone.placeholder="Telefon Nr:"
 
-    let productDescription = document.createElement("p")
-    productDescription.className = "productDisplayDescription"
-    productDescription.textContent = model.data.items[product].description
+contPhoneMail.appendChild(inputMail)
+contPhoneMail.appendChild(inputPhone)
 
-    let priceLabel = document.createElement("label")
-    priceLabel.className = "productDisplayPriceLabel"
+let contUserPass = document.createElement('div');
+let inputUsername = document.createElement('input');
+let inputPassword = document.createElement('input');
+let inputRepeatPassword = document.createElement('input');
 
-    let price = document.createElement("div")
-    price.className = "productDisplayPrice"
-    price.textContent = model.data.items[product].price
+inputUsername.placeholder="Brukernavn: "
+inputPassword.placeholder="Passord: "
+inputRepeatPassword.placeholder="Gjenta Passord: "
 
-    let buyButton = document.createElement("button")
-    buyButton.className = "productDisplayBuyButton"
 
-    let purchaseContainer = document.createElement("div")
-    purchaseContainer.className = "productDisplayPurchaseContainer"
 
-    let galleryContainer = document.createElement("div")
-    galleryContainer.className = "productDisplayImageGallery"
+contUserPass.appendChild(inputUsername)
+contUserPass.appendChild(inputPassword)
+contUserPass.appendChild(inputRepeatPassword)
 
-    let galleryHeader = document.createElement("h2")
-    galleryHeader.textContent = "Bildegalleri"
-    galleryHeader.className = "productDisplayGalleryHeader"
 
-    descriptionContainer.appendChild(descriptionTitle)
-    descriptionContainer.appendChild(imageContainer)
-    descriptionContainer.appendChild(productDescription)
+let inputAdress = document.createElement('input');
+let inputZip = document.createElement('input');
+let inputCity = document.createElement('input');
+let contAdress = document.createElement('div')
 
-    galleryContainer.appendChild(galleryHeader)
+inputAdress.placeholder = "Adresse: "
+inputZip.placeholder = "Post nummer: "
+inputCity.placeholder = "By: "
 
-    container.appendChild(productTitle)
-    container.appendChild(descriptionContainer)
-    container.appendChild(galleryContainer)
-    
-    for(let i = 1; i<model.data.items[product].images.length;i++){
-        let img = document.createElement("img")
-        img.className = "productDisplayGalleryElement"
-        img.src = model.data.items[product].images[i]
-        img.onclick = blowUpGalleryImg(i)
-        galleryContainer.appendChild(img)
-    }
+contAdress.appendChild(inputAdress)
+contAdress.appendChild(inputZip)
+contAdress.appendChild(inputCity)
 
-    purchaseContainer.appendChild(priceLabel)
-    purchaseContainer.appendChild(price)
 
-    if(model.data.items[product].auction){
-        priceLabel.textContent = "Nåværende bud: "
+let inputCard = document.createElement('input');
+let inputStartDate = document.createElement('input');
+let inputEndDate = document.createElement('input');
+let inputCve = document.createElement('input');
+let contCardInfo = document.createElement('div')
+
+inputStartDate.type = "time";
+inputEndDate.type = ""
+
+contCardInfo.appendChild(inputCard)
+contCardInfo.appendChild(inputStartDate)
+contCardInfo.appendChild(inputEndDate)
+contCardInfo.appendChild(inputCve)
+contCardInfo.className="form-group"
+
+
+container.className="form-container"
+contAdress.className="form-group";
+contUserPass.className="form-group"
+contPhoneMail.className="form-group"
+contName.className="form-group"
+
+
+
+
+container.appendChild(contName)
+container.appendChild(contPhoneMail)
+container.appendChild(contUserPass)
+container.appendChild(contAdress)
+container.appendChild(contCardInfo)
+
+
+return container;
+
+
+
+
         
-        buyButton.textContent = "Legg inn bud"
-        buyButton.onclick = raiseBid(model.data.items[product].id)
-        
-        let increaseBid = document.createElement("input")
-        increaseBid.placeholder = "Øk bud"
-        increaseBid.oninput = model.inputs.product.bidIncrease = increaseBid.value
-
-        let deadline = document.createElement("div")
-        deadline.textContent = "Auksjonen stenges: " + model.data.items[product].deadline
-        deadline.className = "productDisplayDeadline"
-
-        descriptionContainer.appendChild(deadline)
-        purchaseContainer.appendChild(increaseBid)
-    }
-    else{
-        priceLabel.textContent = "Pris: "
-        
-        buyButton.textContent = "Legg til i handlekurv"
-        buyButton.onclick = addToShoppingCart(model.data.items[product].id)
-    }
-    purchaseContainer.appendChild(buyButton)
-    
-    return container
 }
