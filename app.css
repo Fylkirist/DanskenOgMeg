@@ -31,7 +31,7 @@ body{
 }
 #mainCategoriesContainer{
     transition: all .9s;
-    margin: 10px;
+    margin: 5px;
     margin-top: 20px;
 }
 #CategoryContainer{
