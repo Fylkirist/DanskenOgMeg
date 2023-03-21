@@ -54,7 +54,7 @@ function frontPageProductDisplay(){
     let topContainer = createFrontpageProductDisplay(model.app.frontPageCurrentShowing.top)
 
     let botContainer = createFrontpageProductDisplay(model.app.frontPageCurrentShowing.bottom)
-    
+
     container.appendChild(topContainer)
     container.appendChild(botContainer)
 
