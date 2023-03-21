@@ -170,3 +170,92 @@ function productDisplay(product){
     
     return container
 }
+
+
+
+function createSaleView(){
+    let container = document.createElement('div');
+    container.className ="CreateSaleContainer"; 
+
+    let productName = document.createElement('input');
+    productName.id = "pName";
+    productName.setAttribute ("type","text");
+
+    let productNameLabel = document.createElement('label');
+    productNameLabel.id = "pLabel";
+    productNameLabel.textContent = "Produkt Navn"
+
+    let productDescription = document.createElement('input');
+    productDescription.id = "pDescription";
+    productDescription.setAttribute ("type","text"); 
+
+    let priceInput = document.createElement('input');
+    priceInput.id = "priceInput";
+    priceInput.setAttribute("type","text");
+
+    let priceInputLabel = document.createElement('label');
+    priceInputLabel.id = "priceLabel";
+    priceInput.textContent = "Pris:";
+
+    let categoryList = document.createElement('div');
+    categoryList.id = "categoryList";
+
+    let categoryListLabel = document.createElement('label');
+    categoryListLabel.id = "categoryLabel"; 
+    categoryListLabel.textContent = "Sett / endre produkt kategori:";
+
+    let mainPicture = document.createElement('div');
+    mainPicture.id = "mainPic";
+
+    let imageGalery = document.createElement('div');
+    imageGalery.id = "picGalery";
+    imageGalery.textContent = "Bildegalleriet";
+
+    let imageGaleryInput = document.createElement('input');
+    imageGaleryInput.id = "galeryInput"; 
+
+    let productId = document.createElement('label');
+    productId.id = "pId";
+
+    let frontPageBox = document.createElement('input');
+    frontPageBox.id = "fPageBox";
+    frontPageBox.setAttribute("type","checkbox")
+    let frontPageBoxLabel = document.createElement('label');
+    frontPageBoxLabel.htmlFor ="fPageBox";
+    frontPageBoxLabel.appendChild(document.createTextNode('Vise i første side'));
+
+
+    let auctionBox = document.createElement('input');
+    auctionBox.id = "auctionBox";
+    frontPageBox.setAttribute("type","checkbox")
+    let auctionLabel = document.createElement('label');
+    auctionLabel.htmlFor ="auctionBox";
+    auctionLabel.appendChild(document.createTextNode('Auksjon'));
+
+    let bidDeadline = document.createElement('input');
+    bidDeadlineTime.id = "deadline"; 
+    bidDeadline.setAttribute("type","datetime-local");
+    bidDeadline.oninput = function(){
+        setDeadline()
+    }
+    let deadlineLabel = document.createElement('label');
+    deadlineLabel.htmlFor ="deadline";
+    deadlineLabel.appendChild(document.createTextNode('Sett bud frist'));
+
+
+    let minimumBidBox = document.createElement('input');
+    minimumBidBox.id = "minBidBox";
+
+    let minimumBidAmmount = document.createElement('input');
+    minimumBidAmmount.id = "minBidInput"; 
+
+    let deliveryCheckBox = document.createElement('input');
+    deliveryCheckBox.id = "deliveryBox";
+
+    let saveButton = document.createElement('button');
+    saveButton.id = "saveButton";
+
+     
+     
+    
+}
