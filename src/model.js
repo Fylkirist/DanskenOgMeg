@@ -32,6 +32,10 @@ const model = {
             filteredProductPage: {
                 selectedMainCategories: [],
                 selectedSubCategories: [],
+                priceRange: {
+                    min: 0,
+                    max: 99999,
+                },
             },
             category:{ 
 
@@ -180,7 +184,7 @@ const model = {
                 id: "000001",
                 title: 'Krone til dronningen av England',
                 description: 'ipsum lorem',
-                price: 000000,
+                price: 70000,
                 category:['Små ting','Tilbehør'],
                 auction:false,
                 deadline:'3/18/2024',
@@ -192,7 +196,7 @@ const model = {
                 id: "000002",
                 title: 'auction prime time',
                 description: 'ipsum lorem',
-                price: 000000,
+                price: 5000,
                 category:['Møbler','Stoler'],
                 auction:true,
                 deadline:'3/18/2024',
@@ -230,6 +234,10 @@ const model = {
             },
         
         
-        ]
+        ],
+        priceRange: {
+            min: 0,
+            max: 999999,
+        },
     }
 }

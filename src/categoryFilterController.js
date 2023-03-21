@@ -74,6 +74,7 @@ function selectSubCategory(mainCategoryIndex, subCategoryIndex, trueOrFalse){
 
 }
 function selectSubCategoryOnClick(mainCategoryIndex, subCategoryIndex){
+    model.app.currentView = 'filteredPage';
     if(!model.inputs.category.selectedMainCategories[mainCategoryIndex].selectSubCategories[subCategoryIndex].checked){
         for(let i = 0; i < model.inputs.category.selectedMainCategories.length; i++){
             if(i !== mainCategoryIndex){
@@ -100,4 +101,27 @@ function selectSubCategoryOnClick(mainCategoryIndex, subCategoryIndex){
         filteredCategories();
     }
     updateView();
+}
+function setMinPriceRange(minPriceRange){
+    model.app.currentView = 'filteredPage';
+    model.inputs.filteredProductPage.priceRange.min = minPriceRange;
+    if(eval(minPriceRange) > 50000) {
+        model.inputs.filteredProductPage.priceRange.min = '50000';
+    }
+
+
+    updateView();
+
+}
+function setMaxPriceRange(maxPriceRange){
+    model.app.currentView = 'filteredPage';
+    model.inputs.filteredProductPage.priceRange.max = maxPriceRange;
+    if(eval(maxPriceRange) < 50001) {
+        model.inputs.filteredProductPage.priceRange.max = '50001';
+    }
+
+
+
+    updateView();
+
 }

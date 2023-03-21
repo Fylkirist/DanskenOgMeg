@@ -24,16 +24,19 @@ function filteredPageUpdateView(){
 
                 for(let j=0; j<model.data.items[i].category.length; j++){
                     let categoryName = model.data.items[i].category[j];
-                    if (model.inputs.filteredProductPage.selectedSubCategories.includes(categoryName)){
-                        let productTitle = document.createElement('p');
-                        productTitle.textContent = model.data.items[i].title;
-                        productContainer.appendChild(productTitle);
+                    if (model.inputs.filteredProductPage.selectedSubCategories.includes(categoryName) &&
+                        model.data.items[i].price > eval(model.inputs.filteredProductPage.priceRange.min) &&
+                        model.data.items[i].price < eval(model.inputs.filteredProductPage.priceRange.max)){
 
-                        let productImage = document.createElement('img');
-                        productImage.src = model.data.items[i].images[0];
-                        productContainer.appendChild(productImage);
-                        products.appendChild(productContainer);
-                        break;
+                            let productTitle = document.createElement('p');
+                            productTitle.textContent = model.data.items[i].title;
+                            productContainer.appendChild(productTitle);
+
+                            let productImage = document.createElement('img');
+                            productImage.src = model.data.items[i].images[0];
+                            productContainer.appendChild(productImage);
+                            products.appendChild(productContainer);
+                            break;
                     }
 
                 }
@@ -49,16 +52,19 @@ function filteredPageUpdateView(){
                 for(let j=0; j<model.data.items[i].category.length; j++){
                     let categoryName = model.data.items[i].category[j];
 
-                    if (model.inputs.filteredProductPage.selectedMainCategories.includes(categoryName)){
-                        let productTitle = document.createElement('p');
-                        productTitle.textContent = model.data.items[i].title;
-                        productContainer.appendChild(productTitle);
+                    if (model.inputs.filteredProductPage.selectedMainCategories.includes(categoryName) &&
+                        model.data.items[i].price > eval(model.inputs.filteredProductPage.priceRange.min) &&
+                        model.data.items[i].price < eval(model.inputs.filteredProductPage.priceRange.max)){
 
-                        let productImage = document.createElement('img');
-                        productImage.src = model.data.items[i].images[0];
-                        productContainer.appendChild(productImage);
-                        products.appendChild(productContainer);
-                        break;
+                            let productTitle = document.createElement('p');
+                            productTitle.textContent = model.data.items[i].title;
+                            productContainer.appendChild(productTitle);
+
+                            let productImage = document.createElement('img');
+                            productImage.src = model.data.items[i].images[0];
+                            productContainer.appendChild(productImage);
+                            products.appendChild(productContainer);
+                            break;
                     }
 
                 }
