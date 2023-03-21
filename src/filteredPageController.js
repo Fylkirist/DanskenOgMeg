@@ -1,4 +1,5 @@
 function filteredCategories(){
+    model.app.currentView = 'filteredPage';
     model.inputs.filteredProductPage.selectedMainCategories = [];
     model.inputs.filteredProductPage.selectedSubCategories = [];
     for(let i = 0; i<model.inputs.category.selectedMainCategories.length; i++){
