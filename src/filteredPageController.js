@@ -1,6 +1,6 @@
 function filteredCategories(){
-    model.inputs.filteredProductPage.selectedMainCategories = [''];
-    model.inputs.filteredProductPage.selectedSubCategories = [''];
+    model.inputs.filteredProductPage.selectedMainCategories = [];
+    model.inputs.filteredProductPage.selectedSubCategories = [];
     for(let i = 0; i<model.inputs.category.selectedMainCategories.length; i++){
         if(model.inputs.category.selectedMainCategories[i].checked){
             model.inputs.filteredProductPage.selectedMainCategories.push(model.inputs.category.selectedMainCategories[i].title);  

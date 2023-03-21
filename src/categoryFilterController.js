@@ -6,6 +6,7 @@ function showHideCategories(){
     updateView();
 }
 function selectMainCategory(mainCategoryIndex, trueOrFalse){
+    model.app.currentView = 'filteredPage';
     if(trueOrFalse){
         for (let i = 0; i < model.inputs.category.selectedMainCategories.length; i ++){
             for(let j = 0; j < model.inputs.category.selectedMainCategories[i].selectSubCategories.length; j++){
@@ -40,6 +41,7 @@ function showHideSubCategories(mainCategoryIndex){
     updateView();
 }
 function selectSubCategory(mainCategoryIndex, subCategoryIndex, trueOrFalse){
+    model.app.currentView = 'filteredPage';
     if(trueOrFalse){
         for(let i = 0; i < model.inputs.category.selectedMainCategories.length; i++){
             if(i !== mainCategoryIndex){

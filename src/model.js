@@ -30,8 +30,8 @@ const model = {
                 dropdown:false
             },
             filteredProductPage: {
-                selectedMainCategories: [''],
-                selectedSubCategories: [''],
+                selectedMainCategories: [],
+                selectedSubCategories: [],
             },
             category:{ 
 

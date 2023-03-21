@@ -11,12 +11,12 @@ function filteredPageUpdateView(){
     categoryHeader.id = 'categoryHeader';
     products.appendChild(categoryHeader);
 
-    if(model.inputs.filteredProductPage.selectedMainCategories.length === 1 ) {
+    if(model.inputs.filteredProductPage.selectedMainCategories.length === 0 ) {
         let showText = document.createElement('p');
         showText.textContent = 'No categories have been chosen.';
         products.appendChild(showText);
     }
-    else if(model.inputs.filteredProductPage.selectedSubCategories.length > 1 ) {
+    else if(model.inputs.filteredProductPage.selectedSubCategories.length > 0 ) {
    
             for(let i = 0; i < model.data.items.length; i++){
                 let productContainer = document.createElement('div');
@@ -40,7 +40,7 @@ function filteredPageUpdateView(){
 
             }
         }
-    else if (model.inputs.filteredProductPage.selectedMainCategories.length > 1){
+    else if (model.inputs.filteredProductPage.selectedMainCategories.length > 0){
 
             for(let i = 0; i < model.data.items.length; i++){
                 let productContainer = document.createElement('div');
