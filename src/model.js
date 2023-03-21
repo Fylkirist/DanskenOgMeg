@@ -2,6 +2,10 @@ const model = {
     app:{
         currentView:'frontPage',
         loggedInStatus:'',
+        frontPageCurrentShowing:{
+            top:0,
+            bottom:0,
+        },
         },
 
         inputs:{
@@ -54,6 +58,8 @@ const model = {
         },
 
     data:{
+        frontPageTop:[],
+        frontPageBottom:[],
         users:{
             "0000001":{
                 username:"admin",
