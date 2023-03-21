@@ -1,15 +1,4 @@
-function updateView(){
-    let container = document.getElementById('app');
-    container.innerHTML = '';
 
-    switch (model.app.currentView){
-        case 'frontPage':
-        container.appendChild(frontpage())
-        break;
-    }
-
-
-}
 function loginView(){
     let container=document.createElement('div');
     let login = document.createElement('button');
