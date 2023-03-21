@@ -1,0 +1,41 @@
+.form-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  div.form-group {
+    width: 20rem;
+    margin: 1rem;
+    border-radius: 1rem;
+    background-color: #f7f7f7;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+  }
+  
+  div.form-group input {
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background-color: transparent;
+    transition: border-color 0.2s ease-in-out;
+  }
+  
+  div.form-group input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  div.form-group div.form-group-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
