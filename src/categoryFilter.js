@@ -41,12 +41,17 @@ function showCategory(){
                     let checkedInputSub = document.createElement('input');
                     checkedInputSub.setAttribute('type', 'checkbox');
                     checkedInputSub.checked = model.inputs.category.selectedMainCategories[i].selectSubCategories[j].checked;
+                    //model.inputs.category.selectedMainCategories[i].selectSubCategories[j].checked = checkedInputSub.checked;
                     checkedInputSub.setAttribute('onchange', `selectSubCategory(${i}, ${j}, this.checked)`);
-                    subCategoryContainer.appendChild(checkedInputSub);
+                    
 
                     let subCategoryName = document.createElement('p');
                     subCategoryName.className = 'categoryNameMain';
                     subCategoryName.textContent = model.data.itemsCategory[i].subCategory[j].title;
+                    subCategoryName.setAttribute('onclick', `selectSubCategoryOnClick(${i}, ${j})`);
+                    checkedInputSub.checked = model.inputs.category.selectedMainCategories[i].selectSubCategories[j].checked;
+                    
+                    subCategoryContainer.appendChild(checkedInputSub);
                     subCategoryContainer.appendChild(subCategoryName);
 
                     CategoryContainer.appendChild(subCategoryContainer);
