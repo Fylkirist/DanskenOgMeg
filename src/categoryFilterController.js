@@ -9,7 +9,7 @@ function selectMainCategory(mainCategoryIndex, trueOrFalse){
     model.app.currentView = 'filteredPage';
     if(trueOrFalse){
         for (let i = 0; i < model.inputs.category.selectedMainCategories.length; i ++){
-            for(let j = 0; j < model.inputs.category.selectedMainCategories[i].selectSubCategories.length; j++){
+              for(let j = 0; j < model.inputs.category.selectedMainCategories[i].selectSubCategories.length; j++){
                 model.inputs.category.selectedMainCategories[i].selectSubCategories[j].title = '';
                 model.inputs.category.selectedMainCategories[i].selectSubCategories[j].checked = false;
             }

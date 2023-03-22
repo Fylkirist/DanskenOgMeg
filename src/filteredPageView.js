@@ -2,6 +2,7 @@ function filteredPageUpdateView(){
     let container = document.createElement('div');
     container.id= 'filteredPageViewContainer';
     container.appendChild(showCategory());
+    container.appendChild(createSearchComponent());
 
     let products = document.createElement('div');
     products.id = 'filteredProducts';

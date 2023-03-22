@@ -81,6 +81,7 @@ const model = {
                 searchPage: {
                     searchedWords: '',
                     matchedItemsIndices: [],
+                    categoryMatched: false,
                 },
                     
               
