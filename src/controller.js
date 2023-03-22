@@ -46,4 +46,9 @@ function checkLogin()
     }
 }
 
+function changeView(view){
+    model.app.currentView = view
+    updateView()
+}
+
 

@@ -193,7 +193,7 @@ const model = {
                 price: 70000,
                 category:['Små ting','Tilbehør'],
                 auction:false,
-                deadline:'3/18/2024',
+                deadline:'2024-03-21T18:21',
                 images:['assets/kronebilde1.png','assets/kronebilde2.png'],
                 inStock:true,
                 deliver:true
@@ -205,7 +205,7 @@ const model = {
                 price: 5000,
                 category:['Møbler','Stoler'],
                 auction:true,
-                deadline:'3/18/2024',
+                deadline:'2024-03-21T18:21',
                 images:['assets/kronebilde1.png','assets/kronebilde2.png'],
                 inStock:true,
                 deliver:false

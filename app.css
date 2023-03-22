@@ -1,7 +1,7 @@
 body{
     overflow: scroll;
 }
-#categoryContainer{
+.categoryContainer{
     position: fixed;
     left: 5%;
     top: 20%;
@@ -54,7 +54,7 @@ body{
     text-decoration: underline;
     cursor: pointer;
 }
-#subCategoryContainer{
+.subCategoryContainer{
     position: relative;
     left: 5%;
     padding: 5px;

@@ -16,7 +16,6 @@ function selectMainCategory(mainCategoryIndex, trueOrFalse){
         } 
         model.inputs.category.selectedMainCategories[mainCategoryIndex].title = model.data.itemsCategory[mainCategoryIndex].title;    
         model.inputs.category.selectedMainCategories[mainCategoryIndex].checked = true;
-        filteredCategories();
     }
     else if(!trueOrFalse){
         model.inputs.category.selectedMainCategories[mainCategoryIndex].title = '';    
@@ -25,7 +24,6 @@ function selectMainCategory(mainCategoryIndex, trueOrFalse){
             model.inputs.category.selectedMainCategories[mainCategoryIndex].selectSubCategories[i].checked = false;
             model.inputs.category.selectedMainCategories[mainCategoryIndex].selectSubCategories[i].title = '';
         }
-        filteredCategories();
     }
     
 
@@ -58,7 +56,7 @@ function selectSubCategory(mainCategoryIndex, subCategoryIndex, trueOrFalse){
         model.inputs.category.selectedMainCategories[mainCategoryIndex].checked = true;
         model.inputs.category.selectedMainCategories[mainCategoryIndex].selectSubCategories[subCategoryIndex].title = model.data.itemsCategory[mainCategoryIndex].subCategory[subCategoryIndex].title;    
         model.inputs.category.selectedMainCategories[mainCategoryIndex].selectSubCategories[subCategoryIndex].checked = true;
-        filteredCategories();
+        
     }
     else if(!trueOrFalse){
         model.app.currentView = 'filteredPage';
@@ -66,7 +64,7 @@ function selectSubCategory(mainCategoryIndex, subCategoryIndex, trueOrFalse){
         // model.inputs.category.selectedMainCategories[mainCategoryIndex].checked = false;
         model.inputs.category.selectedMainCategories[mainCategoryIndex].selectSubCategories[subCategoryIndex].title = '';    
         model.inputs.category.selectedMainCategories[mainCategoryIndex].selectSubCategories[subCategoryIndex].checked = false;
-        filteredCategories();
+        
     }
     
 
@@ -91,14 +89,14 @@ function selectSubCategoryOnClick(mainCategoryIndex, subCategoryIndex){
         model.inputs.category.selectedMainCategories[mainCategoryIndex].checked = true;
         model.inputs.category.selectedMainCategories[mainCategoryIndex].selectSubCategories[subCategoryIndex].title = model.data.itemsCategory[mainCategoryIndex].subCategory[subCategoryIndex].title;    
         model.inputs.category.selectedMainCategories[mainCategoryIndex].selectSubCategories[subCategoryIndex].checked = true;
-        filteredCategories();
+        
     }
     else if(model.inputs.category.selectedMainCategories[mainCategoryIndex].selectSubCategories[subCategoryIndex].checked){
         // model.inputs.category.selectedMainCategories[mainCategoryIndex].title = '';
         // model.inputs.category.selectedMainCategories[mainCategoryIndex].checked = false;
         model.inputs.category.selectedMainCategories[mainCategoryIndex].selectSubCategories[subCategoryIndex].title = '';    
         model.inputs.category.selectedMainCategories[mainCategoryIndex].selectSubCategories[subCategoryIndex].checked = false;
-        filteredCategories();
+        
     }
     updateView();
 }

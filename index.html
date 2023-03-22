@@ -12,32 +12,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dansken og meg</title>
 </head>
 <body>
     <div id = "app"></div>
-
-    <script>
-        let container = document.getElementById('app');
-        updateView();
-
-        
-
-        function updateView(){
-            
-            container.innerHTML = '';
-
-            switch (model.app.currentView){
-                case 'frontPage':
-                container.appendChild(frontpage())
-                break;
-                case 'filteredPage':
-                container.appendChild(filteredPageUpdateView())
-                break;
-    }
-
-
-}
-    </script>
 </body>
 </html>
