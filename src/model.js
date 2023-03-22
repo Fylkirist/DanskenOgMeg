@@ -1,6 +1,6 @@
 const model = {
     app:{
-        currentView:'searchPage',
+        currentView:'filteredPage',
         loggedInStatus:'',
         userId:false,
         zoomedPic:false,
