@@ -51,22 +51,29 @@ function frontPageProductDisplay(){
     let container = document.createElement("div")
     container.id = "frontPageProductDisplayContainer"
 
-    let topContainer = createFrontpageProductDisplay(model.app.frontPageCurrentShowing.top)
+    let topContainer = createFrontpageProductDisplay(model.data.frontPageTop[model.app.frontPageCurrentShowing.top])
+    
+    let rightTopProductButton = document.createElement("div")
 
-    let botContainer = createFrontpageProductDisplay(model.app.frontPageCurrentShowing.bottom)
+    let leftTopProductButton = document.createElement("div")
 
+    let botContainer = createFrontpageProductDisplay(model.data.frontPageBottom[model.app.frontPageCurrentShowing.bottom])
+
+    let rightBotProductButton = document.createElement("div")
+
+    let leftBotProductButton = document.createElement("div")
+    container.appendChild(leftTopProductButton)
     container.appendChild(topContainer)
+    container.appendChild(rightTopProductButton)
+    container.appendChild(leftBotProductButton)
     container.appendChild(botContainer)
+    container.appendChild(rightBotProductButton)
 
     return container
 }
 
 function createFrontpageProductDisplay(id){
     let container = document.createElement("div")
-
-    let rightProductButton = document.createElement("div")
-
-    let leftProductButton = document.createElement("div")
 
     let imgCont = document.createElement("div")
 

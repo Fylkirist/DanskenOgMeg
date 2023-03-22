@@ -150,7 +150,7 @@ const model = {
                 price: 000000,
                 category:['bord','stoler'],
                 auction:false,
-                deadline:'3/18/2024',
+                deadline:'2023-03-21T18:21',
                 images:['assets/kronebilde1.png','assets/kronebilde2.png'],
                 inStock:true,
                 deliver:true
@@ -162,7 +162,7 @@ const model = {
                 price: 000000,
                 category:['bord','stoler'],
                 auction:true,
-                deadline:'3/18/2024',
+                deadline:'2023-03-21T18:21',
                 images:['assets/kronebilde1.png','assets/kronebilde2.png'],
                 inStock:true,
                 deliver:false
