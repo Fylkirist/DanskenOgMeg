@@ -6,7 +6,7 @@
   
   div.form-group {
     width: 20rem;
-    margin: 1rem;
+    margin: 2rem;
     border-radius: 1rem;
     background-color: #f7f7f7;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
@@ -38,4 +38,8 @@
     color: #fff;
     font-weight: bold;
     text-transform: uppercase;
+  }
+  button {
+    height:10%;
+    width:50%;
   }
