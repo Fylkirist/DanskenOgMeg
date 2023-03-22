@@ -177,51 +177,61 @@ function createSaleView(){
     let container = document.createElement('div');
     container.className ="CreateSaleContainer"; 
 
+    let productNameLabel = document.createElement('label');
+    productNameLabel.id = "productLabel";
+    productNameLabel.textContent = "Produkt Navn"
+
+
     let productName = document.createElement('input');
-    productName.id = "pName";
+    productName.id = "productName";
     productName.setAttribute ("type","text");
 
-    let productNameLabel = document.createElement('label');
-    productNameLabel.id = "pLabel";
-    productNameLabel.textContent = "Produkt Navn"
+    
 
     let productDescription = document.createElement('input');
     productDescription.id = "pDescription";
     productDescription.setAttribute ("type","text"); 
 
-    let priceInput = document.createElement('input');
-    priceInput.id = "priceInput";
-    priceInput.setAttribute("type","text");
 
     let priceInputLabel = document.createElement('label');
     priceInputLabel.id = "priceLabel";
     priceInput.textContent = "Pris:";
 
-    let categoryList = document.createElement('div');
-    categoryList.id = "categoryList";
+    let priceInput = document.createElement('input');
+    priceInput.id = "priceInput";
+    priceInput.setAttribute("type","text");
+
 
     let categoryListLabel = document.createElement('label');
     categoryListLabel.id = "categoryLabel"; 
     categoryListLabel.textContent = "Sett / endre produkt kategori:";
+    
+
+    let categoryList = document.createElement('div');
+    categoryList.id = "categoryList";
+
+    
 
     let mainPicture = document.createElement('div');
-    mainPicture.id = "mainPic";
+    mainPicture.id = "mainPicture";
 
-    let imageGalery = document.createElement('div');
-    imageGalery.id = "picGalery";
-    imageGalery.textContent = "Bildegalleriet";
+    let galleryFrame = document.createElement('div');
+    galleryFrame.id = "galleryFrame";
+    galleryFrame.textContent = "Bildegalleriet";
 
-    let imageGaleryInput = document.createElement('input');
-    imageGaleryInput.id = "galeryInput"; 
+    let imageGalleryInput = document.createElement('input');
+    imageGalleryInput.id = "galleryInput"; 
 
     let productId = document.createElement('label');
-    productId.id = "pId";
+    productId.id = "productId";
+    productId.textContent = model.data.items[model.data.items.length -1].id ++;
+
 
     let frontPageBox = document.createElement('input');
-    frontPageBox.id = "fPageBox";
+    frontPageBox.id = "frontPageBox";
     frontPageBox.setAttribute("type","checkbox")
     let frontPageBoxLabel = document.createElement('label');
-    frontPageBoxLabel.htmlFor ="fPageBox";
+    frontPageBoxLabel.htmlFor ="frontPageBox";
     frontPageBoxLabel.appendChild(document.createTextNode('Vise i første side'));
 
 
@@ -233,7 +243,7 @@ function createSaleView(){
     auctionLabel.appendChild(document.createTextNode('Auksjon'));
 
     let bidDeadline = document.createElement('input');
-    bidDeadlineTime.id = "deadline"; 
+    bidDeadline.id = "deadline"; 
     bidDeadline.setAttribute("type","datetime-local");
     bidDeadline.oninput = function(){
         setDeadline()
@@ -244,16 +254,29 @@ function createSaleView(){
 
 
     let minimumBidBox = document.createElement('input');
-    minimumBidBox.id = "minBidBox";
+    minimumBidBox.id = "minimumBidBox";
+    minimumBidBox.setAttribute("type","checkbox")
+    let minimumBidLabel = document.createElement('label');
+    minimumBidLabel.htmlFor ="minimumBidBox";
+    minimumBidLabel.appendChild(document.createTextNode('Sett minst bud'));
 
     let minimumBidAmmount = document.createElement('input');
-    minimumBidAmmount.id = "minBidInput"; 
+    minimumBidAmmount.id = "minimumBidInput"; 
+    minimumBidAmmount.setAttribute("type","text");
 
     let deliveryCheckBox = document.createElement('input');
     deliveryCheckBox.id = "deliveryBox";
+    minimumBidBox.setAttribute("type","checkbox")
+    let deliveryBoxLabel = document.createElement('label');
+    deliveryBoxLabel.htmlFor ="deliveryBox";
+    deliveryBoxLabel.appendChild(document.createTextNode('Kan Leveres'));
 
     let saveButton = document.createElement('button');
     saveButton.id = "saveButton";
+    saveButton.textContent = "Legg ut produkt"
+    saveButton.onclick = function(){
+        lagreProdukt()
+    }
 
      
      

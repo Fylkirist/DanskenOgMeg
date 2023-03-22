@@ -40,14 +40,13 @@ const model = {
            
 
             createSale: {
-                id:'',
                 title:'',
                 description:'',
                 price:'',
                 category:'',
                 auction:true,
                 deadline:'',
-                images:['',''],
+                images:[],
                 deliver:false   
             },
             search:{
@@ -121,7 +120,7 @@ const model = {
         },
         orderHistory: [
             {
-                itemId:'000001',
+                itemId:000001,
                 sold: true,
                 price:'10,000,000',
                 date:'03.01.2023',
@@ -133,7 +132,7 @@ const model = {
         ],
         auctionListe: [
             {
-                itemId: '000002',
+                itemId: 000002,
                     bids: {
                     '0000001': [1000, 10000],
                 },
@@ -144,7 +143,7 @@ const model = {
 
         items:[
             {
-                id: "000001",
+                id: 000001,
                 title: 'Krone til dronningen av England',
                 description: 'ipsum lorem',
                 price: 000000,
@@ -156,7 +155,7 @@ const model = {
                 deliver:true
             },
             {
-                id: "000002",
+                id: 000002,
                 title: 'auction prime time',
                 description: 'ipsum lorem',
                 price: 000000,
