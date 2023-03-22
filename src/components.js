@@ -180,31 +180,38 @@ function createSaleView(){
     let productNameLabel = document.createElement('label');
     productNameLabel.id = "productLabel";
     productNameLabel.textContent = "Produkt Navn"
-
+    container.appendChild(productNameLabel);
 
     let productName = document.createElement('input');
     productName.id = "productName";
     productName.setAttribute ("type","text");
+    container.appendChild(productName);
+    
+
 
     
 
     let productDescription = document.createElement('input');
     productDescription.id = "pDescription";
     productDescription.setAttribute ("type","text"); 
+    container.appendChild(productDescription);
 
 
     let priceInputLabel = document.createElement('label');
     priceInputLabel.id = "priceLabel";
     priceInput.textContent = "Pris:";
+    container.appendChild(priceInputLabel);
 
     let priceInput = document.createElement('input');
     priceInput.id = "priceInput";
     priceInput.setAttribute("type","text");
+    container.appendChild(priceInput);
 
 
     let categoryListLabel = document.createElement('label');
     categoryListLabel.id = "categoryLabel"; 
     categoryListLabel.textContent = "Sett / endre produkt kategori:";
+    container.appendChild(categoryListLabel);
     
 
     let categoryList = document.createElement('div');
@@ -212,64 +219,92 @@ function createSaleView(){
 
     
 
-    let mainPicture = document.createElement('div');
-    mainPicture.id = "mainPicture";
-
+    
     let galleryFrame = document.createElement('div');
     galleryFrame.id = "galleryFrame";
-    galleryFrame.textContent = "Bildegalleriet";
+    galleryFrame.textContent = "bildeGalleriet";
+    container.appendChild(galleryFrame);
 
     let imageGalleryInput = document.createElement('input');
     imageGalleryInput.id = "galleryInput"; 
+    imageGalleryInput.appendChild(galleryFrame);
+    
+    
+    let mainPicture = document.createElement('div');
+    mainPicture.id = "mainPicture";
+    container.appendChild(mainPicture);
+
+   
+
+    
 
     let productId = document.createElement('label');
     productId.id = "productId";
     productId.textContent = model.data.items[model.data.items.length -1].id ++;
+    container.appendChild(productId);
+
+
+    let frontPageBoxLabel = document.createElement('label');
+    frontPageBoxLabel.textContent = "Vise i første side";
+    container.appendChild(frontPageBox);
 
 
     let frontPageBox = document.createElement('input');
     frontPageBox.id = "frontPageBox";
     frontPageBox.setAttribute("type","checkbox")
-    let frontPageBoxLabel = document.createElement('label');
-    frontPageBoxLabel.htmlFor ="frontPageBox";
-    frontPageBoxLabel.appendChild(document.createTextNode('Vise i første side'));
+    container.appendChild(frontPageBoxLabel);
+
+
+    let auctionLabel = document.createElement('label');
+    auctionLabel.textContent = "Auksjon";
+    container.appendChild(auctionLabel);
 
 
     let auctionBox = document.createElement('input');
     auctionBox.id = "auctionBox";
-    frontPageBox.setAttribute("type","checkbox")
-    let auctionLabel = document.createElement('label');
-    auctionLabel.htmlFor ="auctionBox";
-    auctionLabel.appendChild(document.createTextNode('Auksjon'));
+    frontPageBox.setAttribute("type","checkbox");
+    container.appendChild(auctionBox);
 
+    
+    let deadlineLabel = document.createElement('label');
+    deadlineLabel.textContent = "Sett Bud Frist";
+    container.appendChild(deadlineLabel);
+
+    
+    
     let bidDeadline = document.createElement('input');
     bidDeadline.id = "deadline"; 
     bidDeadline.setAttribute("type","datetime-local");
     bidDeadline.oninput = function(){
-        setDeadline()
+        model.inputs.createSale.deadline = bidDeadline.value;
     }
-    let deadlineLabel = document.createElement('label');
-    deadlineLabel.htmlFor ="deadline";
-    deadlineLabel.appendChild(document.createTextNode('Sett bud frist'));
+    container.appendChild(bidDeadline);
 
+    let minimumBidLabel = document.createElement('label');
+    minimumBidLabel.textContent = "Sett minst bud";
+    container.appendChild(minimumBidLabel);
 
     let minimumBidBox = document.createElement('input');
     minimumBidBox.id = "minimumBidBox";
     minimumBidBox.setAttribute("type","checkbox")
-    let minimumBidLabel = document.createElement('label');
-    minimumBidLabel.htmlFor ="minimumBidBox";
-    minimumBidLabel.appendChild(document.createTextNode('Sett minst bud'));
+    container.appendChild(minimumBidBox);
+    
 
     let minimumBidAmmount = document.createElement('input');
     minimumBidAmmount.id = "minimumBidInput"; 
     minimumBidAmmount.setAttribute("type","text");
+    container.appendChild(minimumBidAmmount);
+
+    let deliveryBoxLabel = document.createElement('label');
+    deliveryBoxLabel.textContent = "Kan Leveres";
+    container.appendChild(deliveryBoxLabel);
+
 
     let deliveryCheckBox = document.createElement('input');
     deliveryCheckBox.id = "deliveryBox";
     minimumBidBox.setAttribute("type","checkbox")
-    let deliveryBoxLabel = document.createElement('label');
-    deliveryBoxLabel.htmlFor ="deliveryBox";
-    deliveryBoxLabel.appendChild(document.createTextNode('Kan Leveres'));
+    container.appendChild(deliveryCheckBox)
+   
 
     let saveButton = document.createElement('button');
     saveButton.id = "saveButton";
@@ -277,8 +312,9 @@ function createSaleView(){
     saveButton.onclick = function(){
         lagreProdukt()
     }
+    container.appendChild(saveButton)
 
      
-     
+     return container
     
 }

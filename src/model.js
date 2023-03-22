@@ -43,6 +43,8 @@ const model = {
                 title:'',
                 description:'',
                 price:'',
+                minimumBid:false,
+                minimumBidAmmount:'',
                 category:'',
                 auction:true,
                 deadline:'',
