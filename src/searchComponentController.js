@@ -17,19 +17,21 @@ function searchForItems(searchedInputWords){
     let matchedWithTitle = false;
     let matchedWithAllCategories = false;
 
+    for(let i = 0; i < model.inputs.category.selectedMainCategories.length; i++){
+                
+        model.inputs.category.selectedMainCategories[i].title = '';
+        model.inputs.category.selectedMainCategories[i].checked = false;
+
+        for(let j = 0; j < model.inputs.category.selectedMainCategories[i].selectSubCategories.length; j++){
+            model.inputs.category.selectedMainCategories[i].selectSubCategories[j].title = '';
+            model.inputs.category.selectedMainCategories[i].selectSubCategories[j].checked = false;
+        }
+    }
+
 
 
     if(searchedWords.length > 1){
-        for(let i = 0; i < model.inputs.category.selectedMainCategories.length; i++){
-                
-            model.inputs.category.selectedMainCategories[i].title = '';
-            model.inputs.category.selectedMainCategories[i].checked = false;
 
-            for(let j = 0; j < model.inputs.category.selectedMainCategories[i].selectSubCategories.length; j++){
-                model.inputs.category.selectedMainCategories[i].selectSubCategories[j].title = '';
-                model.inputs.category.selectedMainCategories[i].selectSubCategories[j].checked = false;
-            }
-        }
 
         for(let i = 0; i < model.data.items.length; i++){
 
