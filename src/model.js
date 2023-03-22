@@ -1,6 +1,6 @@
 const model = {
     app:{
-        currentView:'filteredPage',
+        currentView:'searchPage',
         loggedInStatus:'',
         userId:false,
         zoomedPic:false,
@@ -77,6 +77,10 @@ const model = {
                                     ],
                 
                     
+                },
+                searchPage: {
+                    searchedWords: '',
+                    matchedItemsIndices: [],
                 },
                     
               
