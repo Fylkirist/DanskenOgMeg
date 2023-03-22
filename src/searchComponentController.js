@@ -10,16 +10,38 @@ function searchForItems(searchedInputWords){
     let matchedWithTitle = false;
 
     for(let i = 0; i < model.data.items.length; i++){
+
+        let searchedWordsArray = searchedWords.split(' ');
+        let itemTitleArray = model.data.items[i].title.toLowerCase().split(' ');
+
+        let matchedWordsOrNot = 0;
+
+        for(let k = 0; k<searchedWordsArray.length; k++){
+            for(let l = 0; l<itemTitleArray.length; l++){
+                if (searchedWordsArray[k] == itemTitleArray[l]){
+                    matchedWordsOrNot++;
+                }
+            }
+        }
+
         if(model.data.items[i].title.toLowerCase() === searchedWords){
             model.app.currentView = 'searchPage';
             model.inputs.searchPage.matchedItemsIndices.push(i);
             matchedWithTitle = true;
             break;
         }
-        else if(model.data.items[i].title.toLowerCase().includes(searchedWords)){
+        else if(model.data.items[i].title.toLowerCase().includes(searchedWords)||
+                searchedWords.includes(model.data.items[i].title.toLowerCase())){
             model.app.currentView = 'searchPage';
             model.inputs.searchPage.matchedItemsIndices.push(i);
             matchedWithTitle = true;
+        }
+
+        else if (matchedWordsOrNot>0){
+            model.app.currentView = 'searchPage';
+            model.inputs.searchPage.matchedItemsIndices.push(i);
+            matchedWithTitle = true;
+
         }
         
     }
