@@ -52,7 +52,7 @@ function searchForItems(searchedInputWords){
             }
             if(!subCategoryMatched){
                 if(model.data.itemsCategory[i].title.toLowerCase() === searchedWords ||
-                searchedWords.includes(model.data.itemsCategory[i].title.toLowerCase()) ||
+                searchedWords.includes(model.data.itemsCategory[i].title.toLowerCase())||
                 model.data.itemsCategory[i].title.toLowerCase().includes(searchedWords)){
                         model.inputs.searchPage.categoryMatched = true;
                         selectMainCategory(i, true);
