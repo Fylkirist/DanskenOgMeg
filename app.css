@@ -60,7 +60,7 @@ body{
     padding: 5px;
 
 }
-/* #filteredPageViewContainer{
+/* .filteredPageViewContainer{
     position: relative;
     top: 5%;
     left: 5%;
@@ -70,7 +70,7 @@ body{
     left: 20%;
     top: 20%;
 }
-#categoryHeader{
+.categoryHeader{
     position: relative;
     left: 40%;
     top: 20%;

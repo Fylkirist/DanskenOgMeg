@@ -1,6 +1,6 @@
 function filteredPageUpdateView(){
     let container = document.createElement('div');
-    container.id= 'filteredPageViewContainer';
+    container.classList= 'filteredPageViewContainer';
     container.appendChild(showCategory());
     container.appendChild(createSearchComponent());
 
@@ -9,7 +9,7 @@ function filteredPageUpdateView(){
 
     let categoryHeader = document.createElement('h4');
     categoryHeader.textContent = 'Products in Selected Categories';
-    categoryHeader.id = 'categoryHeader';
+    categoryHeader.classList = 'categoryHeader';
     products.appendChild(categoryHeader);
 
     if(model.inputs.filteredProductPage.selectedMainCategories.length === 0 ) {
