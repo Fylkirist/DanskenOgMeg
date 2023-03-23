@@ -1,4 +1,16 @@
 function createSearchComponent(){
+    // return /*html*/`<div class="searchContainer">
+    //                     <input  type="search" 
+    //                             placeholder="Search for items here" 
+    //                             class="searchBox" 
+    //                             value="${model.inputs.searchPage.searchedWords}"
+    //                             onchange = "searchForItems(this.value)"
+    //                     />
+    //                 </div>`;
+
+
+
+
     let searchContainer = document.createElement('div');
     searchContainer.classList = 'searchContainer';
 
@@ -16,4 +28,5 @@ function createSearchComponent(){
 
 
     return searchContainer;
+
 }
