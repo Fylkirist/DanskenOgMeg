@@ -104,7 +104,23 @@ function saveSubCategory(){
 
 
 function addMainCategory(){
+    
+        if(model.inputs.createSale.mainCategory = null)
+    
+        if( model.inputs.createSale.categoryList.includes(model.inputs.createSale.mainCategory) )
+        {
+            
+        }
+        else{
+        
+            model.inputs.createSale.categoryList[0] = model.inputs.createSale.mainCategory
+        }
 
     
+    
+    
+
+
+
 
 }
