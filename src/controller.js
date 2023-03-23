@@ -60,7 +60,7 @@ function createProduct(){
 function saveMainCategory(){
     let categoryExists = false ;
     for(let i = 0; i<model.inputs.categoryList.length; i++){
-        if(model.inputs.createSale.mainCategory == model.inputs.category.categoryList[i].name 
+        if(model.inputs.createSale.categoryList[0] == model.inputs.category.categoryList[i].name 
         && model.inputs.category.categoryList[i].parent == -1)
         {
             categoryExists = true;
@@ -105,19 +105,40 @@ function saveSubCategory(){
 
 function addMainCategory(){
     
-        if(model.inputs.createSale.mainCategory = null)
     
-        if( model.inputs.createSale.categoryList.includes(model.inputs.createSale.mainCategory) )
-        {
+    if( model.inputs.createSale.categoryList.includes(model.inputs.createSale.mainCategory) )
+    {
             
-        }
-        else{
+    }
+    else{
         
-            model.inputs.createSale.categoryList[0] = model.inputs.createSale.mainCategory
-        }
+        model.inputs.createSale.categoryList[0] = model.inputs.createSale.mainCategory
+    }
 
     
+    model.inputs.createSale.mainCategory = ''
     
+
+
+
+
+}
+
+
+function addSubCategory(){
+    
+    
+    if( model.inputs.createSale.categoryList.includes(model.inputs.createSale.subCategory) )
+    {
+            
+    }
+    else{
+        
+        model.inputs.createSale.categoryList.push(model.inputs.createSale.subCategory)
+    }
+
+    
+    model.inputs.createSale.subCategory = ''
     
 
 

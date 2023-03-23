@@ -198,8 +198,9 @@ function createSaleView(){
 
     let priceInputLabel = document.createElement('label');
     priceInputLabel.id = "priceLabel";
-    priceInput.textContent = "Pris:";
+    priceInputLabel.textContent = "Pris:";
     container.appendChild(priceInputLabel);
+    
 
     let priceInput = document.createElement('input');
     priceInput.id = "priceInput";
@@ -216,9 +217,10 @@ function createSaleView(){
 
     let categoryMain = document.createElement('input');
     categoryMain.id = "categoryMain";
-    priceInput.setAttribute("type","text");
+    categoryMain.setAttribute("type","text");
     categoryMain.placeholder = "Hoved Kategori"
     categoryMain.oninput = ()=> model.inputs.createSale.mainCategory = categoryMain.value;
+    categoryMain.textContent = model.inputs.createSale.mainCategory
     container.appendChild(categoryMain);
 
     let mainCategoryAdd = document.createElement ('button');
@@ -227,14 +229,15 @@ function createSaleView(){
     mainCategoryAdd.onclick = function(){
         addMainCategory()
     }
-    categoryMain.appendChild(mainCategoryAdd);
+    container.appendChild(mainCategoryAdd);
 
 
     let categorySub = document.createElement('input');
     categorySub.id = "categorySub";
-    priceInput.setAttribute("type","text");
+    categorySub.setAttribute("type","text");
     categorySub.placeholder = "Sub Kategori";
-    categoryMain.oninput = ()=> model.inputs.createSale.subCategory = categorySub.value;
+    categorySub.oninput = ()=> model.inputs.createSale.subCategory = categorySub.value;
+    categorySub.textContent = model.inputs.createSale.subCategory
     container.appendChild(categorySub);
 
     let subCategoryAdd = document.createElement ('button');
@@ -243,7 +246,7 @@ function createSaleView(){
     subCategoryAdd.onclick = function(){
         addSubCategory()
     }
-    subCategoryAdd.appendChild(subCategoryAdd);
+    container.appendChild(subCategoryAdd);
 
     
     let galleryFrame = document.createElement('div');
@@ -253,13 +256,13 @@ function createSaleView(){
 
     let imageGalleryInput = document.createElement('input');
     imageGalleryInput.id = "galleryInput"; 
-    imageGalleryInput.setAttribute ("file");
+    imageGalleryInput.setAttribute ("type","file");
     imageGalleryInput.appendChild(galleryFrame);
     
     
     let mainPicture = document.createElement('input');
     mainPicture.id = "mainPicture";
-    mainPicture.setAttribute ("file");
+    mainPicture.setAttribute ("type","file");
     container.appendChild(mainPicture);
 
    
@@ -275,7 +278,7 @@ function createSaleView(){
     let frontPageBoxLabel = document.createElement('label');
     frontPageBoxLabel.textContent = "Vise i første side";
     
-    container.appendChild(frontPageBox);
+    container.appendChild(frontPageBoxLabel);
 
 
     let frontPageBox = document.createElement('input');
@@ -283,7 +286,7 @@ function createSaleView(){
     frontPageBox.setAttribute("type","checkbox");
     frontPageBox.checked == true;
     frontPageBox.oninput = ()=> model.inputs.createSale.frontPage = frontPageBox.value;
-    container.appendChild(frontPageBoxLabel);
+    container.appendChild(frontPageBox);
 
 
     let auctionLabel = document.createElement('label');
