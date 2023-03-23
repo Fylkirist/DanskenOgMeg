@@ -1,7 +1,11 @@
 const model = {
     app:{
         currentView:'frontPage',
-        loggedInStatus:'',
+        loggedInStatus: false,
+        wrongUserNamePasswordMessage: '',
+        loggedInUser: {
+            userName: '',
+        },
         frontPageCurrentShowing:{
             top:0,
             bottom:0,
@@ -31,7 +35,8 @@ const model = {
             login:{
                 username:"",
                 password:"",
-                dropdown:false
+                dropdown:false,
+                wrongUserNamePassword: false,
             },
             category: [
                         {name:"ting",checked:true}
