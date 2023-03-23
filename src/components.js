@@ -4,7 +4,7 @@ function updateView(){
 
     switch (model.app.currentView){
         case 'frontPage':
-        container.appendChild(registerFormView())
+        container.innerHTML=registerFormView()
         break;
     }
 
@@ -18,7 +18,7 @@ function registerFormView() {
       <div class="form-container">
         <div class="form-group">
           <input type="text" placeholder="First Name" oninput="model.inputs.register.firstName = this.value;">
-          <input type="text" placeholder="Last Name" oninput="model.inputs.register.lastName = this.value;">
+          <input type="text" placeholder="Last Name" oninput="model.inputs.register.surname = this.value;">
         </div>
         <div class="form-group">
           <input type="email" placeholder="Email" oninput="model.inputs.register.email = this.value;">
@@ -35,7 +35,7 @@ function registerFormView() {
           <input type="text" placeholder="By:" oninput="model.inputs.register.city = this.value;">
         </div>
         <div class="form-group">
-          <input type="text" placeholder="Card info" oninput="model.inputs.register.cardNumber = this.value;">
+          <input type="text" placeholder="Card info" oninput="model.inputs.register.cardNumber = this.value; isvalid(this)">
           <input type="date" placeholder="Fra dato" oninput="model.inputs.register.fromDate = this.value;">
           <input type="text" placeholder="CVE" oninput="model.inputs.register.cve = this.value;">
         </div>

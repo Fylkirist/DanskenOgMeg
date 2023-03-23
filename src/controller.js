@@ -1,48 +1,53 @@
+function registerUser() {
 
-function blowUpGalleryImg(img){
-    model.app.zoomedPic = img
-}
+    let brukernavnTatt = false;
+    for (let userID in model.data.users){
+    console.log('Checking user ID:', userID);
+    console.log('Existing username:', model.data.users[userID].username);
+    console.log('Input username:', model.inputs.register.userName);
 
-function unZoom(){
-    model.app.zoomedPic = false
-}
-
-function addToShoppingCart(productId){
-    for(let i = 0; i < model.data.users[model.app.userId].shoppingCart.length;i++){
-        if(model.data.users[model.app.userId].shoppingCart[i].id == productId){
-            model.data.users[model.app.userId].shoppingCart[i].quantity++
-            return
-        }
+          if(model.data.users[userID].username === model.inputs.register.userName){
+                brukernavnTatt = true;
+                break;
+            }
     }
-    model.data.users[model.app.userId].shoppingCart.push({id:productId,quantity:1})
-}
-
-function raiseBid(productId){
-    if(model.data.auctionListe[productId].bids[model.app.userId]){
-        model.data.auctionListe[productId].bids[model.app.userId].push(model.inputs.product.bidIncrease)
-    }
-    else{
-        model.data.auctionListe[productId].bids[model.app.userId] = [model.inputs.product.bidIncrease]
-    }
-    model.inputs.product.bidIncrease = 0
-}
-
-function checkLogin()
-{
-    const users = model.data.users;
-
-    for (let userId in users)
+    if(brukernavnTatt)
     {
-        const user = users[userId];
-        console.log(model.inputs.login.username)
-        console.log(model.inputs.login.password)
+            let messageContainer = document.getElementById('melding');
+            messageContainer.innerHTML = `<p>Det er ikke unikt brukernavn!!!</p>`;
+            return;
+    }
+    if (model.inputs.register.password === model.inputs.register.repeatPassword) // Sjekker om passordet som er repeat er likt.
+  
+    { //
+            const newUser = {
+                username:model.inputs.register.userName,
+                passowrd:model.inputs.register.password,
+                permissions: 'user',
+                firstName:model.inputs.register.firstName,
+                surname:model.inputs.register.surname,
+                address:model.inputs.register.address,
+                email:model.inputs.register.email,
+                mobile:model.inputs.register.mobile,
+                shoppingCart:[],
+                auctionList:[],
+                paymentInformation:[],
+                messages:[]
+            };
+            const newUserID = '000000' + (Object.keys(model.data.users).length +1);
+            model.data.users[newUserID] = newUser;
 
-        if(model.inputs.login.username === user.username && model.inputs.login.password === user.password)
-        {
-            model.app.loggedInStatus = user.permissions;
-            console.table(model.app.loggedInStatus)
-        }
+            let messageContainer = document.getElementById('melding');
+            messageContainer.innerHTML = `<p>Registration completed!</p>`;
+
 
     }
-}
-
+    else if (model.inputs.register.password !== model.inputs.register.repeatPassword)
+    {
+        {
+            let messageContainer = document.getElementById('melding');
+            messageContainer.innerHTML = `<p>Passordene stemmer ikke overens!</p>`;
+        } 
+    }
+ 
+};
