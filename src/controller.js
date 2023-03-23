@@ -47,3 +47,64 @@ function checkLogin()
 }
 
 
+function createProduct(){
+
+
+
+
+}
+
+
+
+
+function saveMainCategory(){
+    let categoryExists = false ;
+    for(let i = 0; i<model.inputs.categoryList.length; i++){
+        if(model.inputs.createSale.mainCategory == model.inputs.category.categoryList[i].name 
+        && model.inputs.category.categoryList[i].parent == -1)
+        {
+            categoryExists = true;
+        }
+
+    }
+    if(!categoryExists){
+            model.inputs.category.categoryList.push({
+            id: model.inputs.category.categoryList.lenght,
+            name: model.inputs.createSale.mainCategory,
+            parent: -1,
+            checked: false
+        })
+    }
+}
+
+
+function saveSubCategory(){
+    let categoryExists = false ;
+    let parentCategory 
+
+    for(let i = 0; i<model.inputs.categoryList.length; i++){
+        if(model.inputs.createSale.subCategory == model.inputs.category.categoryList[i].name 
+        && model.inputs.category.categoryList[i].parent < -1)
+        {
+            categoryExists = true;
+            parentCategory = model.inputs.categoryList[i].id
+        }
+     
+    }
+    if(!categoryExists){
+        model.inputs.category.categoryList.push({
+        id: model.inputs.category.categoryList.lenght,
+        name: model.inputs.createSale.subCategory,
+        parent: parentCategory,
+        checked: false
+    })
+    }
+}
+
+
+
+function addMainCategory(){
+
+    
+
+}

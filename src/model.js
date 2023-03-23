@@ -32,9 +32,18 @@ const model = {
                 password:"",
                 dropdown:false
             },
-            category: [
-                        {name:"ting",checked:true}
-                    ],
+            category:{ 
+                
+                categoryList:[
+                    {id:0,name:"Møbler",parent:-1,checked:false},
+                    {id:1,name:"Bord",parent:0,checked:false},
+                    {id:2,name:"Klær",parent:-1,checked:false},
+                    {id:3,name:"Hatter",parent:2,checked:false},
+                    {id:4,name:"Bukser",parent:2,checked:false},
+                    {id:5,name:"Dongeri",parent:4,checked:false},
+                    {id:6,name:"Bomull",parent:4,checked:false}
+                ]     
+            },
                     
               
            
@@ -45,12 +54,14 @@ const model = {
                 price:'',
                 minimumBid:false,
                 minimumBidAmmount:'',
-                category:'',
                 auction:true,
                 deadline:'',
                 images:[],
                 deliver:false,
-                frontPage:false   
+                frontPage:false,
+                categoryList: [], 
+                mainCategory : '',
+                subCategory : ''
             },
             search:{
                 input:'',
@@ -170,10 +181,6 @@ const model = {
                 deliver:false
             },
         ],
-        itemsCategory: [
-            {name: 'ting', checked: false, type: 'parent'}, 
-            {name: 'små ting', checked: false, type: 'child'}, 
-
-        ],
+        
     }
 }

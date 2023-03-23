@@ -214,10 +214,36 @@ function createSaleView(){
     container.appendChild(categoryListLabel);
     
 
-    let categoryList = document.createElement('div');
-    categoryList.id = "categoryList";
+    let categoryMain = document.createElement('input');
+    categoryMain.id = "categoryMain";
+    priceInput.setAttribute("type","text");
+    categoryMain.placeholder = "Hoved Kategori"
+    categoryMain.oninput = ()=> model.inputs.createSale.mainCategory = categoryMain.value;
+    container.appendChild(categoryMain);
 
-    
+    let mainCategoryAdd = document.createElement ('button');
+    mainCategoryAdd.id = "mainCategoryAdd";
+    mainCategoryAdd.textContent = "Tilset Hoved Kategori";
+    mainCategoryAdd.onclick = function(){
+        addMainCategory()
+    }
+    categoryMain.appendChild(mainCategoryAdd);
+
+
+    let categorySub = document.createElement('input');
+    categorySub.id = "categorySub";
+    priceInput.setAttribute("type","text");
+    categorySub.placeholder = "Sub Kategori";
+    categoryMain.oninput = ()=> model.inputs.createSale.subCategory = categorySub.value;
+    container.appendChild(categorySub);
+
+    let subCategoryAdd = document.createElement ('button');
+    subCategoryAdd.id = "mainCategoryAdd";
+    subCategoryAdd.textContent = "Tilset Sub Kategori";
+    subCategoryAdd.onclick = function(){
+        addSubCategory()
+    }
+    subCategoryAdd.appendChild(subCategoryAdd);
 
     
     let galleryFrame = document.createElement('div');
@@ -227,11 +253,13 @@ function createSaleView(){
 
     let imageGalleryInput = document.createElement('input');
     imageGalleryInput.id = "galleryInput"; 
+    imageGalleryInput.setAttribute ("file");
     imageGalleryInput.appendChild(galleryFrame);
     
     
-    let mainPicture = document.createElement('div');
+    let mainPicture = document.createElement('input');
     mainPicture.id = "mainPicture";
+    mainPicture.setAttribute ("file");
     container.appendChild(mainPicture);
 
    
@@ -318,7 +346,7 @@ function createSaleView(){
     saveButton.id = "saveButton";
     saveButton.textContent = "Legg ut produkt"
     saveButton.onclick = function(){
-        lagreProdukt()
+        createProduct()
     }
     container.appendChild(saveButton)
 
