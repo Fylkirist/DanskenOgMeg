@@ -185,15 +185,14 @@ function createSaleView(){
     let productName = document.createElement('input');
     productName.id = "productName";
     productName.setAttribute ("type","text");
+    productName.oninput = ()=> model.inputs.createSale.title = productName.value;
     container.appendChild(productName);
     
 
-
-    
-
     let productDescription = document.createElement('input');
-    productDescription.id = "pDescription";
+    productDescription.id = "productDescription";
     productDescription.setAttribute ("type","text"); 
+    productDescription.oninput = ()=> model.inputs.createSale.description = productDescription.value;
     container.appendChild(productDescription);
 
 
@@ -205,6 +204,7 @@ function createSaleView(){
     let priceInput = document.createElement('input');
     priceInput.id = "priceInput";
     priceInput.setAttribute("type","text");
+    priceInput.oninput = ()=> model.inputs.createSale.price = priceInput.value;
     container.appendChild(priceInput);
 
 
@@ -246,12 +246,15 @@ function createSaleView(){
 
     let frontPageBoxLabel = document.createElement('label');
     frontPageBoxLabel.textContent = "Vise i første side";
+    
     container.appendChild(frontPageBox);
 
 
     let frontPageBox = document.createElement('input');
     frontPageBox.id = "frontPageBox";
-    frontPageBox.setAttribute("type","checkbox")
+    frontPageBox.setAttribute("type","checkbox");
+    frontPageBox.checked == true;
+    frontPageBox.oninput = ()=> model.inputs.createSale.frontPage = frontPageBox.value;
     container.appendChild(frontPageBoxLabel);
 
 
@@ -263,6 +266,8 @@ function createSaleView(){
     let auctionBox = document.createElement('input');
     auctionBox.id = "auctionBox";
     frontPageBox.setAttribute("type","checkbox");
+    auctionLabel.checked == true;
+    auctionLabel.oninput = ()=> model.inputs.createSale.auction = auctionLabel.value;
     container.appendChild(auctionBox);
 
     
@@ -275,9 +280,7 @@ function createSaleView(){
     let bidDeadline = document.createElement('input');
     bidDeadline.id = "deadline"; 
     bidDeadline.setAttribute("type","datetime-local");
-    bidDeadline.oninput = function(){
-        model.inputs.createSale.deadline = bidDeadline.value;
-    }
+    bidDeadline.oninput =  ()=> model.inputs.createSale.deadline = bidDeadline.value;
     container.appendChild(bidDeadline);
 
     let minimumBidLabel = document.createElement('label');
@@ -287,12 +290,15 @@ function createSaleView(){
     let minimumBidBox = document.createElement('input');
     minimumBidBox.id = "minimumBidBox";
     minimumBidBox.setAttribute("type","checkbox")
+    minimumBidBox.checked == true;
+    minimumBidBox.oninput = ()=> model.inputs.createSale.minimumBid = minimumBidBox.value;
     container.appendChild(minimumBidBox);
     
 
     let minimumBidAmmount = document.createElement('input');
     minimumBidAmmount.id = "minimumBidInput"; 
     minimumBidAmmount.setAttribute("type","text");
+    minimumBidAmmount.oninput =  ()=> model.inputs.createSale.minimumBidAmmount = minimumBidAmmount.value;
     container.appendChild(minimumBidAmmount);
 
     let deliveryBoxLabel = document.createElement('label');
@@ -303,6 +309,8 @@ function createSaleView(){
     let deliveryCheckBox = document.createElement('input');
     deliveryCheckBox.id = "deliveryBox";
     minimumBidBox.setAttribute("type","checkbox")
+    deliveryCheckBox.checked == true;
+    deliveryCheckBox.oninput = ()=> model.inputs.createSale.deliver = deliveryCheckBox.value;
     container.appendChild(deliveryCheckBox)
    
 

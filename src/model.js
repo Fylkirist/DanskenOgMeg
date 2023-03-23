@@ -49,7 +49,8 @@ const model = {
                 auction:true,
                 deadline:'',
                 images:[],
-                deliver:false   
+                deliver:false,
+                frontPage:false   
             },
             search:{
                 input:'',
