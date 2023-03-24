@@ -310,9 +310,10 @@ function createSaleView(){
     let auctionBox = document.createElement('input');
     auctionBox.id = "auctionBox";
     frontPageBox.setAttribute("type","checkbox");
-    auctionLabel.checked == true;
-    auctionLabel.oninput = ()=> model.inputs.createSale.auction = auctionLabel.value;
-    container.appendChild(auctionBox);
+    auctionBox.checked = model.inputs.createSale.auction;
+    auctionBox.onchange = function() {
+    model.inputs.createSale.auction = auctionBox.checked;
+    }
 
     
     let deadlineLabel = document.createElement('label');
@@ -342,8 +343,12 @@ function createSaleView(){
     let minimumBidAmmount = document.createElement('input');
     minimumBidAmmount.id = "minimumBidInput"; 
     minimumBidAmmount.setAttribute("type","text");
-    minimumBidAmmount.oninput =  ()=> model.inputs.createSale.minimumBidAmmount = minimumBidAmmount.value;
-    container.appendChild(minimumBidAmmount);
+    minimumBidBox.checked = model.inputs.createSale.minimumBid;
+    minimumBidBox.onchange = function() {
+    model.inputs.createSale.minimumBid = minimumBidBox.checked;
+};
+
+container.appendChild(minimumBidBox);
 
     let deliveryBoxLabel = document.createElement('label');
     deliveryBoxLabel.textContent = "Kan Leveres";
@@ -352,10 +357,11 @@ function createSaleView(){
 
     let deliveryCheckBox = document.createElement('input');
     deliveryCheckBox.id = "deliveryBox";
-    minimumBidBox.setAttribute("type","checkbox")
-    deliveryCheckBox.checked == true;
-    deliveryCheckBox.oninput = ()=> model.inputs.createSale.deliver = deliveryCheckBox.value;
-    container.appendChild(deliveryCheckBox)
+    deliveryCheckBox.setAttribute("type","checkbox")
+    deliveryCheckBox.checked = model.inputs.createSale.deliver;
+    deliveryCheckBox.onchange = function() {
+    model.inputs.createSale.deliver = deliveryCheckBox.checked;
+};
    
 
     let saveButton = document.createElement('button');
