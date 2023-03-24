@@ -12,6 +12,9 @@ function updateView(){
         case "registerPage":
             app.innerHTML = '';
             break
+        case "handlevognPage":
+            app.innerHTML = createHeaderSection() + showFilterBox()+ showShoppingCart();
+            break;
     }
 }
 
@@ -83,7 +86,7 @@ function createHeaderSection(){
                 <div class="loginButton" onclick="loginDropDown()">Login</div>` :
                 `<div class="userButton" onclick="">${model.app.loggedInUser.userName}</div>`}
 
-                <div class="cartIcon" onclick="">🛒</div>
+                ${model.app.loggedInAs !== 'admin' ? `<div class="cartIcon" onclick="changeView('handlevognPage')">🛒</div>`: ''}
                 <h3 class="underskrift">VintageSkatter</h1>
                 <input type="search" class="searchBar" placeholder="Søk varer her." onchange="" name="q" value="" />
                 <div class="searchButton" onclick="">Search</div>
@@ -117,6 +120,10 @@ function createHeaderSection(){
 }
 function showAllProducts(){
     return `<div class="allProductContainer"></div>`;
+}
+
+function showShoppingCart(){
+
 }
 
 
