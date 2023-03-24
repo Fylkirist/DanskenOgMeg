@@ -7,7 +7,7 @@ function updateView(){
             app.innerHTML += loginView()
             break
         case "filteredPage":
-            app.innerHTML = showFilterBox()
+            app.innerHTML += showFilterBox() + showFilteredProducts()
             break
         case "registerPage":
             break
@@ -86,16 +86,7 @@ function showZoomedPic(){
 }
 
 function showFilterBox(){
-    let highestPrice = 0;
-    let lowestPrice = 241702352;
-    model.inputs.category.filteredItems.forEach(
-        (elem) => {
-            highestPrice = elem.price>highestPrice? elem.price : highestPrice
-            lowestPrice = elem.price<lowestPrice?elem.price : lowestPrice
-        }
-    )
-    model.inputs.category.priceRange.max = highestPrice
-    model.inputs.category.priceRange.min = lowestPrice
+    let priceLimits = determinePriceLimits()
     return `
         <div>
             <h3>Kategorier</h3>
@@ -111,9 +102,9 @@ function showFilterBox(){
                 <input onchange = "model.inputs.category.filterNormalCheck = !model.inputs.category.filterNormalCheck" type = "checkbox" ${model.inputs.category.filterNormalCheck? "checked":""}/>
             </div>
             <div>
-                <input type = "range" min="${lowestPrice}" max = "${highestPrice}" value = "${model.inputs.category.priceRange.max}"></input>
-                <input type = "text">${model.inputs.category.priceRange.min}</input>
-                <input type = "text">${model.inputs.category.priceRange.max}</input>
+                <input type = "range" min="${priceLimits.min}" max = "${priceLimits.max}" value = "${model.inputs.category.priceRange.max}"></input>
+                <input type = "text" value = "${priceLimits.min}"></input>
+                <input type = "text" value = "${model.inputs.category.priceRange.max}"></input>
             </div>
         </div>
         `
@@ -133,4 +124,31 @@ function generateCategoryElems(parentId){
         }
     }
     return html
+}
+
+function showFilteredProducts(){
+    model.inputs.category.filteredItems = filterItems()
+    let productList = ``
+    for(let i = 0; i<model.inputs.category.filteredItems.length;i++){
+        productList += `
+            <div class = "filteredProductContainer">
+                <img src = ${model.data.items[model.inputs.category.filteredItems[i]-1].images[0]}/>
+                <div>
+                    <h3>${model.data.items[model.inputs.category.filteredItems[i]-1].title}</h3>
+                    <br>
+                    <p>${model.data.items[model.inputs.category.filteredItems[i]-1].description}</p>
+                    <br>
+                    <div>
+                        <label>${model.data.items[model.inputs.category.filteredItems[i]-1].price},-</label>
+                        ${!model.data.items[model.inputs.category.filteredItems[i]-1].auction?`<button onclick = "addToShoppingCart(${model.data.items[model.inputs.category.filteredItems[i]-1].id})">Legg til I handlekurv</button>`:""}
+                        <button onclick = "goToProduct(${i})">Gå til produktside</button>
+                    </div>
+                </div>
+            </div>`
+    }
+    let container = `
+        <div "filteredProductListContainer">
+            ${productList}
+        </div>`
+    return container
 }
