@@ -64,11 +64,12 @@ body{
     left: 88vw;
     cursor: pointer;
     user-select: none;
+    
 }
 .userButton{
     background-color: salmon;
     color: white;
-    padding: 0.5vw;
+    padding: 0.3vw;
     margin-left: 1vw;
     margin-right: 1vw;
     position: absolute;
@@ -99,25 +100,27 @@ body{
 }
 .userNameInput{
     position: absolute;
-    top: 25%;
-    right: 4vw;
+    top: 7vh;
+    right: 5.5vw;
+    width: 5vw;
 }
 .passwordInput{
     position: absolute;
-    top: 36%;
-    right: 4vw;
+    top: 10vh;
+    right: 5.5vw;
+    width: 5vw;
 }
 .loginSubmitButton{
     background-color: salmon;
     color: white;
-    padding: 0.5vh;
-    padding-left: 0.5vw;
-    padding-right: 0.5vw;
+    padding: 0.3vh;
+    padding-left: 0.3vw;
+    padding-right: 0.3vw;
     /* margin-left: 1vw;
     margin-right: 1vw; */
     position: absolute;
-    top: 47%;
-    right: 4vw;
+    top: 13vh;
+    right: 5.5vw;
     cursor: pointer;
     user-select: none;
     display: flex;
@@ -130,7 +133,7 @@ body{
     position: absolute;
     top: 57%;
     font-size: small;
-    right: 4vw;
+    right: 5.5vw;
     color: red;
     margin: 0.5vh;
 }
@@ -138,7 +141,7 @@ body{
     position: absolute;
     top: 65%;
     font-size: small;
-    right: 4vw;
+    right: 5.5vw;
     margin: 0.5vh;
 }
 .forgotPassword span:hover{
