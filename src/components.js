@@ -4,7 +4,7 @@ function updateView(){
     app.innerHTML = "";
     switch(model.app.currentView){
         case "frontPage":
-            app.innerHTML = createHeaderSection() + showFilterBox() + showAllProducts();
+            app.innerHTML = createHeaderSection() + showFilterBox() + showFrontPageProducts();
             break
         case "filteredPage":
             app.innerHTML = showFilterBox()
@@ -118,7 +118,7 @@ function createHeaderSection(){
         `;
     return html;
 }
-function showAllProducts(){
+function showFrontPageProducts(){
     return `<div class="allProductContainer"></div>`;
 }
 
