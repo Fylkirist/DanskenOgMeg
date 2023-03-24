@@ -1,14 +1,14 @@
-function updateFrontPageView(){
-    let html = '';
+// function updateFrontPageView(){
+//     let html = '';
 
-    html += /*html*/ `
-            <div class="frontPageContainer">
-            ${createHeaderSection()}
-            </div>
-    `;
+//     html += /*html*/ `
+            
+//             ${createHeaderSection()}
+           
+//     `;
 
-    return html;
-}
+//     return html;
+// }
 
 function createHeaderSection(){
                     return /*html*/`
@@ -49,3 +49,4 @@ function createHeaderSection(){
                         </div>
                 `;
 }
+{/* <div class="frontPageContainer"></div> */}
