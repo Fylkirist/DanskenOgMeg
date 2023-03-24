@@ -61,7 +61,9 @@ const model = {
                 frontPage:false,
                 categoryList: [], 
                 mainCategory : '',
-                subCategory : ''
+                subCategory : '',
+                mainImage: '',
+                addImage: '',
             },
             search:{
                 input:'',
@@ -166,7 +168,8 @@ const model = {
                 deadline:'2023-03-21T18:21',
                 images:['assets/kronebilde1.png','assets/kronebilde2.png'],
                 inStock:true,
-                deliver:true
+                deliver:true,
+                mainImage: ''
             },
             {
                 id: 000002,

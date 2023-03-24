@@ -66,8 +66,11 @@ images: [],
 deliver:model.inputs.createSale.deliver,
 frontPage: model.inputs.createSale.frontPage,
 categoryList: [],
+mainImage: model.inputs.createSale.mainImage,
+images : model.inputs.createSale.images
 }
 model.data.items.push(newProduct);
+saveMainCategory()
 }
 
 
@@ -149,8 +152,8 @@ function addSubCategory(){
     {
             
     }
-    else{
-        
+    else
+    {   
         model.inputs.createSale.categoryList.push(model.inputs.createSale.subCategory)
     }
 
@@ -158,6 +161,22 @@ function addSubCategory(){
     model.inputs.createSale.subCategory = ''
     
 
+
+
+
+}
+
+
+function insertImage(){
+
+    if(model.inputs.createSale.images.includes(model.inputs.createSale.addImage))
+    {
+
+    }
+    else
+    {
+        model.inputs.createSale.images.push(model.inputs.createSale.addImage)
+    }
 
 
 

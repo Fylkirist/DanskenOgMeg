@@ -257,12 +257,25 @@ function createSaleView(){
     let imageGalleryInput = document.createElement('input');
     imageGalleryInput.id = "galleryInput"; 
     imageGalleryInput.setAttribute ("type","file");
-    imageGalleryInput.appendChild(galleryFrame);
+    imageGalleryInput.oninput = ()=> model.inputs.createSale.addImage = imageGalleryInput.value;
+    container.appendChild(imageGalleryInput);
+
+    let addImageButton = document.createElement('button');
+    addImageButton.id = "addImageButton";
+    addImageButton.textContent = "Legg in Bilde";
+    addImageButton.setAttribute ("type","file");
+    addImageButton.onclick = function(){
+        insertImage()
+    }
+    container.appendChild(addImageButton);
+    
+
     
     
     let mainPicture = document.createElement('input');
     mainPicture.id = "mainPicture";
     mainPicture.setAttribute ("type","file");
+    mainPicture.oninput = ()=> model.inputs.createSale.mainImage = mainPicture.value;
     container.appendChild(mainPicture);
 
    
@@ -297,10 +310,10 @@ function createSaleView(){
     let auctionBox = document.createElement('input');
     auctionBox.id = "auctionBox";
     frontPageBox.setAttribute("type","checkbox");
-    auctionBox.checked = model.inputs.createSale.auction;
-    auctionBox.onchange = function() {
-    model.inputs.createSale.auction = auctionBox.checked;
-    }
+    auctionLabel.checked == true;
+    auctionLabel.oninput = ()=> model.inputs.createSale.auction = auctionLabel.value;
+    container.appendChild(auctionBox);
+
     
     let deadlineLabel = document.createElement('label');
     deadlineLabel.textContent = "Sett Bud Frist";
@@ -321,12 +334,10 @@ function createSaleView(){
     let minimumBidBox = document.createElement('input');
     minimumBidBox.id = "minimumBidBox";
     minimumBidBox.setAttribute("type","checkbox")
-    minimumBidBox.checked = model.inputs.createSale.minimumBid;
-    minimumBidBox.onchange = function() {
-    model.inputs.createSale.minimumBid = minimumBidBox.checked;
-};
-
-container.appendChild(minimumBidBox);
+    minimumBidBox.checked == true;
+    minimumBidBox.oninput = ()=> model.inputs.createSale.minimumBid = minimumBidBox.value;
+    container.appendChild(minimumBidBox);
+    
 
     let minimumBidAmmount = document.createElement('input');
     minimumBidAmmount.id = "minimumBidInput"; 
@@ -341,13 +352,9 @@ container.appendChild(minimumBidBox);
 
     let deliveryCheckBox = document.createElement('input');
     deliveryCheckBox.id = "deliveryBox";
-    deliveryCheckBox.setAttribute("type","checkbox")
-    deliveryCheckBox.checked = model.inputs.createSale.deliver;
-    deliveryCheckBox.onchange = function() {
-    model.inputs.createSale.deliver = deliveryCheckBox.checked;
-};
-
-
+    minimumBidBox.setAttribute("type","checkbox")
+    deliveryCheckBox.checked == true;
+    deliveryCheckBox.oninput = ()=> model.inputs.createSale.deliver = deliveryCheckBox.value;
     container.appendChild(deliveryCheckBox)
    
 
@@ -362,5 +369,4 @@ container.appendChild(minimumBidBox);
      
      return container
     
-
 }
