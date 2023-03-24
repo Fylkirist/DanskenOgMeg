@@ -48,11 +48,6 @@ function checkLogin()
 
 
 function createProduct(){
-const title = model.inputs.createSale.title;
-const description = model.inputs.createSale.description;
-const price = model.inputs.createSale.price;
-
-
 const newProduct = {
 title: model.inputs.createSale.title,
 id: model.data.items.length +1,
