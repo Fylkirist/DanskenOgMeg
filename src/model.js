@@ -32,55 +32,22 @@ const model = {
                 password:"",
                 dropdown:false
             },
-            filteredProductPage: {
-                selectedMainCategories: [],
-                selectedSubCategories: [],
-                priceRange: {
-                    min: 0,
-                    max: 99999,
+            category:{
+                filteredItems:[],
+                priceRange:{
+                    max:"",
+                    min:0
                 },
+                filterAuctionCheck:true,
+                filterNormalCheck:true,
+                categoryList:[
+                    {id:0,name:"Møbler",parent:-1,checked:false},
+                    {id:1,name:"Bord",parent:0,checked:false},
+                    {id:2,name:"Klær",parent:-1,checked:false},
+                    {id:3,name:"Hatter",parent:2,checked:false},
+                    {id:4,name:"Bukser",parent:2,checked:false}
+                ]     
             },
-            category:{ 
-
-                wholeCategoryShow : false,
-            
-                selectedMainCategories: [
-                                        {
-                                            title: '', 
-                                            checked: false, 
-                                            showSubCategories: false, 
-                                            selectSubCategories: [
-                                                {title: '', checked: false},
-                                                {title: '', checked: false},
-                                            ]
-                                        },
-                                        {
-                                            title: '', 
-                                            checked: false, 
-                                            showSubCategories: false, 
-                                            selectSubCategories: [
-                                                {title: '', checked: false},
-                                                {title: '', checked: false},
-                                                {title: '', checked: false},
-                                            ]
-                                        },
-                                        {
-                                            title: '', 
-                                            checked: false, 
-                                            showSubCategories: false, 
-                                            selectSubCategories: [
-                                                {title: '', checked: false},
-                                                {title: '', checked: false},
-                                            ]
-                                        },
-                  
-                                    ],
-                
-                    
-                },
-                    
-              
-           
 
             createSale: {
                 id:'',

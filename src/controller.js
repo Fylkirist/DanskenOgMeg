@@ -46,6 +46,11 @@ function checkLogin()
     }
 }
 
+function checkFilterBox(index){
+    model.inputs.category.categoryList[index].checked = !model.inputs.category.categoryList[index].checked
+    updateView()
+}
+
 function changeView(view){
     model.app.currentView = view
     updateView()
