@@ -276,6 +276,7 @@ function createSaleView(){
     mainPicture.id = "mainPicture";
     mainPicture.setAttribute ("type","file");
     mainPicture.oninput = ()=> model.inputs.createSale.mainImage = mainPicture.value;
+
     container.appendChild(mainPicture);
 
    
@@ -335,20 +336,21 @@ function createSaleView(){
     let minimumBidBox = document.createElement('input');
     minimumBidBox.id = "minimumBidBox";
     minimumBidBox.setAttribute("type","checkbox")
-    minimumBidBox.checked == true;
-    minimumBidBox.oninput = ()=> model.inputs.createSale.minimumBid = minimumBidBox.value;
+    minimumBidBox.checked = model.inputs.createSale.minimumBid;
+    minimumBidBox.onchange = function() {
+    model.inputs.createSale.minimumBid = minimumBidBox.checked;
+    };
+
     container.appendChild(minimumBidBox);
     
 
     let minimumBidAmmount = document.createElement('input');
     minimumBidAmmount.id = "minimumBidInput"; 
     minimumBidAmmount.setAttribute("type","text");
-    minimumBidBox.checked = model.inputs.createSale.minimumBid;
-    minimumBidBox.onchange = function() {
-    model.inputs.createSale.minimumBid = minimumBidBox.checked;
-};
-
-container.appendChild(minimumBidBox);
+    minimumBidAmmount.placeholder = "Minst Bud"
+    minimumBidAmmount.oninput = ()=> model.inputs.createSale.minimumBidAmmount = minimumBidAmmount.value;
+    container.appendChild(minimumBidAmmount);
+    
 
     let deliveryBoxLabel = document.createElement('label');
     deliveryBoxLabel.textContent = "Kan Leveres";
@@ -363,6 +365,8 @@ container.appendChild(minimumBidBox);
     model.inputs.createSale.deliver = deliveryCheckBox.checked;
 };
    container.appendChild(deliveryCheckBox);
+
+
 
     let saveButton = document.createElement('button');
     saveButton.id = "saveButton";

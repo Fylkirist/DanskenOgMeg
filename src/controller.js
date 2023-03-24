@@ -65,9 +65,10 @@ deadline:model.inputs.createSale.deadline,
 images: [],
 deliver:model.inputs.createSale.deliver,
 frontPage: model.inputs.createSale.frontPage,
-categoryList: [],
+category: model.inputs.createSale.categoryList,
 mainImage: model.inputs.createSale.mainImage,
-images : model.inputs.createSale.images
+images : model.inputs.createSale.images,
+inStock :true
 }
 model.data.items.push(newProduct);
 saveMainCategory()
@@ -181,3 +182,6 @@ function insertImage(){
 
 
 }
+
+
+
