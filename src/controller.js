@@ -28,9 +28,9 @@ function registerUser() {
         }
         if (model.inputs.register.password === model.inputs.register.repeatPassword)
         { 
-            const newUser = {
+            const newUser = { // dytter inn objekt basert på inputt
                 username:model.inputs.register.userName,                        
-                password:model.inputs.register.password,  // Fix typo here
+                password:model.inputs.register.password,  
                 permissions: 'user',
                 firstName:model.inputs.register.firstName,
                 surname:model.inputs.register.surname,
@@ -52,7 +52,7 @@ function registerUser() {
                 ],
                 messages:[],
             };
-            const newUserID = '000000' + (Object.keys(model.data.users).length +1);    
+            const newUserID = '000000' + (Object.keys(model.data.users).length +1);    // id property for objekte
             model.data.users[newUserID] = newUser;                  
 
             let messageContainer = document.getElementById('melding');
