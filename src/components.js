@@ -25,20 +25,7 @@ function loginView(){
         `
 }
 
-function showLoginDropDown(){
-    if(model.inputs.login.dropdown){
-        return`
-        <div class = "dropdownList">
-        <input placeholder = "Brukernavn" oninput = "model.inputs.login.username = this.value" id = "usernameInput"></input>
-        <input placeholder = "Passord" oninput = "model.inputs.login.password = this.value" id = "passwordInput"></input>
-        <button onclick = "loginCheck()" id = "submitLogin"></button>
-        </div>
-    `
-    }
-    else{
-        return ``
-    }
-}
+
 
 function productDisplay(product){
     return `
@@ -86,55 +73,7 @@ function showZoomedPic(){
     return ``
 }
 
-// function showFilterBox(){
-//     let highestPrice = 0;
-//     let lowestPrice = 241702352;
-//     model.inputs.category.filteredItems.forEach(
-//         (elem) => {
-//             highestPrice = elem.price>highestPrice? elem.price : highestPrice
-//             lowestPrice = elem.price<lowestPrice?elem.price : lowestPrice
-//         }
-//     )
-//     model.inputs.category.priceRange.max = highestPrice
-//     model.inputs.category.priceRange.min = lowestPrice
-//     return `
-//         <div class="newCategoryBox">
-//             <h3>Kategorier</h3>
-//             <div>
-//                 ${generateCategoryElems(-1)}
-//             </div>
-//             <div>
-//                 <label>Vis auksjonsvarer: </label>
-//                 <input oninput = "model.inputs.category.filterAuctionCheck = !model.inputs.category.filterAuctionCheck" type = "checkbox" ${model.inputs.category.filterAuctionCheck? "checked":""}/>
-//             </div>
-//             <div>
-//                 <label>Vis fastprisvarer: </label>
-//                 <input onchange = "model.inputs.category.filterNormalCheck = !model.inputs.category.filterNormalCheck" type = "checkbox" ${model.inputs.category.filterNormalCheck? "checked":""}/>
-//             </div>
-//             <div>
-//                 <input type = "range" min="${lowestPrice}" max = "${highestPrice}" value = "${model.inputs.category.priceRange.max}"></input>
-//                 <input type = "text">${model.inputs.category.priceRange.min}</input>
-//                 <input type = "text">${model.inputs.category.priceRange.max}</input>
-//             </div>
-//         </div>
-//         `
-// }
 
-// function generateCategoryElems(parentId){
-//     let html = ""
-//     for(let i = 0; i<model.inputs.category.categoryList.length; i++){
-//         if(model.inputs.category.categoryList[i].parent==parentId){
-//             html += `
-//                 <div>
-//                     <label>${model.inputs.category.categoryList[i].name}</label>
-//                     <input type = "checkbox" ${model.inputs.category.categoryList[i].checked? "checked":""} onchange = "checkFilterBox(${i})"/>
-//                     ${model.inputs.category.categoryList[i].checked? generateCategoryElems(model.inputs.category.categoryList[i].id):""}
-//                 </div>
-//                     `
-//         }
-//     }
-//     return html
-// }
 function createHeaderSection(){
     let html = '';
     html = /*html*/`
