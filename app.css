@@ -170,3 +170,184 @@ body{
     border-radius: 50%;
     cursor: pointer;
     }
+.headerContainer{
+    border: 1px solid salmon;
+    position: fixed;
+    left: 1vw;
+    right: 1vw;
+    top: 1vh;
+    bottom: 70vh;
+}
+.overskrift{
+    font-size: xx-large;
+    position: absolute;
+    left: 40vw;
+    top: 1vh;
+    /* right: 30%; */
+    padding: 0;
+    margin: 0;
+    /* margin-top: 2%; */
+    font-family: 'Times New Roman', Times, serif;
+    user-select: none;
+}
+.registerButton{
+    background-color: salmon;
+    color: white;
+    padding: 0.3vh;
+    padding-left: 0.3vw;
+    padding-right: 0.3vw;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    position: absolute;
+    top: 3vh;
+    left: 82vw;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+.registerButton:hover{
+    text-decoration: underline;
+}
+.loginButton{
+    background-color: salmon;
+    color: white;
+    padding: 0.3vh;
+    padding-left: 0.3vw;
+    padding-right: 0.3vw;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    position: absolute;
+    top: 3vh;
+    left: 88vw;
+    cursor: pointer;
+    user-select: none;
+    
+}
+.userButton{
+    background-color: salmon;
+    color: white;
+    padding: 0.3vw;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    position: absolute;
+    top: 3vh;
+    left: 86vw;
+    cursor: pointer;
+    user-select: none;
+}
+.userButton:hover{
+    text-decoration: underline;
+}
+.loginButton:hover{
+    text-decoration: underline;
+}
+.cartIcon{
+    background-color: transparent;
+    padding: 0vw;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    /* width: 10%;
+    height: 10%; */
+    position: absolute;
+    top: 3vh;
+    left: 93vw;
+    cursor: pointer;
+    user-select: none;
+
+}
+.userNameInput{
+    position: absolute;
+    top: 7vh;
+    right: 5.5vw;
+    width: 5vw;
+}
+.passwordInput{
+    position: absolute;
+    top: 10vh;
+    right: 5.5vw;
+    width: 5vw;
+}
+.loginSubmitButton{
+    background-color: salmon;
+    color: white;
+    padding: 0.3vh;
+    padding-left: 0.3vw;
+    padding-right: 0.3vw;
+    /* margin-left: 1vw;
+    margin-right: 1vw; */
+    position: absolute;
+    top: 13vh;
+    right: 5.5vw;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+.loginSubmitButton:hover{
+    text-decoration: underline;
+}
+.wrongUser{
+    position: absolute;
+    top: 57%;
+    font-size: small;
+    right: 5.5vw;
+    color: red;
+    margin: 0.5vh;
+}
+.forgotPassword{
+    position: absolute;
+    top: 65%;
+    font-size: small;
+    right: 5.5vw;
+    margin: 0.5vh;
+}
+.forgotPassword span:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+.underskrift{
+    font-size: large;
+    position: absolute;
+    left: 41vw;
+    top: 18%;
+    /* right: 30%; */
+    padding: 5px;
+    margin: 2px;
+    /* margin-top: 2%; */
+    font-family: 'Times New Roman', Times, serif;
+    user-select: none;
+}
+.searchBar{
+    background-color: transparent;
+    padding: 0.5vw;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    border: 1px solid gray;
+    width: 50vw;
+    height: 3vh; 
+    position: absolute;
+    top: 85%;
+    left: 40%;
+}
+.searchButton{
+    background-color: salmon;
+    color: white;
+    font-size: small;
+    padding: 0.5vh;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+    /* padding: 0.5vw; */
+    /* margin-left: 0.5vw;
+    margin-right: 0.5vw; */
+    /* height: 1vh; 
+    width: 3vw; */
+    position: absolute;
+    top: 85%;
+    right: 3%;
+    cursor: pointer;
+    user-select: none;
+}
+.searchButton:hover{
+    text-decoration: underline;
+}

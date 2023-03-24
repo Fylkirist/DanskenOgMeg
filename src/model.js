@@ -1,7 +1,11 @@
 const model = {
     app:{
-        currentView:'filteredPage',
-        loggedInStatus:'',
+        currentView:'frontPage',
+        loggedInStatus: false,
+        wrongUserNamePasswordMessage: '',
+        loggedInUser: {
+            userName: '',
+        },
         userId:false,
         zoomedPic:false,
         userId: false,
@@ -30,7 +34,8 @@ const model = {
             login:{
                 username:"",
                 password:"",
-                dropdown:false
+                dropdown:false,
+                wrongUserNamePassword: false,
             },
             category:{
                 filteredItems:[],
