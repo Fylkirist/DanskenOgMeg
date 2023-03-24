@@ -199,7 +199,7 @@ function createSaleView(){
             <label>Kan leveres:</label>
             <input id = "deliveryBox" type = "checkbox" ${model.inputs.createSale.deliver? "checked":""} onchange = "model.inputs.createSale.deliver = this.checked"></input>
             <button id = "saveButton" onclick = "createProduct()">Lagre produkt</button>
-            </div>
+        </div>
     `
     /*let container = document.createElement('div');
     container.className ="CreateSaleContainer"; 
