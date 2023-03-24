@@ -362,7 +362,7 @@ container.appendChild(minimumBidBox);
     deliveryCheckBox.onchange = function() {
     model.inputs.createSale.deliver = deliveryCheckBox.checked;
 };
-   
+   container.appendChild(deliveryCheckBox);
 
     let saveButton = document.createElement('button');
     saveButton.id = "saveButton";
