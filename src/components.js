@@ -15,7 +15,7 @@ function createSaleView(){
             <input oninput = "model.inputs.createSale.addImage = imageGalleryInput.value" type = "file" id = "galleryInput"></input>
             <button id = "addImageButton" onclick = "insertImage()">"Legg til bilde"</button>
             <input id = "mainPicture" type = "file" oninput = "model.inputs.createSale.mainImage = mainPicture.value"></input>
-            <label id = "productId">${model.data.items[model.data.items.length -1].id ++}</label>
+            <label id = "productId">${model.data.items[model.data.items.length -1].id++}</label>
             <label>Auksjon: </label>
             <input type = "checkbox" id = "auctionBox" ${model.inputs.createSale.auction? 'checked':''} onchange = "model.inputs.createSale.auction = !model.inputs.createSale.auction"/>
             <label>Budfrist</label>
