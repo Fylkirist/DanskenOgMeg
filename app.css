@@ -351,3 +351,25 @@ body{
 .searchButton:hover{
     text-decoration: underline;
 }
+.newCategoryBox{
+    border: 1px solid salmon;
+    overflow: scroll;
+    /* width: 25vw; */
+    position: absolute;
+    left: 1vw;
+    right: 85vw;
+    top: 30vh;
+    bottom: 30vh;
+
+}
+.allProductContainer{
+    border: 1px solid salmon;
+    /* overflow: scroll; */
+    overflow-y: scroll;
+    /* width: 25vw; */
+    position: absolute;
+    left: 15vw;
+    right: 1vw;
+    top: 30vh;
+    bottom: 5vh;
+}

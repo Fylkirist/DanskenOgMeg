@@ -48,12 +48,18 @@ function checkLogin()
 
 function checkFilterBox(index){
     model.inputs.category.categoryList[index].checked = !model.inputs.category.categoryList[index].checked
-    updateView()
+    for(let i = 0; i<model.inputs.category.categoryList.length; i++){
+        if(model.inputs.category.categoryList[i].parent == index){
+            model.inputs.category.categoryList[i].checked = false
+        }
+    }
+    
+    updateView();
 }
 
 function changeView(view){
-    model.app.currentView = view
-    updateView()
+    model.app.currentView = view;
+    updateView();
 }
 
 function loginDropDown(){
@@ -74,7 +80,7 @@ function checkUserIdPassword(){
             model.app.loggedInStatus= false;
     }
     else{
-        for(userKeys in model.data.users){
+        for(let userKeys in model.data.users){
             if(model.inputs.login.username === model.data.users[userKeys].username &&
             model.inputs.login.password === model.data.users[userKeys].password){
                 model.inputs.login.dropdown = false;
@@ -82,6 +88,7 @@ function checkUserIdPassword(){
                 model.inputs.login.wrongUserNamePassword = false;
                 model.app.wrongUserNamePasswordMessage = '';
                 model.app.loggedInUser.userName = model.data.users[userKeys].username;
+                model.app.loggedInAs = model.data.users[userKeys].permissions;
                 break;
             }
             else {
@@ -94,5 +101,60 @@ function checkUserIdPassword(){
     }
     updateView();
 }
+
+function goToProduct(index){
+    model.app.currentView = "productPage"
+    model.app.currentProduct = index
+    updateView()
+}
+
+function filterItems(){
+    let filterArray = model.data.items.map(elem=>{
+        if(elem.description.includes(model.inputs.search.input) || elem.title.includes(model.inputs.search.input))
+        return eval(elem.id)
+    })
+    console.log(filterArray)
+    filterArray = filterArray.filter(elem=>{
+        console.log(elem)
+        let included = true;
+        for(let i = 0; i<model.inputs.category.categoryList.length; i++){
+            console.log(model.data.items[elem-1].category,model.inputs.category.categoryList[i].checked)
+            if(!model.data.items[elem-1].category.includes(model.inputs.category.categoryList[i].name) && model.inputs.category.categoryList[i].checked){
+                included = false
+                break
+            }
+            
+        }
+        console.log(included)
+        if(included){return elem}
+    })
+    console.log(filterArray)
+    filterArray = filterArray.filter(elem=>{
+        if(model.data.items[elem-1].price >= model.inputs.category.priceRange.min && model.data.items[elem-1].price <= model.inputs.category.priceRange.max){
+            return elem
+        }    
+    })
+    console.log(filterArray)
+    return filterArray
+}
+
+function determinePriceLimits(){
+    let max = 0
+    for(let i = 0; i<model.data.items.length; i++){
+        if(model.data.items[i].price>max){
+            max = model.data.items[i].price
+        }
+    }
+    let min = max
+    for(let i = 0; i<model.data.items.length; i++){
+        if(model.data.items[i].price<min){
+            min = model.data.items[i].price
+        }
+    }
+    return {max:max,min:min}
+}
+let priceLimits = determinePriceLimits()
+model.inputs.category.priceRange.max = priceLimits.max
+model.inputs.category.priceRange.min = priceLimits.min
 
 

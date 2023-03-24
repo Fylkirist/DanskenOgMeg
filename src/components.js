@@ -4,12 +4,13 @@ function updateView(){
     app.innerHTML = "";
     switch(model.app.currentView){
         case "frontPage":
-            app.innerHTML = createHeaderSection()
+            app.innerHTML = createHeaderSection() + showFilterBox() + showAllProducts();
             break
         case "filteredPage":
             app.innerHTML = showFilterBox()
             break
         case "registerPage":
+            app.innerHTML = '';
             break
     }
 }
@@ -41,7 +42,7 @@ function showLoginDropDown(){
 
 function productDisplay(product){
     return `
-    <div class = "productDisplayContainer">
+    <div>
         ${showZoomedPic()}
         <div class = "productDisplayTitle">${model.data.items[product].title}</div>
         <div class = "productDisplayDescriptionContainer">
@@ -85,61 +86,61 @@ function showZoomedPic(){
     return ``
 }
 
-function showFilterBox(){
-    let highestPrice = 0;
-    let lowestPrice = 241702352;
-    model.inputs.category.filteredItems.forEach(
-        (elem) => {
-            highestPrice = elem.price>highestPrice? elem.price : highestPrice
-            lowestPrice = elem.price<lowestPrice?elem.price : lowestPrice
-        }
-    )
-    model.inputs.category.priceRange.max = highestPrice
-    model.inputs.category.priceRange.min = lowestPrice
-    return `
-        <div>
-            <h3>Kategorier</h3>
-            <div>
-                ${generateCategoryElems(-1)}
-            </div>
-            <div>
-                <label>Vis auksjonsvarer: </label>
-                <input oninput = "model.inputs.category.filterAuctionCheck = !model.inputs.category.filterAuctionCheck" type = "checkbox" ${model.inputs.category.filterAuctionCheck? "checked":""}/>
-            </div>
-            <div>
-                <label>Vis fastprisvarer: </label>
-                <input onchange = "model.inputs.category.filterNormalCheck = !model.inputs.category.filterNormalCheck" type = "checkbox" ${model.inputs.category.filterNormalCheck? "checked":""}/>
-            </div>
-            <div>
-                <input type = "range" min="${lowestPrice}" max = "${highestPrice}" value = "${model.inputs.category.priceRange.max}"></input>
-                <input type = "text">${model.inputs.category.priceRange.min}</input>
-                <input type = "text">${model.inputs.category.priceRange.max}</input>
-            </div>
-        </div>
-        `
-}
+// function showFilterBox(){
+//     let highestPrice = 0;
+//     let lowestPrice = 241702352;
+//     model.inputs.category.filteredItems.forEach(
+//         (elem) => {
+//             highestPrice = elem.price>highestPrice? elem.price : highestPrice
+//             lowestPrice = elem.price<lowestPrice?elem.price : lowestPrice
+//         }
+//     )
+//     model.inputs.category.priceRange.max = highestPrice
+//     model.inputs.category.priceRange.min = lowestPrice
+//     return `
+//         <div class="newCategoryBox">
+//             <h3>Kategorier</h3>
+//             <div>
+//                 ${generateCategoryElems(-1)}
+//             </div>
+//             <div>
+//                 <label>Vis auksjonsvarer: </label>
+//                 <input oninput = "model.inputs.category.filterAuctionCheck = !model.inputs.category.filterAuctionCheck" type = "checkbox" ${model.inputs.category.filterAuctionCheck? "checked":""}/>
+//             </div>
+//             <div>
+//                 <label>Vis fastprisvarer: </label>
+//                 <input onchange = "model.inputs.category.filterNormalCheck = !model.inputs.category.filterNormalCheck" type = "checkbox" ${model.inputs.category.filterNormalCheck? "checked":""}/>
+//             </div>
+//             <div>
+//                 <input type = "range" min="${lowestPrice}" max = "${highestPrice}" value = "${model.inputs.category.priceRange.max}"></input>
+//                 <input type = "text">${model.inputs.category.priceRange.min}</input>
+//                 <input type = "text">${model.inputs.category.priceRange.max}</input>
+//             </div>
+//         </div>
+//         `
+// }
 
-function generateCategoryElems(parentId){
-    let html = ""
-    for(let i = 0; i<model.inputs.category.categoryList.length; i++){
-        if(model.inputs.category.categoryList[i].parent==parentId){
-            html += `
-                <div>
-                    <label>${model.inputs.category.categoryList[i].name}</label>
-                    <input type = "checkbox" ${model.inputs.category.categoryList[i].checked? "checked":""} onchange = "checkFilterBox(${i})"/>
-                    ${model.inputs.category.categoryList[i].checked? generateCategoryElems(model.inputs.category.categoryList[i].id):""}
-                </div>
-                    `
-        }
-    }
-    return html
-}
+// function generateCategoryElems(parentId){
+//     let html = ""
+//     for(let i = 0; i<model.inputs.category.categoryList.length; i++){
+//         if(model.inputs.category.categoryList[i].parent==parentId){
+//             html += `
+//                 <div>
+//                     <label>${model.inputs.category.categoryList[i].name}</label>
+//                     <input type = "checkbox" ${model.inputs.category.categoryList[i].checked? "checked":""} onchange = "checkFilterBox(${i})"/>
+//                     ${model.inputs.category.categoryList[i].checked? generateCategoryElems(model.inputs.category.categoryList[i].id):""}
+//                 </div>
+//                     `
+//         }
+//     }
+//     return html
+// }
 function createHeaderSection(){
     let html = '';
     html = /*html*/`
             <div class="headerContainer">
                 <h1 class="overskrift">Dansken og meg</h1>
-                ${!model.app.loggedInStatus ? `<div class="registerButton" onclick="">Registrer</div>
+                ${!model.app.loggedInStatus ? `<div class="registerButton" onclick="changeView('registerPage')">Registrer</div>
                 <div class="loginButton" onclick="loginDropDown()">Login</div>` :
                 `<div class="userButton" onclick="">${model.app.loggedInUser.userName}</div>`}
 
@@ -174,4 +175,76 @@ function createHeaderSection(){
                 </div>
         `;
     return html;
+}
+function showAllProducts(){
+    return `<div class="allProductContainer"></div>`;
+}
+
+
+function showFilterBox(){
+    let priceLimits = determinePriceLimits()
+    return `
+        <div class="newCategoryBox">
+            <h3>Kategorier</h3>
+            <div>
+                ${generateCategoryElems(-1)}
+            </div>
+            <div>
+                <label>Vis auksjonsvarer: </label>
+                <input oninput = "model.inputs.category.filterAuctionCheck = !model.inputs.category.filterAuctionCheck" type = "checkbox" ${model.inputs.category.filterAuctionCheck? "checked":""}/>
+            </div>
+            <div>
+                <label>Vis fastprisvarer: </label>
+                <input onchange = "model.inputs.category.filterNormalCheck = !model.inputs.category.filterNormalCheck" type = "checkbox" ${model.inputs.category.filterNormalCheck? "checked":""}/>
+            </div>
+            <div>
+                <input type = "range" min="${priceLimits.min}" max = "${priceLimits.max}" value = "${model.inputs.category.priceRange.max}"></input>
+                <input type = "text" value = "${priceLimits.min}"></input>
+                <input type = "text" value = "${model.inputs.category.priceRange.max}"></input>
+            </div>
+        </div>
+        `
+}
+
+function generateCategoryElems(parentId){
+    let html = ""
+    for(let i = 0; i<model.inputs.category.categoryList.length; i++){
+        if(model.inputs.category.categoryList[i].parent==parentId){
+            html += `
+                <div>
+                    <label>${model.inputs.category.categoryList[i].name}</label>
+                    <input type = "checkbox" ${model.inputs.category.categoryList[i].checked? "checked":""} onchange = "checkFilterBox(${i})"/>
+                    ${model.inputs.category.categoryList[i].checked? generateCategoryElems(model.inputs.category.categoryList[i].id):""}
+                </div>
+                    `
+        }
+    }
+    return html
+}
+
+function showFilteredProducts(){
+    model.inputs.category.filteredItems = filterItems()
+    let productList = ``
+    for(let i = 0; i<model.inputs.category.filteredItems.length;i++){
+        productList += `
+            <div class = "filteredProductContainer">
+                <img src = ${model.data.items[model.inputs.category.filteredItems[i]-1].images[0]}/>
+                <div>
+                    <h3>${model.data.items[model.inputs.category.filteredItems[i]-1].title}</h3>
+                    <br>
+                    <p>${model.data.items[model.inputs.category.filteredItems[i]-1].description}</p>
+                    <br>
+                    <div>
+                        <label>${model.data.items[model.inputs.category.filteredItems[i]-1].price},-</label>
+                        ${!model.data.items[model.inputs.category.filteredItems[i]-1].auction?`<button onclick = "addToShoppingCart(${model.data.items[model.inputs.category.filteredItems[i]-1].id})">Legg til I handlekurv</button>`:""}
+                        <button onclick = "goToProduct(${i})">Gå til produktside</button>
+                    </div>
+                </div>
+            </div>`
+    }
+    let container = `
+        <div "filteredProductListContainer">
+            ${productList}
+        </div>`
+    return container
 }
