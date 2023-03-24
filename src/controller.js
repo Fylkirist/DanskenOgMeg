@@ -113,6 +113,11 @@ function determinePriceLimits(){
     }
     return {max:max,min:min}
 }
+
+function changePriceLevels(value){
+    model.inputs.category.priceRange.max = value
+    updateView()
+}
 let priceLimits = determinePriceLimits()
 model.inputs.category.priceRange.max = priceLimits.max
 model.inputs.category.priceRange.min = priceLimits.min

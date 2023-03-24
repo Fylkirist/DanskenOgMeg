@@ -102,9 +102,9 @@ function showFilterBox(){
                 <input onchange = "model.inputs.category.filterNormalCheck = !model.inputs.category.filterNormalCheck" type = "checkbox" ${model.inputs.category.filterNormalCheck? "checked":""}/>
             </div>
             <div>
-                <input type = "range" min="${priceLimits.min}" max = "${priceLimits.max}" value = "${model.inputs.category.priceRange.max}"></input>
+                <input type = "range" onchange = "changePriceLevels(this.value)" min="${priceLimits.min}" max = "${priceLimits.max}" value = "${model.inputs.category.priceRange.max}"></input>
                 <input type = "text" value = "${priceLimits.min}"></input>
-                <input type = "text" value = "${model.inputs.category.priceRange.max}"></input>
+                <input type = "text" onchange = "changePriceLevels(this.value)" value = "${model.inputs.category.priceRange.max}"></input>
             </div>
         </div>
         `
