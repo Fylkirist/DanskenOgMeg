@@ -4,7 +4,7 @@ function updateView(){
 
     switch (model.app.currentView){
         case 'frontPage':
-        container.appendChild(frontpage())
+        container.appendChild(createSaleView())
         break;
     }
 
@@ -297,10 +297,10 @@ function createSaleView(){
     let auctionBox = document.createElement('input');
     auctionBox.id = "auctionBox";
     frontPageBox.setAttribute("type","checkbox");
-    auctionLabel.checked == true;
-    auctionLabel.oninput = ()=> model.inputs.createSale.auction = auctionLabel.value;
-    container.appendChild(auctionBox);
-
+    auctionBox.checked = model.inputs.createSale.auction;
+    auctionBox.onchange = function() {
+    model.inputs.createSale.auction = auctionBox.checked;
+    }
     
     let deadlineLabel = document.createElement('label');
     deadlineLabel.textContent = "Sett Bud Frist";
@@ -321,10 +321,12 @@ function createSaleView(){
     let minimumBidBox = document.createElement('input');
     minimumBidBox.id = "minimumBidBox";
     minimumBidBox.setAttribute("type","checkbox")
-    minimumBidBox.checked == true;
-    minimumBidBox.oninput = ()=> model.inputs.createSale.minimumBid = minimumBidBox.value;
-    container.appendChild(minimumBidBox);
-    
+    minimumBidBox.checked = model.inputs.createSale.minimumBid;
+    minimumBidBox.onchange = function() {
+    model.inputs.createSale.minimumBid = minimumBidBox.checked;
+};
+
+container.appendChild(minimumBidBox);
 
     let minimumBidAmmount = document.createElement('input');
     minimumBidAmmount.id = "minimumBidInput"; 
@@ -339,9 +341,13 @@ function createSaleView(){
 
     let deliveryCheckBox = document.createElement('input');
     deliveryCheckBox.id = "deliveryBox";
-    minimumBidBox.setAttribute("type","checkbox")
-    deliveryCheckBox.checked == true;
-    deliveryCheckBox.oninput = ()=> model.inputs.createSale.deliver = deliveryCheckBox.value;
+    deliveryCheckBox.setAttribute("type","checkbox")
+    deliveryCheckBox.checked = model.inputs.createSale.deliver;
+    deliveryCheckBox.onchange = function() {
+    model.inputs.createSale.deliver = deliveryCheckBox.checked;
+};
+
+
     container.appendChild(deliveryCheckBox)
    
 
@@ -356,4 +362,5 @@ function createSaleView(){
      
      return container
     
+
 }
