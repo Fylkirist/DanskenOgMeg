@@ -48,10 +48,26 @@ function checkLogin()
 
 
 function createProduct(){
+const title = model.inputs.createSale.title;
+const description = model.inputs.createSale.description;
+const price = model.inputs.createSale.price;
 
 
-
-
+const newProduct = {
+title: model.inputs.createSale.title,
+id: model.data.items.length +1,
+description: model.inputs.createSale.description,
+price:model.inputs.createSale.price,
+minimumBid:model.inputs.createSale.minimumBid,
+minimumBidAmmount:model.inputs.createSale.minimumBidAmmount,
+auction:  model.inputs.createSale.auction,
+deadline:model.inputs.createSale.deadline,
+images: [],
+deliver:model.inputs.createSale.deliver,
+frontPage: model.inputs.createSale.frontPage,
+categoryList: [],
+}
+model.data.items.push(newProduct);
 }
 
 
@@ -59,7 +75,7 @@ function createProduct(){
 
 function saveMainCategory(){
     let categoryExists = false ;
-    for(let i = 0; i<model.inputs.categoryList.length; i++){
+    for(let i = 0; i < model.inputs.category.categoryList.length; i++){
         if(model.inputs.createSale.categoryList[0] == model.inputs.category.categoryList[i].name 
         && model.inputs.category.categoryList[i].parent == -1)
         {
@@ -69,8 +85,8 @@ function saveMainCategory(){
     }
     if(!categoryExists){
             model.inputs.category.categoryList.push({
-            id: model.inputs.category.categoryList.lenght,
-            name: model.inputs.createSale.mainCategory,
+            id: model.inputs.category.categoryList.length,
+            name: model.inputs.createSale.categoryList[0],
             parent: -1,
             checked: false
         })
@@ -79,6 +95,7 @@ function saveMainCategory(){
 
 
 function saveSubCategory(){
+    //Vi skal ta parent id, og det skal være id til hovedkategorier som er satt inn!
     let categoryExists = false ;
     let parentCategory 
 
