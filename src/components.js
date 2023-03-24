@@ -174,7 +174,34 @@ function productDisplay(product){
 
 
 function createSaleView(){
-    let container = document.createElement('div');
+    let container = `
+        <div class = "CreateSaleContainer">
+            <label id = "productLabel">Produktnavn</input>
+            <input id = "productName" type = "text" oninput = "model.inputs.createSale.title = this.value"/>
+            <input id = "productDescription" type = "text" oninput = "model.inputs.createSale.description = this.value"
+            <label id = "priceLabel">Pris: </label>
+            <input id = "priceInput" type = "text" oninput = "model.inputs.createSale.price = this.value"></input>
+            <label id = "categoryLabel">Legg til kategorier</label>
+            <input id = "categoryMain" type = "text" oninput = "model.inputs.createSale.mainCategory = this.value" value = "model.inputs.createSale.mainCategory"></input>
+            <button id = "mainCategoryAdd" onclick = "addMainCategory()">"Sett hovedkategori"</button>
+            <input id = "categorySub" type = "text" oninput = "model.inputs.createSale.subCategory = this.value" placeholder = "Underkategori"/>
+            <button id = "subCategoryAdd" onclick = "addSubCategory()">Legg til underkategori</button>
+            <div id = "galleryFrame">Bildegalleri</div>
+            <input oninput = "model.inputs.createSale.addImage = imageGalleryInput.value" type = "file" id = "galleryInput"></input>
+            <button id = "addImageButton" onclick = "insertImage()">"Legg til bilde"</button>
+            <input id = "mainPicture" type = "file" oninput = "model.inputs.createSale.mainImage = mainPicture.value"></input>
+            <label id = "productId">${model.data.items[model.data.items.length -1].id ++}</label>
+            <label>Auksjon: </label>
+            <input type = "checkbox" id = "auctionBox" ${model.inputs.createSale.auction? 'checked':''} onchange = "model.inputs.createSale.auction = !model.inputs.createSale.auction"/>
+            <label>Budfrist</label>
+            <input id = "deadline" type = "datetime-local" oninput = "model.inputs.createSale.deadline = this.value"></input>
+            <input id = "minimumBidInput" type = "text" placeholder = "Minste tillatte budøkning" oninput = "model.inputs.createSale.minimumBidAmmount = this.value"></input>
+            <label>Kan leveres:</label>
+            <input id = "deliveryBox" type = "checkbox" ${model.inputs.createSale.deliver? "checked":""} onchange = "model.inputs.createSale.deliver = this.checked"></input>
+            <button id = "saveButton" onclick = "createProduct()">Lagre produkt</button>
+            </div>
+    `
+    /*let container = document.createElement('div');
     container.className ="CreateSaleContainer"; 
 
     let productNameLabel = document.createElement('label');
@@ -268,32 +295,20 @@ function createSaleView(){
         insertImage()
     }
     container.appendChild(addImageButton);
-    
 
-    
-    
     let mainPicture = document.createElement('input');
     mainPicture.id = "mainPicture";
     mainPicture.setAttribute ("type","file");
     mainPicture.oninput = ()=> model.inputs.createSale.mainImage = mainPicture.value;
-
     container.appendChild(mainPicture);
-
-   
-
-    
 
     let productId = document.createElement('label');
     productId.id = "productId";
     productId.textContent = model.data.items[model.data.items.length -1].id ++;
     container.appendChild(productId);
-
-
     let frontPageBoxLabel = document.createElement('label');
     frontPageBoxLabel.textContent = "Vise i første side";
-    
     container.appendChild(frontPageBoxLabel);
-
 
     let frontPageBox = document.createElement('input');
     frontPageBox.id = "frontPageBox";
@@ -302,11 +317,9 @@ function createSaleView(){
     frontPageBox.oninput = ()=> model.inputs.createSale.frontPage = frontPageBox.value;
     container.appendChild(frontPageBox);
 
-
     let auctionLabel = document.createElement('label');
     auctionLabel.textContent = "Auksjon";
     container.appendChild(auctionLabel);
-
 
     let auctionBox = document.createElement('input');
     auctionBox.id = "auctionBox";
@@ -315,14 +328,11 @@ function createSaleView(){
     auctionBox.onchange = function() {
     model.inputs.createSale.auction = auctionBox.checked;
     }
-
     
     let deadlineLabel = document.createElement('label');
     deadlineLabel.textContent = "Sett Bud Frist";
     container.appendChild(deadlineLabel);
 
-    
-    
     let bidDeadline = document.createElement('input');
     bidDeadline.id = "deadline"; 
     bidDeadline.setAttribute("type","datetime-local");
@@ -340,9 +350,7 @@ function createSaleView(){
     minimumBidBox.onchange = function() {
     model.inputs.createSale.minimumBid = minimumBidBox.checked;
     };
-
     container.appendChild(minimumBidBox);
-    
 
     let minimumBidAmmount = document.createElement('input');
     minimumBidAmmount.id = "minimumBidInput"; 
@@ -350,13 +358,11 @@ function createSaleView(){
     minimumBidAmmount.placeholder = "Minst Bud"
     minimumBidAmmount.oninput = ()=> model.inputs.createSale.minimumBidAmmount = minimumBidAmmount.value;
     container.appendChild(minimumBidAmmount);
-    
 
     let deliveryBoxLabel = document.createElement('label');
     deliveryBoxLabel.textContent = "Kan Leveres";
     container.appendChild(deliveryBoxLabel);
-
-
+    
     let deliveryCheckBox = document.createElement('input');
     deliveryCheckBox.id = "deliveryBox";
     deliveryCheckBox.setAttribute("type","checkbox")
@@ -367,14 +373,13 @@ function createSaleView(){
    container.appendChild(deliveryCheckBox);
 
 
-
     let saveButton = document.createElement('button');
     saveButton.id = "saveButton";
     saveButton.textContent = "Legg ut produkt"
     saveButton.onclick = function(){
         createProduct()
     }
-    container.appendChild(saveButton)
+    container.appendChild(saveButton)*/
 
      
      return container
