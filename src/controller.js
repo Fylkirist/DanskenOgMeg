@@ -48,134 +48,72 @@ function checkLogin()
 
 
 function createProduct(){
-const newProduct = {
-title: model.inputs.createSale.title,
-id: model.data.items.length +1,
-description: model.inputs.createSale.description,
-price:model.inputs.createSale.price,
-minimumBid:model.inputs.createSale.minimumBid,
-minimumBidAmmount:model.inputs.createSale.minimumBidAmmount,
-auction:  model.inputs.createSale.auction,
-deadline:model.inputs.createSale.deadline,
-images: [],
-deliver:model.inputs.createSale.deliver,
-frontPage: model.inputs.createSale.frontPage,
-category: model.inputs.createSale.categoryList,
-mainImage: model.inputs.createSale.mainImage,
-images : model.inputs.createSale.images,
-inStock :true
+    const newProduct = {
+        title: model.inputs.createSale.title,
+        id: model.data.items.length +1,
+        description: model.inputs.createSale.description,
+        price:model.inputs.createSale.price,
+        minimumBid:model.inputs.createSale.minimumBid,
+        minimumBidAmmount:model.inputs.createSale.minimumBidAmmount,
+        auction:  model.inputs.createSale.auction,
+        deadline:model.inputs.createSale.deadline,
+        images: [],
+        deliver:model.inputs.createSale.deliver,
+        frontPage: model.inputs.createSale.frontPage,
+        category: model.inputs.createSale.categoryList,
+        mainImage: model.inputs.createSale.mainImage,
+        images : model.inputs.createSale.images,
+        inStock :true
+    }
+    model.data.items.push(newProduct);
+    saveMainCategory()
 }
-model.data.items.push(newProduct);
-saveMainCategory()
-}
-
-
-
 
 function saveMainCategory(){
-    let categoryExists = false ;
-    for(let i = 0; i < model.inputs.category.categoryList.length; i++){
-        if(model.inputs.createSale.categoryList[0] == model.inputs.category.categoryList[i].name 
-        && model.inputs.category.categoryList[i].parent == -1)
-        {
-            categoryExists = true;
+    let parentId;
+    for(let i = 0; i < model.inputs.createSale.categoryList.length; i++){
+        let categoryExists = false
+        for(let j = 0; j < model.inputs.category.categoryList.length; j++){
+            if(model.inputs.createSale.categoryList[i] == model.inputs.category.categoryList[j].name){
+                categoryExists = true
+                parentId = i == 0 ? model.inputs.category.categoryList[j].id:model.inputs.category.categoryList.length
+                break
+            }
         }
-
-    }
-    if(!categoryExists){
+        if(categoryExists && parentId == model.inputs.category.categoryList.length){
+            categoryExists = false
+        }
+        if(!categoryExists){
             model.inputs.category.categoryList.push({
-            id: model.inputs.category.categoryList.length,
-            name: model.inputs.createSale.categoryList[0],
-            parent: -1,
-            checked: false
-        })
-    }
-}
-
-
-function saveSubCategory(){
-    //Vi skal ta parent id, og det skal være id til hovedkategorier som er satt inn!
-    let categoryExists = false ;
-    let parentCategory 
-
-    for(let i = 0; i<model.inputs.categoryList.length; i++){
-        if(model.inputs.createSale.subCategory == model.inputs.category.categoryList[i].name 
-        && model.inputs.category.categoryList[i].parent < -1)
-        {
-            categoryExists = true;
-            parentCategory = model.inputs.categoryList[i].id
+                id: model.inputs.category.categoryList.length,
+                parent: i == 0 ? -1:parentId,
+                name: model.inputs.createSale.categoryList[i],
+                checked:false
+            })
         }
-     
-    }
-    if(!categoryExists){
-        model.inputs.category.categoryList.push({
-        id: model.inputs.category.categoryList.lenght,
-        name: model.inputs.createSale.subCategory,
-        parent: parentCategory,
-        checked: false
-    })
     }
 }
-
-
 
 function addMainCategory(){
-    
-    
-    if( model.inputs.createSale.categoryList.includes(model.inputs.createSale.mainCategory) )
-    {
-            
-    }
-    else{
-        
+    if(model.inputs.createSale.mainCategory!=''){
         model.inputs.createSale.categoryList[0] = model.inputs.createSale.mainCategory
     }
-
-    
     model.inputs.createSale.mainCategory = ''
-    
-
-
-
-
+    updateView()
 }
-
 
 function addSubCategory(){
-    
-    
-    if( model.inputs.createSale.categoryList.includes(model.inputs.createSale.subCategory) )
-    {
-            
-    }
-    else
-    {   
+    if(!model.inputs.createSale.categoryList.includes(model.inputs.createSale.subCategory)){
         model.inputs.createSale.categoryList.push(model.inputs.createSale.subCategory)
     }
-
-    
     model.inputs.createSale.subCategory = ''
-    
-
-
-
-
+    updateView()
 }
 
-
 function insertImage(){
-
-    if(model.inputs.createSale.images.includes(model.inputs.createSale.addImage))
-    {
-
-    }
-    else
-    {
+    if(!model.inputs.createSale.images.includes(model.inputs.createSale.addImage)){
         model.inputs.createSale.images.push(model.inputs.createSale.addImage)
     }
-
-
-
 }
 
 

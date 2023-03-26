@@ -59,7 +59,7 @@ const model = {
                 images:[],
                 deliver:false,
                 frontPage:false,
-                categoryList: [], 
+                categoryList: [""], 
                 mainCategory : '',
                 subCategory : '',
                 mainImage: '',
