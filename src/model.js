@@ -1,10 +1,10 @@
 const model = {
     app:{
-        currentView:'frontPage',
+        currentView:'filteredPage',
         loggedInStatus:'',
         userId:false,
         zoomedPic:false,
-        userId: false,
+        currentProduct:false
         },
 
         inputs:{
@@ -32,22 +32,21 @@ const model = {
                 password:"",
                 dropdown:false
             },
-            category:{ 
-                
+            category:{
+                filteredItems:[],
+                priceRange:{
+                    max:0,
+                    min:0
+                },
+                filterAuctionCheck:true,
+                filterNormalCheck:true,
                 categoryList:[
                     {id:0,name:"Møbler",parent:-1,checked:false},
                     {id:1,name:"Bord",parent:0,checked:false},
                     {id:2,name:"Klær",parent:-1,checked:false},
                     {id:3,name:"Hatter",parent:2,checked:false},
-                    {id:4,name:"Bukser",parent:2,checked:false},
-                    {id:5,name:"Dongeri",parent:4,checked:false},
-                    {id:6,name:"Bomull",parent:4,checked:false}
                 ]     
-            },
-                    
-              
-           
-
+            },                                      
             createSale: {
                 title:'',
                 description:'',
@@ -162,10 +161,11 @@ const model = {
                 id: 000001,
                 title: 'Krone til dronningen av England',
                 description: 'ipsum lorem',
-                price: 000000,
-                category:['bord','stoler'],
+                price: 70000,
+                category:['Småting','Tilbehør'],
                 auction:false,
                 deadline:'2023-03-21T18:21',
+
                 images:['assets/kronebilde1.png','assets/kronebilde2.png'],
                 inStock:true,
                 deliver:true,
@@ -175,8 +175,8 @@ const model = {
                 id: 000002,
                 title: 'auction prime time',
                 description: 'ipsum lorem',
-                price: 000000,
-                category:['bord','stoler'],
+                price: 5000,
+                category:['Møbler','Stoler'],
                 auction:true,
                 deadline:'2023-03-21T18:21',
                 images:['assets/kronebilde1.png','assets/kronebilde2.png'],
@@ -184,6 +184,5 @@ const model = {
                 deliver:false
             },
         ],
-        
     }
 }
