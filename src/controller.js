@@ -130,9 +130,6 @@ function insertImage(){
     }
 }
 
-
-
-=======
 function goToProduct(index){
     model.app.currentView = "productPage"
     model.app.currentProduct = index

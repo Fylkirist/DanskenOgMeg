@@ -7,6 +7,9 @@ function createSaleView(){
             <input id = "productDescription" type = "text" oninput = "model.inputs.createSale.description = this.value"
             <label id = "priceLabel">Pris: </label>
             <input id = "priceInput" type = "text" oninput = "model.inputs.createSale.price = this.value"></input>
+            <div id = "categoryListContainer">
+                
+            </div>
             <label id = "categoryLabel">Legg til kategorier</label>
             <input id = "categoryMain" type = "text" oninput = "model.inputs.createSale.mainCategory = this.value" value = "model.inputs.createSale.mainCategory"></input>
             <button id = "mainCategoryAdd" onclick = "addMainCategory()">"Sett hovedkategori"</button>
