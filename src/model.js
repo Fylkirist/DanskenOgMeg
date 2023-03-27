@@ -22,11 +22,8 @@ const model = {
                 cardNumber: '',
                 fromDate: '',
                 toDate: '',
-                cvc: ''
-                              
+                cvc: ''                
             },
-
-            
             login:{
                 username:"",
                 password:"",
@@ -141,8 +138,6 @@ const model = {
                 date:'03.01.2023',
                 type: 'direkte',
                 userId: '00000001'
-                
-                
             },
         ],
         auctionListe: [
@@ -151,8 +146,6 @@ const model = {
                     bids: {
                     '0000001': [1000, 10000],
                 },
-                
-                
             },
         ],
 

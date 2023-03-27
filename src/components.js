@@ -1,4 +1,3 @@
-const app = document.getElementById("app")
 function createSaleView(){
     return `
         <div class = "CreateSaleContainer">
@@ -30,20 +29,6 @@ function createSaleView(){
             <button id = "saveButton" onclick = "createProduct()">Lagre produkt</button>
         </div>
     ` 
-}
-
-function updateView(){
-    app.innerHTML = ""
-    switch(model.app.currentView){
-        case "frontPage":
-            app.innerHTML += loginView()
-            break
-        case "filteredPage":
-            app.innerHTML += showFilterBox() + showFilteredProducts()
-            break
-        case "registerPage":
-            break
-    }
 }
 
 function loginView(){
