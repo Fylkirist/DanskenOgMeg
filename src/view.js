@@ -7,7 +7,7 @@ function updateView(){
             app.innerHTML += createHeaderSection() + frontPageProductView()
             break
         case "filteredPage":
-            app.innerHTML += showFilterBox() + showFilteredProducts()
+            app.innerHTML += createHeaderSection() + showFilterBox() + showFilteredProducts()
             break
         case "registerPage":
             break
