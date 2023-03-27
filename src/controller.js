@@ -124,6 +124,11 @@ function addSubCategory(){
     updateView()
 }
 
+function deleteCategory(index){
+    model.inputs.createSale.categoryList.splice(index,1)
+    updateView()
+}
+
 function insertImage(){
     if(!model.inputs.createSale.images.includes(model.inputs.createSale.addImage)){
         model.inputs.createSale.images.push(model.inputs.createSale.addImage)

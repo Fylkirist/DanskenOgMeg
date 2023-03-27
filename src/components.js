@@ -1,5 +1,9 @@
 const app = document.getElementById("app")
 function createSaleView(){
+    let categoryList ="";
+    for( let i = 0; i<model.inputs.createSale.categoryList.length; i++){
+        categoryList += ` <li>${model.inputs.createSale.categoryList[i]}<button onclick = "deleteCategory(${i})">X</button></li>`
+    }
     return `
         <div class = "CreateSaleContainer">
             <label id = "productLabel">Produktnavn</label>
@@ -8,13 +12,14 @@ function createSaleView(){
             <label id = "priceLabel">Pris: </label>
             <input id = "priceInput" type = "text" oninput = "model.inputs.createSale.price = this.value">
             <div id = "categoryListContainer">
-                
+    
             </div>
             <label id = "categoryLabel">Legg til kategorier</label>
             <input id = "categoryMain" type = "text" oninput = "model.inputs.createSale.mainCategory = this.value" value = "${model.inputs.createSale.mainCategory}">
             <button id = "mainCategoryAdd" onclick = "addMainCategory()">"Sett hovedkategori"</button>
             <input id = "categorySub" type = "text" oninput = "model.inputs.createSale.subCategory = this.value" placeholder = "Underkategori"/>
             <button id = "subCategoryAdd" onclick = "addSubCategory()">Legg til underkategori</button>
+            <ul>${categoryList}
             <div id = "galleryFrame">Bildegalleri</div>
             <input oninput = "model.inputs.createSale.addImage = imageGalleryInput.value" type = "file" id = "galleryInput">
             <button id = "addImageButton" onclick = "insertImage()">"Legg til bilde"</button>
