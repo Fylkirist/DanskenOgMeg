@@ -39,6 +39,7 @@ function checkLogin()
         if(model.inputs.login.username === user.username && model.inputs.login.password === user.password)
         {
             model.app.loggedInStatus = user.permissions;
+            model.app.userId = userId;
             console.table(model.app.loggedInStatus)
         }
 
