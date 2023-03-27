@@ -1,4 +1,3 @@
-const app = document.getElementById("app")
 function createSaleView(){
     let categoryList ="";
     for( let i = 0; i<model.inputs.createSale.categoryList.length; i++){
@@ -35,20 +34,6 @@ function createSaleView(){
             <button id = "saveButton" onclick = "createProduct()">Lagre produkt</button>
         </div>
     ` 
-}
-
-function updateView(){
-    app.innerHTML = ""
-    switch(model.app.currentView){
-        case "frontPage":
-            app.innerHTML += loginView()
-            break
-        case "filteredPage":
-            app.innerHTML += showFilterBox() + showFilteredProducts()
-            break
-        case "registerPage":
-            break
-    }
 }
 
 function loginView(){
