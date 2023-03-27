@@ -4,7 +4,7 @@ function updateView(){
     app.innerHTML = ""
     switch(model.app.currentView){
         case "frontPage":
-            app.innerHTML += loginView()
+            app.innerHTML += createHeaderSection() + frontPageProductView()
             break
         case "filteredPage":
             app.innerHTML += showFilterBox() + showFilteredProducts()
