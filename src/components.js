@@ -32,24 +32,29 @@ function createSaleView(){
 }
 
 function loginView(){
+    
     return `
         <div class = "loginRegContainer">
             <button onclick = "changeView("registerPage")" id = "registerButton">Register</button>
-            <button id = "loginDropdown">Login</button>
+            <button id = "loginDropdown" onclick = "toogleLoginDrop()">Login</button>
             ${showLoginDropDown()}
         </div>
         `
 }
-
+function toogleLoginDrop(){
+model.inputs.login.dropdown = !model.inputs.login.dropdown;
+}
 function showLoginDropDown(){
+
     if(model.inputs.login.dropdown){
         return`
         <div class = "dropdownList">
         <input placeholder = "Brukernavn" oninput = "model.inputs.login.username = this.value" id = "usernameInput"></input>
         <input placeholder = "Passord" oninput = "model.inputs.login.password = this.value" id = "passwordInput"></input>
-        <button onclick = "loginCheck()" id = "submitLogin"></button>
+        <button onclick = "checkLogin()" id = "submitLogin">Sumbit</button>
         </div>
     `
+    ;
     }
     else{
         return ``
