@@ -1,11 +1,19 @@
 const model = {
     app:{
-        currentView:'filteredPage',
-        loggedInStatus:'',
+        currentView:'frontPage',
+        loggedInStatus: false,
+        wrongUserNamePasswordMessage: '',
+        loggedInUser: {
+            userName: '',
         userId:false,
         zoomedPic:false,
         currentProduct:false
         },
+        frontPageCurrentShowing:{
+            top:0,
+            bottom:0,
+        },
+    },
 
         inputs:{
             register: {
@@ -27,7 +35,8 @@ const model = {
             login:{
                 username:"",
                 password:"",
-                dropdown:false
+                dropdown:false,
+                wrongUserNamePassword: false,
             },
             category:{
                 filteredItems:[],
@@ -71,6 +80,8 @@ const model = {
         },
 
     data:{
+        frontPageTop:[0],
+        frontPageBottom:[1],
         users:{
             "0000001":{
                 username:"admin",
@@ -158,7 +169,6 @@ const model = {
                 category:['Småting','Tilbehør'],
                 auction:false,
                 deadline:'2023-03-21T18:21',
-
                 images:['assets/kronebilde1.png','assets/kronebilde2.png'],
                 inStock:true,
                 deliver:true,
