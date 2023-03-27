@@ -40,7 +40,28 @@ function loginView(){
     return container;
 
 }
+activeAuctionList ()
+function activeAuctionList ()
+{
+   const currentUserID = model.app.userId;
+   const currentUser = model.data.users[currentUserID]
+   const activeAuctions = currentUser ? currentUser.auctionList : [];
 
+
+    const auctionView = /*html*/`
+    <div class = "auction-container">"sadfa"
+
+<p>asf</p>
+
+
+
+
+    </div>
+
+    `
+    document.getElementById('app').innerHTML=auctionView
+
+}
 /*function registerForm (){
 
 
