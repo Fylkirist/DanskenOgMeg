@@ -10,7 +10,7 @@ const model = {
             top:0,
             bottom:0,
         },
-        },
+    },
 
         inputs:{
             register: {
@@ -53,7 +53,7 @@ const model = {
                 category:'',
                 auction:true,
                 deadline:'22/02/2023',
-                images:['',''],
+                images:[''],
                 deliver:false   
             },
             search:{
@@ -63,8 +63,8 @@ const model = {
         },
 
     data:{
-        frontPageTop:[],
-        frontPageBottom:[],
+        frontPageTop:[0],
+        frontPageBottom:[1],
         users:{
             "0000001":{
                 username:"admin",
@@ -172,11 +172,6 @@ const model = {
                 inStock:true,
                 deliver:false
             },
-        ],
-        itemsCategory: [
-            {name: 'ting', checked: false, type: 'parent'}, 
-            {name: 'små ting', checked: false, type: 'child'}, 
-
         ],
     }
 }

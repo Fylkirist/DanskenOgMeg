@@ -13,16 +13,5 @@
 </head>
 <body>
     <div id = "app"></div>
-    <script>
-        let infoDiv = document.getElementById('app');
-        updateView();
-        function updateView(){
-            infoDiv.innerHTML = '';
-
-            if(model.app.currentView ==='frontPage') {
-                infoDiv.innerHTML = createHeaderSection();
-            }
-        }
-    </script>
 </body>
 </html>

@@ -1,128 +1,45 @@
-function loginView(){
-    let container=document.createElement('div');
-    let login = document.createElement('button');
-    let register = document.createElement('button');
-    let meny = document.createElement('div');
-    let inputUser = document.createElement('input');
-    let inputPass = document.createElement('input');
-
-    container.className = "LoginRegContainer";
-    login.id="loginButton";
-    register.id="registerButton";
-    meny.id="dropdownList";
-    inputUser.id="userNameInput";
-    inputPass.id="passwordInput";
-
-    login.textContent = "Login";
-    register.textContent = "Register";
-    inputUser.textContent = "Username";
-    inputPass.textContent = "Password";
-
-    meny.appendChild(inputUser);
-    meny.appendChild(inputPass);
-    meny.style.display = "none";
-
-    login.addEventListener('click', function() {
-        if (meny.style.display === 'none')
-            {
-                meny.style.display = 'block';
-            }
-         else
-            {
-               meny.style.display = 'none';
-            }
-        }
-    );
-    container.appendChild(register)
-    container.appendChild(login);
-    container.appendChild(meny);
-    
-    return container;
-
+function frontPageProductView(){
+    let topElem = generateFrontPageElement(model.data.frontPageTop[model.app.frontPageCurrentShowing.top])
+    let botElem = generateFrontPageElement(model.data.frontPageBottom[model.app.frontPageCurrentShowing.bottom])
+    return `
+        <div id = "frontPageProductDisplay">
+            <div class = "frontPageProductDisplayElement">
+                <div onclick = "changeFrontPageTopProduct(1)" class = "frontPageRightArrow"></div>
+                ${topElem}
+                <div onclick = "changeFrontPageTopProduct(-1)" class = "frontPageLeftArrow"></div>
+            </div>
+            <div class = "frontPageProductDisplayElement">
+                <div onclick = "changeFrontPageBotProduct(1)" class = "frontPageRightArrow"></div>
+                ${botElem}
+                <div onclick = "changeFrontPageBotProduct(-1)" class = "frontPageLeftArrow"></div>
+            </div>
+        </div>
+    ` 
 }
 
-/*function registerForm (){
-
-
-    
-}*/
-
-function frontPageProductDisplay(){
-    let container = document.createElement("div")
-    container.id = "frontPageProductDisplayContainer"
-
-    let topContainer = createFrontpageProductDisplay(model.data.frontPageTop[model.app.frontPageCurrentShowing.top])
-    
-    let rightTopProductButton = document.createElement("div")
-
-    let leftTopProductButton = document.createElement("div")
-
-    let botContainer = createFrontpageProductDisplay(model.data.frontPageBottom[model.app.frontPageCurrentShowing.bottom])
-
-    let rightBotProductButton = document.createElement("div")
-
-    let leftBotProductButton = document.createElement("div")
-    container.appendChild(leftTopProductButton)
-    container.appendChild(topContainer)
-    container.appendChild(rightTopProductButton)
-    container.appendChild(leftBotProductButton)
-    container.appendChild(botContainer)
-    container.appendChild(rightBotProductButton)
-
-    return container
-}
-
-function createFrontpageProductDisplay(id){
-    let container = document.createElement("div")
-
-    let imgCont = document.createElement("div")
-
-    let currImg = document.createElement("img")
-
-    let goLeftImg = document.createElement("div")
-    
-    let goRightImg = document.createElement("div")
-    
-    imgCont.appendChild(currImg)
-    imgCont.appendChild(goLeftImg)
-    imgCont.appendChild(goRightImg)
-
-    let descContainer = document.createElement("div")
-
-    let itemTitle = document.createElement("h2")
-
-    descContainer.appendChild(itemTitle)
-    if(model.data.items[id].auction==true){
-        let priceLabel = document.createElement("label")
-        priceLabel.textContent = "Nåværende bud: "
-
-        let price = document.createElement("div")
-        price.textContent
-
-        let timeLimit = document.createElement("div")
-
-        let bidButton = document.createElement("button")
-
-        descContainer.appendChild(priceLabel)
-        descContainer.appendChild(price)
-        descContainer.appendChild(timeLimit)
-        descContainer.appendChild(bidButton)
+function generateFrontPageElement(item){
+    let varElems;
+    if (model.data.items[item].auction){
+        varElems = `
+            <label>Høyeste bud: </label>
+            <label>${model.data.items[item].price}</label>
+            <button onclick = "">Gå til auksjon</button>
+        `
     }
     else{
-        let priceLabel = document.createElement("label")
-        priceLabel.textContent = "Pris: "
-
-        let price = document.createElement("div")
-        price.textContent
-
-        let shoppingCartButton = document.createElement("button")
-
-        descContainer.appendChild(priceLabel)
-        descContainer.appendChild(price)
-        descContainer.appendChild(shoppingCartButton)
+        varElems = `
+            <label>Pris: </label>
+            <label>${model.data.items[item].price}</label>
+            <button onclick = "">Legg til i handlekurv</button>
+            <button onclick = "">Gå til produktside</button>
+        `  
     }
-    container.appendChild(imgCont)
-    container.appendChild(descContainer)
-
-    return container
+    return `
+        <div>
+            <img src = "${model.data.items[item].images[0]}"/>
+            <h4>${model.data.items[item].title}</h4>
+            <p>${model.data.items[item].description}</p>
+            ${varElems}    
+        </div>
+    ` 
 }
