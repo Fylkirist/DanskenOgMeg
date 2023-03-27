@@ -1,7 +1,15 @@
 const model = {
     app:{
         currentView:'frontPage',
-        loggedInStatus:'',
+        loggedInStatus: false,
+        loggedInAs: '',
+        wrongUserNamePasswordMessage: '',
+        loggedInUser: {
+            userName: '',
+        },
+        userId:false,
+        zoomedPic:false,
+        userId: false,
         },
 
         inputs:{
@@ -27,14 +35,25 @@ const model = {
             login:{
                 username:"",
                 password:"",
-                dropdown:false
+                dropdown:false,
+                wrongUserNamePassword: false,
             },
-            category: [
-                        {name:"ting",checked:true}
-                    ],
-                    
-              
-           
+            category:{
+                filteredItems:[],
+                priceRange:{
+                    max:"",
+                    min:0
+                },
+                filterAuctionCheck:true,
+                filterNormalCheck:true,
+                categoryList:[
+                    {id:0,name:"Møbler",parent:-1,checked:false},
+                    {id:1,name:"Bord",parent:0,checked:false},
+                    {id:2,name:"Klær",parent:-1,checked:false},
+                    {id:3,name:"Hatter",parent:2,checked:false},
+                    {id:4,name:"Bukser",parent:2,checked:false}
+                ]     
+            },
 
             createSale: {
                 id:'',
@@ -51,6 +70,9 @@ const model = {
                 input:'',
                 
             },
+            product:{
+                bidIncrease:""
+            }
         },
 
     data:{
@@ -128,7 +150,7 @@ const model = {
         auctionListe: [
             {
                 itemId: '000002',
-                bids: {
+                    bids: {
                     '0000001': [1000, 10000],
                 },
                 
@@ -141,10 +163,10 @@ const model = {
                 id: "000001",
                 title: 'Krone til dronningen av England',
                 description: 'ipsum lorem',
-                price: 000000,
-                category:['bord','stoler'],
+                price: 70000,
+                category:['Små ting','Tilbehør'],
                 auction:false,
-                deadline:'3/18/2024',
+                deadline:'2024-03-21T18:21',
                 images:['assets/kronebilde1.png','assets/kronebilde2.png'],
                 inStock:true,
                 deliver:true
@@ -153,19 +175,48 @@ const model = {
                 id: "000002",
                 title: 'auction prime time',
                 description: 'ipsum lorem',
-                price: 000000,
-                category:['bord','stoler'],
+                price: 5000,
+                category:['Møbler','Stoler'],
                 auction:true,
-                deadline:'3/18/2024',
+                deadline:'2024-03-21T18:21',
                 images:['assets/kronebilde1.png','assets/kronebilde2.png'],
                 inStock:true,
                 deliver:false
             },
         ],
         itemsCategory: [
-            {name: 'ting', checked: false, type: 'parent'}, 
-            {name: 'små ting', checked: false, type: 'child'}, 
 
+            {
+                title : 'Møbler',
+                checked: false,
+                subCategory: [
+                    {title: 'Bord', checked: false},
+                    {title: 'Stoler', checked: false},
+                ]
+            },
+            {
+                title : 'Små ting',
+                checked: false,
+                subCategory: [
+                    {title: 'Vaser', checked: false},
+                    {title: 'Lamper', checked: false},
+                    {title: 'Tilbehør', checked: false},
+                ]
+            },
+            {
+                title : 'Klær og tilbehør',
+                checked: false,
+                subCategory: [
+                    {title: 'Bukser', checked: false},
+                    {title: 'Jakker', checked: false},
+                ]
+            },
+        
+        
         ],
+        priceRange: {
+            min: 0,
+            max: 999999,
+        },
     }
 }
