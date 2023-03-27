@@ -11,14 +11,13 @@ function createSaleView(){
             <label id = "priceLabel">Pris: </label>
             <input id = "priceInput" type = "text" oninput = "model.inputs.createSale.price = this.value">
             <div id = "categoryListContainer">
-    
+                <ul>${categoryList}</ul>
             </div>
             <label id = "categoryLabel">Legg til kategorier</label>
             <input id = "categoryMain" type = "text" oninput = "model.inputs.createSale.mainCategory = this.value" value = "${model.inputs.createSale.mainCategory}">
             <button id = "mainCategoryAdd" onclick = "addMainCategory()">"Sett hovedkategori"</button>
             <input id = "categorySub" type = "text" oninput = "model.inputs.createSale.subCategory = this.value" placeholder = "Underkategori"/>
             <button id = "subCategoryAdd" onclick = "addSubCategory()">Legg til underkategori</button>
-            <ul>${categoryList}
             <div id = "galleryFrame">Bildegalleri</div>
             <input oninput = "model.inputs.createSale.addImage = imageGalleryInput.value" type = "file" id = "galleryInput">
             <button id = "addImageButton" onclick = "insertImage()">"Legg til bilde"</button>
@@ -46,9 +45,7 @@ function loginView(){
         </div>
         `
 }
-function toogleLoginDrop(){
-model.inputs.login.dropdown = !model.inputs.login.dropdown;
-}
+
 function showLoginDropDown(){
 
     if(model.inputs.login.dropdown){

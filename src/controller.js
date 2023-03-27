@@ -40,7 +40,6 @@ function checkLogin()
         {
             model.app.loggedInStatus = user.permissions;
             model.app.userId = userId;
-            console.table(model.app.loggedInStatus)
         }
 
     }
@@ -86,6 +85,7 @@ function createProduct(){
 
 function saveMainCategory(){
     let parentId;
+    let newParent = false
     for(let i = 0; i < model.inputs.createSale.categoryList.length; i++){
         let categoryExists = false
         for(let j = 0; j < model.inputs.category.categoryList.length; j++){
@@ -95,7 +95,7 @@ function saveMainCategory(){
                 break
             }
         }
-        if(categoryExists && parentId == model.inputs.category.categoryList.length){
+        if(newParent){
             categoryExists = false
         }
         if(!categoryExists){
@@ -105,6 +105,7 @@ function saveMainCategory(){
                 name: model.inputs.createSale.categoryList[i],
                 checked:false
             })
+            newParent = i == 0 ? true:false
         }
     }
 }
@@ -125,8 +126,17 @@ function addSubCategory(){
     updateView()
 }
 
+function toogleLoginDrop(){
+    model.inputs.login.dropdown = !model.inputs.login.dropdown;
+    }
+
 function deleteCategory(index){
-    model.inputs.createSale.categoryList.splice(index,1)
+    if(index == 0){
+        model.inputs.createSale.categoryList[0] = ""
+    }
+    else{
+        model.inputs.createSale.categoryList.splice(index,1)
+    }
     updateView()
 }
 
