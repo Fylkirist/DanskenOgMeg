@@ -88,6 +88,7 @@ function checkUserIdPassword(){
                 model.app.wrongUserNamePasswordMessage = '';
                 model.app.loggedInUser.userName = model.data.users[userKeys].username;
                 model.app.loggedInAs = model.data.users[userKeys].permissions;
+                model.app.loggedInUser.userId = userKeys;
                 break;
             }
             else {
@@ -157,3 +158,34 @@ function determinePriceLimits(){
 let priceLimits = determinePriceLimits()
 model.inputs.category.priceRange.max = priceLimits.max
 model.inputs.category.priceRange.min = priceLimits.min
+
+function findWinningBids(){
+    for(let item of model.data.auctionListe){
+        let maximumBidForItem = 0;
+        let matchedUserId = '';       
+        for(let userId in item.bids){
+            if(item.bids[userId][item.bids[userId].length-1] > maximumBidForItem) {
+                maximumBidForItem = item.bids[userId][item.bids[userId].length-1];
+            }
+
+            if(userId === model.app.loggedInUser.userId){
+
+                matchedUserId = userId;
+
+            }
+            
+        }
+
+        if (model.data.auctionListe.bids[matchedUserId][model.data.auctionListe.bids[matchedUserId].length-1] ==  maximumBidForItem) {
+                let selectedItem = {            
+                                    id: item.itemId,
+                                    usersMaximumBid: maximumBidForItem,
+                };
+                
+                model.inputs.shoppingCart.items.auctions.usersWinningBids.push(selectedItem);    
+
+        }
+
+    }
+    //updateView();
+}

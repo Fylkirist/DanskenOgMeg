@@ -6,6 +6,7 @@ const model = {
         wrongUserNamePasswordMessage: '',
         loggedInUser: {
             userName: '',
+            userId: '',
         },
         userId:false,
         zoomedPic:false,
@@ -13,6 +14,19 @@ const model = {
         },
 
         inputs:{
+            shoppingCart: {
+                items: {
+                    canBuyNow: [
+                        {id: "000001"},
+                        {id: "000002"},
+                    ],
+                    auctions: {
+                        usersWinningBids:[],
+                        usersLosingBids:[],
+                    },
+                },
+                totalPrice: 0,
+            },
             register: {
                 firstName: '',
                 lastName: '',
@@ -102,16 +116,7 @@ const model = {
                             quantity:1
                         },
                     ],
-                auctionList:[
-                        {
-                            item:"000002",
-                            bids:[
-                                "0001",
-                                "0024",
-                                "0095"
-                             ]
-                        },
-                    ],
+            
                 paymentInformation:[
                     {
                         cardNumber: "133780082420",
@@ -150,7 +155,8 @@ const model = {
         auctionListe: [
             {
                 itemId: '000002',
-                    bids: {
+                bids: {
+                    '0000002': [1000, 20000],
                     '0000001': [1000, 10000],
                 },
                 

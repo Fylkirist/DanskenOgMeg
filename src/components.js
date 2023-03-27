@@ -123,6 +123,88 @@ function showFrontPageProducts(){
 
 function showShoppingCart(){
 
+    let html= '';
+
+    html = /*html*/`
+        <div class="handlevognContainer">
+            <div class="handlevognHeader">Handlevogn</div>
+            <p>Varer du kan kjøpe nå -</p><span onclick="clearShoppingCart()"></span>
+            <div class="horizontalLines">
+                <span>Pris</span>
+            </div>
+            <div class="allItemsCanBuy">
+            ${showItemsCanBuyNow()}
+            </div>
+            <div class="totalPrice">
+                <span>Total</span>
+                <span>${model.inputs.shoppingCart.totalPrice}</span>
+                <button onclick="changeView('checkoutPage')">Gå til kassen</button>
+
+            </div>
+            ${model.app.loggedInAs === "user" ? `
+                <h3>Auksjoner du har bud på:</h3>
+                <div>
+                    <span>Vinnene bud</span>
+                    ${showWinningBids()}
+                    ${losingBid()}
+                </div>` 
+            : ''}
+
+        </div>
+    `;
+
+
+
+    return html;
+
+}
+
+function showItemsCanBuyNow(){
+    let html = '';
+    model.inputs.shoppingCart.totalPrice = 0;
+    for(let item of model.inputs.shoppingCart.items.canBuyNow){
+        for(let i of model.data.items){
+            
+            if(item.id === i.id){
+                html += `<div>
+                            <img src="${i.images[0]}" />
+                            <span>${i.title}</span>
+                            <span>${i.price}</span>
+                        </div>`;
+                
+                model.inputs.shoppingCart.totalPrice += i.price;
+            }
+        }
+
+    }
+    return html;
+    
+}
+function showWinningBids(){
+    let html='';
+
+    findWinningBids();
+
+    if(model.inputs.shoppingCart.items.auctions.usersWinningBids.length === 0) return '';
+
+    html += `<div>`;
+
+    for (let i = 0; i < model.inputs.shoppingCart.items.auctions.usersWinningBids.length; i++){
+        for(let j = 0; j < model.data.items.length; j++){
+            if(model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id === model.data.items[j].id){
+                html += `
+                        <img src="${model.data.items[j].images[0]}" />
+                    </div>
+                    `;
+            }
+        }
+    }
+                  
+
+    return html;
+}
+function losingBid(){
+
 }
 
 
