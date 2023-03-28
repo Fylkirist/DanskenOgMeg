@@ -1,6 +1,6 @@
 const model = {
     app:{
-        currentView:'registerPage',
+        currentView:'frontPage',
         loggedInStatus: false,
         wrongUserNamePasswordMessage: '',
         userId:"0000001",

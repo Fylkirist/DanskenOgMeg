@@ -9,8 +9,7 @@ function updateView(){
             app.innerHTML = createHeaderSection() + showSearchBox() + showFilterBox() + showFilteredProducts()
             break
         case "registerPage":
-
-            app.innerHTML += registerFormView();
+            app.innerHTML = registerFormView();
             break
         case "productPage":
             app.innerHTML = createHeaderSection() + showSearchBox() + productDisplay(model.app.currentProduct)
@@ -19,3 +18,5 @@ function updateView(){
             break
     }
 }
+
+window.onload(updateView())

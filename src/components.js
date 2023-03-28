@@ -68,15 +68,15 @@ function generateFrontPageElement(item){
         varElems = `
             <label>Høyeste bud: </label>
             <label>${model.data.items[item].price}</label>
-            <button onclick = "">Gå til auksjon</button>
+            <button onclick = "goToProduct(${item})">Gå til auksjon</button>
         `
     }
     else{
         varElems = `
             <label>Pris: </label>
             <label>${model.data.items[item].price}</label>
-            <button onclick = "">Legg til i handlekurv</button>
-            <button onclick = "">Gå til produktside</button>
+            <button onclick = "addToShoppingCart(${item})">Legg til i handlekurv</button>
+            <button onclick = "goToProduct(${item})">Gå til produktside</button>
         `  
     }
     return `
@@ -93,7 +93,7 @@ function createHeaderSection(){
     return /*html*/`
     <div class="headerContainer">
         <h1 class="overskrift">Dansken og meg</h1>
-        ${!model.app.loggedInStatus ? `<div class="registerButton" onclick="">Registrer</div>
+        ${!model.app.loggedInStatus ? `<div class="registerButton" onclick="goToRegisterPage()">Registrer</div>
         <div class="loginButton" onclick="loginDropDown()">Login</div>` :
         `<div class="userButton" onclick="">${model.app.loggedInUser.userName}</div>`}
         <div class="cartIcon" onclick="">🛒</div>
@@ -238,6 +238,27 @@ function orderHistoryView (){
 }
 
 function productDisplay(product){
+    let content;
+    let images;
+    if(model.data.items[product].auction){
+        content = `
+            <label class = "productDisplayPriceLabel">Nåværende Bud: </label>
+            <label class = "productDisplayPrice">${model.data.items[product].price}</label>
+            <input id = "productDisplayPriceInput" oninput="model.input.product.bidIncrease = this.value">${model.input.product.bidIncrease}</input>
+            <button class = "productDisplayBuyButton" onclick = "raiseBid(${model.data.items[product].id})">Øk bud</button>
+            <div id = "productDisplayDeadline">Auksjonen stenges om: ${model.data.items[product].deadline}</div>
+                `
+    }
+    else{
+        content = `
+            <label class = "productDisplayPriceLabel">Pris: </label>
+            <label class = "productDisplayPrice">${model.data.items[product].price}</label>
+            <button class = "productDisplayBuyButton" onclick = "addToShoppingCart(${model.data.items[product].id})">Legg til i handlekurv</button>
+        `
+    }
+    for(let i = 1; i<model.data.items[product].images.length;i++){
+        images += `<img class = "productDisplayGalleryImage" src = "${model.data.items[product].images[i]}"></img>`
+    }      
     return `
     <div class = "productDisplayContainer">
         ${showZoomedPic()}
@@ -246,35 +267,14 @@ function productDisplay(product){
             <img class = "productDisplayImage" src = "${model.data.items[product].images[0]}" onclick = "blowUpGalleryImg(0)"></img>
             <h1 class = "productDisplayDescriptionTitle">Beskrivelse</h1>
             <p class = "productDisplayDescription">${model.data.items[product].description}</p>
-            ${()=>{if(model.data.items[product].auction){
-                return`
-                    <label class = "productDisplayPriceLabel">Nåværende Bud: </label>
-                    <label class = "productDisplayPrice">${model.data.items[product].price}</label>
-                    <input id = "productDisplayPriceInput" oninput="model.input.product.bidIncrease = this.value">${model.input.product.bidIncrease}</input>
-                    <button class = "productDisplayBuyButton" onclick = "raiseBid(${model.data.items[product].id})">Øk bud</button>
-                    <div id = "productDisplayDeadline">Auksjonen stenges om: ${model.data.items[product].deadline}</div>
-                `
-            }
-            else{
-                return`
-                    <label class = "productDisplayPriceLabel">Pris: </label>
-                    <label class = "productDisplayPrice">${model.data.items[product].price}</label>
-                    <button class = "productDisplayBuyButton" onclick = "addToShoppingCart(${model.data.items[product].id})">Legg til i handlekurv</button>
-                `
-            }}}
+            ${content}
         </div>
         ${model.app.loggedInStatus && model.data.users[model.app.userId].permissions == "admin"?
             showAdminProductComponent(product):
             ``
         }
         <div id = "productDisplayImageGalleryContainer">
-            ${()=>{
-                let html;
-                for(let i = 1; i<model.data.items[product].images.length;i++){
-                    html += `<img class = "productDisplayGalleryImage" src = "${model.data.items[product].images[i]}"></img>`
-                }
-                return html
-            }}	
+            ${images}	
         </div>
     </div>
     `

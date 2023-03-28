@@ -91,6 +91,12 @@ function goBackToFrontPage(){
     updateView()
 }
 
+function goToRegisterPage(){
+    Object.values(model.inputs.login).forEach((val)=>val = "")
+    model.app.currentView = "registerPage"
+    updateView()
+}
+
 function doSearch() {
     model.app.currentView = "filteredPage";
     updateView();
