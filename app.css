@@ -254,7 +254,7 @@ body{
     padding: 5px;
 
 }
-/* #filteredPageViewContainer{
+/* .filteredPageViewContainer{
     position: relative;
     top: 5%;
     left: 5%;
@@ -264,7 +264,7 @@ body{
     left: 20%;
     top: 20%;
 }
-#categoryHeader{
+.categoryHeader{
     position: relative;
     left: 40%;
     top: 20%;
@@ -363,5 +363,25 @@ body{
     width: 10px;
     border-radius: 50%;
     cursor: pointer;
+    }
+
+    .searchContainer{
+        position: fixed;
+        right: 5%;
+        top: 10%;
+        height: 5%;
+        width: 15%;
+        /* border: 1px solid gray; */
+        border-radius: 3%;
+        /* display: flex;
+        flex-wrap: wrap; */
+    }
+    .searchBox{
+        /* position: relative;
+        top: 50%;
+        left: 50%; */
+        width: 100%;
+    
+    
     }
 

@@ -1,3 +1,7 @@
+function doSearch() {
+    model.app.currentView = "filteredPage";
+    updateView();
+}
 
 function changeFrontPageBotProduct(direction){
     if(model.app.frontPageCurrentShowing.bottom>0 && model.app.frontPageCurrentShowing.bottom < model.data.frontPageBottom.length-1){
@@ -260,4 +264,3 @@ function changePriceLevels(value){
 let priceLimits = determinePriceLimits()
 model.inputs.category.priceRange.max = priceLimits.max
 model.inputs.category.priceRange.min = priceLimits.min
-
