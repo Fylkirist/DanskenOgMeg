@@ -3,12 +3,9 @@ const model = {
         currentView:'frontPage',
         loggedInStatus: false,
         wrongUserNamePasswordMessage: '',
-        loggedInUser: {
-            userName: '',
-        userId:false,
+        userId:"0000001",
         zoomedPic:false,
-        currentProduct:false
-        },
+        currentProduct:false,
         frontPageCurrentShowing:{
             top:0,
             bottom:0,
@@ -87,7 +84,7 @@ const model = {
                 username:"admin",
                 password:"admin",
                 permissions:"admin",
-                firstName:"Elin",
+                firstname:"Elin",
                 surname:"Herlev Christoffersen",
                 address:"GeTOutOfMyVei",
                 email:"example@gmail.com",
@@ -97,7 +94,7 @@ const model = {
                 username:"ikkeadmin",
                 password:"ikkeadmin",
                 permissions:"user",
-                firstName:"Marie",
+                firstname:"Marie",
                 surname:"benji",
                 address:"GeTOutOfMyVei",
                 email: 'example@gmail.com',
@@ -143,12 +140,25 @@ const model = {
         },
         orderHistory: [
             {
-                itemId:000001,
-                sold: true,
+                itemId:000003,
+                paid: true,
                 price:'10,000,000',
                 date:'03.01.2023',
                 type: 'direkte',
-                userId: '00000001'
+                userId: '0000001',
+                image : 'assets/kronebilde1.png',
+                title: 'Krona Til Drøning'
+            },
+        
+            {
+                itemId:000002,
+                paid: true,
+                price:'10,000,000',
+                date:'03.01.2023',
+                type: 'direkte',
+                userId: '0000001',
+                image : 'assets/kronebilde1.png',
+                title: 'Maling til Peter'
             },
         ],
         auctionListe: [
