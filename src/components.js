@@ -54,8 +54,6 @@ function createHeaderSection(){
         `<div class="userButton" onclick="">${model.app.loggedInUser.userName}</div>`}
         <div class="cartIcon" onclick="">🛒</div>
         <h3 class="underskrift">VintageSkatter</h1>
-        <input type="search" class="searchBar" placeholder="Søk varer her." onchange="" name="q" value="" />
-        <div class="searchButton" onclick="">Search</div>
         ${model.inputs.login.dropdown ? 
             `<input type="text" 
             class="userNameInput" 
