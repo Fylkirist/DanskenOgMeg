@@ -1,5 +1,5 @@
 function registerUser() {
-    let inputs = model.inputs.register;
+    let inputs = model.inputs.register
     if (inputs.firstName.length > 0 && // alle felter må være fylt ut før koden starter
         inputs.lastName.length > 0 &&
         inputs.email.length > 0 &&
@@ -13,17 +13,17 @@ function registerUser() {
         for (let userID in model.data.users){
             if(model.data.users[userID].username === model.inputs.register.userName){
                 brukernavnTatt = true;
-                break;
+                break
             }
         }
         if(brukernavnTatt){    
-            model.inputs.register.meldingRegister = 'Brukernavn eksisterer allerede';
-            updateView();
-            return;
+            model.inputs.register.meldingRegister = 'Brukernavn eksisterer allerede'
+            updateView()
+            return
         }
         if(model.inputs.register.cardNumber.length>0 && !isValid(model.inputs.register.cardNumber)){
             model.inputs.register.meldingRegister = 'Ikke gyldig bankkort'
-            updateView();
+            updateView()
             return
         }
         if (model.inputs.register.password === model.inputs.register.repeatPassword){ 
@@ -50,38 +50,39 @@ function registerUser() {
                     }
                 ],
                 messages:[],
-            };
-            const brukerTelling = Object.keys(model.data.users).length +1;
+            }
+            const brukerTelling = Object.keys(model.data.users).length +1
             const lengde = 7-String(brukerTelling).length
-            const newUserID = '000000'.slice(0,lengde) +brukerTelling;    // id property for objekte
-            model.data.users[newUserID] = newUser;                  
-            model.inputs.register.registerUser = "Velkommen til Dansken & Meg antikkmarked";
+            const newUserID = '000000'.slice(0,lengde) +brukerTelling
+            model.data.users[newUserID] = newUser
+            model.inputs.register.registerUser = "Velkommen til Dansken & Meg antikkmarked"
             model.app.currentView = "frontPage"
-        } 
+        }
         else if (model.inputs.register.password !== model.inputs.register.repeatPassword){
-            model.app.input.register.meldingRegister = 'Passordene du har skrevet stemmer ikke overens';
-        }  
+            model.app.input.register.meldingRegister = 'Passordene du har skrevet stemmer ikke overens'
+        }
     }
     else {
         model.inputs.register.meldingRegister = "Alle feltene må være fylt ut"
     }
-    updateView();
+    updateView()
 }
 
 function isValid(input) {
-    let cardNumber = input.replace(/\s/g,'');
-    if (/[^0-9-\s]+/.test(cardNumber)) return false;
-    let sum = 0, double = false;
+    let cardNumber = input.replace(/\s/g,'')
+    if (/[^0-9-\s]+/.test(cardNumber)) return false
+    let sum = 0
+    let double = false
     for (let i = cardNumber.length - 1; i >= 0; i--) {
-      let digit = parseInt(cardNumber.charAt(i));
+      let digit = parseInt(cardNumber.charAt(i))
       if (double) {
-        digit *= 2;
-        if (digit > 9) digit -= 9;
+        digit *= 2
+        if (digit > 9) digit -= 9
       }
-      sum += digit;
-      double = !double;
+      sum += digit
+      double = !double
     }
-    return (sum % 10) == 0;
+    return (sum % 10) == 0
 }
 
 function goBackToFrontPage(){
