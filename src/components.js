@@ -141,7 +141,6 @@ function loginView(){
 }
 
 function showLoginDropDown(){
-
     if(model.inputs.login.dropdown){
         return`
         <div class = "dropdownList">
@@ -230,6 +229,10 @@ function productDisplay(product){
                 `
             }}}
         </div>
+        ${model.app.loggedInStatus && model.data.users[model.app.userId].permissions == "admin"?
+            showAdminProductComponent(product):
+            ``
+        }
         <div id = "productDisplayImageGalleryContainer">
             ${()=>{
                 let html;
@@ -254,10 +257,40 @@ function showAdminProductComponent(product){
                 <button onclick = "">Oppdater frist</button>
             </div>
             <div>
-                ${model.data.items[product].auction?`<input type = "text" value = "${model.data.items[product].minBid}"/><button onclick = "">Endre minimumbud</button>`:`<input type = "text" value = "${model.data.items[product].price}"/><button onclick = "">Endre pris</button>`}
-            </div> 
+                ${model.data.items[product].auction?
+                    `<input type = "text" oninput = "model.inputs.product.adminBidIncrease = this.value" value = "${model.data.items[product].minBid}"/><button onclick = "changeMinimumBid(${product})">Endre minimumbudøkning</button>`:
+                    `<input type = "text" oninput = "model.inputs.product.adminPriceChange = this.value" value = "${model.data.items[product].price}"/><button onclick = "changePrice(${product})">Endre pris</button>`
+                }
+            </div>
+            <div>
+                <div>
+                    ${populateCategoryList(product)}
+                </div>
+                <label>Endre hovedkategori: </label>
+                <input oninput = "model.inputs.product.adminChangeMainCategory = this.value" type = "text"/>
+                <button onclick = "changeMainCategory(${product})">Endre</button>
+                <label>Legg til underkategori: </label>
+                <input oninput = "model.inputs.product.adminAddSubCategory = this.value" type = "text"/>
+                <button onclick = "addNewSubCategory(${product})">Legg til</button>
+            </div>
         </div>
     ` 
+}
+
+function populateCategoryList(id){
+    let list = ``
+    for(let i = 0; i < model.data.items[id].category.length; i++){
+        list += `
+            <div>
+                <label>${model.data.items[id].category[i]}</label>
+                ${i == 0?
+                    `   Hovedkategori`:
+                    `<button onclick = "removeCategory(${id},${i})">X</button>`
+                }
+            </div>
+        ` 
+    }
+    return list
 }
 
 function showZoomedPic(){
@@ -285,7 +318,7 @@ function showFilterBox(){
             </div>
             <div>
                 <input type = "range" onchange = "changePriceLevels(this.value)" min="${priceLimits.min}" max = "${priceLimits.max}" value = "${model.inputs.category.priceRange.max}"></input>
-                <input type = "text" value = "${priceLimits.min}"></input>
+                <input type = "text" value = "${priceLimits.min}">
                 <input type = "text" onchange = "changePriceLevels(this.value)" value = "${model.inputs.category.priceRange.max}"></input>
             </div>
         </div>

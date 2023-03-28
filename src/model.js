@@ -3,7 +3,6 @@ const model = {
         currentView:'frontPage',
         loggedInStatus: false,
         wrongUserNamePasswordMessage: '',
-
         userId:"0000001",
         zoomedPic:false,
         currentProduct:false,
@@ -73,7 +72,11 @@ const model = {
                 
             },
             product:{
-                bidIncrease:""
+                bidIncrease:"",
+                adminBidIncrease:"",
+                adminPriceChange:"",
+                adminAddSubCategory:"",
+                adminChangeMainCategory:""
             }
         },
 

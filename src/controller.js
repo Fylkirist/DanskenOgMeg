@@ -57,12 +57,27 @@ function checkUserIdPassword(){
     updateView();
 }
 
+function removeCategory(item,cat){
+    model.data.items[item].category.splice(cat,1)
+    updateView()
+}
+
 function blowUpGalleryImg(img){
     model.app.zoomedPic = img
+    updateView()
 }
 
 function unZoom(){
     model.app.zoomedPic = false
+    updateView()
+}
+
+function addNewSubCategory(id){
+    if(model.inputs.product.adminAddSubCategory != ""){
+        model.data.items[id].category.push(model.inputs.product.adminAddSubCategory)
+        model.inputs.product.adminAddSubCategory = ""
+        updateView()   
+    }
 }
 
 function addToShoppingCart(productId){
@@ -73,6 +88,7 @@ function addToShoppingCart(productId){
         }
     }
     model.data.users[model.app.userId].shoppingCart.push({id:productId,quantity:1})
+    updateView()
 }
 
 function raiseBid(productId){
@@ -83,6 +99,7 @@ function raiseBid(productId){
         model.data.auctionListe[productId].bids[model.app.userId] = [model.inputs.product.bidIncrease]
     }
     model.inputs.product.bidIncrease = 0
+    updateView()
 }
 
 function checkLogin()
@@ -213,8 +230,12 @@ function goToProduct(index){
 
 function filterItems(){
     let filterArray = model.data.items.map(elem=>{
-        if(elem.description.includes(model.inputs.search.input) || elem.title.includes(model.inputs.search.input))
-        return eval(elem.id)
+        if(elem.description.includes(model.inputs.search.input) || elem.title.includes(model.inputs.search.input)){
+            return eval(elem.id)
+        }
+        else{
+            return false
+        }
     })
     console.log(filterArray)
     filterArray = filterArray.filter(elem=>{
