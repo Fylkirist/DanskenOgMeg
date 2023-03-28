@@ -186,6 +186,23 @@ function productDisplay(product){
     `
 }
 
+function showAdminProductComponent(product){
+    return `
+        <div id = "adminProductComponent">
+            <div id = "adminProductId">${model.data.items[product].id}</div>
+            <label>Auksjonsvare: </label>
+            <input type = "checkbox" onchange = ""/>
+            <div>
+                <input type = "datetime-local" value = "${model.data.items[product].deadline}"/>
+                <button onclick = "">Oppdater frist</button>
+            </div>
+            <div>
+                ${model.data.items[product].auction?`<input type = "text" value = "${model.data.items[product].minBid}"/><button onclick = "">Endre minimumbud</button>`:`<input type = "text" value = "${model.data.items[product].price}"/><button onclick = "">Endre pris</button>`}
+            </div> 
+        </div>
+    ` 
+}
+
 function showZoomedPic(){
     if(model.app.zoomedPic){
         return `<img id = "zoomedPic" src = "${model.data.items[product].images[model.app.zoomedPic]}" onclick = "unZoom()"></img>`

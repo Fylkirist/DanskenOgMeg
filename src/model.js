@@ -172,7 +172,8 @@ const model = {
                 images:['assets/kronebilde1.png','assets/kronebilde2.png'],
                 inStock:true,
                 deliver:true,
-                mainImage: ''
+                mainImage: '',
+                minBid:0
             },
             {
                 id: 000002,
@@ -184,7 +185,8 @@ const model = {
                 deadline:'2023-03-21T18:21',
                 images:['assets/kronebilde1.png','assets/kronebilde2.png'],
                 inStock:true,
-                deliver:false
+                deliver:false,
+                minBid:0
             },
         ],
     }
