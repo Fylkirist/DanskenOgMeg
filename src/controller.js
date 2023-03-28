@@ -128,9 +128,8 @@ function registerUser() {
         console.log(inputs);
             model.app.loggedInStatus = user.permissions;
             model.app.userId = userId;
-        }
-        return;
     }
+    return;
 }
 
 
