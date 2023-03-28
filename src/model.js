@@ -140,11 +140,20 @@ const model = {
             {
                 itemId: 000002,
                     bids: {
-                    '0000001': [1000, 10000],
+                    '0000001': [1000, 1200],
+                    '0000002': [1000, 10000],
                 },
+               
                 
                 
             },
+             {
+                itemId: 000001,
+                bids: {
+                '0000001': [1000, 99999],
+                '0000002': [5000, 10000],
+                },
+             }
         ],
 
         items:[
@@ -154,7 +163,7 @@ const model = {
                 description: 'ipsum lorem',
                 price: 70000,
                 category:['Småting','Tilbehør'],
-                auction:false,
+                auction:true,
                 deadline:'2023-03-21T18:21',
 
                 images:['assets/kronebilde1.png','assets/kronebilde2.png'],
