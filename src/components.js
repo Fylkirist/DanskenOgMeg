@@ -29,7 +29,6 @@ function frontPageProductView(){
 }
 
 function registerFormView() {
-
     let container = /*html */`
       <div class="form-container">
         <div class="form-group">
@@ -59,9 +58,8 @@ function registerFormView() {
         <div>${model.inputs.register.meldingRegister}</div>
       </div>
     `;
-    document.getElementById('app').innerHTML = container;
     return container;
-  }
+}
   
 
 function generateFrontPageElement(item){

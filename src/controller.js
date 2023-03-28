@@ -20,14 +20,17 @@ function registerUser() {
                 break;
             }
         }
-        if(brukernavnTatt)
-        {    
-            model.inputs.register.meldingRegister = 'Du har ikke skrivet ett unikt brukernavn!!!';
+        if(brukernavnTatt){    
+            model.inputs.register.meldingRegister = 'Brukernavn eksisterer allerede';
             updateView();
             return;
         }
-        if (model.inputs.register.password === model.inputs.register.repeatPassword)
-        { 
+        if(!isValid(model.inputs.register.cardNumber)){
+            model.inputs.register.meldingRegister = 'Ikke gyldig bankkort'
+            updateView();
+            return
+        }
+        if (model.inputs.register.password === model.inputs.register.repeatPassword){ 
             const newUser = { // dytter inn objekt basert på inputt
                 username:model.inputs.register.userName,                        
                 password:model.inputs.register.password,  
@@ -53,26 +56,23 @@ function registerUser() {
                 messages:[],
             };
             const brukerTelling = Object.keys(model.data.users).length +1;
-            const lengde = 7-String(brukerTelling).lenh
+            const lengde = 7-String(brukerTelling).length
             const newUserID = '000000'.slice(0,lengde) +brukerTelling;    // id property for objekte
             model.data.users[newUserID] = newUser;                  
-
             model.inputs.register.registerUser = "Velkommen til Dansken & Meg";
-            updateView();
         } 
-        else if (model.inputs.register.password !== model.inputs.register.repeatPassword)  // Fix this line
-        {
+        else if (model.inputs.register.password !== model.inputs.register.repeatPassword){
             model.app.input.register.meldingRegister = 'Passordene du har skrevet stemmer ikke overens !!!';
-            updateView();
         }  
     }
     else {
         model.inputs.register.meldingRegister = "Alle feltene er ikke fylt ut!!!"
-        updateView();
     }
+    updateView();
 }
+
 function isValid(input) {
-    let cardNumber = input.value.replace(/\s/g,''); // remove any whitespace from the input
+    let cardNumber = input.replace(/\s/g,''); // remove any whitespace from the input
     if (/[^0-9-\s]+/.test(cardNumber)) return false; // invalid characters
     let sum = 0, double = false;
     for (let i = cardNumber.length - 1; i >= 0; i--) {
