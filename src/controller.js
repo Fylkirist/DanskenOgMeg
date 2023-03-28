@@ -25,7 +25,7 @@ function registerUser() {
             updateView();
             return;
         }
-        if(!isValid(model.inputs.register.cardNumber)){
+        if(model.inputs.register.cardNumber.length>0 && !isValid(model.inputs.register.cardNumber)){
             model.inputs.register.meldingRegister = 'Ikke gyldig bankkort'
             updateView();
             return
@@ -59,14 +59,15 @@ function registerUser() {
             const lengde = 7-String(brukerTelling).length
             const newUserID = '000000'.slice(0,lengde) +brukerTelling;    // id property for objekte
             model.data.users[newUserID] = newUser;                  
-            model.inputs.register.registerUser = "Velkommen til Dansken & Meg";
+            model.inputs.register.registerUser = "Velkommen til Dansken & Meg antikkmarked";
+            model.app.currentView = "frontPage"
         } 
         else if (model.inputs.register.password !== model.inputs.register.repeatPassword){
-            model.app.input.register.meldingRegister = 'Passordene du har skrevet stemmer ikke overens !!!';
+            model.app.input.register.meldingRegister = 'Passordene du har skrevet stemmer ikke overens';
         }  
     }
     else {
-        model.inputs.register.meldingRegister = "Alle feltene er ikke fylt ut!!!"
+        model.inputs.register.meldingRegister = "Alle feltene må være fylt ut"
     }
     updateView();
 }
@@ -85,5 +86,10 @@ function isValid(input) {
       double = !double;
     }
     return (sum % 10) == 0;
-  }
-  
+}
+
+function goBackToFrontPage(){
+    Object.values(model.inputs.register).forEach((val)=>val = "")
+    model.app.currentView = "frontPage"
+    updateView()
+}

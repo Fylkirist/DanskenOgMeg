@@ -54,6 +54,7 @@ function registerFormView() {
           <input type="date" oninput="model.inputs.register.fromDate = this.value;">
           <input type="text" placeholder="CVE" oninput="model.inputs.register.cve = this.value;">
         </div>
+        <button onclick="goBackToFrontPage()">Tilbake</button>
         <button onclick="registerUser()">Register</button>
         <div>${model.inputs.register.meldingRegister}</div>
       </div>
