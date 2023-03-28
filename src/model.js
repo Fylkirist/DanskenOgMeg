@@ -23,6 +23,7 @@ const model = {
                     auctions: {
                         usersWinningBids:[],
                         usersLosingBids:[],
+                        increasedWinningBid: 0,
                     },
                 },
                 totalPrice: 0,
@@ -156,9 +157,10 @@ const model = {
             {
                 itemId: '000002',
                 bids: {
-                    '0000002': [1000, 20000],
-                    '0000001': [1000, 10000],
-                },
+                        '0000002': {bid: [1000, 20000], deleted: false},
+                        '0000001': {bid: [1000, 10000], deleted: false}
+                    },
+                
                 
                 
             },

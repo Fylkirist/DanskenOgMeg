@@ -146,7 +146,8 @@ function showShoppingCart(){
                 <div>
                     <span>Vinnene bud</span>
                     ${showWinningBids()}
-                    ${losingBid()}
+                    ${showLosingBids()}
+                    
                 </div>` 
             : ''}
 
@@ -162,17 +163,18 @@ function showShoppingCart(){
 function showItemsCanBuyNow(){
     let html = '';
     model.inputs.shoppingCart.totalPrice = 0;
-    for(let item of model.inputs.shoppingCart.items.canBuyNow){
-        for(let i of model.data.items){
+    for(let j = 0; j < model.inputs.shoppingCart.items.canBuyNow.length; j++){
+        for(let i = 0; i < model.data.items.length; i++){
             
-            if(item.id === i.id){
+            if(model.inputs.shoppingCart.items.canBuyNow[j].id === model.data.items[i].id){
                 html += `<div>
-                            <img src="${i.images[0]}" />
-                            <span>${i.title}</span>
-                            <span>${i.price}</span>
+                            <img src="${model.data.items[i].images[0]}" />
+                            <span>${model.data.items[i].title}</span>
+                            <button onclick="deleteItemFromShoppingCart(${j})">X</button>
+                            <span>${model.data.items[i].price}</span>
                         </div>`;
                 
-                model.inputs.shoppingCart.totalPrice += i.price;
+                model.inputs.shoppingCart.totalPrice += model.data.items[i].price;
             }
         }
 
@@ -180,32 +182,144 @@ function showItemsCanBuyNow(){
     return html;
     
 }
+
+
 function showWinningBids(){
     let html='';
 
     findWinningBids();
 
-    if(model.inputs.shoppingCart.items.auctions.usersWinningBids.length === 0) return '';
+    if(model.inputs.shoppingCart.items.auctions.usersWinningBids.length == 0) return '';
 
-    html += `<div>`;
+    else {
 
-    for (let i = 0; i < model.inputs.shoppingCart.items.auctions.usersWinningBids.length; i++){
-        for(let j = 0; j < model.data.items.length; j++){
-            if(model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id === model.data.items[j].id){
-                html += `
-                        <img src="${model.data.items[j].images[0]}" />
-                    </div>
-                    `;
+        html += `<div>`;
+
+        for (let i = 0; i < model.inputs.shoppingCart.items.auctions.usersWinningBids.length; i++){
+            for(let j = 0; j < model.data.items.length; j++){
+                if(model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id === model.data.items[j].id){
+                    html += `
+                            <img src="${model.data.items[j].images[0]}" />
+                            <span>${model.data.items[j].title}</span>
+                            ${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].deleted ? 'Du trukket bud.' : `
+                                <button onclick="trekkBud(${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id}, 
+                                                        ${model.app.loggedInUser.userId})"
+                                >Trekk bud</button>
+                                <span>Bud: ${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid}</span>
+                                <span>Stenges om : ${calculateDeadline(model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id)}</span>
+                                <input  type="number" 
+                                        min="${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid}" 
+                                        step= 100
+                                        value="${model.inputs.shoppingCart.items.auctions.increasedWinningBid || ''}" 
+                                        
+                                        onchange="model.inputs.shoppingCart.items.auctions.increasedWinningBid = this.value, updateView()"
+                                />
+                                <button
+                                    ${model.inputs.shoppingCart.items.auctions.increasedWinningBid > model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid ? '' : 'disabled'}
+                                    onclick="increaseBid(${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id}, ${model.app.loggedInUser.userId}, ${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid}, ${model.inputs.shoppingCart.items.auctions.increasedWinningBid})"
+                                >Øk bud</button>
+                            `}
+                        </div>
+                        `;
+                }
             }
         }
+                    
+
+        return html;
     }
-                  
+}
+function showLosingBids(){
+
+    let html='';
+
+    findWinningBids();
+
+    if(model.inputs.shoppingCart.items.auctions.usersLosingBids.length == 0) return '';
+
+    else {
+
+        html += `<div>`;
+
+        for (let i = 0; i < model.inputs.shoppingCart.items.auctions.usersLosingBids.length; i++){
+            for(let j = 0; j < model.data.items.length; j++){
+                if(model.inputs.shoppingCart.items.auctions.usersLosingBids[i].id === model.data.items[j].id){
+                    html += `
+                            <img src="${model.data.items[j].images[0]}" />
+                            <span>${model.data.items[j].title}</span>
+                            <button onclick="trekkBud(${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].id}, 
+                                                    ${model.app.loggedInUser.userId},
+                                                    ${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].usersMaximumBid})"
+                            >Trekk bud</button>
+                            <span>Bud: ${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid}</span>
+                            <span>Stenges om : ${calculateDeadline(model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id)}</span>
+                            <input  type="number" 
+                                    min="${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid}" 
+                                    step= 100
+                                    value="${model.inputs.shoppingCart.items.auctions.increasedWinningBid || ''}" 
+                                    
+                                    onchange="model.inputs.shoppingCart.items.auctions.increasedWinningBid = this.value, updateView()"
+                            />
+                            <button
+                                ${model.inputs.shoppingCart.items.auctions.increasedWinningBid > model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid ? '' : 'disabled'}
+                                onclick="increaseBid(${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id}, ${model.app.loggedInUser.userId}, ${model.inputs.shoppingCart.items.auctions.increasedWinningBid})"
+                            >Øk bud</button>
+                        </div>
+                        `;
+                }
+            }
+        }
+                    
+
+        return html;
+    }
+
+}
+
+
+
+function calculateDeadline(itemsId){
+    let setDeadline;
+    let html = '';
+    for (let item of model.data.items){
+        if(item.id == itemsId){
+            setDeadline = item.deadline;
+        }
+    }
+    let miliSecondsRemaining = parseInt(new Date(setDeadline) - new Date());
+    let daysRemaining = parseInt(miliSecondsRemaining/(1000*60*60*24));
+    let hoursRemaining = parseInt(((miliSecondsRemaining/(1000*60*60*24)) - daysRemaining) * 24);
+    let minutesRemaining = parseInt(((((miliSecondsRemaining/(1000*60*60*24)) - daysRemaining) * 24) - hoursRemaining) * 60);
+    let secondsRemaining = parseInt(((((((miliSecondsRemaining/(1000*60*60*24)) - daysRemaining) * 24) - hoursRemaining) * 60) - minutesRemaining) * 60);
+
+  
+
+    if (miliSecondsRemaining > 1000){
+        html = `
+                ${daysRemaining} dager og ${hoursRemaining} timer og ${minutesRemaining} minutter.
+        
+             `;
+    }
+
+    else {
+        html = 'Bud er stengt.'
+        
+    }
+    
 
     return html;
-}
-function losingBid(){
+
 
 }
+
+let countDown;
+
+
+
+
+
+
+
 
 
 function showFilterBox(){
