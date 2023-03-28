@@ -42,42 +42,48 @@ function loginView(){
 }
 
 function orderHistoryView (){
-    let userStatus  
-
-    for (let i = 0; i<model.data.users.length; i++){
-        userStatus = model.data.users[i].key.permissions;
-    }
-    return /*html*/ `
-    <div class = "OrderHistoryContainer">
-        
-        <h1 id = "topText">Orderhistorikk</h1>
-
-            ${()=>{if(userStatus === "admin"){
-                model.data.orderHistory.map(order => /*html*/
-                `<ul>
-                    <div id = "itemID">Item ID: ${order.itemId}</div>
-                    <div id = "staus">Status: ${order.sold}</div>
-                    <div id = "pris">Pris: ${order.price}</div>
-                    <div id = "date">Dato: ${order.date}</div>
-                    <div id = "type">Type: ${order.type}</div>
-                    <div id = "userId">Bruker ID: ${order.userId}</div>
-                </ul>`
-                    ).join('')
+       
+    let html = ``
+    if(model.data.users[model.app.userId].permissions === "admin"){
+        for(let i = 0; model.data.orderHistory.length; i++){
+        /*html*/
+            html+= `<div>
+                <div id = "itemID">Item ID: ${model.data.orderHistory[i].itemId}</div>
+                <div id = "staus">Betalt: ${model.data.orderHistory[i].paid}</div>
+                <div id = "pris">Pris: ${model.data.orderHistory[i].price}</div>
+                <div id = "date">Dato: ${model.data.orderHistory[i].date}</div>
+                <div id = "type">Type: ${model.data.orderHistory[i].type}</div>
+                <div id = "userId">Kjøper : ${model.data.orderHistory[i].userId} 
+                Fornavn: ${model.data.users[model.data.orderHistory[i].userId].firstname}
+                Etternavn: ${model.data.users[model.data.orderHistory[i].userId].surname} </div>
+            </div>`
             }
-            else{
-                model.data.orderHistory.map(order => /*html*/
-                `<ul>
-                    <div id = "itemID">Item ID: ${order.itemId}</div>
-                    <div id = "staus">Status: ${order.sold}</div>
-                    <div id = "pris">Pris: ${order.price}</div>
-                    <div id = "date">Dato: ${order.date}</div>
-                    <div id = "type">Type: ${order.type}</div>
-                </ul>`
-                    ).join('')
-            } }}
-    
-    
+            }
+        else {
+
+            for(let i = 0; i<model.data.orderHistory.length; i++){
+                if(model.app.userId === model.data.orderHistory.userId ){
+                        
+                 /*html*/
+                    html+=`<ul>
+                        <div id = "title">Produkt Navn: ${model.data.orderHistory[i].title}</div>
+                        <img id = "itemImage" src = ${model.data.orderHistory[i].image}>
+                        <div id = "type">Type: ${model.data.orderHistory[i].type}</div>
+                        <div id = "date">Dato: ${model.data.orderHistory[i].date}</div>
+                        <div id = "pris">Pris: ${model.data.orderHistory[i].price}</div>
+                    </ul>`
+                }
+            } 
+        }
+            
+        
+        return /*html*/ `
+    <div id = "mainOrderHistoryDiv">
+        <h1 id = "topText">Orderhistorikk</h1>
+        <div class = "OrderHistoryContainer">
+            ${html}
+        </div>
     </div>
-    `
+        `
     
 }
