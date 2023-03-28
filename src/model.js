@@ -1,11 +1,19 @@
 const model = {
     app:{
-        currentView:'filteredPage',
-        loggedInStatus:'',
+        currentView:'frontPage',
+        loggedInStatus: false,
+        wrongUserNamePasswordMessage: '',
+        loggedInUser: {
+            userName: '',
         userId:false,
         zoomedPic:false,
-        userId: false,
+        currentProduct:false
         },
+        frontPageCurrentShowing:{
+            top:0,
+            bottom:0,
+        },
+    },
 
         inputs:{
             register: {
@@ -22,81 +30,45 @@ const model = {
                 cardNumber: '',
                 fromDate: '',
                 toDate: '',
-                cvc: ''
-                              
+                cvc: ''                
             },
-
-            
             login:{
                 username:"",
                 password:"",
-                dropdown:false
+                dropdown:false,
+                wrongUserNamePassword: false,
             },
-            filteredProductPage: {
-                selectedMainCategories: [],
-                selectedSubCategories: [],
-                priceRange: {
-                    min: 0,
-                    max: 99999,
+            category:{
+                filteredItems:[],
+                priceRange:{
+                    max:0,
+                    min:0
                 },
-            },
-            category:{ 
-
-                wholeCategoryShow : false,
-            
-                selectedMainCategories: [
-                                        {
-                                            title: '', 
-                                            checked: false, 
-                                            showSubCategories: false, 
-                                            selectSubCategories: [
-                                                {title: '', checked: false},
-                                                {title: '', checked: false},
-                                            ]
-                                        },
-                                        {
-                                            title: '', 
-                                            checked: false, 
-                                            showSubCategories: false, 
-                                            selectSubCategories: [
-                                                {title: '', checked: false},
-                                                {title: '', checked: false},
-                                                {title: '', checked: false},
-                                            ]
-                                        },
-                                        {
-                                            title: '', 
-                                            checked: false, 
-                                            showSubCategories: false, 
-                                            selectSubCategories: [
-                                                {title: '', checked: false},
-                                                {title: '', checked: false},
-                                            ]
-                                        },
-                  
-                                    ],
-                
-                    
-                },
-                searchPage: {
-                    searchedWords: '',
-                    matchedItemsIndices: [],
-                    categoryMatched: false,
-                },
-                    
-              
-           
-
+                filterAuctionCheck:true,
+                filterNormalCheck:true,
+                categoryList:[
+                    {id:0,name:"Møbler",parent:-1,checked:false},
+                    {id:1,name:"Bord",parent:0,checked:false},
+                    {id:2,name:"Klær",parent:-1,checked:false},
+                    {id:3,name:"Hatter",parent:2,checked:false},
+                ]     
+            },                                      
             createSale: {
-                id:'',
                 title:'',
                 description:'',
                 price:'',
-                category:'',
+                minimumBid:false,
+                minimumBidAmmount:'',
                 auction:true,
-                deadline:'22/02/2023',
-                images:['',''],
-                deliver:false   
+                deadline:'',
+                images:[],
+                deliver:false,
+                frontPage:false,
+                categoryList: [""], 
+                mainCategory : '',
+                subCategory : '',
+                mainImage: '',
+                addImage: '',
             },
             search:{
                 input:'',
@@ -108,6 +80,8 @@ const model = {
         },
 
     data:{
+        frontPageTop:[0],
+        frontPageBottom:[1],
         users:{
             "0000001":{
                 username:"admin",
@@ -169,86 +143,49 @@ const model = {
         },
         orderHistory: [
             {
-                itemId:'000001',
+                itemId:000001,
                 sold: true,
                 price:'10,000,000',
                 date:'03.01.2023',
                 type: 'direkte',
                 userId: '00000001'
-                
-                
             },
         ],
         auctionListe: [
             {
-                itemId: '000002',
+                itemId: 000002,
                     bids: {
                     '0000001': [1000, 10000],
                 },
-                
-                
             },
         ],
 
         items:[
             {
-                id: "000001",
+                id: 000001,
                 title: 'Krone til dronningen av England',
                 description: 'ipsum lorem',
                 price: 70000,
-                category:['Små ting','Tilbehør'],
+                category:['Småting','Tilbehør'],
                 auction:false,
-                deadline:'3/18/2024',
+                deadline:'2023-03-21T18:21',
                 images:['assets/kronebilde1.png','assets/kronebilde2.png'],
                 inStock:true,
-                deliver:true
+                deliver:true,
+                mainImage: ''
             },
             {
-                id: "000002",
+                id: 000002,
                 title: 'auction prime time',
                 description: 'ipsum lorem',
                 price: 5000,
                 category:['Møbler','Stoler'],
                 auction:true,
-                deadline:'3/18/2024',
+                deadline:'2023-03-21T18:21',
                 images:['assets/kronebilde1.png','assets/kronebilde2.png'],
                 inStock:true,
                 deliver:false
             },
         ],
-        itemsCategory: [
-
-            {
-                title : 'Møbler',
-                checked: false,
-                subCategory: [
-                    {title: 'Bord', checked: false},
-                    {title: 'Stoler', checked: false},
-                ]
-            },
-            {
-                title : 'Små ting',
-                checked: false,
-                subCategory: [
-                    {title: 'Vaser', checked: false},
-                    {title: 'Lamper', checked: false},
-                    {title: 'Tilbehør', checked: false},
-                ]
-            },
-            {
-                title : 'Klær og tilbehør',
-                checked: false,
-                subCategory: [
-                    {title: 'Bukser', checked: false},
-                    {title: 'Jakker', checked: false},
-                ]
-            },
-        
-        
-        ],
-        priceRange: {
-            min: 0,
-            max: 999999,
-        },
     }
 }

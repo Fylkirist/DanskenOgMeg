@@ -5,12 +5,6 @@
     <script src="src/model.js"></script>
     <script src="src/controller.js"></script>
     <script src="src/components.js" defer></script>
-    <script src="src/categoryFilter.js"></script>
-    <script src="src/categoryFilterController.js"></script>
-    <script src="src/filteredPageView.js"></script>
-    <script src="src/filteredPageController.js"></script>
-    <script src="src/searchComponent.js"></script>
-    <script src="src/searchComponentController.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,29 +12,5 @@
 </head>
 <body>
     <div id = "app"></div>
-
-    <script>
-        let container = document.getElementById('app');
-        updateView();
-
-        
-
-        function updateView(){
-            
-            container.innerHTML = '';
-
-            switch (model.app.currentView){
-                case 'frontPage':
-                container.appendChild(frontpage())
-                break;
-                case 'filteredPage':
-                container.appendChild(filteredPageUpdateView())
-                break;
-
-    }
-
-
-}
-    </script>
 </body>
 </html>
