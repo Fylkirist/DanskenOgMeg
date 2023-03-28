@@ -11,10 +11,6 @@ function registerUser() {
         inputs.zip.length > 0){    
         let brukernavnTatt = false;
         for (let userID in model.data.users){
-            console.log('Checking user ID:', userID);
-            console.log('Existing username:', model.data.users[userID].username);
-            console.log('Input username:', model.inputs.register.userName);
-
             if(model.data.users[userID].username === model.inputs.register.userName){
                 brukernavnTatt = true;
                 break;
@@ -31,7 +27,7 @@ function registerUser() {
             return
         }
         if (model.inputs.register.password === model.inputs.register.repeatPassword){ 
-            const newUser = { // dytter inn objekt basert på inputt
+            const newUser = { 
                 username:model.inputs.register.userName,                        
                 password:model.inputs.register.password,  
                 permissions: 'user',
@@ -73,8 +69,8 @@ function registerUser() {
 }
 
 function isValid(input) {
-    let cardNumber = input.replace(/\s/g,''); // remove any whitespace from the input
-    if (/[^0-9-\s]+/.test(cardNumber)) return false; // invalid characters
+    let cardNumber = input.replace(/\s/g,'');
+    if (/[^0-9-\s]+/.test(cardNumber)) return false;
     let sum = 0, double = false;
     for (let i = cardNumber.length - 1; i >= 0; i--) {
       let digit = parseInt(cardNumber.charAt(i));
