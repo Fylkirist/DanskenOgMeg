@@ -56,12 +56,13 @@ function registerFormView() {
           <input type="text" placeholder="CVE" oninput="model.inputs.register.cve = this.value;">
         </div>
         <button onclick="registerUser()">Register</button>
-        <div id="melding"></div>
+        <div>${model.inputs.register.meldingRegister}</div>
       </div>
     `;
     document.getElementById('app').innerHTML = container;
     return container;
   }
+  
 
 function generateFrontPageElement(item){
     let varElems;

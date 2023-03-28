@@ -10,6 +10,7 @@ function updateView(){
             app.innerHTML += createHeaderSection() + showFilterBox() + showFilteredProducts()
             break
         case "registerPage":
+            app.innerHTML += registerFormView();
             break
     }
 }
