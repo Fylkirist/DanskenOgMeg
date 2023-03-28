@@ -57,20 +57,18 @@ function registerUser() {
             const newUserID = '000000'.slice(0,lengde) +brukerTelling;    // id property for objekte
             model.data.users[newUserID] = newUser;                  
 
-            let messageContainer = document.getElementById('melding');
-            messageContainer.innerHTML = `<p>Velkommen til VintageSkatter !!!</p>`;
+            model.inputs.register.registerUser = "Velkommen til Dansken & Meg";
+            updateView();
         } 
         else if (model.inputs.register.password !== model.inputs.register.repeatPassword)  // Fix this line
         {
             model.app.input.register.meldingRegister = 'Passordene du har skrevet stemmer ikke overens !!!';
             updateView();
-            return;
         }  
     }
     else {
         model.inputs.register.meldingRegister = "Alle feltene er ikke fylt ut!!!"
         updateView();
-        return;
     }
 }
 function isValid(input) {
