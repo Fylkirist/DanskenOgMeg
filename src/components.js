@@ -157,6 +157,53 @@ function showLoginDropDown(){
     }
 }
 
+function orderHistoryView (){
+       
+    let html = ``
+    if(model.data.users[model.app.userId].permissions === "admin"){
+        for(let i = 0; i < model.data.orderHistory.length; i++){
+        /*html*/
+            html+= `<div>
+                <div id = "itemID">Item ID: ${model.data.orderHistory[i].itemId}</div>
+                <div id = "staus">Betalt: ${model.data.orderHistory[i].paid}</div>
+                <div id = "pris">Pris: ${model.data.orderHistory[i].price}</div>
+                <div id = "date">Dato: ${model.data.orderHistory[i].date}</div>
+                <div id = "type">Type: ${model.data.orderHistory[i].type}</div>
+                <div id = "userId">Kjøper : ${model.data.orderHistory[i].userId} 
+                Fornavn: ${model.data.users[model.data.orderHistory[i].userId].firstname}
+                Etternavn: ${model.data.users[model.data.orderHistory[i].userId].surname} </div>
+            </div>`
+            }
+            }
+        else {
+
+            for(let i = 0; i<model.data.orderHistory.length; i++){
+                if(model.app.userId === model.data.orderHistory.userId ){
+                        
+                 /*html*/
+                    html+=`<ul>
+                        <div id = "title">Produkt Navn: ${model.data.orderHistory[i].title}</div>
+                        <img id = "itemImage" src = ${model.data.orderHistory[i].image}>
+                        <div id = "type">Type: ${model.data.orderHistory[i].type}</div>
+                        <div id = "date">Dato: ${model.data.orderHistory[i].date}</div>
+                        <div id = "pris">Pris: ${model.data.orderHistory[i].price}</div>
+                    </ul>`
+                }
+            } 
+        }
+            
+        
+        return /*html*/ `
+    <div id = "mainOrderHistoryDiv">
+        <h1 id = "topText">Orderhistorikk</h1>
+        <div class = "OrderHistoryContainer">
+            ${html}
+        </div>
+    </div>
+        `
+    
+}
+
 function productDisplay(product){
     return `
     <div class = "productDisplayContainer">
@@ -287,3 +334,4 @@ function showFilteredProducts(){
         </div>`
     return container
 }
+
