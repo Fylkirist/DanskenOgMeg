@@ -3,6 +3,7 @@ const model = {
         currentView:'frontPage',
         loggedInStatus: false,
         wrongUserNamePasswordMessage: '',
+
         userId:"0000001",
         zoomedPic:false,
         currentProduct:false,
@@ -140,6 +141,7 @@ const model = {
         },
         orderHistory: [
             {
+
                 itemId:000003,
                 paid: true,
                 price:'10,000,000',
@@ -149,7 +151,6 @@ const model = {
                 image : 'assets/kronebilde1.png',
                 title: 'Krona Til Drøning'
             },
-        
             {
                 itemId:000002,
                 paid: true,
@@ -182,7 +183,9 @@ const model = {
                 images:['assets/kronebilde1.png','assets/kronebilde2.png'],
                 inStock:true,
                 deliver:true,
-                mainImage: ''
+                mainImage: '',
+                minBid:0
+
             },
             {
                 id: 000002,
@@ -194,7 +197,8 @@ const model = {
                 deadline:'2023-03-21T18:21',
                 images:['assets/kronebilde1.png','assets/kronebilde2.png'],
                 inStock:true,
-                deliver:false
+                deliver:false,
+                minBid:0
             },
         ],
     }
