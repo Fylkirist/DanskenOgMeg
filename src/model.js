@@ -1,6 +1,6 @@
 const model = {
     app:{
-        currentView:'frontPage',
+        currentView:'handlevognPage',
         loggedInStatus: false,
         loggedInAs: '',
         wrongUserNamePasswordMessage: '',
