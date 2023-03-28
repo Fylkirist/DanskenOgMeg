@@ -41,8 +41,33 @@ function loginView(){
 
 }
 
-/*function registerForm (){
+function orderHistoryView (){
+    let userStatus  
+    return /*html*/ `
+    <div class = "OrderHistoryContainer">
+        
+        <h1 id = topText>Orderhistorikk</h1>
+
+        <ul>
+
+            if(${model.data.users.})
+            ${model.data.orderHistory.map(order => /*html*/
+            `<ul>
+                <div>Item ID: ${order.itemId}</div>
+                <div>Status: ${order.sold}</div>
+                <div>Pris: ${order.price}</div>
+                <div>Dato: ${order.date}</div>
+                <div>Type: ${order.type}</div>
+                <div>Bruker ID: ${order.userId}</div>
+            </ul>
+            )}
 
 
     
-}*/
+    
+    </div>
+    `
+
+
+    
+}
