@@ -45,7 +45,7 @@ function orderHistoryView (){
        
     let html = ``
     if(model.data.users[model.app.userId].permissions === "admin"){
-        for(let i = 0; model.data.orderHistory.length; i++){
+        for(let i = 0; i < model.data.orderHistory.length; i++){
         /*html*/
             html+= `<div>
                 <div id = "itemID">Item ID: ${model.data.orderHistory[i].itemId}</div>
