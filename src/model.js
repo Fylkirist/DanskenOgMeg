@@ -1,6 +1,6 @@
 const model = {
     app:{
-        currentView:'frontPage',
+        currentView:'registerPage',
         loggedInStatus: false,
         wrongUserNamePasswordMessage: '',
         userId:"0000001",
@@ -27,7 +27,8 @@ const model = {
                 cardNumber: '',
                 fromDate: '',
                 toDate: '',
-                cvc: ''                
+                cvc: '' ,
+                meldingRegister:'',               
             },
             login:{
                 username:"",
