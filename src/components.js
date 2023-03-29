@@ -1,7 +1,5 @@
 function showShoppingCart(){
-
     let html= '';
-
     html = /*html*/`
         <div class="handlevognContainer">
             <div>
@@ -31,8 +29,7 @@ function showShoppingCart(){
                     <div>${showLosingBids()}</div>` 
                 : ''}
             </div>
-        </div>
-    `;
+        </div>`;
     return html;
 }
 
@@ -53,7 +50,6 @@ function showItemsCanBuyNow(){
                 model.inputs.shoppingCart.totalPrice += model.data.items[i].price;
             }
         }
-
     }
     return html;   
 }
@@ -66,9 +62,7 @@ function showWinningBids(){
     if(model.inputs.shoppingCart.items.auctions.usersWinningBids.length == 0) return '';
 
     else {
-
         html += `<div>`;
-
         for (let i = 0; i < model.inputs.shoppingCart.items.auctions.usersWinningBids.length; i++){
             for(let j = 0; j < model.data.items.length; j++){
                 if(model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id === model.data.items[j].id){
@@ -102,17 +96,11 @@ function showWinningBids(){
     }
 }
 function showLosingBids(){
-
     let html='';
-
     findWinningBids();
-
     if(model.inputs.shoppingCart.items.auctions.usersLosingBids.length == 0) return '';
-
     else {
-
         html += `<div>`;
-
         for (let i = 0; i < model.inputs.shoppingCart.items.auctions.usersLosingBids.length; i++){
             for(let j = 0; j < model.data.items.length; j++){
                 if(model.inputs.shoppingCart.items.auctions.usersLosingBids[i].id === model.data.items[j].id){
@@ -163,12 +151,10 @@ function calculateDeadline(itemsId){
     if (miliSecondsRemaining > 1000){
         html = `
                 ${daysRemaining} dager og ${hoursRemaining} timer og ${minutesRemaining} minutter.
-        
              `;
     }
     else {
         html = 'Bud er stengt.'
-        
     }
     return html;
 }
@@ -202,8 +188,7 @@ function registerFormView() {
         <button onclick="goBackToFrontPage()">Tilbake</button>
         <button onclick="registerUser()">Register</button>
         <div>${model.inputs.register.meldingRegister}</div>
-      </div>
-    `;
+      </div>`;
     return container;
 }
 
@@ -260,8 +245,7 @@ function generateFrontPageElement(item){
             <h4>${model.data.items[item].title}</h4>
             <p>${model.data.items[item].description}</p>
             ${varElems}    
-        </div>
-    ` 
+        </div>` 
 }
 
 function createHeaderSection(){
@@ -334,12 +318,10 @@ function createSaleView(){
             <label>Kan leveres:</label>
             <input id = "deliveryBox" type = "checkbox" ${model.inputs.createSale.deliver? "checked":""} onchange = "model.inputs.createSale.deliver = this.checked">
             <button id = "saveButton" onclick = "createProduct()">Lagre produkt</button>
-        </div>
-    ` 
+        </div>` 
 }
 
 function loginView(){
-    
     return `
         <div class = "loginRegContainer">
             <button onclick = "changeView("registerPage")" id = "registerButton">Register</button>
@@ -356,9 +338,7 @@ function showLoginDropDown(){
         <input placeholder = "Brukernavn" oninput = "model.inputs.login.username = this.value" id = "usernameInput"></input>
         <input placeholder = "Passord" oninput = "model.inputs.login.password = this.value" id = "passwordInput"></input>
         <button onclick = "checkLogin()" id = "submitLogin">Sumbit</button>
-        </div>
-    `
-    ;
+        </div>`;
     }
     else{
         return ``
@@ -366,7 +346,6 @@ function showLoginDropDown(){
 }
 
 function orderHistoryView (){
-       
     let html = ``
     if(model.data.users[model.app.userId].permissions === "admin"){
         for(let i = 0; i < model.data.orderHistory.length; i++){
@@ -384,7 +363,6 @@ function orderHistoryView (){
             }
             }
         else {
-
             for(let i = 0; i<model.data.orderHistory.length; i++){
                 if(model.app.userId === model.data.orderHistory.userId ){
                         
@@ -399,17 +377,13 @@ function orderHistoryView (){
                 }
             } 
         }
-            
-        
         return /*html*/ `
-    <div id = "mainOrderHistoryDiv">
-        <h1 id = "topText">Orderhistorikk</h1>
-        <div class = "OrderHistoryContainer">
-            ${html}
-        </div>
-    </div>
-        `
-    
+            <div id = "mainOrderHistoryDiv">
+                <h1 id = "topText">Orderhistorikk</h1>
+                <div class = "OrderHistoryContainer">
+                    ${html}
+                </div>
+            </div>`
 }
 
 function productDisplay(product){
@@ -421,8 +395,7 @@ function productDisplay(product){
             <label class = "productDisplayPrice">${model.data.items[product].price}</label>
             <input id = "productDisplayPriceInput" oninput="model.input.product.bidIncrease = this.value">${model.input.product.bidIncrease}</input>
             <button class = "productDisplayBuyButton" onclick = "raiseBid(${model.data.items[product].id})">Øk bud</button>
-            <div id = "productDisplayDeadline">Auksjonen stenges om: ${model.data.items[product].deadline}</div>
-                `
+            <div id = "productDisplayDeadline">Auksjonen stenges om: ${model.data.items[product].deadline}</div>`
     }
     else{
         content = `
@@ -451,8 +424,7 @@ function productDisplay(product){
         <div id = "productDisplayImageGalleryContainer">
             ${images}	
         </div>
-    </div>
-    `
+    </div>`
 }
 
 function showAdminProductComponent(product){
@@ -482,8 +454,7 @@ function showAdminProductComponent(product){
                 <input oninput = "model.inputs.product.adminAddSubCategory = this.value" type = "text"/>
                 <button onclick = "addNewSubCategory(${product})">Legg til</button>
             </div>
-        </div>
-    ` 
+        </div>` 
 }
 
 function populateCategoryList(id){
@@ -496,8 +467,7 @@ function populateCategoryList(id){
                     `   Hovedkategori`:
                     `<button onclick = "removeCategory(${id},${i})">X</button>`
                 }
-            </div>
-        ` 
+            </div>` 
     }
     return list
 }
@@ -530,8 +500,7 @@ function showFilterBox(){
                 <input type = "text" value = "${priceLimits.min}">
                 <input type = "text" onchange = "changePriceLevels(this.value)" value = "${model.inputs.category.priceRange.max}"></input>
             </div>
-        </div>
-        `
+        </div>`
 }
 
 function generateCategoryElems(parentId){
@@ -543,8 +512,7 @@ function generateCategoryElems(parentId){
                     <label>${model.inputs.category.categoryList[i].name}</label>
                     <input type = "checkbox" ${model.inputs.category.categoryList[i].checked? "checked":""} onchange = "checkFilterBox(${i})"/>
                     ${model.inputs.category.categoryList[i].checked? generateCategoryElems(model.inputs.category.categoryList[i].id):""}
-                </div>
-                    `
+                </div>`
         }
     }
     return html
