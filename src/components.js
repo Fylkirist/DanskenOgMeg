@@ -267,7 +267,32 @@ function editUserPage(){
        /*html*/ ` 
        <div class = "containerDiv">
             <div id = "persoinalInfo">
-                <input type = "text">
+                <div id = firstLast>
+                    <input id ="firstNameChangeBox" type = "text" placeholder = "Fornavn">
+                    <input id ="lastNameChangeBox" type = "text" placeholder = "Etternavn">
+                    <input id ="phoneNumberChangeBox" type = "text" placeholder = "Telefon Nummer">
+                    <input id ="emailChangeBox" type = "text" placeholder = "Epost">
+                </div>
+                <div id = adressChange>
+                    <input id ="cityNameChangeBox" type = "text" placeholder = "By">
+                    <input id ="streetNameChangeBox" type = "text" placeholder = "Gate">
+                    <input id ="houseNumberChangeBox" type = "text" placeholder = "Hust / Leilighett Nummer">
+                    <input id ="zipCode" type = "text" placeholder = "Postkode">
+                </div>
+                <div id = "cardInfoBox">
+                    <input id = "cardNumber" placeholder = "Kort Nummer">
+                    <input id = "expirationDate" placeholder = "Utløps Dato">
+                    <input id = "cvc" placeholder ="CVC">
+                    <input id = "cardFirstName" placeholder = "Fornavn">
+                    <input id = "cardLastName" placeholder = "Etternavn">
+                    <input id ="cityName" tupe = "text" placeholder = "By">
+                    <input id ="streetName" type = "text" placeholder = "Gate">
+                    <input id ="houseNumber" type = "text" placeholder = "Hust / Leilighett Nummer">
+                    <input id ="zipCode" type = "text" placeholder = "Postkode">
+                </div>
+                <div id = "changePassword">
+                    <input id = "currentPassword" type = "text" placeholder = "Passord">
+                    <input id = "newPassword" type = "text" placeholder = "Ny passord">
             </div>
 
         </div>
