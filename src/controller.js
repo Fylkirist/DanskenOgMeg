@@ -14,7 +14,7 @@ function findWinningBids(){
             if(item.bids[userId].bid[item.bids[userId].bid.length-1] > maximumBidForItem) {
                     maximumBidForItem = item.bids[userId].bid[item.bids[userId].bid.length-1];
                 }
-            if(userId === model.app.loggedInUser.userId){
+            if(userId === model.app.userId){
                     matchedUserId = userId;
                 }         
         }

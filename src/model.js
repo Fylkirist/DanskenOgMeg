@@ -2,12 +2,8 @@ const model = {
     app:{
         currentView:'handlevognPage',
         loggedInStatus: false,
-        loggedInAs: '',
         wrongUserNamePasswordMessage: '',
-        loggedInUser: {
-            userName: '',
-            userId: '',
-        },
+        userId: "0000001",
         userId:false,
         zoomedPic:false,
         userId: false,

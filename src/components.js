@@ -39,7 +39,7 @@ function showShoppingCart(){
                     <button onclick="changeView('checkoutPage')">Gå til kassen</button>
 
                 </div>
-                ${model.app.loggedInAs === "user" ? `
+                ${model.app.loggedInStatus ? `
                     <h3>Auksjoner du har bud på:</h3>
                     <div>
                         <span>Vinnene bud</span>
@@ -97,7 +97,7 @@ function showWinningBids(){
                             <span>${model.data.items[j].title}</span>
                             ${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].deleted ? 'Du trukket bud.' : `
                                 <button onclick="trekkBud(${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id}, 
-                                                        ${model.app.loggedInUser.userId})"
+                                                        ${model.app.userId})"
                                 >Trekk bud</button>
                                 <span>Bud: ${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid}</span>
                                 <span>Stenges om : ${calculateDeadline(model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id)}</span>
@@ -110,7 +110,7 @@ function showWinningBids(){
                                 />
                                 <button
                                     ${model.inputs.shoppingCart.items.auctions.increasedWinningBid > model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid ? '' : 'disabled'}
-                                    onclick="increaseBid(${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id}, ${model.app.loggedInUser.userId}, ${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid}, ${model.inputs.shoppingCart.items.auctions.increasedWinningBid})"
+                                    onclick="increaseBid(${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id}, ${model.app.userId}, ${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid}, ${model.inputs.shoppingCart.items.auctions.increasedWinningBid})"
                                 >Øk bud</button>
                             `}
                         </div>
@@ -141,7 +141,7 @@ function showLosingBids(){
                             <span>${model.data.items[j].title}</span>
                             ${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].deleted ? 'Du trukket bud.' : `
                                 <button onclick="trekkBud(${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].id}, 
-                                                        ${model.app.loggedInUser.userId})"
+                                                        ${model.app.userId})"
                                 >Trekk bud</button>
                                 <span>Nåværende bud: ${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].ItemsMaximumBid}</span>
                                 <span>Stenges om : ${calculateDeadline(model.inputs.shoppingCart.items.auctions.usersLosingBids[i].id)}</span>
@@ -154,7 +154,7 @@ function showLosingBids(){
                                 />
                                 <button
                                     ${model.inputs.shoppingCart.items.auctions.increasedWinningBid > model.inputs.shoppingCart.items.auctions.usersLosingBids[i].ItemsMaximumBid ? '' : 'disabled'}
-                                    onclick="increaseBid(${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].id}, ${model.app.loggedInUser.userId}, ${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].ItemsMaximumBid}, ${model.inputs.shoppingCart.items.auctions.increasedWinningBid})"
+                                    onclick="increaseBid(${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].id}, ${model.app.userId}, ${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].ItemsMaximumBid}, ${model.inputs.shoppingCart.items.auctions.increasedWinningBid})"
                                 >Øk bud</button>
                             `}
                         </div>
