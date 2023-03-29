@@ -546,3 +546,69 @@ function showFilteredProducts(){
 }
 
 
+function showFilterBox(){
+    let priceLimits = determinePriceLimits()
+    return `
+        <div>
+            <h3>Kategorier</h3>
+            <div>
+                ${generateCategoryElems(-1)}
+            </div>
+            <div>
+                <label>Vis auksjonsvarer: </label>
+                <input oninput = "model.inputs.category.filterAuctionCheck = !model.inputs.category.filterAuctionCheck" type = "checkbox" ${model.inputs.category.filterAuctionCheck? "checked":""}/>
+            </div>
+            <div>
+                <label>Vis fastprisvarer: </label>
+                <input onchange = "model.inputs.category.filterNormalCheck = !model.inputs.category.filterNormalCheck" type = "checkbox" ${model.inputs.category.filterNormalCheck? "checked":""}/>
+            </div>
+            <div>
+                <input type = "range" onchange = "changePriceLevels(this.value)" min="${priceLimits.min}" max = "${priceLimits.max}" value = "${model.inputs.category.priceRange.max}"></input>
+                <input type = "text" value = "${priceLimits.min}">
+                <input type = "text" onchange = "changePriceLevels(this.value)" value = "${model.inputs.category.priceRange.max}"></input>
+            </div>
+        </div>`
+}
+
+function generateCategoryElems(parentId){
+    let html = ""
+    for(let i = 0; i<model.inputs.category.categoryList.length; i++){
+        if(model.inputs.category.categoryList[i].parent==parentId){
+            html += `
+                <div>
+                    <label>${model.inputs.category.categoryList[i].name}</label>
+                    <input type = "checkbox" ${model.inputs.category.categoryList[i].checked? "checked":""} onchange = "checkFilterBox(${i})"/>
+                    ${model.inputs.category.categoryList[i].checked? generateCategoryElems(model.inputs.category.categoryList[i].id):""}
+                </div>`
+        }
+    }
+    return html
+}
+
+function showFilteredProducts(){
+    model.inputs.category.filteredItems = filterItems()
+    let productList = ``
+    for(let i = 0; i<model.inputs.category.filteredItems.length;i++){
+        productList += `
+            <div class = "filteredProductContainer">
+                <img src = ${model.data.items[model.inputs.category.filteredItems[i]-1].images[0]}/>
+                <div>
+                    <h3>${model.data.items[model.inputs.category.filteredItems[i]-1].title}</h3>
+                    <br>
+                    <p>${model.data.items[model.inputs.category.filteredItems[i]-1].description}</p>
+                    <br>
+                    <div>
+                        <label>${model.data.items[model.inputs.category.filteredItems[i]-1].price},-</label>
+                        ${!model.data.items[model.inputs.category.filteredItems[i]-1].auction?`<button onclick = "addToShoppingCart(${model.data.items[model.inputs.category.filteredItems[i]-1].id})">Legg til I handlekurv</button>`:""}
+                        <button onclick = "goToProduct(${i})">Gå til produktside</button>
+                    </div>
+                </div>
+            </div>`
+    }
+    let container = `
+        <div "filteredProductListContainer">
+            ${productList}
+        </div>`
+    return container
+}
+
