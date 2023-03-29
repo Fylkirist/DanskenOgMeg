@@ -65,7 +65,7 @@ const model = {
                     {id:2,name:"Klær",parent:-1,checked:false},
                     {id:3,name:"Hatter",parent:2,checked:false},
                 ]     
-            },                                      
+            },
             createSale: {
                 title:'',
                 description:'',
@@ -87,6 +87,7 @@ const model = {
                 input:'',
                 
             },
+            profileMenuShowing:false
             product:{
                 bidIncrease:"",
                 adminBidIncrease:"",
@@ -96,7 +97,6 @@ const model = {
 
             }
         },
-
     data:{
         frontPageTop:[0],
         frontPageBottom:[1],
