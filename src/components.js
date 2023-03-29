@@ -263,10 +263,24 @@ function showFilteredProducts(){
 
 function editUserPage(){
     let html = ""
-    for(let i = 0; model.data.users)
-    /*html*/ `
-    for
-    `
+    for(let i = 0; model.data.users.length; i++){
+       /*html*/ ` 
+       <div class = "containerDiv">
+            <div id = "persoinalInfo">
+                <input type = "text">
+            </div>
+
+        </div>
+
+
+
+
+
+        `
+    }
+    
+    
+
 
 
 
