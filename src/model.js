@@ -13,6 +13,20 @@ const model = {
     },
 
         inputs:{
+            shoppingCart: {
+                items: {
+                    canBuyNow: [
+                        {id: "000001"},
+                        {id: "000002"},
+                    ],
+                    auctions: {
+                        usersWinningBids:[],
+                        usersLosingBids:[],
+                        increasedWinningBid: 0,
+                    },
+                },
+                totalPrice: 0,
+            },
             register: {
                 firstName: '',
                 lastName: '',
@@ -35,6 +49,7 @@ const model = {
                 password:"",
                 dropdown:false,
                 wrongUserNamePassword: false,
+
             },
             category:{
                 filteredItems:[],
@@ -78,6 +93,7 @@ const model = {
                 adminPriceChange:"",
                 adminAddSubCategory:"",
                 adminChangeMainCategory:""
+
             }
         },
 
@@ -110,16 +126,7 @@ const model = {
                             quantity:1
                         },
                     ],
-                auctionList:[
-                        {
-                            item:"000002",
-                            bids:[
-                                "0001",
-                                "0024",
-                                "0095"
-                             ]
-                        },
-                    ],
+            
                 paymentInformation:[
                     {
                         cardNumber: "133780082420",
@@ -168,10 +175,11 @@ const model = {
         ],
         auctionListe: [
             {
-                itemId: 000002,
-                    bids: {
-                    '0000001': [1000, 10000],
-                },
+                itemId: '000002',
+                bids: {
+                        '0000002': {bid: [1000, 20000], deleted: false},
+                        '0000001': {bid: [1000, 10000], deleted: false}
+                    },
             },
         ],
 
@@ -198,12 +206,46 @@ const model = {
                 price: 5000,
                 category:['Møbler','Stoler'],
                 auction:true,
-                deadline:'2023-03-21T18:21',
+                deadline:'2024-03-21T18:21',
                 images:['assets/kronebilde1.png','assets/kronebilde2.png'],
                 inStock:true,
                 deliver:false,
                 minBid:0
             },
         ],
+        itemsCategory: [
+
+            {
+                title : 'Møbler',
+                checked: false,
+                subCategory: [
+                    {title: 'Bord', checked: false},
+                    {title: 'Stoler', checked: false},
+                ]
+            },
+            {
+                title : 'Små ting',
+                checked: false,
+                subCategory: [
+                    {title: 'Vaser', checked: false},
+                    {title: 'Lamper', checked: false},
+                    {title: 'Tilbehør', checked: false},
+                ]
+            },
+            {
+                title : 'Klær og tilbehør',
+                checked: false,
+                subCategory: [
+                    {title: 'Bukser', checked: false},
+                    {title: 'Jakker', checked: false},
+                ]
+            },
+        
+        
+        ],
+        priceRange: {
+            min: 0,
+            max: 999999,
+        },
     }
 }
