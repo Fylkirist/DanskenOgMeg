@@ -148,6 +148,16 @@ function registerUser() {
     updateView()
 }
 
+function goToShoppingCart(){
+    model.app.currentView = "shoppingCart"
+    updateView()
+}
+
+function toToFrontPage(){
+    model.app.currentView = "frontPage"
+    updateView()
+}
+
 function isValid(input) {
     let cardNumber = input.replace(/\s/g,'')
     if (/[^0-9-\s]+/.test(cardNumber)) return false

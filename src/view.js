@@ -15,6 +15,10 @@ function updateView(){
             app.innerHTML = createHeaderSection() + showSearchBox() + productDisplay(model.app.currentProduct)
             break
         case "createProduct":
+            app.innerHTML = createHeaderSection() + showSearchBox() + createSaleView()
+            break
+        case "shoppingCart":
+            app.innerHTML = createHeaderSection() + showShoppingCart()
             break
     }
 }
