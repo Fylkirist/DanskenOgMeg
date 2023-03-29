@@ -351,16 +351,17 @@ function goToProduct(index){
 function filterItems(){
     let filterArray = []
     model.data.items.forEach(item =>{
-        if(item.name.includes(model.inputs.search.input) ||
+        if(item.title.includes(model.inputs.search.input) ||
          item.description.includes(model.inputs.search.input) ||
           item.category.includes(model.inputs.search.input)){
             filterArray.push(eval(item.id))
           }
     })
+    console.log(filterArray)
     filterArray = filterArray.filter(val => {
         let included = true
         for(let i = 0; i<model.inputs.category.categoryList.length; i++){
-            if(model.data.items[val].category.includes(model.inputs.category.categoryList[i].name)){
+            if(model.data.items[val-1].category.includes(model.inputs.category.categoryList[i].name)){
                 included = true
                 break
             }
@@ -370,8 +371,9 @@ function filterItems(){
         }
         return included? val : false
     })
+    console.log(filterArray)
     filterArray = filterArray.filter(val => {
-        if(model.data.items[val].price>=model.inputs.category.priceRange.min && model.data.items[val].price<=model.inputs.category.priceRange.max){
+        if(model.data.items[val-1].price>=model.inputs.category.priceRange.min && model.data.items[val].price<=model.inputs.category.priceRange.max){
             return val
         }
         else{
