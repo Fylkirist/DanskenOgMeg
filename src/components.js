@@ -96,7 +96,7 @@ function showWinningBids(){
                             <img src="${model.data.items[j].images[0]}" />
                             <span>${model.data.items[j].title}</span>
                             ${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].deleted ? 'Du trukket bud.' : `
-                                <button onclick="trekkBud(${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id}, 
+                                <button onclick="if(confirm('Are you sure?')) trekkBud(${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id}, 
                                                         ${model.app.userId})"
                                 >Trekk bud</button>
                                 <span>Bud: ${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid}</span>
@@ -140,7 +140,7 @@ function showLosingBids(){
                             <img src="${model.data.items[j].images[0]}" />
                             <span>${model.data.items[j].title}</span>
                             ${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].deleted ? 'Du trukket bud.' : `
-                                <button onclick="trekkBud(${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].id}, 
+                                <button onclick="if(confirm('Are you sure?')) trekkBud(${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].id}, 
                                                         ${model.app.userId})"
                                 >Trekk bud</button>
                                 <span>Nåværende bud: ${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].ItemsMaximumBid}</span>
@@ -193,4 +193,4 @@ function calculateDeadline(itemsId){
     return html;
 }
 
-let countDown;
+

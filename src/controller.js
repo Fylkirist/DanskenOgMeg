@@ -1,3 +1,5 @@
+let countDown;
+
 function deleteItemFromShoppingCart(indexInShoppingCart){
     model.inputs.shoppingCart.items.canBuyNow.splice(indexInShoppingCart, 1);
     updateView();
@@ -14,11 +16,11 @@ function findWinningBids(){
             if(item.bids[userId].bid[item.bids[userId].bid.length-1] > maximumBidForItem) {
                     maximumBidForItem = item.bids[userId].bid[item.bids[userId].bid.length-1];
                 }
-            if(userId === model.app.userId){
+            if(userId == model.app.userId){
                     matchedUserId = userId;
-                }         
+                }       
         }
-        if (item.bids[matchedUserId].bid[item.bids[matchedUserId].bid.length-1] ===  maximumBidForItem) {
+        if (item.bids[matchedUserId].bid[item.bids[matchedUserId].bid.length-1] ==  maximumBidForItem) {
                 let winningItem = {            
                                     id: item.itemId,
                                     usersMaximumBid: maximumBidForItem, 
