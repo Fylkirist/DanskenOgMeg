@@ -260,3 +260,14 @@ function showFilteredProducts(){
         </div>`
     return container
 }
+
+function editUserPage(){
+    let html = ""
+    for(let i = 0; model.data.users)
+    /*html*/ `
+    for
+    `
+
+
+
+}
