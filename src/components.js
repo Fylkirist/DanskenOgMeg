@@ -5,14 +5,14 @@ function profileMenuComponent() {
     if(!model.inputs.profileMenuShowing){return html}
     if (model.app.userId === false) {
         html += `
-        <div id="dropdownContent" style="display: none;">
+        <div id="dropdownContent">
         <div onclick="model.app.currentView='allProductsPage'">Alle produkter</div>
         <div onclick="model.app.currentView='auctionPage' ">Auksjons side</div>
         </div>` 
     }
     else if (model.data.users[model.app.userId].permissions === 'user') {
         html += `
-        <div id="dropdownContent" style="display: none;">
+        <div id="dropdownContent">
                 <div onclick="model.app.currentView='myProfilePage' ">Min Profil</div>
                  <div onclick="model.app.currentView='inboxPage' ">Innbox</div>
                  <div onclick="model.app.currentView='allProductsPage'">Alle produkter</div>
@@ -23,7 +23,7 @@ function profileMenuComponent() {
 
     if (model.data.users[model.app.userId] && model.data.users[model.app.userId].permissions === "admin") {
         html += `
-        <div id="dropdownContent" style="display: none;">
+        <div id="dropdownContent">
                 <div onclick="model.app.currentView='myProfilePage' ">Min Profil</div>
                  <div onclick="model.app.currentView='inboxPage' ">Innbox</div>
                  <div onclick="model.app.currentView='allProductsPage'">Alle produkter</div>
@@ -34,7 +34,7 @@ function profileMenuComponent() {
         </div>`
     }
 
-    html += `</div>` 
+    return html += `</div>`
 }
 
 function showShoppingCart(){
@@ -291,6 +291,7 @@ function createHeaderSection(){
     return /*html*/`
     <div class="headerContainer">
         <h1 class="overskrift" onclick = "toToFrontPage()">Dansken og meg</h1>
+        ${profileMenuComponent()}
         ${!model.app.loggedInStatus ? `<div class="registerButton" onclick="goToRegisterPage()">Registrer</div>
         <div class="loginButton" onclick="loginDropDown()">Login</div>` :
         `<div class="userButton" onclick="">${model.data.users[model.app.userId].username}</div>`}

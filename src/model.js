@@ -87,7 +87,7 @@ const model = {
                 input:'',
                 
             },
-            profileMenuShowing:false
+            profileMenuShowing:false,
             product:{
                 bidIncrease:"",
                 adminBidIncrease:"",
