@@ -51,9 +51,11 @@ function registerUser() {
                 ],
                 messages:[],
             }
-            const brukerTelling = Object.keys(model.data.users).length +1
-            const lengde = 7-String(brukerTelling).length
-            const newUserID = '000000'.slice(0,lengde) +brukerTelling
+            let brukerTelling = Object.keys(model.data.users).length +1
+            let newUserID = brukerTelling.toString()
+            while(newUserID.length<7){
+                newUserID = "0" + newUserID
+            }
             model.data.users[newUserID] = newUser
             model.inputs.register.registerUser = "Velkommen til Dansken & Meg antikkmarked"
             model.app.currentView = "frontPage"
@@ -142,7 +144,7 @@ function checkUserIdPassword(){
                 model.app.loggedInStatus= true;
                 model.inputs.login.wrongUserNamePassword = false;
                 model.app.wrongUserNamePasswordMessage = '';
-                model.app.loggedInUser.userName = model.data.users[userKeys].username;
+                model.app.userId == userKeys
                 break;
             }
             else {
@@ -261,26 +263,45 @@ function createProduct(){
 function saveMainCategory(){
     let parentId;
     let newParent = false
-    for(let i = 0; i < model.inputs.createSale.categoryList.length; i++){
-        let categoryExists = false
-        for(let j = 0; j < model.inputs.category.categoryList.length; j++){
-            if(model.inputs.createSale.categoryList[i] == model.inputs.category.categoryList[j].name){
-                categoryExists = true
-                parentId = i == 0 ? model.inputs.category.categoryList[j].id:model.inputs.category.categoryList.length
-                break
-            }
+    for(let i = 0; i<model.inputs.category.categoryList.length;i++){
+        if(model.inputs.category.categoryList[i].name == model.inputs.createSale.categoryList[0].name && model.inputs.category.categoryList[i].parent == -1){
+            parentId = i
         }
+    }
+    if(!parentId){
+        newParent = true
+        parentId = model.inputs.category.categoryList.length
+        model.inputs.category.categoryList.push({
+            id:model.inputs.category.categoryList.length,
+            name:model.inputs.createSale.categoryList[0].name,
+            parent:-1,
+            checked:false
+        })
+    }
+    for(let i = 1; i<model.inputs.createSale.categoryList.length;i++){
         if(newParent){
-            categoryExists = false
-        }
-        if(!categoryExists){
             model.inputs.category.categoryList.push({
                 id: model.inputs.category.categoryList.length,
-                parent: i == 0 ? -1:parentId,
                 name: model.inputs.createSale.categoryList[i],
+                parent: parentId,
                 checked:false
             })
-            newParent = i == 0 ? true:false
+        }
+        else{
+            categoryExists = false
+            for(let j = 0; j<model.inputs.category.categoryList.length; j++){
+                if(model.inputs.category.categoryList[j].parent == parentId && model.inputs.category.categoryList[j].name ==  model.inputs.createSale.categoryList[i]){
+                    categoryExists = true
+                }
+            }
+            if(!categoryExists){
+                model.inputs.category.categoryList.push({
+                    id:model.inputs.category.categoryList.length,
+                    name:model.inputs.createSale.categoryList[i],
+                    parent:parentId,
+                    checked:false
+                })
+            }
         }
     }
 }
@@ -328,36 +349,35 @@ function goToProduct(index){
 }
 
 function filterItems(){
-    let filterArray = model.data.items.map(elem=>{
-        if(elem.description.includes(model.inputs.search.input) || elem.title.includes(model.inputs.search.input)){
-            return eval(elem.id)
+    let filterArray = []
+    model.data.items.forEach(item =>{
+        if(item.name.includes(model.inputs.search.input) ||
+         item.description.includes(model.inputs.search.input) ||
+          item.category.includes(model.inputs.search.input)){
+            filterArray.push(eval(item.id))
+          }
+    })
+    filterArray = filterArray.filter(val => {
+        let included = true
+        for(let i = 0; i<model.inputs.category.categoryList.length; i++){
+            if(model.data.items[val].category.includes(model.inputs.category.categoryList[i].name)){
+                included = true
+                break
+            }
+            else{
+                included = false
+            }
+        }
+        return included? val : false
+    })
+    filterArray = filterArray.filter(val => {
+        if(model.data.items[val].price>=model.inputs.category.priceRange.min && model.data.items[val].price<=model.inputs.category.priceRange.max){
+            return val
         }
         else{
             return false
         }
     })
-    console.log(filterArray)
-    filterArray = filterArray.filter(elem=>{
-        console.log(elem)
-        let included = true;
-        for(let i = 0; i<model.inputs.category.categoryList.length; i++){
-            console.log(model.data.items[elem-1].category,model.inputs.category.categoryList[i].checked)
-            if(!model.data.items[elem-1].category.includes(model.inputs.category.categoryList[i].name) && model.inputs.category.categoryList[i].checked){
-                included = false
-                break
-            }
-            
-        }
-        console.log(included)
-        if(included){return elem}
-    })
-    console.log(filterArray)
-    filterArray = filterArray.filter(elem=>{
-        if(model.data.items[elem-1].price >= model.inputs.category.priceRange.min && model.data.items[elem-1].price <= model.inputs.category.priceRange.max){
-            return elem
-        }    
-    })
-    console.log(filterArray)
     return filterArray
 }
 

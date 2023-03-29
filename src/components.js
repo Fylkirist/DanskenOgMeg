@@ -95,7 +95,7 @@ function createHeaderSection(){
         <h1 class="overskrift">Dansken og meg</h1>
         ${!model.app.loggedInStatus ? `<div class="registerButton" onclick="goToRegisterPage()">Registrer</div>
         <div class="loginButton" onclick="loginDropDown()">Login</div>` :
-        `<div class="userButton" onclick="">${model.app.loggedInUser.userName}</div>`}
+        `<div class="userButton" onclick="">${model.data.users[model.app.userId].username}</div>`}
         <div class="cartIcon" onclick="">🛒</div>
         <h3 class="underskrift">VintageSkatter</h1>
         ${model.inputs.login.dropdown ? 
