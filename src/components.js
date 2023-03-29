@@ -1,23 +1,3 @@
-const app = document.getElementById("app");
-updateView();
-function updateView(){
-    app.innerHTML = "";
-    switch(model.app.currentView){
-        case "frontPage":
-            app.innerHTML = createHeaderSection() + showFilterBox() + showFrontPageProducts();
-            break
-        case "filteredPage":
-            app.innerHTML = showFilterBox()
-            break
-        case "registerPage":
-            app.innerHTML = '';
-            break
-        case "handlevognPage":
-            app.innerHTML = showShoppingCart();
-            break;
-    }
-}
-
 function showShoppingCart(){
 
     let html= '';
