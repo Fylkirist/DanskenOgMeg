@@ -161,7 +161,7 @@ const model = {
                 date:'03.01.2023',
                 type: 'direkte',
                 userId: '0000001',
-                image : 'assets/kronebilde1.png',
+                image : 'assets/kronebilde1.jpg',
                 title: 'Krona Til Drøning'
             },
             {
@@ -171,7 +171,7 @@ const model = {
                 date:'03.01.2023',
                 type: 'direkte',
                 userId: '0000001',
-                image : 'assets/kronebilde1.png',
+                image : 'assets/kronebilde1.jpg',
                 title: 'Maling til Peter'
             },
         ],

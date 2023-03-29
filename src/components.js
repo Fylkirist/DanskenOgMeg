@@ -33,7 +33,6 @@ function profileMenuComponent() {
                  <div onclick="model.app.currentView='membersPage' ">Medlemmer</div>
         </div>`
     }
-
     return html += `</div>`
 }
 
@@ -321,6 +320,7 @@ function createHeaderSection(){
                  }
                 ` : ''
                  }
+        </div>
     </div>
                 `;
 }
@@ -564,7 +564,7 @@ function showFilteredProducts(){
     for(let i = 0; i<model.inputs.category.filteredItems.length;i++){
         productList += `
             <div class = "filteredProductContainer">
-                <img src = ${model.data.items[model.inputs.category.filteredItems[i]-1].images[0]}/>
+                <img src = "${model.data.items[model.inputs.category.filteredItems[i]-1].images[0]}"/>
                 <div>
                     <h3>${model.data.items[model.inputs.category.filteredItems[i]-1].title}</h3>
                     <br>
@@ -631,7 +631,7 @@ function showFilteredProducts(){
     for(let i = 0; i<model.inputs.category.filteredItems.length;i++){
         productList += `
             <div class = "filteredProductContainer">
-                <img src = ${model.data.items[model.inputs.category.filteredItems[i]-1].images[0]}/>
+                <img src = "${model.data.items[model.inputs.category.filteredItems[i]-1].images[0]}"/>
                 <div>
                     <h3>${model.data.items[model.inputs.category.filteredItems[i]-1].title}</h3>
                     <br>
