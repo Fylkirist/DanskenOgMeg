@@ -226,13 +226,14 @@ function checkUserIdPassword(){
     }
     else{
         for(userKeys in model.data.users){
+            console.log(typeof userKeys)
             if(model.inputs.login.username === model.data.users[userKeys].username &&
             model.inputs.login.password === model.data.users[userKeys].password){
                 model.inputs.login.dropdown = false;
                 model.app.loggedInStatus= true;
                 model.inputs.login.wrongUserNamePassword = false;
                 model.app.wrongUserNamePasswordMessage = '';
-                model.app.userId == userKeys
+                model.app.userId = userKeys
                 break;
             }
             else {
@@ -449,7 +450,7 @@ function filterItems(){
     filterArray = filterArray.filter(val => {
         let included = true
         for(let i = 0; i<model.inputs.category.categoryList.length; i++){
-            if(model.data.items[val-1].category.includes(model.inputs.category.categoryList[i].name)){
+            if(model.data.items[val-1].category.includes(model.inputs.category.categoryList[i].name) && model.inputs.category.categoryList[i].checked){
                 included = true
                 break
             }
@@ -461,7 +462,8 @@ function filterItems(){
     })
     console.log(filterArray)
     filterArray = filterArray.filter(val => {
-        if(model.data.items[val-1].price>=model.inputs.category.priceRange.min && model.data.items[val].price<=model.inputs.category.priceRange.max){
+        console.log(val)
+        if(model.data.items[val-1].price>=model.inputs.category.priceRange.min && model.data.items[val-1].price<=model.inputs.category.priceRange.max){
             return val
         }
         else{

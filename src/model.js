@@ -3,7 +3,7 @@ const model = {
         currentView:'frontPage',
         loggedInStatus: false,
         wrongUserNamePasswordMessage: '',
-        userId:"0000001",
+        userId:false,
         zoomedPic:false,
         currentProduct:false,
         frontPageCurrentShowing:{
@@ -102,6 +102,7 @@ const model = {
         frontPageBottom:[1],
         users:{
             "0000001":{
+                id:"0000001",
                 username:"admin",
                 password:"admin",
                 permissions:"admin",
@@ -112,6 +113,7 @@ const model = {
                 mobile:'00000000',    
             },
             "0000002":{
+                id:"0000002",
                 username:"ikkeadmin",
                 password:"ikkeadmin",
                 permissions:"user",
@@ -192,7 +194,7 @@ const model = {
                 category:['Småting','Tilbehør'],
                 auction:false,
                 deadline:'2023-03-21T18:21',
-                images:['assets/kronebilde1.png','assets/kronebilde2.png'],
+                images:['assets/kronebilde1.jpg','assets/kronebilde2.jpg'],
                 inStock:true,
                 deliver:true,
                 mainImage: '',
@@ -207,7 +209,7 @@ const model = {
                 category:['Møbler','Stoler'],
                 auction:true,
                 deadline:'2024-03-21T18:21',
-                images:['assets/kronebilde1.png','assets/kronebilde2.png'],
+                images:['assets/kronebilde1.jpg','assets/kronebilde2.jpg'],
                 inStock:true,
                 deliver:false,
                 minBid:0

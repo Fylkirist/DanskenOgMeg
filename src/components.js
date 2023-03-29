@@ -388,12 +388,12 @@ function orderHistoryView (){
 
 function productDisplay(product){
     let content;
-    let images;
+    let images = `` 
     if(model.data.items[product].auction){
         content = `
             <label class = "productDisplayPriceLabel">Nåværende Bud: </label>
             <label class = "productDisplayPrice">${model.data.items[product].price}</label>
-            <input id = "productDisplayPriceInput" oninput="model.input.product.bidIncrease = this.value">${model.input.product.bidIncrease}</input>
+            <input id = "productDisplayPriceInput" oninput="model.input.product.bidIncrease = this.value">${model.inputs.product.bidIncrease}</input>
             <button class = "productDisplayBuyButton" onclick = "raiseBid(${model.data.items[product].id})">Øk bud</button>
             <div id = "productDisplayDeadline">Auksjonen stenges om: ${model.data.items[product].deadline}</div>`
     }
