@@ -122,6 +122,7 @@ const model = {
                         cardHolderFirstName:"Nonja",
                         cardHolderLastName:"Buisness",
                         address:"Grove Street",
+                        city:"Los Santos",
                         houseNumber:"69",
                         zip:"6969",
                     },
