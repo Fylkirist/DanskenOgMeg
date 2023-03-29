@@ -35,10 +35,6 @@ const model = {
             category: [
                         {name:"ting",checked:true}
                     ],
-                    
-              
-           
-
             createSale: {
                 id:'',
                 title:'',
@@ -56,7 +52,8 @@ const model = {
             },
             product:{
                 bidIncrease:""
-            }
+            },
+            profileMenuShowing:false
         },
 
     data:{

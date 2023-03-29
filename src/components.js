@@ -1,7 +1,7 @@
-function data() {
-    let html = `<div class="dropdown">
-                <button class="dropdownKnapp" onclick="toogleDropDown()"><h2>Meny</h2></button>` 
-
+function profileMenuComponent() {
+    let html = `<div class="profileMenuContainer">
+                <button class="dropdownKnapp" onclick="toggleProfileMenuDropDown()"><h2>Meny</h2></button>` 
+    if(!model.inputs.profileMenuShowing){return html}
     if (model.app.userId === false) {
         html += `
         <div id="dropdownContent" style="display: none;">
@@ -34,16 +34,4 @@ function data() {
     }
 
     html += `</div>` 
-    document.getElementById('app').innerHTML = html 
-}
-function toogleDropDown(){
-    let container = document.getElementById('dropdowContent');
-    if(dropdownContent.style.display === 'none')
-    {
-    dropdownContent.style.display = 'block';
-    }  
-    else {
-    dropdownContent.style.display = 'none';
-    }
-
 }
