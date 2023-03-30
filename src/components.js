@@ -24,14 +24,22 @@ function profileMenuComponent() {
     if (model.data.users[model.app.userId] && model.data.users[model.app.userId].permissions === "admin") {
         html += `
         <div id="dropdownContent">
-                <div onclick="changeView('myProfilePage')">Min Profil</div>
-                <div onclick="changeView('inboxPage')">Innbox</div>
-                <div onclick="changeView('filteredPage')">Alle produkter</div>
-                <div onclick="changeView('saleHistoryPage')">Salgshistorikk</div>
-                <div onclick="changeView('auctionPage')">Bud</div>
-                <div onclick="changeView('newProductPage')>Legg til produkt</div>
-                <div onclick="changeView('manageMembersPage')>Medlemmer</div>
+                <div class="dropdownContent-1" onclick="changeView('myProfilePage')">Min Profil</div>
+                <div class="dropdownContent-line"> </div>
+                <div class="dropdownContent-1" onclick="changeView('inboxPage')">Innbox</div>
+                <div class="dropdownContent-line"> </div>
+                <div class="dropdownContent-1" onclick="changeView('filteredPage')">Alle produkter</div>
+                <div class="dropdownContent-line"> </div>
+                <div class="dropdownContent-1" onclick="changeView('saleHistoryPage')">Salgshistorikk</div>
+                <div class="dropdownContent-line"> </div>
+                <div class="dropdownContent-1" onclick="changeView('auctionPage')">Bud</div>
+                <div class="dropdownContent-line"> </div>
+                <div class="dropdownContent-1" onclick="changeView('newProductPage')>Legg til produkt</div>
+                <div class="dropdownContent-line"> </div>
+                <div class="dropdownContent-1" onclick="changeView('manageMembersPage')>Medlemmer</div>
+                <div class="dropdownContent-line"> </div>
                 <div onclick="logout()">Logg ut</div>
+                <div class="dropdownContent-line"> </div>
         </div>`
     }
     return html += `</div>`
@@ -354,7 +362,7 @@ function createSaleView(){
     return `
         <div class = "CreateSaleContainer">
             <label id = "productLabel">Produktnavn</label>
-            <input id = "productName" type = "text" oninput = "model.inputs.createSale.title = this.value"/>
+            <input id = "productName" type = "text" placeholder = "Beskrivelse" oninput = "model.inputs.createSale.title = this.value"/>
             <input id = "productDescription" type = "text" oninput = "model.inputs.createSale.description = this.value"/>
             <label id = "priceLabel">Pris: </label>
             <input id = "priceInput" type = "text" oninput = "model.inputs.createSale.price = this.value">
