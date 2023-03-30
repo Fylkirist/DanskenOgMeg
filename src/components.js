@@ -355,7 +355,7 @@ function createSaleView(){
     for( let i = 0; i<model.inputs.createSale.categoryList.length; i++){
         categoryList += ` <li>${model.inputs.createSale.categoryList[i]}<button onclick = "deleteCategory(${i})">X</button></li>`
     }
-    return `
+    return /*html*/ ` 
         <div class = "CreateSaleContainer">
             <div class = "createProductTopOfPage">
                 <input id = "productName" type = "text" placeholder = "Produkt Navn"  oninput = "model.inputs.createSale.title = this.value"/>
