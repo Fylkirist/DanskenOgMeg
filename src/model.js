@@ -109,6 +109,8 @@ const model = {
                 firstname:"Elin",
                 surname:"Herlev Christoffersen",
                 address:"GeTOutOfMyVei",
+                city:"Larvik",
+                zip:"1482",
                 email:"example@gmail.com",
                 mobile:'00000000',    
             },
@@ -120,6 +122,8 @@ const model = {
                 firstname:"Marie",
                 surname:"benji",
                 address:"GeTOutOfMyVei",
+                city:"Larvik",
+                zip:"1482",
                 email: 'example@gmail.com',
                 mobile: '00000000',
                 shoppingCart:[
