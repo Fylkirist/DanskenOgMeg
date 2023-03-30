@@ -13,11 +13,11 @@ function profileMenuComponent() {
         html += `
         <div id="dropdownContent">
                 <div onclick="changeView('myProfilePage')">Min Profil</div>
-                 <div onclick="changeView('inboxPage')">Inbox</div>
-                 <div onclick="changeView('filteredPage')">Alle produkter</div>
-                 <div onclick="changeView('saleHistoryPage')">Salgshistorikk</div>
-                 <div onclick="changeView('auctionPage')">Bud</div>
-                 <div onclick="logout()">Logg ut</div>
+                <div onclick="changeView('inboxPage')">Inbox</div>
+                <div onclick="changeView('filteredPage')">Alle produkter</div>
+                <div onclick="changeView('saleHistoryPage')">Salgshistorikk</div>
+                <div onclick="changeView('auctionPage')">Bud</div>
+                <div onclick="logout()">Logg ut</div>
         </div>`
     }
 
@@ -25,13 +25,13 @@ function profileMenuComponent() {
         html += `
         <div id="dropdownContent">
                 <div onclick="changeView('myProfilePage')">Min Profil</div>
-                 <div onclick="changeView('inboxPage')">Innbox</div>
-                 <div onclick="changeView('filteredPage')">Alle produkter</div>
-                 <div onclick="changeView('saleHistoryPage')">Salgshistorikk</div>
-                 <div onclick="changeView('auctionPage')">Bud</div>
-                 <div onclick="changeView('newProductPage')>Legg til produkt</div>
-                 <div onclick="changeView('manageMembersPage')>Medlemmer</div>
-                 <div onclick="logout()">Logg ut</div>
+                <div onclick="changeView('inboxPage')">Innbox</div>
+                <div onclick="changeView('filteredPage')">Alle produkter</div>
+                <div onclick="changeView('saleHistoryPage')">Salgshistorikk</div>
+                <div onclick="changeView('auctionPage')">Bud</div>
+                <div onclick="changeView('newProductPage')>Legg til produkt</div>
+                <div onclick="changeView('manageMembersPage')>Medlemmer</div>
+                <div onclick="logout()">Logg ut</div>
         </div>`
     }
     return html += `</div>`
@@ -283,24 +283,24 @@ function generateFrontPageElement(item){
     let varElems;
     if (model.data.items[item].auction){
         varElems = `
-            <label>Høyeste bud: </label>
-            <label>${model.data.items[item].price}</label>
+            <label class = "frontPagePriceDescLabel">Høyeste bud: </label>
+            <label class = "frontPagePriceLabel">${model.data.items[item].price}</label>
             <button onclick = "goToProduct(${item})">Gå til auksjon</button>
         `
     }
     else{
         varElems = `
-            <label>Pris: </label>
-            <label>${model.data.items[item].price}</label>
-            <button onclick = "addToShoppingCart('${model.data.items[item].id}')">Legg til i handlekurv</button>
-            <button onclick = "goToProduct(${item})">Gå til produktside</button>
+            <label class = "frontPagePriceDescLabel">Pris: </label>
+            <label class = "frontPagePriceLabel">${model.data.items[item].price}</label>
+            <button class = "frontPageAddProductButton" onclick = "addToShoppingCart('${model.data.items[item].id}')">Legg til i handlekurv</button>
+            <button class = "frontPageGoToProductButton"onclick = "goToProduct(${item})">Gå til produktside</button>
         `  
     }
     return `
         <div>
-            <img src = "${model.data.items[item].images[0]}"/>
-            <h4>${model.data.items[item].title}</h4>
-            <p>${model.data.items[item].description}</p>
+            <img class = "frontPageProductImg" src = "${model.data.items[item].images[0]}"/>
+            <h4 class = "frontPageProductHeader">${model.data.items[item].title}</h4>
+            <p class = "frontPageProductDesc">${model.data.items[item].description}</p>
             ${varElems}    
         </div>` 
 }

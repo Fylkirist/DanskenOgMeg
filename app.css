@@ -1,8 +1,13 @@
 .headerSectionContainer{
-
-
+    font-family: 'Abhaya Libre', serif;
+    background-color: rgba(212, 194, 146, 1);
+    width: 100vw;
+    height: 15.2vh;
 }
 .overskriftHeaderSection{
+    font: bolder;
+    color: black;
+    
 
 }
 .registerButtonHeaderSection{
@@ -33,5 +38,50 @@
 
 }
 .forgotPasswordLoginDropdown{
+
+}
+#frontPageProductDisplay{
+
+}
+
+.frontPageProductDisplayElement{
+
+}
+
+.frontPageRightArrow{
+    height: 100%;
+}
+
+.frontPageLeftArrow{
+    height: 100%;
+}
+
+.frontPagePriceDescLabel{
+
+}
+
+.frontPagePriceLabel{
+
+}
+
+.frontPageAddProductButton{
+
+}
+
+.frontPageGoToProductButton{
+
+}
+
+.frontPageProductImg{
+    height: 100px;
+    width: 160px;
+}
+
+.frontPageProductHeader{
+    font: bolder;
+    font-family: 'Abhaya Libre', serif;
+}
+
+.frontPageProductDesc{
 
 }
