@@ -611,8 +611,8 @@ function showFilteredProducts(){
 function showFilterBox(){
     let priceLimits = determinePriceLimits()
     return `
-        <div>
-            <h3>Kategorier</h3>
+        <div id="ShowFilterBoxContainer>
+            <h3 class=">Kategorier</h3>
             <div>
                 ${generateCategoryElems(-1)}
             </div>
