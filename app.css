@@ -1,13 +1,11 @@
 
-.searchBox{
+.SearchBox-1 {
    position: relative;
    top:-50px;
-   left: 75%;
+   left: 82%;
     
 }
-.searchBox input{
-    width:20%;
-}
+
 .profileMenuContainer{
     position: relative;
     width: 100vw;
