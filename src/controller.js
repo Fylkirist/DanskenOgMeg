@@ -52,9 +52,16 @@ function findWinningBids(){
     }
     if(model.inputs.shoppingCart.items.auctions.usersWinningBids.length > 0 ||
         model.inputs.shoppingCart.items.auctions.usersLosingBids.length > 0 ) {
-            countDown = setInterval(updateView, 60000);
+            countDown = setInterval(updateView(), 60000);
         }
     else clearInterval(countDown);
+}
+
+function logout(){
+    model.app.userId = false
+    model.app.loggedInStatus = false
+    model.inputs.profileMenuShowing = false
+    updateView()
 }
 
 function trekkBud(itemsId, usersId){
