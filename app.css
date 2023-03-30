@@ -198,28 +198,41 @@
 #frontPageProductDisplay{
     border: #000000 solid 1px;
     background-color: white;
-    
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .frontPageProductDisplayElement{
-    height: 350px;
+    height: 300px;
     width: 650px;
     min-width: 650px;
-    margin-top: 50px;
+    margin: 30px;
+    display:flex;
 }
 
 .frontPageRightArrow{
-    height: 350px;
+    height: 100%;
     background-color: #E7EBF6;
     width: 50px;
     display: inline-block;
+    border-radius: 0px 10px 10px 0px;
+}
+
+.frontPageRightArrow:hover{
+    background-color: #c5c8d1;
+}
+
+.frontPageLeftArrow:hover{
+    background-color: #c5c8d1;
 }
 
 .frontPageLeftArrow{
-    height: 350px;
+    height: 100%;
     background-color: #E7EBF6;
     width: 50px;
     display: inline-block;
+    border-radius: 10px 0px 0px 10px;
 }
 
 .frontPagePriceDescLabel{
@@ -268,6 +281,6 @@
 .frontPageCenterElem{
     background-color: #FFFAED;
     display: inline-block;
-    height: 350px;
+    height: 100%;
     width: 500px;
 }
