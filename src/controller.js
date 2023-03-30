@@ -123,6 +123,8 @@ function registerUser() {
                 firstName:model.inputs.register.firstName,
                 surname:model.inputs.register.surname,
                 address:model.inputs.register.address,
+                city:model.inputs.register.city,
+                zip:model.inputs.register.zip,
                 email:model.inputs.register.email,
                 mobile:model.inputs.register.mobile,
                 shoppingCart:[],

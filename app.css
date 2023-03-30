@@ -1,36 +1,58 @@
 #frontPageProductDisplay{
-
+    border: #000000 solid 1px;
+    background-color: white;
+    
 }
 
 .frontPageProductDisplayElement{
-
+    height: 350px;
+    width: 650px;
+    min-width: 650px;
+    margin-top: 50px;
 }
 
 .frontPageRightArrow{
     height: 100%;
+    background-color: #E7EBF6;
+    width: 50px;
+    display: inline-block;
 }
 
 .frontPageLeftArrow{
     height: 100%;
+    background-color: #E7EBF6;
+    width: 50px;
+    display: inline-block;
 }
 
 .frontPagePriceDescLabel{
-
+    font: bolder;
+    font-family: 'Abhaya Libre', serif;
+    color: #242354;
 }
 
 .frontPagePriceLabel{
-
+    font: bolder;
+    font-family: 'Abhaya Libre', serif;
+    color: #242354;
 }
 
 .frontPageAddProductButton{
-
+    background-color: #b493577a;
+    font-family: 'Abhaya Libre', serif;
+    font-weight: 700;
+    border: #3C230C, 2px ,solid;
 }
 
 .frontPageGoToProductButton{
-
+    background-color: #b493577a;
+    font-family: 'Abhaya Libre', serif;
+    font-weight: 700;
+    border: #3C230C, 2px ,solid;
 }
 
 .frontPageProductImg{
+    margin: 20px;
     height: 100px;
     width: 160px;
 }
@@ -38,8 +60,17 @@
 .frontPageProductHeader{
     font: bolder;
     font-family: 'Abhaya Libre', serif;
+    color: #242354;
 }
 
 .frontPageProductDesc{
+    font-family: 'Abhaya Libre', serif;
+    color: #000000;
+}
 
+.frontPageCenterElem{
+    background-color: #FFFAED;
+    display: inline-block;
+    height: 100%;
+    width: 500px;
 }

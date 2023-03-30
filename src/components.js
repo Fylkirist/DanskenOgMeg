@@ -266,14 +266,14 @@ function frontPageProductView(){
     return `
         <div id = "frontPageProductDisplay">
             <div class = "frontPageProductDisplayElement">
-                <div onclick = "changeFrontPageTopProduct(1)" class = "frontPageRightArrow"></div>
-                ${topElem}
                 <div onclick = "changeFrontPageTopProduct(-1)" class = "frontPageLeftArrow"></div>
+                ${topElem}
+                <div onclick = "changeFrontPageTopProduct(1)" class = "frontPageRightArrow"></div>
             </div>
             <div class = "frontPageProductDisplayElement">
-                <div onclick = "changeFrontPageBotProduct(1)" class = "frontPageRightArrow"></div>
-                ${botElem}
                 <div onclick = "changeFrontPageBotProduct(-1)" class = "frontPageLeftArrow"></div>
+                ${botElem}
+                <div onclick = "changeFrontPageBotProduct(1)" class = "frontPageRightArrow"></div>
             </div>
         </div>
     ` 
@@ -285,7 +285,7 @@ function generateFrontPageElement(item){
         varElems = `
             <label class = "frontPagePriceDescLabel">Høyeste bud: </label>
             <label class = "frontPagePriceLabel">${model.data.items[item].price}</label>
-            <button onclick = "goToProduct(${item})">Gå til auksjon</button>
+            <button class = "frontPageGoToProductButton" onclick = "goToProduct(${item})">Gå til auksjon</button>
         `
     }
     else{
@@ -293,12 +293,15 @@ function generateFrontPageElement(item){
             <label class = "frontPagePriceDescLabel">Pris: </label>
             <label class = "frontPagePriceLabel">${model.data.items[item].price}</label>
             <button class = "frontPageAddProductButton" onclick = "addToShoppingCart('${model.data.items[item].id}')">Legg til i handlekurv</button>
-            <button class = "frontPageGoToProductButton"onclick = "goToProduct(${item})">Gå til produktside</button>
+            <button class = "frontPageGoToProductButton" onclick = "goToProduct(${item})">Gå til produktside</button>
         `  
     }
     return `
-        <div>
+        <div class = "frontPageCenterElem">
             <img class = "frontPageProductImg" src = "${model.data.items[item].images[0]}"/>
+            <label>⮜</label>
+            <label>${model.data.items[item].images[0]}</label>
+            <label>⮞</label>
             <h4 class = "frontPageProductHeader">${model.data.items[item].title}</h4>
             <p class = "frontPageProductDesc">${model.data.items[item].description}</p>
             ${varElems}    
