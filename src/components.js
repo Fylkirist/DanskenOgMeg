@@ -312,7 +312,6 @@ function createHeaderSection(){
     return /*html*/`
     <div class="headerSectionContainer">
         <h1 class="overskriftHeaderSection" onclick = "toToFrontPage()">Dansken og meg</h1>
-        ${profileMenuComponent()}
         ${!model.app.loggedInStatus ? `<div class="registerButtonHeaderSection" onclick="goToRegisterPage()">Registrer</div>
         <div class="loginButtonHeaderSection" onclick="loginDropDown()">Login</div>` :
         `<div class="userButtonHeaderSection" onclick="">${model.data.users[model.app.userId].username}</div>`}
