@@ -1,7 +1,7 @@
 function profileMenuComponent() {
     let html = `<div class="profileMenuContainer">
                 <button class="dropdownKnapp" onclick="toggleProfileMenuDropDown()"><h2>Meny</h2></button>` 
-    if(!model.inputs.profileMenuShowing){return html}
+    if(!model.inputs.profileMenuShowing){return html+`</div>`}
     if (!model.app.loggedInStatus) {
         html += `
         <div id="dropdownContent">
@@ -24,14 +24,22 @@ function profileMenuComponent() {
     if (model.data.users[model.app.userId] && model.data.users[model.app.userId].permissions === "admin") {
         html += `
         <div id="dropdownContent">
-                <div onclick="changeView('myProfilePage')">Min Profil</div>
-                <div onclick="changeView('inboxPage')">Innbox</div>
-                <div onclick="changeView('filteredPage')">Alle produkter</div>
-                <div onclick="changeView('saleHistoryPage')">Salgshistorikk</div>
-                <div onclick="changeView('auctionPage')">Bud</div>
-                <div onclick="changeView('newProductPage')>Legg til produkt</div>
-                <div onclick="changeView('manageMembersPage')>Medlemmer</div>
+                <div class="dropdownContent-1" onclick="changeView('myProfilePage')">Min Profil</div>
+                <div class="dropdownContent-line"> </div>
+                <div class="dropdownContent-1" onclick="changeView('inboxPage')">Innbox</div>
+                <div class="dropdownContent-line"> </div>
+                <div class="dropdownContent-1" onclick="changeView('filteredPage')">Alle produkter</div>
+                <div class="dropdownContent-line"> </div>
+                <div class="dropdownContent-1" onclick="changeView('saleHistoryPage')">Salgshistorikk</div>
+                <div class="dropdownContent-line"> </div>
+                <div class="dropdownContent-1" onclick="changeView('auctionPage')">Bud</div>
+                <div class="dropdownContent-line"> </div>
+                <div class="dropdownContent-1" onclick="changeView('newProductPage')>Legg til produkt</div>
+                <div class="dropdownContent-line"> </div>
+                <div class="dropdownContent-1" onclick="changeView('manageMembersPage')>Medlemmer</div>
+                <div class="dropdownContent-line"> </div>
                 <div onclick="logout()">Logg ut</div>
+                <div class="dropdownContent-line"> </div>
         </div>`
     }
     return html += `</div>`
@@ -253,8 +261,8 @@ function showSearchBox() {
     return /*html*/ `
     <div class="searchContainer">
         <div class="searchBox">
-            <input type="text" oninput="model.inputs.search.input = this.value" onchange="doSearch()">
-            <button onclick="doSearch()">Søk</button>
+            <input class="SearchBox-1" type="text" oninput="model.inputs.search.input = this.value" onchange="doSearch()">
+            <button class="SearchBox-1"   onclick="doSearch()">Søk</button>
         </div>
     </div>
     `;
@@ -316,7 +324,7 @@ function createHeaderSection(){
         <div class="loginButtonHeaderSection" onclick="loginDropDown()">Login</div>` :
         `<div class="userButtonHeaderSection" onclick="">${model.data.users[model.app.userId].username}</div>`}
         <div class="cartIconHeaderSection" onclick="goToShoppingCart()">🛒</div>
-        <h3 class="underskriftHeaderSection">VintageSkatter</h1>
+        <h3 class="underskriftHeaderSection">VintageSkatter</h3>
         ${model.inputs.login.dropdown ? 
             `<input type="text" 
             class="userNameInputLoginDropdown" 
@@ -324,26 +332,22 @@ function createHeaderSection(){
             value="${model.inputs.login.username}"
             required
             /> 
-        <input type="password" 
-            class="passwordInputLoginDropdown" 
-            onchange="model.inputs.login.password = this.value"
-            value="${model.inputs.login.password}"
-            required
-        /> 
-        <div class="loginSubmitButtonLoginDropdown" onclick="checkUserIdPassword()">Submit</div>
-        ${model.inputs.login.wrongUserNamePassword ? 
-            `<p class="wrongUserLoginDropdown">${model.app.wrongUserNamePasswordMessage}</p> 
-            <p class="forgotPasswordLoginDropdown">
-            <span onclick=""> Forgot password?</span> 
-            <span onclick=""> New user?</span>
-            </p>` :
-                ''
-                 }
-                ` : ''
-                 }
-        </div>
-    </div>
-                `;
+            <input type="password" 
+                class="passwordInputLoginDropdown" 
+                onchange="model.inputs.login.password = this.value"
+                value="${model.inputs.login.password}"
+                required
+            /> 
+            <div class="loginSubmitButtonLoginDropdown" onclick="checkUserIdPassword()">Submit</div>
+            ${model.inputs.login.wrongUserNamePassword ? 
+                    `<p class="wrongUserLoginDropdown">${model.app.wrongUserNamePasswordMessage}</p> 
+                    <p class="forgotPasswordLoginDropdown">
+                    <span onclick=""> Forgot password?</span> 
+                    <span onclick=""> New user?</span>
+                    </p>` 
+                    : ''}` 
+            : ''}
+    </div>`;
 }
 
 function createSaleView(){

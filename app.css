@@ -1,44 +1,197 @@
+
+.SearchBox-1 {
+   position: relative;
+   top:-50px;
+   left: 82%;
+    
+}
+
+.profileMenuContainer{
+    position: relative;
+    width: 100vw;
+    height: 10.2vh;
+
+    background: #EEE4BF;
+    border: 1px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.dropdownKnapp {
+    box-sizing: border-box;
+    position: relative;
+    width: 200px;
+    height: 50px;
+    left: 0px;
+    top: 20px;
+    
+    background: #CDC7B6;
+    border: 2px solid #8b8888;
+    border-radius: 10px;
+}
+
+.dropdownKnapp:hover,
+.dropdownKnapp:focus {
+    background-color: #a79b7ba6;
+}
+
+#dropdownContent {
+    position: absolute;
+    background-color: #E1E1D2;
+    min-width: 200px;
+    top:100%;
+    border:solid #8f6d6d;
+    box-shadow: 0px 8px 16px 0px rgba(131, 59, 59, 0.2);
+    z-index: 1;
+}
+
+#dropdownContent div:hover {
+    background-color: #cdc7b6a6;
+}
+
+.dropdownContent-line {
+    height: 1px;
+    background-color: #000; 
+}
+
+
 .headerSectionContainer{
     font-family: 'Abhaya Libre', serif;
     background-color: rgba(212, 194, 146, 1);
     width: 100vw;
-    height: 15.2vh;
+    height: 20vh;
+    position: relative;
+    user-select: none;
 }
 .overskriftHeaderSection{
     font: bolder;
     color: black;
-    
-
+    position: absolute;
+    top: 10%;
+    left: 42%;
+    margin: 0;
+    padding: 1px;
 }
 .registerButtonHeaderSection{
-
+    background-color: rgba(228, 228, 186, 1);
+    color: #000000;
+    font-size: medium;
+    border: 0.5px solid black;
+    margin: 0;
+    padding: 2px;
+    position: absolute;
+    top: 15%;
+    left: 82%;
+}
+.registerButtonHeaderSection:hover{
+    text-decoration: underline;
+    cursor: pointer;
 }
 .loginButtonHeaderSection{
-
+    background-color: rgba(228, 228, 186, 1);
+    color: #000000;
+    font-size: medium;
+    border: 0.5px solid black;
+    margin: 0;
+    padding: 2px;
+    position: absolute;
+    top: 15%;
+    left: 87%;
+}
+.loginButtonHeaderSection:hover{
+    text-decoration: underline;
+    cursor: pointer;
 }
 .userButtonHeaderSection{
-
+    background-color: rgba(228, 228, 186, 1);
+    color: #000000;
+    font-size: medium;
+    margin: 0;
+    padding: 2px;
+    position: absolute;
+    top: 15%;
+    left: 82%;
+}
+.userButtonHeaderSection:hover{
+    text-decoration: underline;
+    cursor: pointer;
 }
 .cartIconHeaderSection{
-
+    background-color: transparent;
+    width: 1.7vw;
+    height: 2,2vh;
+    margin: 0;
+    padding: 2px;
+    position: absolute;
+    top: 12%;
+    left: 92%;
 }
 .underskriftHeaderSection{
-
+    font: bolder;
+    color: black;
+    position: absolute;
+    top: 35%;
+    left: 44.5%;
+    margin: 0;
+    padding: 1px;
 }
 .userNameInputLoginDropdown{
-
+    background-color: rgba(228, 228, 186, 1);
+    color: #000000;
+    font-size: small;
+    margin: 0;
+    padding: 0;
+    border: 0.5px solid black;
+    width: 7vw;
+    position: absolute;
+    top: 30%;
+    left: 82%;
 }
-.passwordInputLoginDropdown{
+.passwordInputLoginDropdown{    
+    background-color: rgba(228, 228, 186, 1);
+    color: #000000;
+    font-size: small;
+    margin: 0;
+    padding: 0;
+    border: 0.5px solid black;
+    width: 7vw;
+    position: absolute;
+    top: 40%;
+    left: 82%;
 
 }
 .loginSubmitButtonLoginDropdown{
-
+    background-color: rgba(228, 228, 186, 1);
+    color: #000000;
+    font-size: medium;
+    margin: 0;
+    padding: 1px;
+    border: 0.5px solid black;
+    position: absolute;
+    top: 51%;
+    left: 86.5%;
+}
+.loginSubmitButtonLoginDropdown:hover{
+    text-decoration: underline;
+    cursor: pointer;
 }
 .wrongUserLoginDropdown{
+    font-size: small;
+    color: red;
+    margin: 1px;
+    padding: 1px;
+    position: absolute;
+    top: 64%;
+    left: 81%;
 
 }
 .forgotPasswordLoginDropdown{
-
+    font-size: small;
+    color: black;
+    margin: 1px;
+    padding: 1px;
+    position: absolute;
+    top: 72%;
+    left: 81%;
 }
 #frontPageProductDisplay{
     border: #000000 solid 1px;
@@ -54,14 +207,14 @@
 }
 
 .frontPageRightArrow{
-    height: 100%;
+    height: 350px;
     background-color: #E7EBF6;
     width: 50px;
     display: inline-block;
 }
 
 .frontPageLeftArrow{
-    height: 100%;
+    height: 350px;
     background-color: #E7EBF6;
     width: 50px;
     display: inline-block;
@@ -113,7 +266,7 @@
 .frontPageCenterElem{
     background-color: #FFFAED;
     display: inline-block;
-    height: 100%;
+    height: 350px;
     width: 500px;
 }
 
