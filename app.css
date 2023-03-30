@@ -308,6 +308,7 @@
  
 #productDescription{
     grid-area: 2 / 2 / 7 / 5;
+    padding-bottom: 420px;
 }
 
 #priceInput{
