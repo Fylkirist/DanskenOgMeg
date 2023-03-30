@@ -1,3 +1,43 @@
+
+
+.dropdownKnapp {
+    box-sizing: border-box;
+    position: relative;
+    width: 200px;
+    height: 50px;
+    left: 0px;
+    top: 20px;
+    
+    background: #CDC7B6;
+    border: 2px solid #8b8888;
+    border-radius: 10px;
+}
+
+.dropdownKnapp:hover,
+.dropdownKnapp:focus {
+    background-color: #a79b7ba6;
+}
+
+#dropdownContent {
+    position: absolute;
+    background-color: #E1E1D2;
+    min-width: 200px;
+    top:210px;
+    border:solid #8f6d6d;
+    box-shadow: 0px 8px 16px 0px rgba(131, 59, 59, 0.2);
+    z-index: 1;
+}
+
+#dropdownContent div:hover {
+    background-color: #cdc7b6a6;
+}
+
+.dropdownContent-line {
+    height: 1px;
+    background-color: #000; 
+}
+
+
 .headerSectionContainer{
     font-family: 'Abhaya Libre', serif;
     background-color: rgba(212, 194, 146, 1);
@@ -151,14 +191,14 @@
 }
 
 .frontPageRightArrow{
-    height: 100%;
+    height: 350px;
     background-color: #E7EBF6;
     width: 50px;
     display: inline-block;
 }
 
 .frontPageLeftArrow{
-    height: 100%;
+    height: 350px;
     background-color: #E7EBF6;
     width: 50px;
     display: inline-block;
@@ -210,6 +250,6 @@
 .frontPageCenterElem{
     background-color: #FFFAED;
     display: inline-block;
-    height: 100%;
+    height: 350px;
     width: 500px;
 }
