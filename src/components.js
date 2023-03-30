@@ -357,28 +357,35 @@ function createSaleView(){
     }
     return `
         <div class = "CreateSaleContainer">
-            <input id = "productName" type = "text" placeholder = "Produkt Navn"  oninput = "model.inputs.createSale.title = this.value"/>
+            <div class = "createProductTopOfPage">
+                <input id = "productName" type = "text" placeholder = "Produkt Navn"  oninput = "model.inputs.createSale.title = this.value"/>
+                <label id = "productId">Produkt ID: ${model.data.items.length+1}</label>
+                <input id = "priceInput" type = "text" placeholder = "Pris" oninput = "model.inputs.createSale.price = this.value">
+            </div>
             <input id = "productDescription" type = "text" placeholder = "Beskrivelse" oninput = "model.inputs.createSale.description = this.value"/>
-            <input id = "priceInput" type = "text" placeholder = "Pris" oninput = "model.inputs.createSale.price = this.value">
             <div id = "categoryListContainer">
                 <ul>${categoryList}</ul>
             </div>
-            <input id = "categoryMain" type = "text" placeholder = "Hovedkategori" oninput = "model.inputs.createSale.mainCategory = this.value" value = "${model.inputs.createSale.mainCategory}">
-            <button id = "mainCategoryAdd" onclick = "addMainCategory()">"Sett hovedkategori"</button>
-            <input id = "categorySub" type = "text" oninput = "model.inputs.createSale.subCategory = this.value" placeholder = "Underkategori"/>
-            <button id = "subCategoryAdd" onclick = "addSubCategory()">Legg til underkategori</button>
-            <div id = "galleryFrame">Bildegalleri</div>
-            <input oninput = "model.inputs.createSale.addImage = imageGalleryInput.value" type = "file" id = "galleryInput">
-            <button id = "addImageButton" onclick = "insertImage()">"Legg til bilde"</button>
-            <input id = "mainPicture" type = "file" oninput = "model.inputs.createSale.mainImage = mainPicture.value">
-            <label id = "productId">Produkt ID: ${model.data.items.length+1}</label>
-            <label id = "aucionLabel">Auksjon: </label>
-            <input type = "checkbox" id = "auctionBox" ${model.inputs.createSale.auction? 'checked':''} onchange = "model.inputs.createSale.auction = !model.inputs.createSale.auction"/>
-            <label id = "deadlineLabel">Budfrist</label>
-            <input id = "deadlineInput" type = "datetime-local" oninput = "model.inputs.createSale.deadline = this.value">
-            <input id = "minimumBidInput" type = "text" placeholder = "Minste tillatte budøkning" oninput = "model.inputs.createSale.minimumBidAmmount = this.value">
-            <label id = "deliveryCheckBoxLabel" >Kan leveres:</label>
-            <input id = "deliveryBox" type = "checkbox" ${model.inputs.createSale.deliver? "checked":""} onchange = "model.inputs.createSale.deliver = this.checked">
+            <div class = "categoryCreateContainer">
+                <input id = "categoryMain" type = "text" placeholder = "Hovedkategori" oninput = "model.inputs.createSale.mainCategory = this.value" value = "${model.inputs.createSale.mainCategory}">
+                <button id = "mainCategoryAdd" onclick = "addMainCategory()">"Sett hovedkategori"</button>
+                <input id = "categorySub" type = "text" oninput = "model.inputs.createSale.subCategory = this.value" placeholder = "Underkategori"/>
+                <button id = "subCategoryAdd" onclick = "addSubCategory()">Legg til underkategori</button>
+            </div>
+            <div id = "galleryFrame">Bildegalleri
+                <input oninput = "model.inputs.createSale.addImage = imageGalleryInput.value" type = "file" id = "galleryInput">
+                <button id = "addImageButton" onclick = "insertImage()">"Legg til bilde"</button>
+            </div>
+                <input id = "mainPicture" type = "file" oninput = "model.inputs.createSale.mainImage = mainPicture.value">
+            <div class = "checkBoxesCreate">
+                <label id = "aucionLabel">Auksjon: </label>
+                <input type = "checkbox" id = "auctionBox" ${model.inputs.createSale.auction? 'checked':''} onchange = "model.inputs.createSale.auction = !model.inputs.createSale.auction"/>
+                <label id = "deadlineLabel">Budfrist</label>
+                <input id = "deadlineInput" type = "datetime-local" oninput = "model.inputs.createSale.deadline = this.value">
+                <input id = "minimumBidInput" type = "text" placeholder = "Minste tillatte budøkning" oninput = "model.inputs.createSale.minimumBidAmmount = this.value">
+                <label id = "deliveryCheckBoxLabel" >Kan leveres:</label>
+                <input id = "deliveryBox" type = "checkbox" ${model.inputs.createSale.deliver? "checked":""} onchange = "model.inputs.createSale.deliver = this.checked">
+            </div>
             <button id = "saveButton" onclick = "createProduct()">Lagre produkt</button>
         </div>` 
 }
