@@ -324,7 +324,7 @@ function createHeaderSection(){
         <div class="loginButtonHeaderSection" onclick="loginDropDown()">Login</div>` :
         `<div class="userButtonHeaderSection" onclick="">${model.data.users[model.app.userId].username}</div>`}
         <div class="cartIconHeaderSection" onclick="goToShoppingCart()">🛒</div>
-        <h3 class="underskriftHeaderSection">VintageSkatter</h1>
+        <h3 class="underskriftHeaderSection">VintageSkatter</h3>
         ${model.inputs.login.dropdown ? 
             `<input type="text" 
             class="userNameInputLoginDropdown" 
@@ -332,26 +332,22 @@ function createHeaderSection(){
             value="${model.inputs.login.username}"
             required
             /> 
-        <input type="password" 
-            class="passwordInputLoginDropdown" 
-            onchange="model.inputs.login.password = this.value"
-            value="${model.inputs.login.password}"
-            required
-        /> 
-        <div class="loginSubmitButtonLoginDropdown" onclick="checkUserIdPassword()">Submit</div>
-        ${model.inputs.login.wrongUserNamePassword ? 
-            `<p class="wrongUserLoginDropdown">${model.app.wrongUserNamePasswordMessage}</p> 
-            <p class="forgotPasswordLoginDropdown">
-            <span onclick=""> Forgot password?</span> 
-            <span onclick=""> New user?</span>
-            </p>` :
-                ''
-                 }
-                ` : ''
-                 }
-        </div>
-    </div>
-                `;
+            <input type="password" 
+                class="passwordInputLoginDropdown" 
+                onchange="model.inputs.login.password = this.value"
+                value="${model.inputs.login.password}"
+                required
+            /> 
+            <div class="loginSubmitButtonLoginDropdown" onclick="checkUserIdPassword()">Submit</div>
+            ${model.inputs.login.wrongUserNamePassword ? 
+                    `<p class="wrongUserLoginDropdown">${model.app.wrongUserNamePasswordMessage}</p> 
+                    <p class="forgotPasswordLoginDropdown">
+                    <span onclick=""> Forgot password?</span> 
+                    <span onclick=""> New user?</span>
+                    </p>` 
+                    : ''}` 
+            : ''}
+    </div>`;
 }
 
 function createSaleView(){
