@@ -2,34 +2,36 @@ function profileMenuComponent() {
     let html = `<div class="profileMenuContainer">
                 <button class="dropdownKnapp" onclick="toggleProfileMenuDropDown()"><h2>Meny</h2></button>` 
     if(!model.inputs.profileMenuShowing){return html}
-    if (model.app.userId === false) {
+    if (!model.app.loggedInStatus) {
         html += `
         <div id="dropdownContent">
-        <div onclick="model.app.currentView='allProductsPage'">Alle produkter</div>
-        <div onclick="model.app.currentView='auctionPage' ">Auksjons side</div>
+            <div onclick="changeView('filteredPage')">Alle produkter</div>
+            <div onclick="loginDropdown()">Logg inn</div>
         </div>` 
     }
     else if (model.data.users[model.app.userId].permissions === 'user') {
         html += `
         <div id="dropdownContent">
-                <div onclick="model.app.currentView='myProfilePage' ">Min Profil</div>
-                 <div onclick="model.app.currentView='inboxPage' ">Innbox</div>
-                 <div onclick="model.app.currentView='allProductsPage'">Alle produkter</div>
-                 <div onclick="model.app.currentView='salePage'">Salgs Historikk</div>
-                 <div onclick="model.app.currentView='auctionPage' ">Bud</div>
-        </div>` 
+                <div onclick="changeView('myProfilePage')">Min Profil</div>
+                 <div onclick="changeView('inboxPage')">Inbox</div>
+                 <div onclick="changeView('filteredPage')">Alle produkter</div>
+                 <div onclick="changeView('saleHistoryPage')">Salgshistorikk</div>
+                 <div onclick="changeView('auctionPage')">Bud</div>
+                 <div onclick="logout()">Logg ut</div>
+        </div>`
     }
 
     if (model.data.users[model.app.userId] && model.data.users[model.app.userId].permissions === "admin") {
         html += `
         <div id="dropdownContent">
-                <div onclick="model.app.currentView='myProfilePage' ">Min Profil</div>
-                 <div onclick="model.app.currentView='inboxPage' ">Innbox</div>
-                 <div onclick="model.app.currentView='allProductsPage'">Alle produkter</div>
-                 <div onclick="model.app.currentView='salePage'">Salgs Historikk</div>
-                 <div onclick="model.app.currentView='auctionPage' ">Bud</div>
-                 <div onclick="model.app.currentView='addProductPage' ">Legg til produkt</div>
-                 <div onclick="model.app.currentView='membersPage' ">Medlemmer</div>
+                <div onclick="changeView('myProfilePage')">Min Profil</div>
+                 <div onclick="changeView('inboxPage')">Innbox</div>
+                 <div onclick="changeView('filteredPage')">Alle produkter</div>
+                 <div onclick="changeView('saleHistoryPage')">Salgshistorikk</div>
+                 <div onclick="changeView('auctionPage')">Bud</div>
+                 <div onclick="changeView('newProductPage')>Legg til produkt</div>
+                 <div onclick="changeView('manageMembersPage')>Medlemmer</div>
+                 <div onclick="logout()">Logg ut</div>
         </div>`
     }
     return html += `</div>`
