@@ -11,6 +11,11 @@ function deleteItemFromShoppingCart(indexInShoppingCart){
     updateView();
 }
 
+function removeFromUserShoppingCart(productId){
+    model.data.users[model.app.userId].shoppingCart.splice(productId,1)
+    updateView()
+}
+
 function findWinningBids(){
     model.inputs.shoppingCart.items.auctions.usersWinningBids = [];
     model.inputs.shoppingCart.items.auctions.usersLosingBids = [];
@@ -277,13 +282,14 @@ function addNewSubCategory(id){
 }
 
 function addToShoppingCart(productId){
+    console.log(productId)
     for(let i = 0; i < model.data.users[model.app.userId].shoppingCart.length;i++){
-        if(model.data.users[model.app.userId].shoppingCart[i].id == productId){
+        if(model.data.users[model.app.userId].shoppingCart[i].item == productId){
             model.data.users[model.app.userId].shoppingCart[i].quantity++
             return
         }
     }
-    model.data.users[model.app.userId].shoppingCart.push({id:productId,quantity:1})
+    model.data.users[model.app.userId].shoppingCart.push({item:productId,quantity:1})
     updateView()
 }
 

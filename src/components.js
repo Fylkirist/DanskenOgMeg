@@ -1,4 +1,3 @@
-
 function profileMenuComponent() {
     let html = `<div class="profileMenuContainer">
                 <button class="dropdownKnapp" onclick="toggleProfileMenuDropDown()"><h2>Meny</h2></button>` 
@@ -74,18 +73,36 @@ function showShoppingCart(){
 function showItemsCanBuyNow(){
     let html = '';
     model.inputs.shoppingCart.totalPrice = 0;
-    for(let j = 0; j < model.inputs.shoppingCart.items.canBuyNow.length; j++){
-        for(let i = 0; i < model.data.items.length; i++){
-            
-            if(model.inputs.shoppingCart.items.canBuyNow[j].id === model.data.items[i].id){
-                html += `<div>
-                            <img src="${model.data.items[i].images[0]}" />
-                            <span>${model.data.items[i].title}</span>
-                            <button onclick="deleteItemFromShoppingCart(${j})">X</button>
-                            <span>${model.data.items[i].price}</span>
-                        </div>`;
+    if(model.app.loggedInStatus){
+        for(item in model.data.users[model.app.userId].shoppingCart){
+            console.log(model.data.users[model.app.userId].shoppingCart[item])
+            html += `
+            <div>
+                <img src = "${model.data.items[eval(model.data.users[model.app.userId].shoppingCart[item].item)-1].images[0]}"/>
+                <span>${model.data.items[eval(model.data.users[model.app.userId].shoppingCart[item].item)-1].title}</span>
+                <button onclick = "removeFromUserShoppingCart(${item})">X</button>
+                <span>${model.data.items[eval(model.data.users[model.app.userId].shoppingCart[item].item)-1].price}</span>
+                <span>x${model.data.users[model.app.userId].shoppingCart[item].quantity}</span>
+            </div>
+            `
+            model.inputs.shoppingCart.totalPrice += model.data.items[eval(model.data.users[model.app.userId].shoppingCart[item].item)-1].price * model.data.users[model.app.userId].shoppingCart[item].quantity
+        }
+    }
+    else{
+        for(let j = 0; j < model.inputs.shoppingCart.items.canBuyNow.length; j++){
+            for(let i = 0; i < model.data.items.length; i++){
                 
-                model.inputs.shoppingCart.totalPrice += model.data.items[i].price;
+                if(model.inputs.shoppingCart.items.canBuyNow[j].id === model.data.items[i].id){
+                    html += `
+                    <div>
+                        <img src="${model.data.items[i].images[0]}" />
+                        <span>${model.data.items[i].title}</span>
+                        <button onclick="deleteItemFromShoppingCart(${j})">X</button>
+                        <span>${model.data.items[i].price}</span>
+                    </div>`;
+                    
+                    model.inputs.shoppingCart.totalPrice += model.data.items[i].price;
+                }
             }
         }
     }
@@ -273,7 +290,7 @@ function generateFrontPageElement(item){
         varElems = `
             <label>Pris: </label>
             <label>${model.data.items[item].price}</label>
-            <button onclick = "addToShoppingCart(${item})">Legg til i handlekurv</button>
+            <button onclick = "addToShoppingCart('${model.data.items[item].id}')">Legg til i handlekurv</button>
             <button onclick = "goToProduct(${item})">Gå til produktside</button>
         `  
     }
@@ -434,14 +451,14 @@ function productDisplay(product){
             <label class = "productDisplayPriceLabel">Nåværende Bud: </label>
             <label class = "productDisplayPrice">${model.data.items[product].price}</label>
             <input id = "productDisplayPriceInput" oninput="model.input.product.bidIncrease = this.value">${model.inputs.product.bidIncrease}</input>
-            <button class = "productDisplayBuyButton" onclick = "raiseBid(${model.data.items[product].id})">Øk bud</button>
+            <button class = "productDisplayBuyButton" onclick = "raiseBid('${model.data.items[product].id}')">Øk bud</button>
             <div id = "productDisplayDeadline">Auksjonen stenges om: ${model.data.items[product].deadline}</div>`
     }
     else{
         content = `
             <label class = "productDisplayPriceLabel">Pris: </label>
             <label class = "productDisplayPrice">${model.data.items[product].price}</label>
-            <button class = "productDisplayBuyButton" onclick = "addToShoppingCart(${model.data.items[product].id})">Legg til i handlekurv</button>
+            <button class = "productDisplayBuyButton" onclick = "addToShoppingCart('${model.data.items[product].id}')">Legg til i handlekurv</button>
         `
     }
     for(let i = 1; i<model.data.items[product].images.length;i++){
@@ -572,7 +589,7 @@ function showFilteredProducts(){
                     <br>
                     <div>
                         <label>${model.data.items[model.inputs.category.filteredItems[i]-1].price},-</label>
-                        ${!model.data.items[model.inputs.category.filteredItems[i]-1].auction?`<button onclick = "addToShoppingCart(${model.data.items[model.inputs.category.filteredItems[i]-1].id})">Legg til I handlekurv</button>`:""}
+                        ${!model.data.items[model.inputs.category.filteredItems[i]-1].auction?`<button onclick = "addToShoppingCart('${model.data.items[model.inputs.category.filteredItems[i]-1].id}')">Legg til I handlekurv</button>`:""}
                         <button onclick = "goToProduct(${i})">Gå til produktside</button>
                     </div>
                 </div>
@@ -639,7 +656,7 @@ function showFilteredProducts(){
                     <br>
                     <div>
                         <label>${model.data.items[model.inputs.category.filteredItems[i]-1].price},-</label>
-                        ${!model.data.items[model.inputs.category.filteredItems[i]-1].auction?`<button onclick = "addToShoppingCart(${model.data.items[model.inputs.category.filteredItems[i]-1].id})">Legg til I handlekurv</button>`:""}
+                        ${!model.data.items[model.inputs.category.filteredItems[i]-1].auction?`<button onclick = "addToShoppingCart('${model.data.items[model.inputs.category.filteredItems[i]-1].id}')">Legg til I handlekurv</button>`:""}
                         <button onclick = "goToProduct(${i})">Gå til produktside</button>
                     </div>
                 </div>

@@ -187,7 +187,7 @@ const model = {
 
         items:[
             {
-                id: 000001,
+                id: "000001",
                 title: 'Krone til dronningen av England',
                 description: 'ipsum lorem',
                 price: 70000,
@@ -202,7 +202,7 @@ const model = {
 
             },
             {
-                id: 000002,
+                id: "000002",
                 title: 'auction prime time',
                 description: 'ipsum lorem',
                 price: 5000,
