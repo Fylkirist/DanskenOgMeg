@@ -6,7 +6,7 @@ function profileMenuComponent() {
         html += `
         <div id="dropdownContent">
             <div onclick="changeView('filteredPage')">Alle produkter</div>
-            <div onclick="loginDropdown()">Logg inn</div>
+            <div onclick="loginDropDown()">Logg inn</div>
         </div>` 
     }
     else if (model.data.users[model.app.userId].permissions === 'user') {
