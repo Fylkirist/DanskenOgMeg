@@ -1,42 +1,45 @@
-
-
-.dropdownKnapp {
-    box-sizing: border-box;
-    position: relative;
-    width: 200px;
-    height: 50px;
-    left: 0px;
-    top: 0px;
+.headerSectionContainer{
+    font-family: 'Abhaya Libre', serif;
+    background-color: rgba(212, 194, 146, 1);
+    width: 100vw;
+    height: 15.2vh;
+}
+.overskriftHeaderSection{
+    font: bolder;
+    color: black;
     
-    background: #CDC7B6;
-    border: 1px solid #000000;
-    border-radius: 10px;
+
 }
+.registerButtonHeaderSection{
 
-.dropdownKnapp:hover,
-.dropdownKnapp:focus {
-    background-color: #a79b7ba6;
 }
+.loginButtonHeaderSection{
 
-#dropdownContent {
-    position: absolute;
-    background-color: #E1E1D2;
-    min-width: 200px;
-    border:solid #8f6d6d;
-    box-shadow: 0px 8px 16px 0px rgba(131, 59, 59, 0.2);
-    z-index: 1;
 }
+.userButtonHeaderSection{
 
-#dropdownContent div:hover {
-    background-color: #cdc7b6a6;
 }
+.cartIconHeaderSection{
 
-.dropdownContent-line {
-    height: 1px; /* Adjust the height to make the line thinner */
-    background-color: #000; /* Set the background color to black */
 }
+.underskriftHeaderSection{
 
+}
+.userNameInputLoginDropdown{
 
+}
+.passwordInputLoginDropdown{
+
+}
+.loginSubmitButtonLoginDropdown{
+
+}
+.wrongUserLoginDropdown{
+
+}
+.forgotPasswordLoginDropdown{
+
+}
 #frontPageProductDisplay{
     border: #000000 solid 1px;
     background-color: white;

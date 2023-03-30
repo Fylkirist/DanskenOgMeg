@@ -318,31 +318,30 @@ function generateFrontPageElement(item){
 
 function createHeaderSection(){
     return /*html*/`
-    <div class="headerContainer">
-        <h1 class="overskrift" onclick = "toToFrontPage()">Dansken og meg</h1>
-        ${profileMenuComponent()}
-        ${!model.app.loggedInStatus ? `<div class="registerButton" onclick="goToRegisterPage()">Registrer</div>
-        <div class="loginButton" onclick="loginDropDown()">Login</div>` :
-        `<div class="userButton" onclick="">${model.data.users[model.app.userId].username}</div>`}
-        <div class="cartIcon" onclick="goToShoppingCart()">🛒</div>
-        <h3 class="underskrift">VintageSkatter</h1>
+    <div class="headerSectionContainer">
+        <h1 class="overskriftHeaderSection" onclick = "toToFrontPage()">Dansken og meg</h1>
+        ${!model.app.loggedInStatus ? `<div class="registerButtonHeaderSection" onclick="goToRegisterPage()">Registrer</div>
+        <div class="loginButtonHeaderSection" onclick="loginDropDown()">Login</div>` :
+        `<div class="userButtonHeaderSection" onclick="">${model.data.users[model.app.userId].username}</div>`}
+        <div class="cartIconHeaderSection" onclick="goToShoppingCart()">🛒</div>
+        <h3 class="underskriftHeaderSection">VintageSkatter</h1>
         ${model.inputs.login.dropdown ? 
             `<input type="text" 
-            class="userNameInput" 
+            class="userNameInputLoginDropdown" 
             onchange="model.inputs.login.username = this.value"
             value="${model.inputs.login.username}"
             required
             /> 
         <input type="password" 
-            class="passwordInput" 
+            class="passwordInputLoginDropdown" 
             onchange="model.inputs.login.password = this.value"
             value="${model.inputs.login.password}"
             required
         /> 
-        <div class="loginSubmitButton" onclick="checkUserIdPassword()">Submit</div>
+        <div class="loginSubmitButtonLoginDropdown" onclick="checkUserIdPassword()">Submit</div>
         ${model.inputs.login.wrongUserNamePassword ? 
-            `<p class="wrongUser">${model.app.wrongUserNamePasswordMessage}</p> 
-            <p class="forgotPassword">
+            `<p class="wrongUserLoginDropdown">${model.app.wrongUserNamePasswordMessage}</p> 
+            <p class="forgotPasswordLoginDropdown">
             <span onclick=""> Forgot password?</span> 
             <span onclick=""> New user?</span>
             </p>` :
@@ -363,7 +362,7 @@ function createSaleView(){
     return `
         <div class = "CreateSaleContainer">
             <label id = "productLabel">Produktnavn</label>
-            <input id = "productName" type = "text" oninput = "model.inputs.createSale.title = this.value"/>
+            <input id = "productName" type = "text" placeholder = "Beskrivelse" oninput = "model.inputs.createSale.title = this.value"/>
             <input id = "productDescription" type = "text" oninput = "model.inputs.createSale.description = this.value"/>
             <label id = "priceLabel">Pris: </label>
             <input id = "priceInput" type = "text" oninput = "model.inputs.createSale.price = this.value">
