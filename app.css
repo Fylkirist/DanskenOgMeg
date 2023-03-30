@@ -1,0 +1,45 @@
+#frontPageProductDisplay{
+
+}
+
+.frontPageProductDisplayElement{
+
+}
+
+.frontPageRightArrow{
+    height: 100%;
+}
+
+.frontPageLeftArrow{
+    height: 100%;
+}
+
+.frontPagePriceDescLabel{
+
+}
+
+.frontPagePriceLabel{
+
+}
+
+.frontPageAddProductButton{
+
+}
+
+.frontPageGoToProductButton{
+
+}
+
+.frontPageProductImg{
+    height: 100px;
+    width: 160px;
+}
+
+.frontPageProductHeader{
+    font: bolder;
+    font-family: 'Abhaya Libre', serif;
+}
+
+.frontPageProductDesc{
+
+}
