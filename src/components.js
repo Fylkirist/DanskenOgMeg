@@ -354,7 +354,7 @@ function createSaleView(){
     return `
         <div class = "CreateSaleContainer">
             <label id = "productLabel">Produktnavn</label>
-            <input id = "productName" type = "text" oninput = "model.inputs.createSale.title = this.value"/>
+            <input id = "productName" type = "text" placeholder = "Beskrivelse" oninput = "model.inputs.createSale.title = this.value"/>
             <input id = "productDescription" type = "text" oninput = "model.inputs.createSale.description = this.value"/>
             <label id = "priceLabel">Pris: </label>
             <input id = "priceInput" type = "text" oninput = "model.inputs.createSale.price = this.value">
