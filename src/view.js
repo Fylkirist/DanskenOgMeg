@@ -20,6 +20,9 @@ function updateView(){
         case "shoppingCart":
             app.innerHTML = createHeaderSection() + showShoppingCart()
             break
+        case "1":
+            app.innerHTML = createHeaderSection() 
+            break
     }
 }
 

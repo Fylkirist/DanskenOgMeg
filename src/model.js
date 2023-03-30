@@ -1,6 +1,6 @@
 const model = {
     app:{
-        currentView:'frontPage',
+        currentView:'1',
         loggedInStatus: false,
         wrongUserNamePasswordMessage: '',
         userId:false,

@@ -2,43 +2,140 @@
     font-family: 'Abhaya Libre', serif;
     background-color: rgba(212, 194, 146, 1);
     width: 100vw;
-    height: 15.2vh;
+    height: 20vh;
+    position: relative;
+    user-select: none;
 }
 .overskriftHeaderSection{
     font: bolder;
     color: black;
-    
-
+    position: absolute;
+    top: 10%;
+    left: 42%;
+    margin: 0;
+    padding: 1px;
 }
 .registerButtonHeaderSection{
-
+    background-color: rgba(228, 228, 186, 1);
+    color: #000000;
+    font-size: medium;
+    border: 0.5px solid black;
+    margin: 0;
+    padding: 2px;
+    position: absolute;
+    top: 15%;
+    left: 82%;
+}
+.registerButtonHeaderSection:hover{
+    text-decoration: underline;
+    cursor: pointer;
 }
 .loginButtonHeaderSection{
-
+    background-color: rgba(228, 228, 186, 1);
+    color: #000000;
+    font-size: medium;
+    border: 0.5px solid black;
+    margin: 0;
+    padding: 2px;
+    position: absolute;
+    top: 15%;
+    left: 87%;
+}
+.loginButtonHeaderSection:hover{
+    text-decoration: underline;
+    cursor: pointer;
 }
 .userButtonHeaderSection{
-
+    background-color: rgba(228, 228, 186, 1);
+    color: #000000;
+    font-size: medium;
+    margin: 0;
+    padding: 2px;
+    position: absolute;
+    top: 15%;
+    left: 82%;
+}
+.userButtonHeaderSection:hover{
+    text-decoration: underline;
+    cursor: pointer;
 }
 .cartIconHeaderSection{
-
+    background-color: transparent;
+    width: 1.7vw;
+    height: 2,2vh;
+    margin: 0;
+    padding: 2px;
+    position: absolute;
+    top: 12%;
+    left: 92%;
 }
 .underskriftHeaderSection{
-
+    font: bolder;
+    color: black;
+    position: absolute;
+    top: 35%;
+    left: 44.5%;
+    margin: 0;
+    padding: 1px;
 }
 .userNameInputLoginDropdown{
-
+    background-color: rgba(228, 228, 186, 1);
+    color: #000000;
+    font-size: small;
+    margin: 0;
+    padding: 0;
+    border: 0.5px solid black;
+    width: 7vw;
+    position: absolute;
+    top: 30%;
+    left: 82%;
 }
-.passwordInputLoginDropdown{
+.passwordInputLoginDropdown{    
+    background-color: rgba(228, 228, 186, 1);
+    color: #000000;
+    font-size: small;
+    margin: 0;
+    padding: 0;
+    border: 0.5px solid black;
+    width: 7vw;
+    position: absolute;
+    top: 40%;
+    left: 82%;
 
 }
 .loginSubmitButtonLoginDropdown{
-
+    background-color: rgba(228, 228, 186, 1);
+    color: #000000;
+    font-size: medium;
+    margin: 0;
+    padding: 1px;
+    border: 0.5px solid black;
+    position: absolute;
+    top: 51%;
+    left: 86.5%;
+}
+.loginSubmitButtonLoginDropdown:hover{
+    text-decoration: underline;
+    cursor: pointer;
 }
 .wrongUserLoginDropdown{
+    font-size: small;
+    color: red;
+    margin: 1px;
+    padding: 1px;
+    position: absolute;
+    top: 64%;
+    left: 81%;
 
 }
 .forgotPasswordLoginDropdown{
-
+    font-size: small;
+    color: black;
+    margin: 1px;
+    padding: 1px;
+    position: absolute;
+    top: 72%;
+    left: 81%;
 }
 #frontPageProductDisplay{
     border: #000000 solid 1px;
