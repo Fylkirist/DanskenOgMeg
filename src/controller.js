@@ -261,3 +261,7 @@ let priceLimits = determinePriceLimits()
 model.inputs.category.priceRange.max = priceLimits.max
 model.inputs.category.priceRange.min = priceLimits.min
 
+function oppdaterPersonalia(){
+
+    
+}

@@ -276,16 +276,15 @@ function editUserPage(){
                         value = "${model.inputs.register.mobile}" oninput = "model.inputs.register.mobile = this.value">
                     <input id ="emailChangeBox" type = "text" placeholder = "Epost"
                         value = "${model.inputs.register.email}" oninput = "model.inputs.register.email = this.value">
-                        <button id = "personalInfoConfirm" onclick = "oppdaterPersonalia()">Confirm</button>
+                        <button onclick="oppdaterPersonalia('namePhoneEmail')">Confirm</button>
                 </div>
                 <div id = addressChange>
                     <input id ="cityNameChangeBox" type = "text" placeholder = "By"
                         value = "${model.inputs.register.city}" oninput = "model.inputs.register.city = this.value">
                     <input id ="adressNameChangeBox" type = "text" placeholder = "Adresse"
-                        value = "${model.inputs.register.address}" oninput = "model.inputs.register.address = this.value">
-                    <input id ="zipCode" type = "text" placeholder = "Postkode"
-                    value = "${model.inputs.register.zip}" oninput ="model.inputs.register.zip = this.value">
-                    <button id = "addressConfirm" onclick= "oppdaterPersonalia()">Confirm</button>
+                        >
+                    <input id ="zipCode" type = "text" placeholder = "Postkode">
+                    <button onclick="oppdaterPersonalia('adresse')">Confirm</button>
                 </div>
                 <div id = "cardInfoBox">
                     <input id = "cardNumber" placeholder = "Kort Nummer">
@@ -293,12 +292,12 @@ function editUserPage(){
                     <input id = "cvc" placeholder ="CVC">
                     <input id = "cardFirstName" placeholder = "Fornavn">
                     <input id = "cardLastName" placeholder = "Etternavn">
-                    <button id = "cardConfirm" onclick = "oppdaterPersonalia()">Confirm</button>
+                    <button onclick="oppdaterPersonalia('cardInfo')">Confirm</button>
                 </div>
                 <div id = "changePassword">
                     <input id = "currentPassword" type = "text" placeholder = "Passord">
                     <input id = "newPassword" type = "text" placeholder = "Ny passord">
-                    <button id ="passwordConfirm" onclick = "oppdaterPersonalia()">Confirm</button>
+                    <button onclick="oppdaterPersonalia('byttPassord')">Confirm</button>
             </div>
 
         </div>
