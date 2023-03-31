@@ -271,14 +271,15 @@ function editUserPage(){
                     <input id ="firstNameChangeBox" type = "text" placeholder = "Fornavn"
                         value  = "${model.inputs.register.firstName}" oninput = "model.inputs.register.firstName = this.value">
                     <input id ="lastNameChangeBox" type = "text" placeholder = "Etternavn"
-                        value = "${model.inputs.register.lastName}" oninput = >
-                    <input id ="phoneNumberChangeBox" type = "text" placeholder = "Telefon Nummer">
-                    <input id ="emailChangeBox" type = "text" placeholder = "Epost">
+                        value = "${model.inputs.register.lastName}" oninput = "model.inputs.register.lastName = this.value">
+                    <input id ="phoneNumberChangeBox" type = "text" placeholder = "Telefon Nummer"
+                        value = "${model.inputs.register.mobile}" oninput = "model.inputs.register.mobile = this.value">
+                    <input id ="emailChangeBox" type = "text" placeholder = "Epost"
+                        value = "${model.inputs.register.email}" oninput = "model.inputs.register.email = this.value">
                 </div>
                 <div id = adressChange>
                     <input id ="cityNameChangeBox" type = "text" placeholder = "By">
-                    <input id ="streetNameChangeBox" type = "text" placeholder = "Gate">
-                    <input id ="houseNumberChangeBox" type = "text" placeholder = "Hust / Leilighett Nummer">
+                    <input id ="adressNameChangeBox" type = "text" placeholder = "Adresse">
                     <input id ="zipCode" type = "text" placeholder = "Postkode">
                 </div>
                 <div id = "cardInfoBox">
