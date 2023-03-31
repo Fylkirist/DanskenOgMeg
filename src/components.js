@@ -276,28 +276,36 @@ function editUserPage(){
                         value = "${model.inputs.register.mobile}" oninput = "model.inputs.register.mobile = this.value">
                     <input id ="emailChangeBox" type = "text" placeholder = "Epost"
                         value = "${model.inputs.register.email}" oninput = "model.inputs.register.email = this.value">
-                        <button onclick="oppdaterPersonalia('namePhoneEmail')">Confirm</button>
+                        <button id = "personalInfoConfirm" onclick = "oppdaterPersonalia('namePhoneEmail')">Confirm</button>
                 </div>
                 <div id = addressChange>
                     <input id ="cityNameChangeBox" type = "text" placeholder = "By"
                         value = "${model.inputs.register.city}" oninput = "model.inputs.register.city = this.value">
                     <input id ="adressNameChangeBox" type = "text" placeholder = "Adresse"
-                        >
-                    <input id ="zipCode" type = "text" placeholder = "Postkode">
-                    <button onclick="oppdaterPersonalia('adresse')">Confirm</button>
+                        value = "${model.inputs.register.address}" oninput = "model.inputs.register.address = this.value">
+                    <input id ="zipCode" type = "text" placeholder = "Postkode"
+                        value = "${model.inputs.register.zip}" oninput = "model.inputs.register.zip = this.value">
+                    <button id ="addressConfirm" onclick = "oppdaterPersonalia('adresse')">Confirm</button>
                 </div>
                 <div id = "cardInfoBox">
-                    <input id = "cardNumber" placeholder = "Kort Nummer">
-                    <input id = "expirationDate" placeholder = "Utløps Dato">
-                    <input id = "cvc" placeholder ="CVC">
-                    <input id = "cardFirstName" placeholder = "Fornavn">
-                    <input id = "cardLastName" placeholder = "Etternavn">
-                    <button onclick="oppdaterPersonalia('cardInfo')">Confirm</button>
+                    <input id = "cardNumber" placeholder = "Kort Nummer"
+                        value = "${model.inputs.register.cardNumber}" oninput = "model.inputs.register.carNumber = this.value">
+                    <input id = "expirationDate" placeholder = "Utløps Dato"
+                        value = "${model.inputs.register.toDate}" oninput = "model.inputs.register.toDate = this.value">
+                    <input id = "cvc" placeholder ="CVC"
+                        value = "${model.inputs.register.cvc}" oninput = "model.inputs.register.cvc = this.value">
+                    <input id = "cardFirstName" placeholder = "Fornavn"
+                        value = "${model.inputs.register.firstName}" oninput = "model.inputs.register.firstName = this.value">
+                    <input id = "cardLastName" placeholder = "Etternavn"
+                        value = "${model.inputs.register.lastName}" oninput = "model.inputs.register.lastName = this.value">
+                    <button id = "cardConfirm" onclick = "oppdaterPersonalia('cardInfo')">Confirm</button>
                 </div>
                 <div id = "changePassword">
-                    <input id = "currentPassword" type = "text" placeholder = "Passord">
-                    <input id = "newPassword" type = "text" placeholder = "Ny passord">
-                    <button onclick="oppdaterPersonalia('byttPassord')">Confirm</button>
+                    <input id = "currentPassword" type = "password" placeholder = "Passord"
+                        oninput = "model.inputs.register.password = this.value>
+                    <input id = "newPassword" type = "password" placeholder = "Ny passord"
+                        oninput = "model.inputs.register.repeatPassword = this.value">
+                    <button id= "passwordConfirm" onclick = "oppdaterPersonalia('byttPassord')">Confirm</button>
             </div>
 
         </div>
