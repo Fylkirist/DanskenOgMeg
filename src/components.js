@@ -38,6 +38,8 @@ function profileMenuComponent() {
                 <div class="dropdownContent-line"> </div>
                 <div class="dropdownContent-1" onclick="changeView('manageMembersPage')>Medlemmer</div>
                 <div class="dropdownContent-line"> </div>
+                <div class="dropdownContent-1" onclick="changeView('createProduct')>Legg til nytt produkt</div>
+                <div class="dropdownContent-line"> </div>
                 <div onclick="logout()">Logg ut</div>
                 <div class="dropdownContent-line"> </div>
         </div>`
@@ -82,20 +84,21 @@ function showShoppingCart(){
 
 function showItemsCanBuyNow(){
     let html = '';
+    console.log("bruh")
     model.inputs.shoppingCart.totalPrice = 0;
     if(model.app.loggedInStatus){
-        for(item in model.data.users[model.app.userId].shoppingCart){
-            console.log(model.data.users[model.app.userId].shoppingCart[item])
+        for(let i = 0; i<model.data.users[model.app.userId].shoppingCart.length;i++){
+            //console.log(model.data.users[model.app.userId].shoppingCart[i],i)
             html += `
             <div>
-                <img src = "${model.data.items[eval(model.data.users[model.app.userId].shoppingCart[item].item)-1].images[0]}"/>
-                <span>${model.data.items[eval(model.data.users[model.app.userId].shoppingCart[item].item)-1].title}</span>
-                <button onclick = "removeFromUserShoppingCart(${item})">X</button>
-                <span>${model.data.items[eval(model.data.users[model.app.userId].shoppingCart[item].item)-1].price}</span>
-                <span>x${model.data.users[model.app.userId].shoppingCart[item].quantity}</span>
+                <img src = "${model.data.items[eval(model.data.users[model.app.userId].shoppingCart[i].item)-1].images[0]}"/>
+                <span>${model.data.items[eval(model.data.users[model.app.userId].shoppingCart[i].item)-1].title}</span>
+                <button onclick = "removeFromUserShoppingCart(${i})">X</button>
+                <span>${model.data.items[eval(model.data.users[model.app.userId].shoppingCart[i].item)-1].price}</span>
+                <span>x${model.data.users[model.app.userId].shoppingCart[i].quantity}</span>
             </div>
             `
-            model.inputs.shoppingCart.totalPrice += model.data.items[eval(model.data.users[model.app.userId].shoppingCart[item].item)-1].price * model.data.users[model.app.userId].shoppingCart[item].quantity
+            model.inputs.shoppingCart.totalPrice += model.data.items[eval(model.data.users[model.app.userId].shoppingCart[i].item)-1].price * model.data.users[model.app.userId].shoppingCart[i].quantity
         }
     }
     else{
@@ -300,7 +303,7 @@ function generateFrontPageElement(item){
         varElems = `
             <label class = "frontPagePriceDescLabel">Pris: </label>
             <label class = "frontPagePriceLabel">${model.data.items[item].price}</label>
-            <button class = "frontPageAddProductButton" onclick = "addToShoppingCart('${model.data.items[item].id}')">Legg til i handlekurv</button>
+            ${model.app.loggedInStatus && model.data.users[model.app.userId].permissions == "admin"?``:`<button class = "frontPageAddProductButton" onclick = "addToShoppingCart('${model.data.items[item].id}')">Legg til i handlekurv</button>`}
             <button class = "frontPageGoToProductButton" onclick = "goToProduct(${item})">Gå til produktside</button>
         `  
     }
@@ -606,7 +609,7 @@ function showFilteredProducts(){
                     <br>
                     <div>
                         <label>${model.data.items[model.inputs.category.filteredItems[i]-1].price},-</label>
-                        ${!model.data.items[model.inputs.category.filteredItems[i]-1].auction?`<button onclick = "addToShoppingCart('${model.data.items[model.inputs.category.filteredItems[i]-1].id}')">Legg til I handlekurv</button>`:""}
+                        ${model.data.items[model.inputs.category.filteredItems[i]-1].auction || model.app.loggedInStatus && model.data.users[model.app.userId].permissions == "admin"?``:`<button onclick = "addToShoppingCart('${model.data.items[model.inputs.category.filteredItems[i]-1].id}')">Legg til I handlekurv</button>`}
                         <button onclick = "goToProduct(${i})">Gå til produktside</button>
                     </div>
                 </div>

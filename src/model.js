@@ -64,6 +64,8 @@ const model = {
                     {id:1,name:"Bord",parent:0,checked:false},
                     {id:2,name:"Klær",parent:-1,checked:false},
                     {id:3,name:"Hatter",parent:2,checked:false},
+                    {id:4,name:'Småting',parent:-1,checked:false},
+                    {id:5,name:'Tilbehør',parent:4,checked:false},
                 ]     
             },
             createSale: {
@@ -218,36 +220,6 @@ const model = {
                 deliver:false,
                 minBid:0
             },
-        ],
-        itemsCategory: [
-
-            {
-                title : 'Møbler',
-                checked: false,
-                subCategory: [
-                    {title: 'Bord', checked: false},
-                    {title: 'Stoler', checked: false},
-                ]
-            },
-            {
-                title : 'Små ting',
-                checked: false,
-                subCategory: [
-                    {title: 'Vaser', checked: false},
-                    {title: 'Lamper', checked: false},
-                    {title: 'Tilbehør', checked: false},
-                ]
-            },
-            {
-                title : 'Klær og tilbehør',
-                checked: false,
-                subCategory: [
-                    {title: 'Bukser', checked: false},
-                    {title: 'Jakker', checked: false},
-                ]
-            },
-        
-        
         ],
         priceRange: {
             min: 0,

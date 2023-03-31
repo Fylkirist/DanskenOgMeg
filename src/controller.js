@@ -52,7 +52,7 @@ function findWinningBids(){
     }
     if(model.inputs.shoppingCart.items.auctions.usersWinningBids.length > 0 ||
         model.inputs.shoppingCart.items.auctions.usersLosingBids.length > 0 ) {
-            countDown = setInterval(updateView(), 60000);
+            countDown = setInterval(updateView, 60000);
         }
     else clearInterval(countDown);
 }
@@ -246,7 +246,6 @@ function checkUserIdPassword(){
     }
     else{
         for(userKeys in model.data.users){
-            console.log(typeof userKeys)
             if(model.inputs.login.username === model.data.users[userKeys].username &&
             model.inputs.login.password === model.data.users[userKeys].password){
                 model.inputs.login.dropdown = false;
@@ -378,6 +377,7 @@ function createProduct(){
     }
     model.data.items.push(newProduct);
     saveMainCategory()
+    updateView()
 }
 
 function saveMainCategory(){
