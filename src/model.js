@@ -1,15 +1,19 @@
 const model = {
     app:{
-        currentView:'frontPage',
+        currentView:'checkoutPage',
         loggedInStatus: false,
         wrongUserNamePasswordMessage: '',
-        userId:"0000001",
+        userId:'',
         zoomedPic:false,
         currentProduct:false,
         frontPageCurrentShowing:{
             top:0,
             bottom:0,
         },
+        checkOut: {
+            invalidEmailOnCheckOutPage: false,
+        },
+        
     },
 
         inputs:{
@@ -26,6 +30,26 @@ const model = {
                     },
                 },
                 totalPrice: 0,
+            },
+            checkOutPage: {
+                firstName: '',
+                lastName: '',
+                address: '',
+                zipCode: '',
+                email: '',
+                mobile: '',
+                addressFilled: false,
+                selectedDeliveryMethod: '',
+                deliveryMethod: {
+                    selected: false,
+                    butikk: '',
+                    leveringMedInnbæring: '',
+                    leveringUtenInnbæring: ''
+                },
+                cardNumber: '',
+                expirationDate: '',
+                cardHolderFirstName: '',
+                cardHolderLastName: '',
             },
             register: {
                 firstName: '',

@@ -16,6 +16,9 @@ function updateView(){
             break
         case "createProduct":
             break
+        case "checkoutPage":
+            app.innerHTML = createHeaderSection() + checkOut();
+            break
     }
 }
 

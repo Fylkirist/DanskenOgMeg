@@ -321,29 +321,29 @@ function createSaleView(){
         </div>` 
 }
 
-function loginView(){
-    return `
-        <div class = "loginRegContainer">
-            <button onclick = "changeView("registerPage")" id = "registerButton">Register</button>
-            <button id = "loginDropdown" onclick = "toogleLoginDrop()">Login</button>
-            ${showLoginDropDown()}
-        </div>
-        `
-}
+// function loginView(){
+//     return `
+//         <div class = "loginRegContainer">
+//             <button onclick = "changeView("registerPage")" id = "registerButton">Register</button>
+//             <button id = "loginDropdown" onclick = "toogleLoginDrop()">Login</button>
+//             ${showLoginDropDown()}
+//         </div>
+//         `
+// }
 
-function showLoginDropDown(){
-    if(model.inputs.login.dropdown){
-        return`
-        <div class = "dropdownList">
-        <input placeholder = "Brukernavn" oninput = "model.inputs.login.username = this.value" id = "usernameInput"></input>
-        <input placeholder = "Passord" oninput = "model.inputs.login.password = this.value" id = "passwordInput"></input>
-        <button onclick = "checkLogin()" id = "submitLogin">Sumbit</button>
-        </div>`;
-    }
-    else{
-        return ``
-    }
-}
+// function showLoginDropDown(){
+//     if(model.inputs.login.dropdown){
+//         return`
+//         <div class = "dropdownList">
+//         <input placeholder = "Brukernavn" oninput = "model.inputs.login.username = this.value" id = "usernameInput"></input>
+//         <input placeholder = "Passord" oninput = "model.inputs.login.password = this.value" id = "passwordInput"></input>
+//         <button onclick = "checkLogin()" id = "submitLogin">Sumbit</button>
+//         </div>`;
+//     }
+//     else{
+//         return ``
+//     }
+// }
 
 function orderHistoryView (){
     let html = ``
@@ -612,3 +612,73 @@ function showFilteredProducts(){
     return container
 }
 
+
+
+function checkOut(){
+    let html = '';
+    if(model.app.userId == '0000001') return '';
+    html = /*html*/
+            `
+                <div class= "checkOutComponentContainer">
+                    <div class="checkOutLeftSideContainer">
+                        <div class="checkOutAddress">
+                            <p>Hvem skal orden sendes til?</p>
+                            ${model.app.loggedInStatus ? 
+                                '' : 
+                                '<p><span onclick="loginDropDown()">Logg inn </span>eller fortsett under. Du kan opprette en konto etter at du har betalt.</p>'
+                            }
+                            <p>Fornavn: <input type="text" value="${model.inputs.checkOutPage.firstName}" onchange="model.inputs.checkOutPage.firstName = this.value, updateView()"/></p>
+                            <p>Etternavn: <input type="text" value="${model.inputs.checkOutPage.lastName}" onchange="model.inputs.checkOutPage.lastName = this.value, updateView()"/></p>
+                            <p>Addresse: <input type="text" value="${model.inputs.checkOutPage.address}" onchange="model.inputs.checkOutPage.address = this.value, updateView()"/></p>
+                            <p>Zip: <input type="text" value="${model.inputs.checkOutPage.zipCode}" onchange="model.inputs.checkOutPage.zipCode = this.value, updateView()"/></p>
+                            <p>E-post: <input type="text" value="${model.inputs.checkOutPage.email}" onchange="checkValidityOfEmail(this.value)"/></p>
+                            ${model.app.checkOut.invalidEmailOnCheckOutPage ? '<p>Invalid E-post</p>' : ''}
+                            <p>Mobil: <input type="text" value="${model.inputs.checkOutPage.mobile}" onchange="model.inputs.checkOutPage.mobile = this.value, updateView()"/></p>
+                            ${!model.inputs.checkOutPage.firstName ||
+                              !model.inputs.checkOutPage.lastName ||
+                              !model.inputs.checkOutPage.address ||
+                              !model.inputs.checkOutPage.zipCode ||
+                              !model.inputs.checkOutPage.email ||
+                              model.app.checkOut.invalidEmailOnCheckOutPage ||
+                              !model.inputs.checkOutPage.mobile ?
+                                '<p>Fyll ut alle feltene.</p>' :
+                                `<button onclick="model.inputs.checkOutPage.addressFilled = true, updateView()">Fortsett</button>`
+                            }
+                        </div>
+                        ${model.inputs.checkOutPage.addressFilled ?
+                            `
+                               <div class="checkOutDeliveryMethod">
+                                    <p>Velg en leveringsmetode:</p>
+                                    <form>
+                                    <input type="checkbox" id="deliveryOption1" name="deliveryOption1" value="1" onchange= "setDeliveryMethod(this.value)" ${model.inputs.checkOutPage.deliveryMethod.butikk}/>
+                                    <label for="deliveryOption1">Hent i butikk - Gratis</label><br>
+                                    <input type="checkbox" id="deliveryOption2" name="deliveryOption2" value="2" onchange= "setDeliveryMethod(this.value)" ${model.inputs.checkOutPage.deliveryMethod.leveringMedInnbæring}/>
+                                    <label for="deliveryOption2">Levering med innbæring - 400kr</label><br>  
+                                    <input type="checkbox" id="deliveryOption3" name="deliveryOption3" value="3" onchange= "setDeliveryMethod(this.value)" ${model.inputs.checkOutPage.deliveryMethod.leveringUtenInnbæring}/>
+                                    <label for="deliveryOption3">Levering uten innbæring - 200kr</label><br>
+                                    </form>
+                                    ${model.inputs.checkOutPage.selectedDeliveryMethod ?
+                                        `<button onclick="model.inputs.checkOutPage.deliveryMethod.selected = true, updateView()">Fortsett</button>` :
+                                        ''  
+                                    }
+                               </div> 
+                            `:
+                            ''
+                        }
+                        ${model.inputs.checkOutPage.deliveryMethod.selected ?
+                            `
+                                <div class="checkOutPaymentMethod">
+                                    <button>Betal</button>
+
+                                </div>
+                            `: 
+                            ''
+                        }
+                    </div>
+                    <div class="checkOutRightSideContainer">
+                    </div>
+                </div>
+            `;
+
+    return html;
+}

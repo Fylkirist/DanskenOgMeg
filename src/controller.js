@@ -222,7 +222,8 @@ function checkUserIdPassword(){
                 model.app.loggedInStatus= true;
                 model.inputs.login.wrongUserNamePassword = false;
                 model.app.wrongUserNamePasswordMessage = '';
-                model.app.userId == userKeys
+                model.app.userId = userKeys;
+                setUsersDataForCheckOutPage();
                 break;
             }
             else {
@@ -281,24 +282,24 @@ function raiseBid(productId){
     updateView()
 }
 
-function checkLogin()
-{
-    const users = model.data.users;
+// function checkLogin()
+// {
+//     const users = model.data.users;
 
-    for (let userId in users)
-    {
-        const user = users[userId];
-        console.log(model.inputs.login.username)
-        console.log(model.inputs.login.password)
+//     for (let userId in users)
+//     {
+//         const user = users[userId];
+//         console.log(model.inputs.login.username)
+//         console.log(model.inputs.login.password)
 
-        if(model.inputs.login.username === user.username && model.inputs.login.password === user.password)
-        {
-            model.app.loggedInStatus = user.permissions;
-            model.app.userId = userId;
-        }
+//         if(model.inputs.login.username === user.username && model.inputs.login.password === user.password)
+//         {
+//             model.app.loggedInStatus = user.permissions;
+//             model.app.userId = userId;
+//         }
 
-    }
-}
+//     }
+// }
 
 function checkFilterBox(index){
     model.inputs.category.categoryList[index].checked = !model.inputs.category.categoryList[index].checked
@@ -400,19 +401,19 @@ function addSubCategory(){
     updateView()
 }
 
-function toogleLoginDrop(){
-    model.inputs.login.dropdown = !model.inputs.login.dropdown;
-    }
+// function toogleLoginDrop(){
+//     model.inputs.login.dropdown = !model.inputs.login.dropdown;
+//     }
 
-function deleteCategory(index){
-    if(index == 0){
-        model.inputs.createSale.categoryList[0] = ""
-    }
-    else{
-        model.inputs.createSale.categoryList.splice(index,1)
-    }
-    updateView()
-}
+// function deleteCategory(index){
+//     if(index == 0){
+//         model.inputs.createSale.categoryList[0] = ""
+//     }
+//     else{
+//         model.inputs.createSale.categoryList.splice(index,1)
+//     }
+//     updateView()
+// }
 
 function insertImage(){
     if(!model.inputs.createSale.images.includes(model.inputs.createSale.addImage)){
@@ -485,3 +486,62 @@ function changePriceLevels(value){
 let priceLimits = determinePriceLimits()
 model.inputs.category.priceRange.max = priceLimits.max
 model.inputs.category.priceRange.min = priceLimits.min
+
+
+
+
+
+
+function checkValidityOfEmail(emailToCheck){
+    emailToCheck = emailToCheck.trim();
+    const pattern = /^[(\w)+]+\.?([(\w)+]+)?@[\w+]+\.[\w+]+$/i;
+    if(pattern.test(emailToCheck)) {
+        model.app.checkOut.invalidEmailOnCheckOutPage = false;
+        model.inputs.checkOutPage.email = emailToCheck;
+    }
+    else {
+        model.app.checkOut.invalidEmailOnCheckOutPage = true;
+        model.inputs.checkOutPage.email = emailToCheck;
+    }
+    updateView();
+}
+function setUsersDataForCheckOutPage(){
+    for(let usersId in model.data.users){
+        if(usersId == model.app.userId && usersId != "0000001"){
+            model.inputs.checkOutPage.firstName = model.data.users[usersId].firstname;
+            model.inputs.checkOutPage.lastName = model.data.users[usersId].surname;
+            model.inputs.checkOutPage.address = model.data.users[usersId].address;
+            model.inputs.checkOutPage.email = model.data.users[usersId].email;
+            model.inputs.checkOutPage.mobile = model.data.users[usersId].mobile;
+            break;
+        }
+        else {
+            model.inputs.checkOutPage.firstName = '';
+            model.inputs.checkOutPage.lastName = '';
+            model.inputs.checkOutPage.address = '';
+            model.inputs.checkOutPage.email = '';
+            model.inputs.checkOutPage.mobile = '';
+        }
+    }
+}
+function setDeliveryMethod(deliveryType){
+    model.inputs.checkOutPage.selectedDeliveryMethod = deliveryType;
+    switch(deliveryType){
+        case '1':
+            model.inputs.checkOutPage.deliveryMethod.butikk = 'checked';
+            model.inputs.checkOutPage.deliveryMethod.leveringMedInnbæring = '';
+            model.inputs.checkOutPage.deliveryMethod.leveringUtenInnbæring = '';
+            break;
+        case '2':
+            model.inputs.checkOutPage.deliveryMethod.butikk = '';
+            model.inputs.checkOutPage.deliveryMethod.leveringMedInnbæring = 'checked';
+            model.inputs.checkOutPage.deliveryMethod.leveringUtenInnbæring = '';
+            break;
+        case '3':
+            model.inputs.checkOutPage.deliveryMethod.butikk = '';
+            model.inputs.checkOutPage.deliveryMethod.leveringMedInnbæring = '';
+            model.inputs.checkOutPage.deliveryMethod.leveringUtenInnbæring = 'checked';
+            break;
+    }
+    updateView();
+}
