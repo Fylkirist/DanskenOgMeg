@@ -263,8 +263,7 @@ function showFilteredProducts(){
 
 function editUserPage(){
     let html = ""
-    for(let i = 0; model.data.users.length; i++){
-       /*html*/ ` 
+      return  /*html*/ ` 
        <div class = "containerDiv">
             <div id = "persoinalInfo">
                 <div id = firstLast>
@@ -302,7 +301,7 @@ function editUserPage(){
                 </div>
                 <div id = "changePassword">
                     <input id = "currentPassword" type = "password" placeholder = "Passord"
-                        oninput = "model.inputs.register.password = this.value>
+                        oninput = "model.inputs.register.password = this.value">
                     <input id = "newPassword" type = "password" placeholder = "Ny passord"
                         oninput = "model.inputs.register.repeatPassword = this.value">
                     <button id= "passwordConfirm" onclick = "oppdaterPersonalia('byttPassord')">Confirm</button>
@@ -311,11 +310,8 @@ function editUserPage(){
         </div>
 
 
-
-
-
         `
-    }
+    
     
     
 
