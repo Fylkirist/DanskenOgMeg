@@ -351,20 +351,30 @@ function changeView(view){
 function createProduct(){
     const newProduct = {
         title: model.inputs.createSale.title,
-        id: model.data.items.length +1,
+        id: model.inputs.createSale.newId,
         description: model.inputs.createSale.description,
         price:model.inputs.createSale.price,
-        minimumBid:model.inputs.createSale.minimumBid,
-        minimumBidAmmount:model.inputs.createSale.minimumBidAmmount,
-        auction:  model.inputs.createSale.auction,
-        deadline:model.inputs.createSale.deadline,
-        images: [],
+        minBid:model.inputs.createSale.minimumBidAmmount,
+        auction: model.inputs.createSale.auction,
+        deadline: model.inputs.createSale.deadline,
         deliver:model.inputs.createSale.deliver,
         frontPage: model.inputs.createSale.frontPage,
         category: model.inputs.createSale.categoryList,
-        mainImage: model.inputs.createSale.mainImage,
-        images : model.inputs.createSale.images,
+        images : model.inputs.createSale.images.map(elem => elem),
         inStock :true
+    }
+    for(key in model.inputs.createSale){
+        switch(typeof model.inputs.createSale[key]){
+            case "string":
+                model.inputs.createSale[key] = ""
+                break
+            case "object":
+                model.inputs.createSale[key] = ['']
+                break
+            case "number":
+                model.inputs.createSale[key] = 0
+                break
+        }
     }
     model.data.items.push(newProduct);
     saveMainCategory()
@@ -383,7 +393,7 @@ function saveMainCategory(){
         parentId = model.inputs.category.categoryList.length
         model.inputs.category.categoryList.push({
             id:model.inputs.category.categoryList.length,
-            name:model.inputs.createSale.categoryList[0].name,
+            name:model.inputs.createSale.categoryList[0],
             parent:-1,
             checked:false
         })
