@@ -276,11 +276,13 @@ function editUserPage(){
                         value = "${model.inputs.register.mobile}" oninput = "model.inputs.register.mobile = this.value">
                     <input id ="emailChangeBox" type = "text" placeholder = "Epost"
                         value = "${model.inputs.register.email}" oninput = "model.inputs.register.email = this.value">
+                        <button onclick="oppdaterPersonalia()">Confirm</button>
                 </div>
                 <div id = adressChange>
                     <input id ="cityNameChangeBox" type = "text" placeholder = "By">
                     <input id ="adressNameChangeBox" type = "text" placeholder = "Adresse">
                     <input id ="zipCode" type = "text" placeholder = "Postkode">
+                    <button onclick="oppdaterPersonalia()">Confirm</button>
                 </div>
                 <div id = "cardInfoBox">
                     <input id = "cardNumber" placeholder = "Kort Nummer">
@@ -292,10 +294,12 @@ function editUserPage(){
                     <input id ="streetName" type = "text" placeholder = "Gate">
                     <input id ="houseNumber" type = "text" placeholder = "Hust / Leilighett Nummer">
                     <input id ="zipCode" type = "text" placeholder = "Postkode">
+                    <button onclick="oppdaterPersonalia()">Confirm</button>
                 </div>
                 <div id = "changePassword">
                     <input id = "currentPassword" type = "text" placeholder = "Passord">
                     <input id = "newPassword" type = "text" placeholder = "Ny passord">
+                    <button onclick="oppdaterPersonalia()">Confirm</button>
             </div>
 
         </div>
