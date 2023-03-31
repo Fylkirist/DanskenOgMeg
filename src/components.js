@@ -279,8 +279,10 @@ function editUserPage(){
                         <button onclick="oppdaterPersonalia('namePhoneEmail')">Confirm</button>
                 </div>
                 <div id = adressChange>
-                    <input id ="cityNameChangeBox" type = "text" placeholder = "By">
-                    <input id ="adressNameChangeBox" type = "text" placeholder = "Adresse">
+                    <input id ="cityNameChangeBox" type = "text" placeholder = "By"
+                        value = "${model.inputs.register.address}" oninput = "model.inputs.register.adress = this.value">
+                    <input id ="adressNameChangeBox" type = "text" placeholder = "Adresse"
+                        >
                     <input id ="zipCode" type = "text" placeholder = "Postkode">
                     <button onclick="oppdaterPersonalia('adresse')">Confirm</button>
                 </div>
