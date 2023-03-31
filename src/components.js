@@ -278,8 +278,10 @@ function editUserPage(){
                         value = "${model.inputs.register.email}" oninput = "model.inputs.register.email = this.value">
                 </div>
                 <div id = adressChange>
-                    <input id ="cityNameChangeBox" type = "text" placeholder = "By">
-                    <input id ="adressNameChangeBox" type = "text" placeholder = "Adresse">
+                    <input id ="cityNameChangeBox" type = "text" placeholder = "By"
+                        value = "${model.inputs.register.address}" oninput = "model.inputs.register.adress = this.value">
+                    <input id ="adressNameChangeBox" type = "text" placeholder = "Adresse"
+                        >
                     <input id ="zipCode" type = "text" placeholder = "Postkode">
                 </div>
                 <div id = "cardInfoBox">
@@ -288,14 +290,10 @@ function editUserPage(){
                     <input id = "cvc" placeholder ="CVC">
                     <input id = "cardFirstName" placeholder = "Fornavn">
                     <input id = "cardLastName" placeholder = "Etternavn">
-                    <input id ="cityName" tupe = "text" placeholder = "By">
-                    <input id ="streetName" type = "text" placeholder = "Gate">
-                    <input id ="houseNumber" type = "text" placeholder = "Hust / Leilighett Nummer">
-                    <input id ="zipCode" type = "text" placeholder = "Postkode">
                 </div>
                 <div id = "changePassword">
-                    <input id = "currentPassword" type = "text" placeholder = "Passord">
-                    <input id = "newPassword" type = "text" placeholder = "Ny passord">
+                    <input id = "currentPassword" type = "password" placeholder = "Passord">
+                    <input id = "newPassword" type = "password" placeholder = "Ny passord">
             </div>
 
         </div>
