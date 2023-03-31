@@ -292,17 +292,22 @@ function oppdaterPersonalia(verdi){
         }
     }
     if (verdi === 'cardInfo') {
-        if(model.inputs.register.cardNumber !== ""){
-            model.data.users[model.app.userId].address = model.inputs.register.address;
-        }
-        if(model.inputs.register.city !== ""){
-            model.data.users[model.app.userId].city = model.inputs.register.city;
-        
-        }
-        if(model.inputs.register.zip !== ""){
-            model.data.users[model.app.userId].zip = model.inputs.register.zip;
+        const verdien = model.inputs.register;
+
+        if(verdien.cardNumber !== "" && verdien.toDate !== "" && verdien.firstName !== "" && verdien.lastName !== ""){
+            model.data.users[model.app.userId].paymentInformation.cardNumber = verdien.cardNumber;
+            model.data.users[model.app.userId].paymentInformation.expirationDate = verdien.toDate;
+            model.data.users[model.app.userId].paymentInformation.cardHolderFastName = verdien.firstName;
+            model.data.users[model.app.userId].paymentInformation.cardHolderLastName = verdien.lastName;
         }
     }
-    
+    if (verdi === 'byttPassord'){
 
+        if(model.inputs.register.password === model.data.users[model.app.userId].password){
+
+            model.data.users[model.app.userId].password = model.inputs.register.repeatPassword;
+
+        }
+
+    }
 }
