@@ -261,7 +261,48 @@ let priceLimits = determinePriceLimits()
 model.inputs.category.priceRange.max = priceLimits.max
 model.inputs.category.priceRange.min = priceLimits.min
 
-function oppdaterPersonalia(){
-
+function oppdaterPersonalia(verdi){
     
+    if (verdi === 'namePhoneEmail') {
+        if(model.inputs.register.firstName !== ""){
+            model.data.users[model.app.userId].firstName = model.inputs.register.firstName;
+        }
+        if(model.inputs.register.lastName !== ""){
+            model.data.users[model.app.userId].lastName = model.inputs.register.lastName;
+        
+        }
+        if(model.inputs.register.mobile !== ""){
+            model.data.users[model.app.userId].mobile = model.inputs.register.mobile;
+        }
+        if(model.inputs.register.email !== ""){
+            model.data.users[model.app.userId].email = model.inputs.register.email;
+            ;
+        }
+    }
+    if (verdi === 'adresse') {
+        if(model.inputs.register.address !== ""){
+            model.data.users[model.app.userId].address = model.inputs.register.address;
+        }
+        if(model.inputs.register.city !== ""){
+            model.data.users[model.app.userId].city = model.inputs.register.city;
+        
+        }
+        if(model.inputs.register.zip !== ""){
+            model.data.users[model.app.userId].zip = model.inputs.register.zip;
+        }
+    }
+    if (verdi === 'cardInfo') {
+        if(model.inputs.register.cardNumber !== ""){
+            model.data.users[model.app.userId].address = model.inputs.register.address;
+        }
+        if(model.inputs.register.city !== ""){
+            model.data.users[model.app.userId].city = model.inputs.register.city;
+        
+        }
+        if(model.inputs.register.zip !== ""){
+            model.data.users[model.app.userId].zip = model.inputs.register.zip;
+        }
+    }
+    
+
 }
