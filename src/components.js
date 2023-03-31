@@ -262,20 +262,19 @@ function showFilteredProducts(){
 }
 
 function editUserPage(){
-    let html = ""
-    for(let i = 0; model.data.users.length; i++){
+        let html = ""
       return  /*html*/ ` 
        <div class = "containerDiv">
             <div id = "persoinalInfo">
                 <div id = firstLast>
                     <input id ="firstNameChangeBox" type = "text" placeholder = "Fornavn"
-                        value  = "${model.data.users[model.app.userId].firstName}" oninput = "model.inputs.register.firstName = this.value">
+                        value  = "${model.data.users[model.app.userId].firstname}" oninput = "model.inputs.register.firstName = this.value">
                     <input id ="lastNameChangeBox" type = "text" placeholder = "Etternavn"
-                        value = "${model.inputs.register.lastName}" oninput = "model.inputs.register.lastName = this.value">
+                        value = "${model.data.users[model.app.userId].surname}" oninput = "model.inputs.register.lastName = this.value">
                     <input id ="phoneNumberChangeBox" type = "text" placeholder = "Telefon Nummer"
-                        value = "${model.inputs.register.mobile}" oninput = "model.inputs.register.mobile = this.value">
+                        value = "${model.data.users[model.app.userId].mobile}" oninput = "model.inputs.register.mobile = this.value">
                     <input id ="emailChangeBox" type = "text" placeholder = "Epost"
-                        value = "${model.inputs.register.email}" oninput = "model.inputs.register.email = this.value">
+                        value = "${model.data.users[model.app.userId].email}" oninput = "model.inputs.register.email = this.value">
                         <button id = "personalInfoConfirm" onclick = "oppdaterPersonalia('namePhoneEmail')">Confirm</button>
                 </div>
                 <div id = addressChange>
@@ -315,11 +314,6 @@ function editUserPage(){
 
 
         `
-    }
+ }
     
     
-
-
-
-
-}

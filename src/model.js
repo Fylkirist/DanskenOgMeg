@@ -3,7 +3,7 @@ const model = {
         currentView:'frontPage',
         loggedInStatus: false,
         wrongUserNamePasswordMessage: '',
-        userId:false,
+        userId:"0000002",
         zoomedPic:false,
         currentProduct:false,
         frontPageCurrentShowing:{
