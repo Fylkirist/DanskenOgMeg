@@ -632,7 +632,7 @@ function checkOut(){
                             <p>Addresse: <input type="text" value="${model.inputs.checkOutPage.address}" onchange="model.inputs.checkOutPage.address = this.value, updateView()"/></p>
                             <p>Zip: <input type="text" value="${model.inputs.checkOutPage.zipCode}" onchange="model.inputs.checkOutPage.zipCode = this.value, updateView()"/></p>
                             <p>E-post: <input type="text" value="${model.inputs.checkOutPage.email}" onchange="checkValidityOfEmail(this.value)"/></p>
-                            ${model.app.checkOut.invalidEmailOnCheckOutPage ? '<p>Invalid E-post</p>' : ''}
+                            ${model.app.checkOut.invalidEmailOnCheckOutPage ? '<p style="color: red;">Invalid E-post</p>' : ''}
                             <p>Mobil: <input type="text" value="${model.inputs.checkOutPage.mobile}" onchange="model.inputs.checkOutPage.mobile = this.value, updateView()"/></p>
                             ${!model.inputs.checkOutPage.firstName ||
                               !model.inputs.checkOutPage.lastName ||
@@ -641,7 +641,7 @@ function checkOut(){
                               !model.inputs.checkOutPage.email ||
                               model.app.checkOut.invalidEmailOnCheckOutPage ||
                               !model.inputs.checkOutPage.mobile ?
-                                '<p>Fyll ut alle feltene.</p>' :
+                                '<p style="color: red;">Fyll ut alle feltene.</p>' :
                                 `<button onclick="model.inputs.checkOutPage.addressFilled = true, updateView()">Fortsett</button>`
                             }
                         </div>
