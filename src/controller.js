@@ -61,7 +61,7 @@ function logout(){
     model.app.userId = false
     model.app.loggedInStatus = false
     model.inputs.profileMenuShowing = false
-    updateView()
+    changeView("frontPage")
 }
 
 function trekkBud(itemsId, usersId){
@@ -91,7 +91,7 @@ function increaseBid(itemsId, usersId, usersMaximumBid, newBud){
             }
         }
     }
-        updateView();
+    updateView();
 }
 
 function registerUser() {
