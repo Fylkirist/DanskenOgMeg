@@ -288,7 +288,7 @@ function editUserPage(){
                 </div>
                 <div id = "cardInfoBox">
                     <input id = "cardNumber" placeholder = "Kort Nummer"
-                        value = "${model.inputs.register.cardNumber}" oninput = "model.inputs.register.carNumber = this.value">
+                        value = "${model.inputs.register.cardNumber}" oninput = "model.inputs.register.carNumber = this.value" onchange="isValid(this.value)>
                     <input id = "expirationDate" placeholder = "Utløps Dato"
                         value = "${model.inputs.register.toDate}" oninput = "model.inputs.register.toDate = this.value">
                     <input id = "cvc" placeholder ="CVC"
