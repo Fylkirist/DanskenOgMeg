@@ -263,12 +263,13 @@ function showFilteredProducts(){
 
 function editUserPage(){
     let html = ""
+    for(let i = 0; model.data.users.length; i++){
       return  /*html*/ ` 
        <div class = "containerDiv">
             <div id = "persoinalInfo">
                 <div id = firstLast>
                     <input id ="firstNameChangeBox" type = "text" placeholder = "Fornavn"
-                        value  = "${model.inputs.register.firstName}" oninput = "model.inputs.register.firstName = this.value">
+                        value  = "${model.data.users[model.app.userId].firstName}" oninput = "model.inputs.register.firstName = this.value">
                     <input id ="lastNameChangeBox" type = "text" placeholder = "Etternavn"
                         value = "${model.inputs.register.lastName}" oninput = "model.inputs.register.lastName = this.value">
                     <input id ="phoneNumberChangeBox" type = "text" placeholder = "Telefon Nummer"
@@ -301,7 +302,7 @@ function editUserPage(){
                 </div>
                 <div id = "changePassword">
                     <input id = "currentPassword" type = "password" placeholder = "Passord"
-                        oninput = "model.inputs.register.password = this.value">
+                        oninput = "model.inputs.register.password = this.value>
                     <input id = "newPassword" type = "password" placeholder = "Ny passord"
                         oninput = "model.inputs.register.repeatPassword = this.value">
                     <button id= "passwordConfirm" onclick = "oppdaterPersonalia('byttPassord')">Confirm</button>
@@ -310,8 +311,11 @@ function editUserPage(){
         </div>
 
 
+
+
+
         `
-    
+    }
     
     
 
