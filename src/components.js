@@ -1,5 +1,5 @@
 function profileMenuComponent() {
-    let html = `<div class="profileMenuContainer">
+    let html = `<div class="profileMenuContainer" onmouseleave = "retractDropDown()">
                 <button class="dropdownKnapp" onclick="toggleProfileMenuDropDown()"><h2>Meny</h2></button>` 
     if(!model.inputs.profileMenuShowing){return html+`</div>`}
     if (!model.app.loggedInStatus) {

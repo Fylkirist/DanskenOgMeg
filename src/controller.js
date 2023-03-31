@@ -207,6 +207,11 @@ function goToRegisterPage(){
     updateView()
 }
 
+function retractDropDown(){
+    model.inputs.profileMenuShowing = false
+    updateView()
+}
+
 function doSearch() {
     model.app.currentView = "filteredPage";
     updateView();
