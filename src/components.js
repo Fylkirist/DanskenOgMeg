@@ -268,8 +268,10 @@ function editUserPage(){
        <div class = "containerDiv">
             <div id = "persoinalInfo">
                 <div id = firstLast>
-                    <input id ="firstNameChangeBox" type = "text" placeholder = "Fornavn">
-                    <input id ="lastNameChangeBox" type = "text" placeholder = "Etternavn">
+                    <input id ="firstNameChangeBox" type = "text" placeholder = "Fornavn"
+                        value  = "${model.inputs.register.firstName}" oninput = "model.inputs.register.firstName = this.value">
+                    <input id ="lastNameChangeBox" type = "text" placeholder = "Etternavn"
+                        value = "${model.inputs.register.lastName}" oninput = >
                     <input id ="phoneNumberChangeBox" type = "text" placeholder = "Telefon Nummer">
                     <input id ="emailChangeBox" type = "text" placeholder = "Epost">
                 </div>
