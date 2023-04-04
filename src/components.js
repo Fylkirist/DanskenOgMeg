@@ -279,16 +279,31 @@ function editUserPage(){
                 </div>
                 <div id = addressChange>
                     <input id ="cityNameChangeBox" type = "text" placeholder = "By"
-                        value = "${model.inputs.register.city}" oninput = "model.inputs.register.city = this.value">
+                        value = "${model.data.users[model.app.userId].city}" oninput = "model.inputs.register.city = this.value">
                     <input id ="adressNameChangeBox" type = "text" placeholder = "Adresse"
-                        value = "${model.inputs.register.address}" oninput = "model.inputs.register.address = this.value">
+                        value = "${model.data.users[model.app.userId].address}" oninput = "model.inputs.register.address = this.value">
                     <input id ="zipCode" type = "text" placeholder = "Postkode"
-                        value = "${model.inputs.register.zip}" oninput = "model.inputs.register.zip = this.value">
+                        value = "${model.data.users[model.app.userId].zip}" oninput = "model.inputs.register.zip = this.value">
                     <button id ="addressConfirm" onclick = "oppdaterPersonalia('adresse')">Confirm</button>
                 </div>
-                <div id = "cardInfoBox">
+               
+                <div id = "changePassword">
+                    <input id = "currentPassword" type = "password" placeholder = "Passord"
+                        oninput = "model.inputs.register.password = this.value">
+                    <input id = "newPassword" type = "password" placeholder = "Ny passord"
+                        oninput = "model.inputs.register.repeatPassword = this.value">
+                    <button id= "passwordConfirm" onclick = "oppdaterPersonalia('byttPassord')">Confirm</button>
+            </div>
+
+        </div>
+        `
+ }
+function paymentInformation(){
+
+}
+     /*<div id = "cardInfoBox">
                     <input id = "cardNumber" placeholder = "Kort Nummer"
-                        value = "${model.inputs.register.cardNumber}" oninput = "model.inputs.register.carNumber = this.value" onchange="isValid(this.value)>
+                        value = "${model.data.users[model.app.userId].paymentInformation.cardNumber}" oninput = "model.inputs.register.carNumber = this.value" onchange="isValid(this.value)>
                     <input id = "expirationDate" placeholder = "Utløps Dato"
                         value = "${model.inputs.register.toDate}" oninput = "model.inputs.register.toDate = this.value">
                     <input id = "cvc" placeholder ="CVC"
@@ -298,22 +313,4 @@ function editUserPage(){
                     <input id = "cardLastName" placeholder = "Etternavn"
                         value = "${model.inputs.register.lastName}" oninput = "model.inputs.register.lastName = this.value">
                     <button id = "cardConfirm" onclick = "oppdaterPersonalia('cardInfo')">Confirm</button>
-                </div>
-                <div id = "changePassword">
-                    <input id = "currentPassword" type = "password" placeholder = "Passord"
-                        oninput = "model.inputs.register.password = this.value>
-                    <input id = "newPassword" type = "password" placeholder = "Ny passord"
-                        oninput = "model.inputs.register.repeatPassword = this.value">
-                    <button id= "passwordConfirm" onclick = "oppdaterPersonalia('byttPassord')">Confirm</button>
-            </div>
-
-        </div>
-
-
-
-
-
-        `
- }
-    
-    
+                </div> */
