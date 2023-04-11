@@ -298,7 +298,7 @@ function editUserPage(){
                 <ul>
                     Betalingsinformasjon:
                     ${model.data.users[model.app.userId].paymentInformation.map((payment, i) => /*html*/`
-                        <li>
+                        <div>
                             Kortnummer: ${payment.cardNumber}<br>
                             Utløpsdato: ${payment.expirationDate}<br>
                             Kortholders fornavn: ${payment.cardHolderFirstName}<br>
@@ -307,7 +307,7 @@ function editUserPage(){
                             Adresse: ${payment.address}<br>
                             Postnummer: ${payment.zip}<br>
                             <button onclick = deleteCard(${i})>Slett Kort</button>
-                        </li>
+                        </div>
                     `).join('')}
                 </ul>
             </div>
