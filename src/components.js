@@ -294,23 +294,48 @@ function editUserPage(){
                         oninput = "model.inputs.register.repeatPassword = this.value">
                     <button id= "passwordConfirm" onclick = "oppdaterPersonalia('byttPassord')">Confirm</button>
             </div>
+            <div id = "cardInfoBox">
+                <ul>
+                    Betalingsinformasjon:
+                    ${model.data.users[model.app.userId].paymentInformation.map((payment, i) => /*html*/`
+                        <li>
+                            Kortnummer: ${payment.cardNumber}<br>
+                            Utløpsdato: ${payment.expirationDate}<br>
+                            Kortholders fornavn: ${payment.cardHolderFirstName}<br>
+                            Kortholders etternavn: ${payment.cardHolderLastName}<br>
+                            By: ${payment.city}<br>
+                            Adresse: ${payment.address}<br>
+                            Husnummer: ${payment.houseNumber}<br>
+                            Postnummer: ${payment.zip}<br>
+                            <button onclick = deleteCard(${i})>Slett Kort</button>
+                        </li>
+                    `).join('')}
+                </ul>
+            </div>
+            <div id = "cardAddBox">
+                    <input id = "cardNumber" placeholder = "Kort Nummer"
+                         oninput = "model.inputs.register.carNumber = this.value">
+                    <input id = "expirationDate" placeholder = "Utløps Dato" type = "date"
+                         oninput = "model.inputs.register.toDate = this.value">
+                    <input id = "cvc" placeholder ="CVC"
+                         oninput = "model.inputs.register.cvc = this.value">
+                    <input id = "cardFirstName" placeholder = "Fornavn"
+                         oninput = "model.inputs.register.firstName = this.value">
+                    <input id = "cardLastName" placeholder = "Etternavn"
+                         oninput = "model.inputs.register.lastName = this.value">
+                    <input id ="cardCityNameChangeBox"  placeholder = "By"
+                         oninput = "model.inputs.register.city = this.value">
+                    <input id ="cardAdressNameChangeBox"  placeholder = "Adresse"
+                         oninput = "model.inputs.register.address = this.value">
+                    <input id ="CardZipCode"  placeholder = "Postkode"
+                         oninput = "model.inputs.register.zip = this.value">
+                    <button id = "cardConfirm" onclick = "addBankCard()">Confirm</button>
+                </div> 
 
         </div>
+       
+       
         `
  }
-function paymentInformation(){
 
-}
-     /*<div id = "cardInfoBox">
-                    <input id = "cardNumber" placeholder = "Kort Nummer"
-                        value = "${model.data.users[model.app.userId].paymentInformation.cardNumber}" oninput = "model.inputs.register.carNumber = this.value" onchange="isValid(this.value)>
-                    <input id = "expirationDate" placeholder = "Utløps Dato"
-                        value = "${model.inputs.register.toDate}" oninput = "model.inputs.register.toDate = this.value">
-                    <input id = "cvc" placeholder ="CVC"
-                        value = "${model.inputs.register.cvc}" oninput = "model.inputs.register.cvc = this.value">
-                    <input id = "cardFirstName" placeholder = "Fornavn"
-                        value = "${model.inputs.register.firstName}" oninput = "model.inputs.register.firstName = this.value">
-                    <input id = "cardLastName" placeholder = "Etternavn"
-                        value = "${model.inputs.register.lastName}" oninput = "model.inputs.register.lastName = this.value">
-                    <button id = "cardConfirm" onclick = "oppdaterPersonalia('cardInfo')">Confirm</button>
-                </div> */
+    

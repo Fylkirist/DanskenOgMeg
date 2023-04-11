@@ -294,11 +294,16 @@ function oppdaterPersonalia(verdi){
     if (verdi === 'cardInfo') {
         const verdien = model.inputs.register;
 
-        if(verdien.cardNumber !== "" && verdien.toDate !== "" && verdien.firstName !== "" && verdien.lastName !== ""){
+        if(verdien.cardNumber !== "" && verdien.toDate !== "" && verdien.firstName !== "" && verdien.lastName !== "" 
+        && verdien.city !== "" && verdien.zip !== "" && verdien.address !== "" && verdien.cvc !== ""){
             model.data.users[model.app.userId].paymentInformation.cardNumber = verdien.cardNumber;
             model.data.users[model.app.userId].paymentInformation.expirationDate = verdien.toDate;
             model.data.users[model.app.userId].paymentInformation.cardHolderFastName = verdien.firstName;
             model.data.users[model.app.userId].paymentInformation.cardHolderLastName = verdien.lastName;
+            model.data.users[model.app.userId].paymentInformation.city = verdien.city;
+            model.data.users[model.app.userId].paymentInformation.zip = verdien.zip;
+            model.data.users[model.app.userId].paymentInformation.address = verdien.address;
+            model.data.users[model.app.userId].paymentInformation.cvc = verdien.cvc;
         }
     }
     if (verdi === 'byttPassord'){
@@ -310,4 +315,13 @@ function oppdaterPersonalia(verdi){
         }
 
     }
+}
+
+function deleteCard(index){
+    model.data.users[model.app.userId].paymentInformation.splice(index, 1);
+    }
+
+function addBankCard(){
+
+    
 }

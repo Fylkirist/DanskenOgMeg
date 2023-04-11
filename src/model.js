@@ -144,6 +144,8 @@ const model = {
                         address:"Grove Street",
                         houseNumber:"69",
                         zip:"6969",
+                        cvc:"123",
+                        city: "Los Santos"
                     },
                 ],
                 messages:[
