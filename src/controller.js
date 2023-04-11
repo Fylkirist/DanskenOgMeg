@@ -25,6 +25,8 @@ function addToShoppingCart(productId){
 
 // New controller functions
 
+// Add setUsersDataForCheckOutPage() function call in checkUserIdPassword() function just before break in master.
+
 
 function checkValidityOfEmail(emailToCheck){
     emailToCheck = emailToCheck.trim();
