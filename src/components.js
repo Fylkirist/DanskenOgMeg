@@ -268,9 +268,9 @@ function editUserPage(){
             <div id = "persoinalInfo">
                 <div id = firstLast>
                     <input id ="firstNameChangeBox" type = "text" placeholder = "Fornavn"
-                        value  = "${model.data.users[model.app.userId].firstname}" oninput = "model.inputs.register.firstName = this.value">
+                        value  = "${model.data.users[model.app.userId].firstName}" oninput = "model.inputs.register.firstName = this.value">
                     <input id ="lastNameChangeBox" type = "text" placeholder = "Etternavn"
-                        value = "${model.data.users[model.app.userId].surname}" oninput = "model.inputs.register.lastName = this.value">
+                        value = "${model.data.users[model.app.userId].surName}" oninput = "model.inputs.register.lastName = this.value">
                     <input id ="phoneNumberChangeBox" type = "text" placeholder = "Telefon Nummer"
                         value = "${model.data.users[model.app.userId].mobile}" oninput = "model.inputs.register.mobile = this.value">
                     <input id ="emailChangeBox" type = "text" placeholder = "Epost"
@@ -313,7 +313,7 @@ function editUserPage(){
             </div>
             <div id = "cardAddBox">
                     <input id = "cardNumber" placeholder = "Kort Nummer"
-                         oninput = "model.inputs.register.carNumber = this.value">
+                         oninput = "model.inputs.register.cardNumber = this.value">
                     <input id = "expirationDate" placeholder = "Utløps Dato" type = "date"
                          oninput = "model.inputs.register.toDate = this.value">
                     <input id = "cvc" placeholder ="CVC"

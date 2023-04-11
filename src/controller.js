@@ -268,7 +268,7 @@ function oppdaterPersonalia(verdi){
             model.data.users[model.app.userId].firstName = model.inputs.register.firstName;
         }
         if(model.inputs.register.lastName !== ""){
-            model.data.users[model.app.userId].lastName = model.inputs.register.lastName;
+            model.data.users[model.app.userId].surName = model.inputs.register.lastName;
         
         }
         if(model.inputs.register.mobile !== ""){
@@ -298,8 +298,8 @@ function oppdaterPersonalia(verdi){
         && verdien.city !== "" && verdien.zip !== "" && verdien.address !== "" && verdien.cvc !== ""){
             model.data.users[model.app.userId].paymentInformation.cardNumber = verdien.cardNumber;
             model.data.users[model.app.userId].paymentInformation.expirationDate = verdien.toDate;
-            model.data.users[model.app.userId].paymentInformation.cardHolderFastName = verdien.firstName;
-            model.data.users[model.app.userId].paymentInformation.cardHolderLastName = verdien.lastName;
+            model.data.users[model.app.userId].paymentInformation.cardHolderFastName = verdien.firstname;
+            model.data.users[model.app.userId].paymentInformation.cardHolderLastName = verdien.lastname;
             model.data.users[model.app.userId].paymentInformation.city = verdien.city;
             model.data.users[model.app.userId].paymentInformation.zip = verdien.zip;
             model.data.users[model.app.userId].paymentInformation.address = verdien.address;
