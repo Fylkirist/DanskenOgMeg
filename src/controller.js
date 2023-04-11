@@ -322,6 +322,16 @@ function deleteCard(index){
     }
 
 function addBankCard(){
-
-    
+    let cardInfoAdd = {
+        cardNumber:model.inputs.register.cardNumber ,
+        expirationDate:model.inputs.register.toDate,
+        cardHolderFirstName:model.inputs.register.firstName,
+        cardHolderLastName:model.inputs.register.lastName,
+        address:model.inputs.register.address,
+        zip:model.inputs.register.zip,
+        cvc:model.inputs.register.cvc,
+        city:model.inputs.register.city 
+    }
+    model.data.users[model.app.userId].paymentInformation.push(cardInfoAdd);
 }
+    

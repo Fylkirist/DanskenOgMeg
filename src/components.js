@@ -305,7 +305,6 @@ function editUserPage(){
                             Kortholders etternavn: ${payment.cardHolderLastName}<br>
                             By: ${payment.city}<br>
                             Adresse: ${payment.address}<br>
-                            Husnummer: ${payment.houseNumber}<br>
                             Postnummer: ${payment.zip}<br>
                             <button onclick = deleteCard(${i})>Slett Kort</button>
                         </li>
