@@ -393,8 +393,10 @@ function filterItems(){
 
 function filteredItemsAdmin(){
     let filteredArray = [];
-    for(let j = 0; j < model.data.auctionListe.length; j++){
-        filteredArray.push(eval(model.data.auctionListe[j].itemId));
+    for(let j = 0; j < model.data.items.length; j++){
+        if(model.data.items[j].auction){
+            filteredArray.push(eval(model.data.items[j].id));
+        }
     }
     let anychecked = false
     let storedArray = filteredArray

@@ -646,10 +646,20 @@ function påGåendeBud(){
                 <p>Items</p>
             </div>
             <div>
-                ${generateCategoryElems(-1)}
-            </div>
-            <div>
-                ${filteredItemsAdminAuctionPage()}
+                <div>
+                    ${generateCategoryElems(-1)}
+                </div>
+                <div>
+                    ${filteredItemsAdminAuctionPage()}
+                </div>
+                ${model.inputs.adminAuctionPage.selectedItemId ? 
+                    `
+                    <div>
+                    ${itemOnGoingAuctionDetails()}
+                    </div>`:
+                    ''
+                }
+                
             </div>
             `;
     return html;
@@ -659,11 +669,56 @@ function filteredItemsAdminAuctionPage(){
     let html = '';
     for(let i = 0; i < model.inputs.category.filteredItemsAdmin.length; i++){
         html += `
-                    <div onclick='model.inputs.adminAuctionPage.selectedItemId = ${model.inputs.category.filteredItemsAdmin[i]}'>
+                <div onclick='model.inputs.adminAuctionPage.selectedItemId = ${model.inputs.category.filteredItemsAdmin[i]}; updateView()'>
                     <p>${model.data.items[model.inputs.category.filteredItemsAdmin[i]-1].title}</p>
-                    </div>
+                </div>
                 `;
     }
+    return html;
+}
+function itemOnGoingAuctionDetails(){
+    let html = '';
+    let findAuctionDeadline = new Date(model.data.items[model.inputs.adminAuctionPage.selectedItemId-1].deadline).toLocaleDateString();
+    let highestBid = null;
+    let highestBidGiver= {id: '', name: '', email: '', mobile: ''};
+    model.data.auctionListe.forEach(item =>{
+        if(eval(item.itemId) ==  model.inputs.adminAuctionPage.selectedItemId){
+            for(userId in item.bids){
+                if(item.bids[userId].bid[item.bids[userId].bid.length-1] > highestBid){
+                    highestBid = item.bids[userId].bid[item.bids[userId].bid.length-1];
+                    highestBidGiver.id = userId;
+                }
+            }
+        }
+    });
+    if(!highestBid) return html;
+    for(let userId in model.data.users){
+        if(userId == highestBidGiver.id){
+            highestBidGiver.name = model.data.users[userId].firstname + ' ' + model.data.users[userId].surname;
+            highestBidGiver.email = model.data.users[userId].email;
+            highestBidGiver.mobile = model.data.users[userId].mobile;
+        }
+    }
+    html += `
+            <div>
+                <table border = 1>
+                    <tr>
+                        <th>Bud Frist</th>
+                        <th>Høyeste Bud</th>
+                        <th>Høyeste Bud Giver</th>
+                    </tr>
+                    <tr>
+                        <td>${findAuctionDeadline}</td>
+                        <td>${highestBid}</td>
+                        <td>
+                            Name: ${highestBidGiver.name}
+                            Email: ${highestBidGiver.email}
+                            Mobile: ${highestBidGiver.mobile}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            `;
     return html;
 }
 

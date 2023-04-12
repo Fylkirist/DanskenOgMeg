@@ -14,7 +14,7 @@ const model = {
 
         inputs:{
             adminAuctionPage:{
-                selectedItemId: 2,
+                selectedItemId: null,
             },
             shoppingCart: {
                 items: {
