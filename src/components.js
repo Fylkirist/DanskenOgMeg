@@ -262,6 +262,7 @@ function showFilteredProducts(){
 }
 
 function editUserPage(){
+    setUserInputs()
       return  /*html*/ ` 
        <div class = "containerDiv">
             <div id = "persoinalInfo">
@@ -318,15 +319,15 @@ function editUserPage(){
                     <input id = "cvc" placeholder ="CVC"
                          oninput = "model.inputs.register.cvc = this.value">
                     <input id = "cardFirstName" placeholder = "Fornavn"
-                         oninput = "model.inputs.register.firstName = this.value">
+                         oninput = "model.inputs.register.cardFirstName = this.value">
                     <input id = "cardLastName" placeholder = "Etternavn"
-                         oninput = "model.inputs.register.lastName = this.value">
+                         oninput = "model.inputs.register.cardLastName = this.value">
                     <input id ="cardCityNameChangeBox"  placeholder = "By"
-                         oninput = "model.inputs.register.city = this.value">
+                         oninput = "model.inputs.register.cardCity = this.value">
                     <input id ="cardAdressNameChangeBox"  placeholder = "Adresse"
-                         oninput = "model.inputs.register.address = this.value">
+                         oninput = "model.inputs.register.cardAddress = this.value">
                     <input id ="CardZipCode"  placeholder = "Postkode"
-                         oninput = "model.inputs.register.zip = this.value">
+                         oninput = "model.inputs.register.cardZip = this.value">
                     <button id = "cardConfirm" onclick = "addBankCard()">Confirm</button>
                 </div>
         </div>

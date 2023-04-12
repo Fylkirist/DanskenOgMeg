@@ -335,18 +335,28 @@ function addBankCard(){
     let cardInfoAdd = {
         cardNumber:model.inputs.register.cardNumber ,
         expirationDate:model.inputs.register.toDate,
-        cardHolderFirstName:model.inputs.register.firstName,
-        cardHolderLastName:model.inputs.register.lastName,
-        address:model.inputs.register.address,
-        zip:model.inputs.register.zip,
+        cardHolderFirstName:model.inputs.register.cardFirstName,
+        cardHolderLastName:model.inputs.register.cardLastName,
+        address:model.inputs.register.cardAddress,
+        zip:model.inputs.register.cardZip,
         cvc:model.inputs.register.cvc,
-        city:model.inputs.register.city 
+        city:model.inputs.register.cardCity 
     }
-        if(cardInputs.cardNumber !== "" && cardInputs.toDate !== "" && cardInputs.firstName !== "" && cardInputs.lastName !== "" 
-        && cardInputs.city !== "" && cardInputs.zip !== "" && cardInputs.address !== "" && cardInputs.cvc !== ""){
-            model.data.users[model.app.userId].paymentInformation.push(cardInfoAdd);
-        }else{
-            alert('Du Må Fylle Ut Alt!')
-        }
+    if(cardInputs.cardNumber == "" && cardInputs.toDate == "" && cardInputs.firstName == "" && cardInputs.lastName == "" 
+    && cardInputs.city == "" && cardInputs.zip == "" && cardInputs.address == "" && cardInputs.cvc == ""){  
+        alert('Du Må Fylle Ut Alt!')
+        return
+    }
+    if(!isValid(model.inputs.register.cardNumber)){
+        alert('Ugyldig Kortnummer!')
+        return
+    }
+     model.data.users[model.app.userId].paymentInformation.push(cardInfoAdd);
+}
+
+function setUserInputs(){
+    model.inputs.register.zip = model.data.users[model.app.userId].zip
+    model.inputs.register.
+    model.inputs.register.cardNumber = ''
 }
     
