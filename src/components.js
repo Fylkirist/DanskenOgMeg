@@ -556,45 +556,6 @@ function showZoomedPic(){
     return ``
 }
 
-function showFilterBox(){
-    let priceLimits = determinePriceLimits()
-    return `
-        <div>
-            <h3>Kategorier</h3>
-            <div>
-                ${generateCategoryElems(-1)}
-            </div>
-            <div>
-                <label>Vis auksjonsvarer: </label>
-                <input oninput = "model.inputs.category.filterAuctionCheck = !model.inputs.category.filterAuctionCheck" type = "checkbox" ${model.inputs.category.filterAuctionCheck? "checked":""}/>
-            </div>
-            <div>
-                <label>Vis fastprisvarer: </label>
-                <input onchange = "model.inputs.category.filterNormalCheck = !model.inputs.category.filterNormalCheck" type = "checkbox" ${model.inputs.category.filterNormalCheck? "checked":""}/>
-            </div>
-            <div>
-                <input type = "range" onchange = "changePriceLevels(this.value)" min="${priceLimits.min}" max = "${priceLimits.max}" value = "${model.inputs.category.priceRange.max}"></input>
-                <input type = "text" value = "${priceLimits.min}">
-                <input type = "text" onchange = "changePriceLevels(this.value)" value = "${model.inputs.category.priceRange.max}"></input>
-            </div>
-        </div>`
-}
-
-function generateCategoryElems(parentId){
-    let html = ""
-    for(let i = 0; i<model.inputs.category.categoryList.length; i++){
-        if(model.inputs.category.categoryList[i].parent==parentId){
-            html += `
-                <div>
-                    <label>${model.inputs.category.categoryList[i].name}</label>
-                    <input type = "checkbox" ${model.inputs.category.categoryList[i].checked? "checked":""} onchange = "checkFilterBox(${i})"/>
-                    ${model.inputs.category.categoryList[i].checked? generateCategoryElems(model.inputs.category.categoryList[i].id):""}
-                </div>`
-        }
-    }
-    return html
-}
-
 function showFilteredProducts(){
     model.inputs.category.filteredItems = filterItems()
     let productList = ``
