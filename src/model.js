@@ -42,7 +42,12 @@ const model = {
                 fromDate: '',
                 toDate: '',
                 cvc: '' ,
-                meldingRegister:'',               
+                meldingRegister:'', 
+                cardAddress:'',
+                cardZip:'',
+                cardCity:'',
+                cardFirstName:'',
+                cardLastName:'',              
             },
             login:{
                 username:"",
