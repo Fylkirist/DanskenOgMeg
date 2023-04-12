@@ -3,12 +3,9 @@ const model = {
         currentView:'frontPage',
         loggedInStatus: false,
         wrongUserNamePasswordMessage: '',
-        loggedInUser: {
-            userName: '',
-        userId:false,
+        userId:"0000002",
         zoomedPic:false,
-        currentProduct:false
-        },
+        currentProduct:false,
         frontPageCurrentShowing:{
             top:0,
             bottom:0,
@@ -16,6 +13,20 @@ const model = {
     },
 
         inputs:{
+            shoppingCart: {
+                items: {
+                    canBuyNow: [
+                        {id: "000001"},
+                        {id: "000002"},
+                    ],
+                    auctions: {
+                        usersWinningBids:[],
+                        usersLosingBids:[],
+                        increasedWinningBid: 0,
+                    },
+                },
+                totalPrice: 0,
+            },
             register: {
                 firstName: '',
                 lastName: '',
@@ -30,13 +41,20 @@ const model = {
                 cardNumber: '',
                 fromDate: '',
                 toDate: '',
-                cvc: ''                
+                cvc: '' ,
+                meldingRegister:'', 
+                cardAddress:'',
+                cardZip:'',
+                cardCity:'',
+                cardFirstName:'',
+                cardLastName:'',              
             },
             login:{
                 username:"",
                 password:"",
                 dropdown:false,
                 wrongUserNamePassword: false,
+
             },
             category:{
                 filteredItems:[],
@@ -51,8 +69,10 @@ const model = {
                     {id:1,name:"Bord",parent:0,checked:false},
                     {id:2,name:"Klær",parent:-1,checked:false},
                     {id:3,name:"Hatter",parent:2,checked:false},
+                    {id:4,name:'Småting',parent:-1,checked:false},
+                    {id:5,name:'Tilbehør',parent:4,checked:false},
                 ]     
-            },                                      
+            },
             createSale: {
                 title:'',
                 description:'',
@@ -74,32 +94,43 @@ const model = {
                 input:'',
                 
             },
+            profileMenuShowing:false,
             product:{
-                bidIncrease:""
+                bidIncrease:"",
+                adminBidIncrease:"",
+                adminPriceChange:"",
+                adminAddSubCategory:"",
+                adminChangeMainCategory:""
+
             }
         },
-
     data:{
         frontPageTop:[0],
         frontPageBottom:[1],
         users:{
             "0000001":{
+                id:"0000001",
                 username:"admin",
                 password:"admin",
                 permissions:"admin",
                 firstName:"Elin",
-                surname:"Herlev Christoffersen",
+                surName:"Herlev Christoffersen",
                 address:"GeTOutOfMyVei",
+                city:"Larvik",
+                zip:"1482",
                 email:"example@gmail.com",
                 mobile:'00000000',    
             },
             "0000002":{
-                username:"ikkeadmin",
+                id:"0000002",
+                userName:"ikkeadmin",
                 password:"ikkeadmin",
                 permissions:"user",
                 firstName:"Marie",
-                surname:"benji",
+                surName:"benji",
                 address:"GeTOutOfMyVei",
+                city:"Larvik",
+                zip:"1482",
                 email: 'example@gmail.com',
                 mobile: '00000000',
                 shoppingCart:[
@@ -108,16 +139,7 @@ const model = {
                             quantity:1
                         },
                     ],
-                auctionList:[
-                        {
-                            item:"000002",
-                            bids:[
-                                "0001",
-                                "0024",
-                                "0095"
-                             ]
-                        },
-                    ],
+            
                 paymentInformation:[
                     {
                         cardNumber: "133780082420",
@@ -127,6 +149,8 @@ const model = {
                         address:"Grove Street",
                         houseNumber:"69",
                         zip:"6969",
+                        cvc:"123",
+                        city: "Los Santos"
                     },
                 ],
                 messages:[
@@ -143,49 +167,70 @@ const model = {
         },
         orderHistory: [
             {
-                itemId:000001,
-                sold: true,
+
+                itemId:000003,
+                paid: true,
                 price:'10,000,000',
                 date:'03.01.2023',
                 type: 'direkte',
-                userId: '00000001'
+                userId: '0000001',
+                image : 'assets/kronebilde1.jpg',
+                title: 'Krona Til Drøning'
+            },
+            {
+                itemId:000002,
+                paid: true,
+                price:'10,000,000',
+                date:'03.01.2023',
+                type: 'direkte',
+                userId: '0000001',
+                image : 'assets/kronebilde1.jpg',
+                title: 'Maling til Peter'
             },
         ],
         auctionListe: [
             {
-                itemId: 000002,
-                    bids: {
-                    '0000001': [1000, 10000],
-                },
+                itemId: '000002',
+                bids: {
+                        '0000002': {bid: [1000, 20000], deleted: false},
+                        '0000001': {bid: [1000, 10000], deleted: false}
+                    },
             },
         ],
 
         items:[
             {
-                id: 000001,
+                id: "000001",
                 title: 'Krone til dronningen av England',
                 description: 'ipsum lorem',
                 price: 70000,
                 category:['Småting','Tilbehør'],
                 auction:false,
                 deadline:'2023-03-21T18:21',
-                images:['assets/kronebilde1.png','assets/kronebilde2.png'],
+                images:['assets/kronebilde1.jpg','assets/kronebilde2.jpg'],
                 inStock:true,
                 deliver:true,
-                mainImage: ''
+                mainImage: '',
+                minBid:0
+
             },
             {
-                id: 000002,
+                id: "000002",
                 title: 'auction prime time',
                 description: 'ipsum lorem',
                 price: 5000,
                 category:['Møbler','Stoler'],
                 auction:true,
-                deadline:'2023-03-21T18:21',
-                images:['assets/kronebilde1.png','assets/kronebilde2.png'],
+                deadline:'2024-03-21T18:21',
+                images:['assets/kronebilde1.jpg','assets/kronebilde2.jpg'],
                 inStock:true,
-                deliver:false
+                deliver:false,
+                minBid:0
             },
         ],
+        priceRange: {
+            min: 0,
+            max: 999999,
+        },
     }
 }
