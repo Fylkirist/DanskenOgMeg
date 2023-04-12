@@ -2,7 +2,21 @@ function createPageFooter(){
     let chatBox = `
         <div id = "chatBoxWindow">
             <div id = "chatBox">
-            
+                ${model.app.loggedInStatus?
+                    generateMessageElements()
+                    :`
+                    
+                `}
+            </div>
+            <div>
+                ${model.app.loggedInStatus?`
+                    <div>
+                        <input type = "text" oninput = "model.inputs.chatBox.message = this.value" value = "model.inputs.chatBox.message"/>
+                        <button onclick = "sendMessage()">Send melding</button>
+                    </div>
+                `:`
+                    <div></div>
+                `}
             </div>
         </div>
     ` 
@@ -17,4 +31,10 @@ function createPageFooter(){
             </div>
         </div>
     `
+}
+
+function generateMessageElements(){ 
+    return model.data.users[model.app.loggedInUser].messages.map(item => {
+        return `<div class = "${item.type}ChatElem">${item.type}: ${item.message}</div>`
+    }).join('')
 }

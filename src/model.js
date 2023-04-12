@@ -6,9 +6,9 @@ const model = {
         showChatBox:false,
         loggedInUser: {
             userName: '',
-        userId:false,
-        zoomedPic:false,
-        currentProduct:false
+            userId:false,
+            zoomedPic:false,
+            currentProduct:false
         },
         frontPageCurrentShowing:{
             top:0,
@@ -77,6 +77,9 @@ const model = {
             },
             product:{
                 bidIncrease:""
+            },
+            chatBox:{
+                message:""
             }
         },
 
