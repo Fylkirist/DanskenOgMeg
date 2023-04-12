@@ -1,6 +1,6 @@
 const model = {
     app:{
-        currentView:'frontPage',
+        currentView:'adminAuction',
         loggedInStatus: false,
         wrongUserNamePasswordMessage: '',
         userId:false,
@@ -13,6 +13,9 @@ const model = {
     },
 
         inputs:{
+            adminAuctionPage:{
+                selectedItemId: 2,
+            },
             shoppingCart: {
                 items: {
                     canBuyNow: [
@@ -52,6 +55,7 @@ const model = {
 
             },
             category:{
+                filteredItemsAdmin:[],
                 filteredItems:[],
                 priceRange:{
                     max:0,

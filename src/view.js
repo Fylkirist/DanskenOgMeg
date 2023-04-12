@@ -20,6 +20,9 @@ function updateView(){
         case "shoppingCart":
             app.innerHTML = createHeaderSection() + profileMenuComponent() + showShoppingCart()
             break
+        case "adminAuction":
+            app.innerHTML = profileMenuComponent() + adminAuctionPage()
+            break
     }
 }
 

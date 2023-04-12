@@ -622,70 +622,57 @@ function showFilteredProducts(){
     return container
 }
 
-
-function showFilterBox(){
-    let priceLimits = determinePriceLimits()
-    return `
-        <div id="ShowFilterBoxContainer>
-            <h3 class=">Kategorier</h3>
+function adminAuctionPage(){
+    let html= '';
+    html= `
+            <div>
+                ${påGåendeBud()}
+            </div>
+            <div>
+                ${auksjonerUtløptFrist()}
+            </div>
+            <div>
+                ${alleAuksjonVarer()}
+            </div>
+        `;
+    return html;
+}
+function påGåendeBud(){
+    let html = '';
+    html = `<div>
+                <h2>Pågående Bud</h2>
+            </div>
+            <div>
+                <p>Items</p>
+            </div>
             <div>
                 ${generateCategoryElems(-1)}
             </div>
             <div>
-                <label>Vis auksjonsvarer: </label>
-                <input oninput = "model.inputs.category.filterAuctionCheck = !model.inputs.category.filterAuctionCheck" type = "checkbox" ${model.inputs.category.filterAuctionCheck? "checked":""}/>
+                ${filteredItemsAdminAuctionPage()}
             </div>
-            <div>
-                <label>Vis fastprisvarer: </label>
-                <input onchange = "model.inputs.category.filterNormalCheck = !model.inputs.category.filterNormalCheck" type = "checkbox" ${model.inputs.category.filterNormalCheck? "checked":""}/>
-            </div>
-            <div>
-                <input type = "range" onchange = "changePriceLevels(this.value)" min="${priceLimits.min}" max = "${priceLimits.max}" value = "${model.inputs.category.priceRange.max}"></input>
-                <input type = "text" value = "${priceLimits.min}">
-                <input type = "text" onchange = "changePriceLevels(this.value)" value = "${model.inputs.category.priceRange.max}"></input>
-            </div>
-        </div>`
+            `;
+    return html;
 }
-
-function generateCategoryElems(parentId){
-    let html = ""
-    for(let i = 0; i<model.inputs.category.categoryList.length; i++){
-        if(model.inputs.category.categoryList[i].parent==parentId){
-            html += `
-                <div>
-                    <label>${model.inputs.category.categoryList[i].name}</label>
-                    <input type = "checkbox" ${model.inputs.category.categoryList[i].checked? "checked":""} onchange = "checkFilterBox(${i})"/>
-                    ${model.inputs.category.categoryList[i].checked? generateCategoryElems(model.inputs.category.categoryList[i].id):""}
-                </div>`
-        }
-    }
-    return html
-}
-
-function showFilteredProducts(){
-    model.inputs.category.filteredItems = filterItems()
-    let productList = ``
-    for(let i = 0; i<model.inputs.category.filteredItems.length;i++){
-        productList += `
-            <div class = "filteredProductContainer">
-                <img src = "${model.data.items[model.inputs.category.filteredItems[i]-1].images[0]}"/>
-                <div>
-                    <h3>${model.data.items[model.inputs.category.filteredItems[i]-1].title}</h3>
-                    <br>
-                    <p>${model.data.items[model.inputs.category.filteredItems[i]-1].description}</p>
-                    <br>
-                    <div>
-                        <label>${model.data.items[model.inputs.category.filteredItems[i]-1].price},-</label>
-                        ${!model.data.items[model.inputs.category.filteredItems[i]-1].auction?`<button onclick = "addToShoppingCart('${model.data.items[model.inputs.category.filteredItems[i]-1].id}')">Legg til I handlekurv</button>`:""}
-                        <button onclick = "goToProduct(${i})">Gå til produktside</button>
+function filteredItemsAdminAuctionPage(){
+    model.inputs.category.filteredItemsAdmin = filteredItemsAdmin();
+    let html = '';
+    for(let i = 0; i < model.inputs.category.filteredItemsAdmin.length; i++){
+        html += `
+                    <div onclick='model.inputs.adminAuctionPage.selectedItemId = ${model.inputs.category.filteredItemsAdmin[i]}'>
+                    <p>${model.data.items[model.inputs.category.filteredItemsAdmin[i]-1].title}</p>
                     </div>
-                </div>
-            </div>`
+                `;
     }
-    let container = `
-        <div "filteredProductListContainer">
-            ${productList}
-        </div>`
-    return container
+    return html;
+}
+
+function auksjonerUtløptFrist(){
+    let html = '';
+    return html;
+}
+function alleAuksjonVarer(){
+    let html = '';
+    return html;
 }
 

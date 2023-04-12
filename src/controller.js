@@ -343,141 +343,9 @@ function checkFilterBox(index){
             model.inputs.category.categoryList[i].checked = false
         }
     }
-    
     updateView()
 }
 
-function changeView(view){
-    model.app.currentView = view
-    updateView()
-}
-
-function createProduct(){
-    if(model.inputs.createSale.images.length>0 &&
-        model.inputs.createSale.categoryList.length>0 &&
-        model.inputs.createSale.description != "" &&
-        model.inputs.createSale.title != ""){
-
-            const newProduct = {
-                title: model.inputs.createSale.title,
-                id: model.inputs.createSale.newId,
-                description: model.inputs.createSale.description,
-                price:model.inputs.createSale.price,
-                minBid:model.inputs.createSale.minimumBidAmmount,
-                auction: model.inputs.createSale.auction,
-                deadline: model.inputs.createSale.deadline,
-                deliver:model.inputs.createSale.deliver,
-                frontPage: model.inputs.createSale.frontPage,
-                category: model.inputs.createSale.categoryList,
-                images : model.inputs.createSale.images.map(elem => elem),
-                inStock :true
-            }
-            for(key in model.inputs.createSale){
-                switch(typeof model.inputs.createSale[key]){
-                    case "string":
-                        model.inputs.createSale[key] = ""
-                        break
-                        case "object":
-                            model.inputs.createSale[key] = ['']
-                            break
-                            case "number":
-                                model.inputs.createSale[key] = 0
-                                break
-                            }
-                        }
-                        model.data.items.push(newProduct);
-                        saveMainCategory()
-                        updateView()
-    }
-}
-
-function saveMainCategory(){
-    let parentId;
-    let newParent = false
-    for(let i = 0; i<model.inputs.category.categoryList.length;i++){
-        if(model.inputs.category.categoryList[i].name == model.inputs.createSale.categoryList[0].name && model.inputs.category.categoryList[i].parent == -1){
-            parentId = i
-        }
-    }
-    if(!parentId){
-        newParent = true
-        parentId = model.inputs.category.categoryList.length
-        model.inputs.category.categoryList.push({
-            id:model.inputs.category.categoryList.length,
-            name:model.inputs.createSale.categoryList[0],
-            parent:-1,
-            checked:false
-        })
-    }
-    for(let i = 1; i<model.inputs.createSale.categoryList.length;i++){
-        if(newParent){
-            model.inputs.category.categoryList.push({
-                id: model.inputs.category.categoryList.length,
-                name: model.inputs.createSale.categoryList[i],
-                parent: parentId,
-                checked:false
-            })
-        }
-        else{
-            categoryExists = false
-            for(let j = 0; j<model.inputs.category.categoryList.length; j++){
-                if(model.inputs.category.categoryList[j].parent == parentId && model.inputs.category.categoryList[j].name ==  model.inputs.createSale.categoryList[i]){
-                    categoryExists = true
-                }
-            }
-            if(!categoryExists){
-                model.inputs.category.categoryList.push({
-                    id:model.inputs.category.categoryList.length,
-                    name:model.inputs.createSale.categoryList[i],
-                    parent:parentId,
-                    checked:false
-                })
-            }
-        }
-    }
-}
-
-function addMainCategory(){
-    if(model.inputs.createSale.mainCategory!=''){
-        model.inputs.createSale.categoryList[0] = model.inputs.createSale.mainCategory
-    }
-    model.inputs.createSale.mainCategory = ''
-    updateView()
-}
-
-function addSubCategory(){
-    if(!model.inputs.createSale.categoryList.includes(model.inputs.createSale.subCategory)){
-        model.inputs.createSale.categoryList.push(model.inputs.createSale.subCategory)
-    }
-    model.inputs.createSale.subCategory = ''
-    updateView()
-}
-
-function toogleLoginDrop(){
-    model.inputs.login.dropdown = !model.inputs.login.dropdown;
-    }
-
-function deleteCategory(index){
-    if(index == 0){
-        model.inputs.createSale.categoryList[0] = ""
-    }
-    else{
-        model.inputs.createSale.categoryList.splice(index,1)
-    }
-    updateView()
-}
-
-function insertImage(){
-    if(!model.inputs.createSale.images.includes(model.inputs.createSale.addImage)){
-        model.inputs.createSale.images.push(model.inputs.createSale.addImage)
-    }
-}
-
-function goToProduct(index){
-    model.app.currentView = "productPage"
-    model.app.currentProduct = index
-    updateView()
-}
 
 function filterItems(){
     let filterArray = []
@@ -521,27 +389,31 @@ function filterItems(){
     return filterArray
 }
 
-function determinePriceLimits(){
-    let max = 0
-    for(let i = 0; i<model.data.items.length; i++){
-        if(model.data.items[i].price>max){
-            max = model.data.items[i].price
-        }
-    }
-    let min = max
-    for(let i = 0; i<model.data.items.length; i++){
-        if(model.data.items[i].price<min){
-            min = model.data.items[i].price
-        }
-    }
-    return {max:max,min:min}
-}
 
-function changePriceLevels(value){
-    model.inputs.category.priceRange.max = value
-    updateView()
-}
 
-let priceLimits = determinePriceLimits()
-model.inputs.category.priceRange.max = priceLimits.max
-model.inputs.category.priceRange.min = priceLimits.min
+function filteredItemsAdmin(){
+    let filteredArray = [];
+    for(let j = 0; j < model.data.auctionListe.length; j++){
+        filteredArray.push(eval(model.data.auctionListe[j].itemId));
+    }
+    let anychecked = false
+    let storedArray = filteredArray
+    filteredArray = filteredArray.filter(val => {
+        let included = true
+        for(let i = 0; i<model.inputs.category.categoryList.length; i++){
+            if(model.inputs.category.categoryList[i].checked){anychecked = true}
+            if(model.data.items[val-1].category.includes(model.inputs.category.categoryList[i].name) && model.inputs.category.categoryList[i].checked){
+                included = true
+                break
+            }
+            else{
+                included = false
+            }
+        }
+        return included? val : false
+    })
+    if(!anychecked){
+        filteredArray = storedArray
+    }
+    return filteredArray;
+}
