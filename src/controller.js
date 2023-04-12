@@ -264,56 +264,29 @@ model.inputs.category.priceRange.min = priceLimits.min
 function oppdaterPersonalia(verdi){
     
     if (verdi === 'namePhoneEmail') {
-        if(model.inputs.register.firstName !== ""){
+        if(model.inputs.register.firstName !== "" && model.inputs.register.lastName !== "" 
+        && model.inputs.register.mobile !== "" && model.inputs.register.email !== ""){
             model.data.users[model.app.userId].firstName = model.inputs.register.firstName;
-        }
-        if(model.inputs.register.lastName !== ""){
             model.data.users[model.app.userId].surName = model.inputs.register.lastName;
-        
-        }
-        if(model.inputs.register.mobile !== ""){
             model.data.users[model.app.userId].mobile = model.inputs.register.mobile;
-        }
-        if(model.inputs.register.email !== ""){
             model.data.users[model.app.userId].email = model.inputs.register.email;
-            ;
         }else{
             alert('Du Må Fylle Ut Alt!')
         }
     }
     if (verdi === 'adresse') {
-        if(model.inputs.register.address !== ""){
+        if(model.inputs.register.address !== "" && model.inputs.register.city !== "" && model.inputs.register.zip !== "" ){
             model.data.users[model.app.userId].address = model.inputs.register.address;
-        }
-        if(model.inputs.register.city !== ""){
             model.data.users[model.app.userId].city = model.inputs.register.city;
-        
-        }
-        if(model.inputs.register.zip !== ""){
             model.data.users[model.app.userId].zip = model.inputs.register.zip;
         }else{
             alert('Du Må Fylle Ut Alt!')
         }
     }
     
-    if (verdi === 'cardInfo') {
-        const verdien = model.inputs.register;
-
-        if(verdien.cardNumber !== "" && verdien.toDate !== "" && verdien.firstName !== "" && verdien.lastName !== "" 
-        && verdien.city !== "" && verdien.zip !== "" && verdien.address !== "" && verdien.cvc !== ""){
-            model.data.users[model.app.userId].paymentInformation.cardNumber = verdien.cardNumber;
-            model.data.users[model.app.userId].paymentInformation.expirationDate = verdien.toDate;
-            model.data.users[model.app.userId].paymentInformation.cardHolderFastName = verdien.firstname;
-            model.data.users[model.app.userId].paymentInformation.cardHolderLastName = verdien.lastname;
-            model.data.users[model.app.userId].paymentInformation.city = verdien.city;
-            model.data.users[model.app.userId].paymentInformation.zip = verdien.zip;
-            model.data.users[model.app.userId].paymentInformation.address = verdien.address;
-            model.data.users[model.app.userId].paymentInformation.cvc = verdien.cvc;
-        }
-    }
     if (verdi === 'byttPassord'){
 
-        if(model.inputs.register.password === model.data.users[model.app.userId].password){
+        if(model.inputs.register.password === model.data.users[model.app.userId].password && model.inputs.register.password !== ""){
 
             model.data.users[model.app.userId].password = model.inputs.register.repeatPassword;
 
@@ -327,7 +300,7 @@ function oppdaterPersonalia(verdi){
 function deleteCard(index){
     model.data.users[model.app.userId].paymentInformation.splice(index, 1);
     updateView()
-    }
+}
 
 function addBankCard(){
     const cardInputs = model.inputs.register;
@@ -352,11 +325,27 @@ function addBankCard(){
         return
     }
      model.data.users[model.app.userId].paymentInformation.push(cardInfoAdd);
+
+     setUserInputs()
+     updateView()
 }
 
 function setUserInputs(){
+    model.inputs.register.firstName = model.data.users[model.app.userId].firstName
+    model.inputs.register.lastName = model.data.users[model.app.userId].surName
+    model.inputs.register.mobile = model.data.users[model.app.userId].mobile
+    model.inputs.register.email = model.data.users[model.app.userId].email
+    model.inputs.register.city = model.data.users[model.app.userId].city
     model.inputs.register.zip = model.data.users[model.app.userId].zip
-    model.inputs.register.
+    model.inputs.register.address = model.data.users[model.app.userId].address
+    
     model.inputs.register.cardNumber = ''
+    model.inputs.register.toDate = ''
+    model.inputs.register.cvc = ''
+    model.inputs.register.cardFirstName = ''
+    model.inputs.register.cardLastName = ''
+    model.inputs.register.cardCity = ''
+    model.inputs.register.cardAddress = ''
+    model.inputs.register.cardZip = ''
 }
     
