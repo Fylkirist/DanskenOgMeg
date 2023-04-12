@@ -110,7 +110,7 @@ const model = {
         users:{
             "0000001":{
                 id:"0000001",
-                username:"admin",
+                userName:"admin",
                 password:"admin",
                 permissions:"admin",
                 firstName:"Elin",
