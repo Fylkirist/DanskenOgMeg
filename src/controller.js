@@ -489,9 +489,12 @@ function filterItems(){
           }
     })
     console.log(filterArray)
+    let anychecked = false
+    let storedArray = filterArray
     filterArray = filterArray.filter(val => {
         let included = true
         for(let i = 0; i<model.inputs.category.categoryList.length; i++){
+            if(model.inputs.category.categoryList[i].checked){anychecked = true}
             if(model.data.items[val-1].category.includes(model.inputs.category.categoryList[i].name) && model.inputs.category.categoryList[i].checked){
                 included = true
                 break
@@ -502,6 +505,9 @@ function filterItems(){
         }
         return included? val : false
     })
+    if(!anychecked){
+        filterArray = storedArray
+    }
     console.log(filterArray)
     filterArray = filterArray.filter(val => {
         console.log(val)
