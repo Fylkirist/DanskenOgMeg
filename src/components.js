@@ -711,9 +711,9 @@ function itemOnGoingAuctionDetails(){
                         <td>${findAuctionDeadline}</td>
                         <td>${highestBid}</td>
                         <td>
-                            Name: ${highestBidGiver.name}
-                            Email: ${highestBidGiver.email}
-                            Mobile: ${highestBidGiver.mobile}
+                            Navn: ${highestBidGiver.name}<br/>
+                            E-post: ${highestBidGiver.email}<br/>
+                            Mobil: ${highestBidGiver.mobile}
                         </td>
                     </tr>
                 </table>
