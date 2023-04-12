@@ -267,7 +267,15 @@ adminChatBox(){
     
     <div class = "brukerBoxContainer">
         <div class = "brukerBox">
-            ${model.data.users.}
+            <ul>    
+                Brukere:
+                ${model.data.users(userList => /*html*/ `
+                    <li>
+                    Brukernavn: userList.userName
+                    </li>
+
+                `).join('')}
+            </ul>
         </div>
    
     </div>
