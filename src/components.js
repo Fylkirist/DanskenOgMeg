@@ -5,7 +5,8 @@ function createPageFooter(){
                 ${model.app.loggedInStatus?
                     generateMessageElements()
                     :`
-                    
+                    <div>
+                    </div>
                 `}
             </div>
             <div>
@@ -35,6 +36,6 @@ function createPageFooter(){
 
 function generateMessageElements(){ 
     return model.data.users[model.app.loggedInUser].messages.map(item => {
-        return `<div class = "${item.type}ChatElem">${item.type}: ${item.message}</div>`
+        return `<div class = "${item.type}ChatElem">${item.type == "admin"?"DanskenOgMeg":model.data.users[model.app.loggedInUser].firstName}: ${item.message}</div>`
     }).join('')
 }
