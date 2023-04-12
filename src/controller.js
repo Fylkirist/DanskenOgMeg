@@ -277,6 +277,8 @@ function oppdaterPersonalia(verdi){
         if(model.inputs.register.email !== ""){
             model.data.users[model.app.userId].email = model.inputs.register.email;
             ;
+        }else{
+            alert('Du Må Fylle Ut Alt!')
         }
     }
     if (verdi === 'adresse') {
@@ -289,8 +291,11 @@ function oppdaterPersonalia(verdi){
         }
         if(model.inputs.register.zip !== ""){
             model.data.users[model.app.userId].zip = model.inputs.register.zip;
+        }else{
+            alert('Du Må Fylle Ut Alt!')
         }
     }
+    
     if (verdi === 'cardInfo') {
         const verdien = model.inputs.register;
 
@@ -312,6 +317,8 @@ function oppdaterPersonalia(verdi){
 
             model.data.users[model.app.userId].password = model.inputs.register.repeatPassword;
 
+        }else{
+            alert('Feil Passord!')
         }
 
     }
@@ -322,6 +329,8 @@ function deleteCard(index){
     }
 
 function addBankCard(){
+    const cardInputs = model.inputs.register;
+    
     let cardInfoAdd = {
         cardNumber:model.inputs.register.cardNumber ,
         expirationDate:model.inputs.register.toDate,
@@ -332,6 +341,11 @@ function addBankCard(){
         cvc:model.inputs.register.cvc,
         city:model.inputs.register.city 
     }
-    model.data.users[model.app.userId].paymentInformation.push(cardInfoAdd);
+        if(cardInputs.cardNumber !== "" && cardInputs.toDate !== "" && cardInputs.firstName !== "" && cardInputs.lastName !== "" 
+        && cardInputs.city !== "" && cardInputs.zip !== "" && cardInputs.address !== "" && cardInputs.cvc !== ""){
+            model.data.users[model.app.userId].paymentInformation.push(cardInfoAdd);
+        }else{
+            alert('Du Må Fylle Ut Alt!')
+        }
 }
     
