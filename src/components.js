@@ -679,7 +679,7 @@ function filteredItemsAdminAuctionPage(){
 function itemOnGoingAuctionDetails(){
     let html = '';
     let findAuctionDeadline = new Date(model.data.items[model.inputs.adminAuctionPage.selectedItemId-1].deadline).toLocaleDateString();
-    let highestBid = null;
+    let highestBid = 0;
     let highestBidGiver= {id: '', name: '', email: '', mobile: ''};
     model.data.auctionListe.forEach(item =>{
         if(eval(item.itemId) ==  model.inputs.adminAuctionPage.selectedItemId){
@@ -691,7 +691,7 @@ function itemOnGoingAuctionDetails(){
             }
         }
     });
-    if(!highestBid) return html;
+    // if(!highestBid) return html;
     for(let userId in model.data.users){
         if(userId == highestBidGiver.id){
             highestBidGiver.name = model.data.users[userId].firstname + ' ' + model.data.users[userId].surname;
