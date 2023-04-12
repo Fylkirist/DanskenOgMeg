@@ -353,36 +353,42 @@ function changeView(view){
 }
 
 function createProduct(){
-    const newProduct = {
-        title: model.inputs.createSale.title,
-        id: model.inputs.createSale.newId,
-        description: model.inputs.createSale.description,
-        price:model.inputs.createSale.price,
-        minBid:model.inputs.createSale.minimumBidAmmount,
-        auction: model.inputs.createSale.auction,
-        deadline: model.inputs.createSale.deadline,
-        deliver:model.inputs.createSale.deliver,
-        frontPage: model.inputs.createSale.frontPage,
-        category: model.inputs.createSale.categoryList,
-        images : model.inputs.createSale.images.map(elem => elem),
-        inStock :true
+    if(model.inputs.createSale.images.length>0 &&
+        model.inputs.createSale.categoryList.length>0 &&
+        model.inputs.createSale.description != "" &&
+        model.inputs.createSale.title != ""){
+
+            const newProduct = {
+                title: model.inputs.createSale.title,
+                id: model.inputs.createSale.newId,
+                description: model.inputs.createSale.description,
+                price:model.inputs.createSale.price,
+                minBid:model.inputs.createSale.minimumBidAmmount,
+                auction: model.inputs.createSale.auction,
+                deadline: model.inputs.createSale.deadline,
+                deliver:model.inputs.createSale.deliver,
+                frontPage: model.inputs.createSale.frontPage,
+                category: model.inputs.createSale.categoryList,
+                images : model.inputs.createSale.images.map(elem => elem),
+                inStock :true
+            }
+            for(key in model.inputs.createSale){
+                switch(typeof model.inputs.createSale[key]){
+                    case "string":
+                        model.inputs.createSale[key] = ""
+                        break
+                        case "object":
+                            model.inputs.createSale[key] = ['']
+                            break
+                            case "number":
+                                model.inputs.createSale[key] = 0
+                                break
+                            }
+                        }
+                        model.data.items.push(newProduct);
+                        saveMainCategory()
+                        updateView()
     }
-    for(key in model.inputs.createSale){
-        switch(typeof model.inputs.createSale[key]){
-            case "string":
-                model.inputs.createSale[key] = ""
-                break
-            case "object":
-                model.inputs.createSale[key] = ['']
-                break
-            case "number":
-                model.inputs.createSale[key] = 0
-                break
-        }
-    }
-    model.data.items.push(newProduct);
-    saveMainCategory()
-    updateView()
 }
 
 function saveMainCategory(){
