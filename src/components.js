@@ -262,7 +262,6 @@ function showFilteredProducts(){
 }
 
 function editUserPage(){
-        let html = ""
       return  /*html*/ ` 
        <div class = "containerDiv">
             <div id = "persoinalInfo">
@@ -329,11 +328,8 @@ function editUserPage(){
                     <input id ="CardZipCode"  placeholder = "Postkode"
                          oninput = "model.inputs.register.zip = this.value">
                     <button id = "cardConfirm" onclick = "addBankCard()">Confirm</button>
-                </div> 
-
+                </div>
         </div>
-       
-       
         `
  }
 

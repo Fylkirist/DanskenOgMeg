@@ -319,6 +319,7 @@ function oppdaterPersonalia(verdi){
 
 function deleteCard(index){
     model.data.users[model.app.userId].paymentInformation.splice(index, 1);
+    updateView()
     }
 
 function addBankCard(){
@@ -333,5 +334,6 @@ function addBankCard(){
         city:model.inputs.register.city 
     }
     model.data.users[model.app.userId].paymentInformation.push(cardInfoAdd);
+    updateView()
 }
     
