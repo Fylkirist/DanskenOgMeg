@@ -3,6 +3,7 @@ const model = {
         currentView:'frontPage',
         loggedInStatus: false,
         wrongUserNamePasswordMessage: '',
+        showChatBox:false,
         loggedInUser: {
             userName: '',
         userId:false,
