@@ -260,3 +260,16 @@ function showFilteredProducts(){
         </div>`
     return container
 }
+
+
+adminChatBox(){
+    return /*html*/`
+    
+    <div class = "brukerBoxContainer">
+        <div class = "brukerBox">
+            ${model.data.users.}
+        </div>
+   
+    </div>
+    `
+}
