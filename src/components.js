@@ -271,7 +271,7 @@ adminChatBox(){
                 Brukere:
                 ${model.data.users(userList => /*html*/ `
                     <li>
-                    Brukernavn: userList.userName
+                    Brukernavn: ${userList.userName}
                     </li>
 
                 `).join('')}
