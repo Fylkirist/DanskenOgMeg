@@ -101,7 +101,6 @@ const model = {
                 adminPriceChange:"",
                 adminAddSubCategory:"",
                 adminChangeMainCategory:""
-
             }
         },
     data:{
