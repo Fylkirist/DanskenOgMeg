@@ -18,8 +18,8 @@ function createPageFooter(){
                     </div>
                 `:`
                     <div>
-                        <div id = "chatBoxRegisterButton" onclick = "">Registrer</div>
-                        <div id = "chatBoxLoginButton" onclick = "">Logg inn</div>
+                        <div id = "chatBoxRegisterButton" onclick = "changeView('registerPage')">Registrer</div>
+                        <div id = "chatBoxLoginButton" onclick = "changeView('loginPage')">Logg inn</div>
                     </div>
                 `}
             </div>
@@ -40,7 +40,7 @@ function createPageFooter(){
 
 function generateMessageElements(){ 
     return model.data.users[model.app.loggedInUser].messages.map(item => {
-        return `<div class = "${item.type}ChatElem">${item.type == "admin"?"DanskenOgMeg":model.data.users[model.app.loggedInUser].firstName}: ${item.message}</div>`
+        return `<div class = "${item.type}ChatElem">${item.type == "admin"?"Dansken&Meg":model.data.users[model.app.loggedInUser].firstName}: ${item.message}</div>`
     }).join('')
 }
 
@@ -48,13 +48,13 @@ function createLoginPage(){
     return `
         <div id = "loginPageContainer">
             <div id = "loginPageElement">
-                <div id = "loginPageLogo" onclick = "">Dansken&meg</div>
-                <label>Brukernavn</label>
-                <input type = "text"/>
-                <label>Passord</label>
-                <input type = "text"/>
-                <button>Logg inn</button>
-                <button>Registrer ny bruker</button>
+                <div id = "loginPageLogo" onclick = "toToFrontPage()">Dansken&meg</div>
+                <label id = "loginPageUserLabel">Brukernavn</label>
+                <input oninput = "model.inputs.login.username = this.value" type = "text"/>
+                <label id = "loginPagePassLabel">Passord</label>
+                <input oninput = "model.inputs.login.password = this.value" type = "text"/>
+                <button onclick = "">Logg inn</button>
+                <button onclick = "changeView("registerPage")">Registrer</button>
             </div>
         </div>
     ` 
