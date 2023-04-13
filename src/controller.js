@@ -388,13 +388,17 @@ function filterItems(){
     })
     return filterArray
 }
+function changeView(view){
+    model.app.currentView = view
+    updateView()
+}
 
 
 
 function filteredItemsAdmin(){
     let filteredArray = [];
     for(let j = 0; j < model.data.items.length; j++){
-        if(model.data.items[j].auction){
+        if(model.data.items[j].auction && (new Date(model.data.items[j].deadline) >= new Date())){
             filteredArray.push(eval(model.data.items[j].id));
         }
     }
@@ -420,11 +424,65 @@ function filteredItemsAdmin(){
     return filteredArray;
 }
 function changeDeadlineAdminAuctionPage(itemsIndex, newDeadline){
-    if(new Date(newDeadline) > new Date()){
+    if(new Date(newDeadline) >= new Date()){
         model.data.items[itemsIndex].deadline = new Date(newDeadline).toISOString().substring(0,16);
     }
     else {
         model.data.items[itemsIndex].deadline = model.data.items[itemsIndex].deadline;
     }
     updateView();
+}
+function sendMessageAsAdmin(){
+    model.inputs.adminAuctionPage.userIdsToSendMessage.forEach(usersId => {
+        for(let usersKey in model.data.users){
+            if(usersId == usersKey && usersId != "0000001"){
+                model.data.users[usersKey].messages.push(
+                    {
+                        type:"admin",
+                        message: model.inputs.adminAuctionPage.messageToUsers
+                    }
+                );
+            }
+        }
+    });
+    model.inputs.adminAuctionPage.messageToUsers = '';
+    updateView();
+}
+function findItemsUtløptFrist(){
+    let filteredItems = [];
+    model.data.items.forEach(item => {
+        if(item.auction && (new Date() > new Date(item.deadline))){
+            filteredItems.push(eval(item.id));
+        }
+    });
+    return filteredItems;
+}
+function AddToUsersShoppingCartAdmin(highestBidGiversId){
+    let usersId = '';
+   for(let user in model.data.users){
+    model.inputs.adminAuctionPage.alreadyInShoppingCart = false;
+    if(eval(user) == highestBidGiversId){
+        usersId = user;
+        model.data.users[user].shoppingCart.forEach(items => {
+            if(eval(items.item) == model.inputs.adminAuctionPage.selectedUtløptFristItemsId){
+                model.inputs.adminAuctionPage.alreadyInShoppingCart = true;
+            }
+        });
+    }
+   }
+   if(!model.inputs.adminAuctionPage.alreadyInShoppingCart){
+    let itemsId = '';
+    model.data.items.forEach(item => {
+        if(eval(item.id) == model.inputs.adminAuctionPage.selectedUtløptFristItemsId){
+            itemsId = item.id;
+        }
+    });
+    model.data.users[usersId].shoppingCart.push(
+        {
+            item: itemsId,
+            quantity: 1
+        }
+    );
+   }
+   updateView();
 }

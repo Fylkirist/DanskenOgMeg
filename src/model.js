@@ -15,6 +15,11 @@ const model = {
         inputs:{
             adminAuctionPage:{
                 selectedItemId: null,
+                messageToUsers: '',
+                userIdsToSendMessage: [],
+                itemsUtløptFrist: [],
+                selectedUtløptFristItemsId: null,
+                alreadyInShoppingCart: false,
             },
             shoppingCart: {
                 items: {
@@ -190,6 +195,7 @@ const model = {
                 itemId: '000002',
                 bids: {
                         '0000002': {bid: [1000, 20000], deleted: false},
+                        '0000001': {bid: [1000, 20000], deleted: false},
                     },
             },
         ],
