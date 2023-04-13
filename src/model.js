@@ -14,6 +14,7 @@ const model = {
 
         inputs:{
             adminAuctionPage:{
+                searchInput: '',
                 selectedItemId: null,
                 messageToUsers: '',
                 userIdsToSendMessage: [],
@@ -222,7 +223,7 @@ const model = {
                 price: 5000,
                 category:['Møbler','Stoler'],
                 auction:true,
-                deadline:'2023-03-21T18:21',
+                deadline:'2024-03-21T18:21',
                 images:['assets/kronebilde1.jpg','assets/kronebilde2.jpg'],
                 inStock:true,
                 deliver:false,
