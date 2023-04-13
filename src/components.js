@@ -264,15 +264,26 @@ function showFilteredProducts(){
 
  function adminChatBox(){
     return /*html*/`
-    <div class = "brukerBoxContainer">
+    <div class = "adminBoxContainer">
         <div class = "brukerBox">
               
         ${Object.keys(model.data.users).map((key, i) => /*html*/`
-            <li>
-                Brukernavn : ${model.data.users[key].userName}
-            </li>
+            <ul onclick = "showSelectedChat(${i})">
+                Brukernavn : ${model.data.users[key].username}
+            </ul>
         `).join('')}
             
+        </div>
+
+        <div class = "selectedChatBox">
+        ${()=>
+            {
+                if(model.app.showChatBox = true){
+                    
+                }
+            }
+
+        }
         </div>
     </div>
     `

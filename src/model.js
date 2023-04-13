@@ -6,6 +6,7 @@ const model = {
         userId:"0000002",
         zoomedPic:false,
         currentProduct:false,
+        showChatBox:"",
         frontPageCurrentShowing:{
             top:0,
             bottom:0,
@@ -110,7 +111,7 @@ const model = {
         users:{
             "0000001":{
                 id:"0000001",
-                userName:"admin",
+                username:"admin",
                 password:"admin",
                 permissions:"admin",
                 firstName:"Elin",
@@ -123,7 +124,7 @@ const model = {
             },
             "0000002":{
                 id:"0000002",
-                userName:"ikkeadmin",
+                username:"ikkeadmin",
                 password:"ikkeadmin",
                 permissions:"user",
                 firstName:"Marie",
