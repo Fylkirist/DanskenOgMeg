@@ -650,3 +650,23 @@ function setUserInputs(){
     model.inputs.register.cardAddress = ''
     model.inputs.register.cardZip = ''
 }
+
+function convertTob64(image){
+    return new Promise((resolve,reject)=>{
+        let fr = new FileReader();
+        fr.readAsDataURL(image)
+        fr.onload = () => {
+            resolve(fr.result)
+        }
+        fr.onerror = (error) => {
+            reject(error)
+        }
+    })
+}
+
+async function uploadImg(event){
+    let file = event.target.files[0];
+    let b64 = await convertTob64(file);
+    model.inputs.createSale.images.push(b64)
+    updateView()
+}

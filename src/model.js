@@ -121,7 +121,7 @@ const model = {
             },
             "0000002":{
                 id:"0000002",
-                userName:"ikkeadmin",
+                username:"ikkeadmin",
                 password:"ikkeadmin",
                 permissions:"user",
                 firstName:"Marie",

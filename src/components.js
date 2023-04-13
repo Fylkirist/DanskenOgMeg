@@ -422,10 +422,11 @@ function createSaleView(){
                 <button id = "subCategoryAdd" onclick = "addSubCategory()">Legg til underkategori</button>
             </div>
             <div id = "galleryFrame">Bildegalleri
-                <input value = "${model.inputs.createSale.addImage}" oninput = "model.inputs.createSale.addImage = imageGalleryInput.value" type = "file" id = "galleryInput">
+                <input value = "${model.inputs.createSale.addImage}" oninput = "uploadImg(event)" type = "file" id = "galleryInput">
                 <button id = "addImageButton" onclick = "insertImage()">"Legg til bilde"</button>
+                ${model.inputs.createSale.images.map(img => `<img class = "newProductImageGalleryElement" src = "${img}"></img>`).join('')}
             </div>
-                <input id = "mainPicture" type = "file" value = "${model.inputs.createSale.mainImage}" oninput = "model.inputs.createSale.mainImage = mainPicture.value">
+                <input id = "mainPicture" type = "file" value = "${model.inputs.createSale.mainImage}" oninput = "uploadImg(event)">
             <div class = "checkBoxesCreate">
                 <label id = "aucionLabel">Auksjon: </label>
                 <input type = "checkbox" id = "auctionBox" ${model.inputs.createSale.auction? 'checked':''} onchange = "model.inputs.createSale.auction = !model.inputs.createSale.auction"/>
@@ -591,8 +592,8 @@ function populateCategoryList(id){
 }
 
 function generateMessageElements(){ 
-    return model.data.users[model.app.loggedInUser].messages.map(item => {
-        return `<div class = "${item.type}ChatElem">${item.type == "admin"?"Dansken&Meg":model.data.users[model.app.loggedInUser].firstName}: ${item.message}</div>`
+    return model.data.users[model.app.userId].messages.map(item => {
+        return `<div class = "${item.type}ChatElem">${item.type == "admin"?"Dansken&Meg":model.data.users[model.app.userId].firstName}: ${item.message}</div>`
     }).join('')
 }
 
