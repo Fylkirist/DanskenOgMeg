@@ -545,3 +545,92 @@ function changePriceLevels(value){
 let priceLimits = determinePriceLimits()
 model.inputs.category.priceRange.max = priceLimits.max
 model.inputs.category.priceRange.min = priceLimits.min
+
+function oppdaterPersonalia(verdi){
+    
+    if (verdi === 'namePhoneEmail') {
+        if(model.inputs.register.firstName !== "" && model.inputs.register.lastName !== "" 
+        && model.inputs.register.mobile !== "" && model.inputs.register.email !== ""){
+            model.data.users[model.app.userId].firstName = model.inputs.register.firstName;
+            model.data.users[model.app.userId].surName = model.inputs.register.lastName;
+            model.data.users[model.app.userId].mobile = model.inputs.register.mobile;
+            model.data.users[model.app.userId].email = model.inputs.register.email;
+        }else{
+            alert('Du Må Fylle Ut Alt!')
+        }
+    }
+    if (verdi === 'adresse') {
+        if(model.inputs.register.address !== "" && model.inputs.register.city !== "" && model.inputs.register.zip !== "" ){
+            model.data.users[model.app.userId].address = model.inputs.register.address;
+            model.data.users[model.app.userId].city = model.inputs.register.city;
+            model.data.users[model.app.userId].zip = model.inputs.register.zip;
+        }else{
+            alert('Du Må Fylle Ut Alt!')
+        }
+    }
+    
+    if (verdi === 'byttPassord'){
+
+        if(model.inputs.register.password === model.data.users[model.app.userId].password && model.inputs.register.password !== ""){
+
+            model.data.users[model.app.userId].password = model.inputs.register.repeatPassword;
+
+        }else{
+            alert('Feil Passord!')
+        }
+
+    }
+}
+
+function deleteCard(index){
+    model.data.users[model.app.userId].paymentInformation.splice(index, 1);
+    updateView()
+}
+
+function addBankCard(){
+    const cardInputs = model.inputs.register;
+    
+    let cardInfoAdd = {
+        cardNumber:model.inputs.register.cardNumber ,
+        expirationDate:model.inputs.register.toDate,
+        cardHolderFirstName:model.inputs.register.cardFirstName,
+        cardHolderLastName:model.inputs.register.cardLastName,
+        address:model.inputs.register.cardAddress,
+        zip:model.inputs.register.cardZip,
+        cvc:model.inputs.register.cvc,
+        city:model.inputs.register.cardCity 
+    }
+    if(cardInputs.cardNumber == "" && cardInputs.toDate == "" && cardInputs.firstName == "" && cardInputs.lastName == "" 
+    && cardInputs.city == "" && cardInputs.zip == "" && cardInputs.address == "" && cardInputs.cvc == ""){  
+        alert('Du Må Fylle Ut Alt!')
+        return
+    }
+    if(!isValid(model.inputs.register.cardNumber)){
+        alert('Ugyldig Kortnummer!')
+        return
+    }
+     model.data.users[model.app.userId].paymentInformation.push(cardInfoAdd);
+
+     setUserInputs()
+     updateView()
+}
+
+function setUserInputs(){
+    model.inputs.register.firstName = model.data.users[model.app.userId].firstName
+    model.inputs.register.lastName = model.data.users[model.app.userId].surName
+    model.inputs.register.mobile = model.data.users[model.app.userId].mobile
+    model.inputs.register.email = model.data.users[model.app.userId].email
+    model.inputs.register.city = model.data.users[model.app.userId].city
+    model.inputs.register.zip = model.data.users[model.app.userId].zip
+    model.inputs.register.address = model.data.users[model.app.userId].address
+    
+    model.inputs.register.cardNumber = ''
+    model.inputs.register.toDate = ''
+    model.inputs.register.cvc = ''
+    model.inputs.register.cardFirstName = ''
+    model.inputs.register.cardLastName = ''
+    model.inputs.register.cardCity = ''
+    model.inputs.register.cardAddress = ''
+    model.inputs.register.cardZip = ''
+}
+    
