@@ -419,3 +419,12 @@ function filteredItemsAdmin(){
     }
     return filteredArray;
 }
+function changeDeadlineAdminAuctionPage(itemsIndex, newDeadline){
+    if(new Date(newDeadline) > new Date()){
+        model.data.items[itemsIndex].deadline = new Date(newDeadline).toISOString().substring(0,16);
+    }
+    else {
+        model.data.items[itemsIndex].deadline = model.data.items[itemsIndex].deadline;
+    }
+    updateView();
+}

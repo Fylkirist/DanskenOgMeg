@@ -681,9 +681,11 @@ function itemOnGoingAuctionDetails(){
     let findAuctionDeadline = new Date(model.data.items[model.inputs.adminAuctionPage.selectedItemId-1].deadline).toLocaleDateString();
     let highestBid = 0;
     let highestBidGiver= {id: '', name: '', email: '', mobile: ''};
+    let antallDeltaker = 0;
     model.data.auctionListe.forEach(item =>{
         if(eval(item.itemId) ==  model.inputs.adminAuctionPage.selectedItemId){
             for(userId in item.bids){
+                antallDeltaker++;
                 if(item.bids[userId].bid[item.bids[userId].bid.length-1] > highestBid){
                     highestBid = item.bids[userId].bid[item.bids[userId].bid.length-1];
                     highestBidGiver.id = userId;
@@ -701,22 +703,41 @@ function itemOnGoingAuctionDetails(){
     }
     html += `
             <div>
-                <table border = 1>
-                    <tr>
-                        <th>Bud Frist</th>
-                        <th>Høyeste Bud</th>
-                        <th>Høyeste Bud Giver</th>
-                    </tr>
-                    <tr>
-                        <td>${findAuctionDeadline}</td>
-                        <td>${highestBid}</td>
-                        <td>
-                            Navn: ${highestBidGiver.name}<br/>
-                            E-post: ${highestBidGiver.email}<br/>
-                            Mobil: ${highestBidGiver.mobile}
-                        </td>
-                    </tr>
-                </table>
+                <div>
+                    <table border = 1>
+                        <tr>
+                            <th>Bud Frist</th>
+                            <th>Høyeste Bud</th>
+                            <th>Høyeste Bud Giver</th>
+                            <th>Antall av deltakerne</th>
+                        </tr>
+                        <tr>
+                            <td>${findAuctionDeadline}</td>
+                            <td>${highestBid}</td>
+                            <td>
+                                Navn: ${highestBidGiver.name}<br/>
+                                E-post: ${highestBidGiver.email}<br/>
+                                Mobil: ${highestBidGiver.mobile}
+                            </td>
+                            <td>${antallDeltaker}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <div>
+                        <p>Endre bud frist</p>
+                        <input type="date" value="${model.data.items[model.inputs.adminAuctionPage.selectedItemId-1].deadline.substring(0, 10)}"
+                        onchange="changeDeadlineAdminAuctionPage(${model.inputs.adminAuctionPage.selectedItemId-1}, this.value)"
+                        />
+                    </div>
+                    <div>
+                        <button>Gå til Item side</button>
+                    </div>
+                    <div>
+                        <p>Endre til kjøpre nå vare</p>
+                        <button onclick="model.data.items[${model.inputs.adminAuctionPage.selectedItemId-1}].auction = false; model.inputs.adminAuctionPage.selectedItemId = null; updateView()">Endre</button>
+                    </div>
+                </div>
             </div>
             `;
     return html;
