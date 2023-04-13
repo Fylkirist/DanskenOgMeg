@@ -11,7 +11,6 @@ const model = {
             bottom:0,
         },
     },
-
         inputs:{
             shoppingCart: {
                 items: {

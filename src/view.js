@@ -20,6 +20,9 @@ function updateView(){
         case "shoppingCart":
             app.innerHTML = createHeaderSection() + profileMenuComponent() + showShoppingCart() + createPageFooter()
             break
+        case "loginPage":
+            app.innerHTML = createLoginPage()
+            break
     }
 }
 
