@@ -195,7 +195,6 @@ const model = {
                 itemId: '000002',
                 bids: {
                         '0000002': {bid: [1000, 20000], deleted: false},
-                        '0000001': {bid: [1000, 20000], deleted: false},
                     },
             },
         ],
@@ -223,7 +222,7 @@ const model = {
                 price: 5000,
                 category:['Møbler','Stoler'],
                 auction:true,
-                deadline:'2024-03-21T18:21',
+                deadline:'2023-03-21T18:21',
                 images:['assets/kronebilde1.jpg','assets/kronebilde2.jpg'],
                 inStock:true,
                 deliver:false,

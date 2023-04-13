@@ -457,7 +457,8 @@ function findItemsUtløptFrist(){
     });
     return filteredItems;
 }
-function AddToUsersShoppingCartAdmin(highestBidGiversId){
+function AddToUsersShoppingCartAdmin(highestBidGiversId, highestBid){
+    model.data.items[model.inputs.adminAuctionPage.selectedUtløptFristItemsId-1].price = highestBid;
     let usersId = '';
    for(let user in model.data.users){
     model.inputs.adminAuctionPage.alreadyInShoppingCart = false;

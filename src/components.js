@@ -808,7 +808,7 @@ function auksjonerUtløptFrist(){
                         </div>
                         <div>
                             <p>Legge vare til brukerens handlekurv</p>
-                            <button onclick="AddToUsersShoppingCartAdmin(${highestBidGiver.id})">Legg til</button>
+                            <button onclick="AddToUsersShoppingCartAdmin(${highestBidGiver.id}, ${highestBid})">Legg til</button>
                         </div>
                     `;
         }
