@@ -262,22 +262,18 @@ function showFilteredProducts(){
 }
 
 
-adminChatBox(){
+ function adminChatBox(){
     return /*html*/`
-    
     <div class = "brukerBoxContainer">
         <div class = "brukerBox">
-            <ul>    
-                Brukere:
-                ${model.data.users(userList => /*html*/ `
-                    <li>
-                    Brukernavn: ${userList.userName}
-                    </li>
-
-                `).join('')}
-            </ul>
+              
+        ${Object.keys(model.data.users).map((key, i) => /*html*/`
+            <li>
+                Brukernavn : ${model.data.users[key].userName}
+            </li>
+        `).join('')}
+            
         </div>
-   
     </div>
     `
 }
