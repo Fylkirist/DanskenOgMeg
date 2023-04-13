@@ -262,8 +262,8 @@ model.inputs.category.priceRange.max = priceLimits.max
 model.inputs.category.priceRange.min = priceLimits.min
 
 function showSelectedChat(index){
-    for (let i = 0; i<model.data.users.length; i++){
+    for (let userIdKey in model.data.users){
 
-        model.app.showChatBox = model.data.users(index).id
+        model.app.showChatBox = userIdKey[i]
     }
 }

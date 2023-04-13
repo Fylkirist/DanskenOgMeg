@@ -276,14 +276,7 @@ function showFilteredProducts(){
         </div>
 
         <div class = "selectedChatBox">
-        ${()=>
-            {
-                if(model.app.showChatBox = true){
-                    
-                }
-            }
-
-        }
+        
         </div>
     </div>
     `
