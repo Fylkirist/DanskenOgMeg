@@ -605,7 +605,7 @@ function createLoginPage(){
                 <input oninput = "model.inputs.login.username = this.value" type = "text"/>
                 <label id = "loginPagePassLabel">Passord</label>
                 <input oninput = "model.inputs.login.password = this.value" type = "text"/>
-                <button onclick = "">Logg inn</button>
+                <button onclick = "checkUserIdPassword()">Logg inn</button>
                 <button onclick = "changeView("registerPage")">Registrer</button>
             </div>
         </div>

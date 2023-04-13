@@ -274,6 +274,7 @@ function checkUserIdPassword(){
                 model.inputs.login.wrongUserNamePassword = false;
                 model.app.wrongUserNamePasswordMessage = '';
                 model.app.userId = userKeys
+                changeView("frontPage")
                 break;
             }
             else {
