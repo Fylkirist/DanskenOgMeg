@@ -382,7 +382,7 @@ function createProduct(){
                 price:model.inputs.createSale.price,
                 minBid:model.inputs.createSale.minimumBidAmmount,
                 auction: model.inputs.createSale.auction,
-                deadline: model.inputs.createSale.deadline,
+                deadline: new Date(model.inputs.createSale.deadline).toISOString().substring(0,16),
                 deliver:model.inputs.createSale.deliver,
                 frontPage: model.inputs.createSale.frontPage,
                 category: model.inputs.createSale.categoryList,
