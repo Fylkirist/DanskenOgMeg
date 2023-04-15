@@ -59,7 +59,7 @@ function changeDeadlineAdminAuctionPage(itemsIndex, newDeadline){
 function sendMessageAsAdmin(){
     model.inputs.adminAuctionPage.userIdsToSendMessage.forEach(usersId => {
         for(let usersKey in model.data.users){
-            if(usersId == usersKey && usersId != "0000001"){
+            if(usersId == usersKey && model.data.users[usersId].permissions != "admin"){
                 model.data.users[usersKey].messages.push(
                     {
                         type:"admin",
@@ -83,10 +83,12 @@ function findItemsUtløptFrist(){
     return filteredItems;
 }
 
+// Denne funksjonen skaper nok forvirrelse hos brukere, siden de allerede har en checkout side for auksjoner de har vunnet
+
 function AddToUsersShoppingCartAdmin(highestBidGiversId, highestBid){
     model.data.items[model.inputs.adminAuctionPage.selectedUtløptFristItemsId-1].price = highestBid;
     let usersId = '';
-   for(let user in model.data.users){
+    for(let user in model.data.users){
     model.inputs.adminAuctionPage.alreadyInShoppingCart = false;
     if(eval(user) == highestBidGiversId){
         usersId = user;
