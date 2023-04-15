@@ -197,3 +197,18 @@ function auksjonerUtløptFrist(){
     return html;
 }
 
+function generateCategoryElems(parentId){
+    let html = ""
+    for(let i = 0; i<model.inputs.category.categoryList.length; i++){
+        if(model.inputs.category.categoryList[i].parent==parentId){
+            html += `
+                <div>
+                    <label>${model.inputs.category.categoryList[i].name}</label>
+                    <input type = "checkbox" ${model.inputs.category.categoryList[i].checked? "checked":""} onchange = "checkFilterBox(${i})"/>
+                    ${model.inputs.category.categoryList[i].checked? generateCategoryElems(model.inputs.category.categoryList[i].id):""}
+                </div>`
+        }
+    }
+    return html
+}
+
