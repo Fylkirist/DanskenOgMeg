@@ -333,11 +333,6 @@ function addToShoppingCart(productId){
     updateView()
 }
 
-// New controller functions
-
-// Add setUsersDataForCheckOutPage() function call in checkUserIdPassword() function just before break in master.
-
-
 function checkValidityOfEmail(emailToCheck){
     emailToCheck = emailToCheck.trim();
     const pattern = /^[(\w)+]+\.?([(\w)+]+)?@[\w+]+\.[\w+]+$/i;
@@ -372,8 +367,8 @@ function checkLogin()
 function setUsersDataForCheckOutPage(){
     for(let usersId in model.data.users){
         if(usersId == model.app.userId && usersId != "0000001"){
-            model.inputs.checkOutPage.firstName = model.data.users[usersId].firstname;
-            model.inputs.checkOutPage.lastName = model.data.users[usersId].surname;
+            model.inputs.checkOutPage.firstName = model.data.users[usersId].firstName;
+            model.inputs.checkOutPage.lastName = model.data.users[usersId].surName;
             model.inputs.checkOutPage.address = model.data.users[usersId].address;
             model.inputs.checkOutPage.email = model.data.users[usersId].email;
             model.inputs.checkOutPage.mobile = model.data.users[usersId].mobile;
@@ -386,7 +381,6 @@ function setUsersDataForCheckOutPage(){
             model.inputs.checkOutPage.email = '';
             model.inputs.checkOutPage.mobile = '';
         }
-    updateView()
     }
 }
 

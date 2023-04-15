@@ -782,9 +782,10 @@ function editUserPage(){
         `
  }
 
-// New components functions
-
 function checkOut(){
+    if(model.app.loggedInStatus && model.app.userId != '0000001') {
+        setUsersDataForCheckOutPage();
+    }
     let html = '';
     if(model.app.userId == '0000001') return '';
     html = /*html*/
