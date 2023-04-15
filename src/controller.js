@@ -328,7 +328,7 @@ function addToShoppingCart(productId){
             return
         }
     }
-    model.data.users[model.app.userId].shoppingCart.push({id:productId,quantity:1})
+    model.data.users[model.app.userId].shoppingCart.push({item:productId,quantity:1})
     model.inputs.checkOutPage.emptyShoppingCart = false;
     updateView()
 }
@@ -476,6 +476,21 @@ function addSubCategory(){
         model.inputs.createSale.categoryList.push(model.inputs.createSale.subCategory)
     }
     model.inputs.createSale.subCategory = ''
+    updateView()
+}
+
+function deleteCategory(index){
+    if(index == 0){
+        model.inputs.createSale.categoryList[0] = ""
+    }
+    else{
+        model.inputs.createSale.categoryList.splice(index,1)
+    }
+    updateView()
+}
+
+function changePriceLevels(value){
+    model.inputs.category.priceRange.max = value
     updateView()
 }
 
