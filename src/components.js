@@ -1,6 +1,5 @@
 function adminAuctionPage(){
-    let html= '';
-    html= `${model.app.userId == '0000001' ? 
+    return `${model.data.users[model.app.userId].permissions == 'admin' ? 
                 `
                 <div>
                     ${påGåendeBud()}
@@ -12,7 +11,6 @@ function adminAuctionPage(){
                 ''
             }
         `;
-    return html;
 }
 function påGåendeBud(){
     let html = '';

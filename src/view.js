@@ -26,4 +26,4 @@ function updateView(){
     }
 }
 
-window.onload = updateView()
+//window.onload = updateView()
