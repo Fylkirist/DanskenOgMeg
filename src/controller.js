@@ -7,6 +7,7 @@ function checkFilterBox(index){
     }
     updateView()
 }
+
 function filteredItemsAdmin(){
     let filteredArray = [];
     for(let j = 0; j < model.data.items.length; j++){
@@ -44,6 +45,7 @@ function filteredItemsAdmin(){
     }
     model.inputs.category.filteredItemsAdmin = filteredArray;
 }
+
 function changeDeadlineAdminAuctionPage(itemsIndex, newDeadline){
     if(new Date(newDeadline) >= new Date()){
         model.data.items[itemsIndex].deadline = new Date(newDeadline).toISOString().substring(0,16);
@@ -53,6 +55,7 @@ function changeDeadlineAdminAuctionPage(itemsIndex, newDeadline){
     }
     updateView();
 }
+
 function sendMessageAsAdmin(){
     model.inputs.adminAuctionPage.userIdsToSendMessage.forEach(usersId => {
         for(let usersKey in model.data.users){
@@ -69,6 +72,7 @@ function sendMessageAsAdmin(){
     model.inputs.adminAuctionPage.messageToUsers = '';
     updateView();
 }
+
 function findItemsUtløptFrist(){
     let filteredItems = [];
     model.data.items.forEach(item => {
@@ -78,6 +82,7 @@ function findItemsUtløptFrist(){
     });
     return filteredItems;
 }
+
 function AddToUsersShoppingCartAdmin(highestBidGiversId, highestBid){
     model.data.items[model.inputs.adminAuctionPage.selectedUtløptFristItemsId-1].price = highestBid;
     let usersId = '';

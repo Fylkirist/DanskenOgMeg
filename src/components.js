@@ -12,6 +12,7 @@ function adminAuctionPage(){
             }
         `;
 }
+
 function påGåendeBud(){
     let html = '';
     html = `<div>
@@ -43,6 +44,7 @@ function påGåendeBud(){
             `;
     return html;
 }
+
 function filteredItemsAdminAuctionPage(){
     filteredItemsAdmin();
     let html = '';
@@ -58,6 +60,7 @@ function filteredItemsAdminAuctionPage(){
     }
     return html;
 }
+
 function itemOnGoingAuctionDetails(){
     let html = '';
     let findAuctionDeadline = new Date(model.data.items[model.inputs.adminAuctionPage.selectedItemId-1].deadline).toLocaleDateString();
