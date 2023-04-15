@@ -352,6 +352,23 @@ function checkValidityOfEmail(emailToCheck){
     updateView();
 }
 
+function checkLogin()
+{
+    const users = model.data.users;
+
+    for (let userId in users)
+    {
+        const user = users[userId];
+
+        if(model.inputs.login.username === user.username && model.inputs.login.password === user.password)
+        {
+            model.app.loggedInStatus = true;
+            model.app.userId = userId;
+        }
+
+    }
+}
+
 function setUsersDataForCheckOutPage(){
     for(let usersId in model.data.users){
         if(usersId == model.app.userId && usersId != "0000001"){
