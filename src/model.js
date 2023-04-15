@@ -3,7 +3,7 @@ const model = {
         currentView:'checkoutPage',
         loggedInStatus: false,
         wrongUserNamePasswordMessage: '',
-        userId:'',
+        userId:false,
         zoomedPic:false,
         currentProduct:false,
         frontPageCurrentShowing:{
@@ -15,7 +15,6 @@ const model = {
         },
         
     },
-
         inputs:{
             shoppingCart: {
                 items: {
@@ -71,7 +70,12 @@ const model = {
                 fromDate: '',
                 toDate: '',
                 cvc: '' ,
-                meldingRegister:'',               
+                meldingRegister:'', 
+                cardAddress:'',
+                cardZip:'',
+                cardCity:'',
+                cardFirstName:'',
+                cardLastName:'',              
             },
             login:{
                 username:"",
@@ -93,8 +97,10 @@ const model = {
                     {id:1,name:"Bord",parent:0,checked:false},
                     {id:2,name:"Klær",parent:-1,checked:false},
                     {id:3,name:"Hatter",parent:2,checked:false},
+                    {id:4,name:'Småting',parent:-1,checked:false},
+                    {id:5,name:'Tilbehør',parent:4,checked:false},
                 ]     
-            },                                      
+            },
             createSale: {
                 title:'',
                 description:'',
@@ -116,37 +122,42 @@ const model = {
                 input:'',
                 
             },
+            profileMenuShowing:false,
             product:{
                 bidIncrease:"",
                 adminBidIncrease:"",
                 adminPriceChange:"",
                 adminAddSubCategory:"",
                 adminChangeMainCategory:""
-
             }
         },
-
     data:{
         frontPageTop:[0],
         frontPageBottom:[1],
         users:{
             "0000001":{
+                id:"0000001",
                 username:"admin",
                 password:"admin",
                 permissions:"admin",
-                firstname:"Elin",
-                surname:"Herlev Christoffersen",
+                firstName:"Elin",
+                surName:"Herlev Christoffersen",
                 address:"GeTOutOfMyVei",
+                city:"Larvik",
+                zip:"1482",
                 email:"example@gmail.com",
                 mobile:'00000000',    
             },
             "0000002":{
+                id:"0000002",
                 username:"ikkeadmin",
                 password:"ikkeadmin",
                 permissions:"user",
-                firstname:"Marie",
-                surname:"benji",
+                firstName:"Marie",
+                surName:"benji",
                 address:"GeTOutOfMyVei",
+                city:"Larvik",
+                zip:"1482",
                 email: 'example@gmail.com',
                 mobile: '00000000',
                 shoppingCart:[
@@ -166,6 +177,8 @@ const model = {
                         address:"Grove Street",
                         houseNumber:"69",
                         zip:"6969",
+                        cvc:"123",
+                        city: "Los Santos"
                     },
                 ],
                 messages:[
@@ -189,7 +202,7 @@ const model = {
                 date:'03.01.2023',
                 type: 'direkte',
                 userId: '0000001',
-                image : 'assets/kronebilde1.png',
+                image : 'assets/kronebilde1.jpg',
                 title: 'Krona Til Drøning'
             },
             {
@@ -199,7 +212,7 @@ const model = {
                 date:'03.01.2023',
                 type: 'direkte',
                 userId: '0000001',
-                image : 'assets/kronebilde1.png',
+                image : 'assets/kronebilde1.jpg',
                 title: 'Maling til Peter'
             },
         ],
@@ -215,14 +228,14 @@ const model = {
 
         items:[
             {
-                id: 000001,
+                id: "000001",
                 title: 'Krone til dronningen av England',
                 description: 'ipsum lorem',
                 price: 70000,
                 category:['Småting','Tilbehør'],
                 auction:false,
                 deadline:'2023-03-21T18:21',
-                images:['assets/kronebilde1.png','assets/kronebilde2.png'],
+                images:['assets/kronebilde1.jpg','assets/kronebilde2.jpg'],
                 inStock:true,
                 deliver:true,
                 mainImage: '',
@@ -230,48 +243,18 @@ const model = {
 
             },
             {
-                id: 000002,
+                id: "000002",
                 title: 'auction prime time',
                 description: 'ipsum lorem',
                 price: 5000,
                 category:['Møbler','Stoler'],
                 auction:true,
                 deadline:'2024-03-21T18:21',
-                images:['assets/kronebilde1.png','assets/kronebilde2.png'],
+                images:['assets/kronebilde1.jpg','assets/kronebilde2.jpg'],
                 inStock:true,
                 deliver:false,
                 minBid:0
             },
-        ],
-        itemsCategory: [
-
-            {
-                title : 'Møbler',
-                checked: false,
-                subCategory: [
-                    {title: 'Bord', checked: false},
-                    {title: 'Stoler', checked: false},
-                ]
-            },
-            {
-                title : 'Små ting',
-                checked: false,
-                subCategory: [
-                    {title: 'Vaser', checked: false},
-                    {title: 'Lamper', checked: false},
-                    {title: 'Tilbehør', checked: false},
-                ]
-            },
-            {
-                title : 'Klær og tilbehør',
-                checked: false,
-                subCategory: [
-                    {title: 'Bukser', checked: false},
-                    {title: 'Jakker', checked: false},
-                ]
-            },
-        
-        
         ],
         priceRange: {
             min: 0,

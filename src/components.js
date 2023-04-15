@@ -784,7 +784,6 @@ function editUserPage(){
 
 // New components functions
 
-
 function checkOut(){
     let html = '';
     if(model.app.userId == '0000001') return '';
