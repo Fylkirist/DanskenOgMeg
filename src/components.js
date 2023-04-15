@@ -127,9 +127,11 @@ function showItemsCanBuyNow(){
     let html = '';
     console.log("bruh")
     model.inputs.shoppingCart.totalPrice = 0;
+    if (model.inputs.shoppingCart.items.canBuyNow.length == 0) {
+        html = 'You do not have any items in the shopping cart.';
+    }
     if(model.app.loggedInStatus){
         for(let i = 0; i<model.data.users[model.app.userId].shoppingCart.length;i++){
-            //console.log(model.data.users[model.app.userId].shoppingCart[i],i)
             html += `
             <div>
                 <img src = "${model.data.items[eval(model.data.users[model.app.userId].shoppingCart[i].item)-1].images[0]}"/>
