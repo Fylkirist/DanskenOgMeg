@@ -23,6 +23,9 @@ function updateView(){
         case "loginPage":
             app.innerHTML = createLoginPage()
             break
+        case "checkoutPage":
+            app.innerHTML = createHeaderSection() + checkOut();
+            break
     }
 }
 
