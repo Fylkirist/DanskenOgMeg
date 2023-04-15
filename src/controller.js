@@ -1,3 +1,12 @@
+function checkFilterBox(index){
+    model.inputs.category.categoryList[index].checked = !model.inputs.category.categoryList[index].checked
+    for(let i = 0; i<model.inputs.category.categoryList.length; i++){
+        if(model.inputs.category.categoryList[i].parent == index){
+            model.inputs.category.categoryList[i].checked = false
+        }
+    }
+    updateView()
+}
 function filteredItemsAdmin(){
     let filteredArray = [];
     for(let j = 0; j < model.data.items.length; j++){
