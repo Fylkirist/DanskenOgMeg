@@ -1,5 +1,3 @@
-//added line 5,6,7 to deleteItemFromShoppingCart function
-
 function deleteItemFromShoppingCart(indexInShoppingCart){
     model.inputs.shoppingCart.items.canBuyNow.splice(indexInShoppingCart, 1);
     if(model.inputs.shoppingCart.items.canBuyNow.length == 0){
@@ -404,12 +402,12 @@ function createProduct(){
                     case "string":
                         model.inputs.createSale[key] = ""
                         break
-                        case "object":
-                            model.inputs.createSale[key] = ['']
-                            break
-                            case "number":
-                                model.inputs.createSale[key] = 0
-                                break
+                    case "object":
+                        model.inputs.createSale[key] = ['']
+                        break
+                    case "number":
+                        model.inputs.createSale[key] = 0
+                        break
                 }
             }
      model.data.items.push(newProduct);
@@ -460,10 +458,26 @@ function saveMainCategory(){
                     checked:false
                 })
             }
-      }
-      updateView()  
+        }
+    }  
+    updateView()
 }
 
+function addMainCategory(){
+    if(model.inputs.createSale.mainCategory!=''){
+        model.inputs.createSale.categoryList[0] = model.inputs.createSale.mainCategory
+    }
+    model.inputs.createSale.mainCategory = ''
+    updateView()
+}
+
+function addSubCategory(){
+    if(!model.inputs.createSale.categoryList.includes(model.inputs.createSale.subCategory)){
+        model.inputs.createSale.categoryList.push(model.inputs.createSale.subCategory)
+    }
+    model.inputs.createSale.subCategory = ''
+    updateView()
+}
 
 function setDeliveryMethod(deliveryType){
     model.inputs.checkOutPage.selectedDeliveryMethod = deliveryType;
@@ -719,5 +733,16 @@ async function uploadImg(event){
     let file = event.target.files[0];
     let b64 = await convertTob64(file);
     model.inputs.createSale.images.push(b64)
+    updateView()
+}
+
+function raiseBid(productId){
+    if(model.data.auctionListe[productId].bids[model.app.userId]){
+        model.data.auctionListe[productId].bids[model.app.userId].push(model.inputs.product.bidIncrease)
+    }
+    else{
+        model.data.auctionListe[productId].bids[model.app.userId] = [model.inputs.product.bidIncrease]
+    }
+    model.inputs.product.bidIncrease = 0
     updateView()
 }
