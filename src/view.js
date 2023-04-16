@@ -26,6 +26,9 @@ function updateView(){
         case "checkoutPage":
             app.innerHTML = createHeaderSection() + checkOut();
             break
+        case "adminAuction":
+            app.innerHTML = createHeaderSection() + profileMenuComponent() + adminAuctionPage()
+            break
     }
 }
 

@@ -1,6 +1,6 @@
 const model = {
     app:{
-        currentView:'checkoutPage',
+        currentView:'frontPage',
         loggedInStatus: false,
         wrongUserNamePasswordMessage: '',
         userId:false,
@@ -16,6 +16,15 @@ const model = {
         
     },
         inputs:{
+            adminAuctionPage:{
+                searchInput: '',
+                selectedItemId: null,
+                messageToUsers: '',
+                userIdsToSendMessage: [],
+                itemsUtløptFrist: [],
+                selectedUtløptFristItemsId: null,
+                alreadyInShoppingCart: false,
+            },
             shoppingCart: {
                 items: {
                     canBuyNow: [
@@ -85,6 +94,7 @@ const model = {
 
             },
             category:{
+                filteredItemsAdmin:[],
                 filteredItems:[],
                 priceRange:{
                     max:0,
@@ -221,7 +231,6 @@ const model = {
                 itemId: '000002',
                 bids: {
                         '0000002': {bid: [1000, 20000], deleted: false},
-                        '0000001': {bid: [1000, 10000], deleted: false}
                     },
             },
         ],
