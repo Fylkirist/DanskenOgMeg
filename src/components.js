@@ -5,7 +5,7 @@ function adminAuctionPage(){
                     ${påGåendeBud()}
                 </div>
                 <div>
-                    ${auksjonerUtløptFrist()}
+                    ${showExpiredAuctions()}
                 </div>
                 `: 
                 ''
@@ -135,7 +135,7 @@ function itemOnGoingAuctionDetails(){
     return html;
 }
 
-function auksjonerUtløptFrist(){
+function showExpiredAuctions(){
     let html = '<h2>Auksjoner med utløpt frist.</h2>';
     model.inputs.adminAuctionPage.itemsUtløptFrist = findItemsExpiredDeadline();
     if(model.inputs.adminAuctionPage.itemsUtløptFrist.length == 0) html += '<p>Ingen varer.</p>';
