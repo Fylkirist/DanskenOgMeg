@@ -2,7 +2,7 @@ function adminAuctionPage(){
     return `${model.data.users[model.app.userId].permissions == 'admin' ? 
                 `
                 <div>
-                    ${påGåendeBud()}
+                    ${ongoingAuctions()}
                 </div>
                 <div>
                     ${showExpiredAuctions()}
@@ -13,7 +13,7 @@ function adminAuctionPage(){
         `;
 }
 
-function påGåendeBud(){
+function ongoingAuctions(){
     return `<div>
                 <h2>Pågående Bud</h2>
             </div>
