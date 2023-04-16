@@ -208,7 +208,6 @@ function generateCategoryElems(parentId){
     return html
 }
 
-
 function createPageFooter(){
     let chatBox = `
         <div id = "chatBoxWindow">

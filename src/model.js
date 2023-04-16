@@ -1,6 +1,6 @@
 const model = {
     app:{
-        currentView:'adminAuction',
+        currentView:'frontPage',
         loggedInStatus: false,
         wrongUserNamePasswordMessage: '',
         userId:false,
@@ -10,8 +10,11 @@ const model = {
             top:0,
             bottom:0,
         },
+        checkOut: {
+            invalidEmailOnCheckOutPage: false,
+        },
+        
     },
-
         inputs:{
             adminAuctionPage:{
                 searchInput: '',
@@ -25,8 +28,8 @@ const model = {
             shoppingCart: {
                 items: {
                     canBuyNow: [
-                        {id: "000001"},
-                        {id: "000002"},
+                        {id: "000001", quantity: 1},
+                        {id: "000002", quantity: 1},
                     ],
                     auctions: {
                         usersWinningBids:[],
@@ -35,6 +38,31 @@ const model = {
                     },
                 },
                 totalPrice: 0,
+            },
+            checkOutPage: {
+                emptyShoppingCart: false,
+                totalPrice: 0,
+                firstName: '',
+                lastName: '',
+                address: '',
+                zipCode: '',
+                email: '',
+                mobile: '',
+                addressFilled: false,
+                selectedDeliveryMethod: '',
+                frakt: 0,
+                deliveryMethod: {
+                    selected: false,
+                    butikk: '',
+                    leveringMedInnbæring: '',
+                    leveringUtenInnbæring: ''
+                },
+                cardNumber: '',
+                expirationDate: '',
+                cvc: '',
+                cardHolderFirstName: '',
+                cardHolderLastName: '',
+                addNewCard: false,
             },
             register: {
                 firstName: '',
@@ -51,7 +79,12 @@ const model = {
                 fromDate: '',
                 toDate: '',
                 cvc: '' ,
-                meldingRegister:'',               
+                meldingRegister:'', 
+                cardAddress:'',
+                cardZip:'',
+                cardCity:'',
+                cardFirstName:'',
+                cardLastName:'',              
             },
             login:{
                 username:"",
@@ -106,7 +139,6 @@ const model = {
                 adminPriceChange:"",
                 adminAddSubCategory:"",
                 adminChangeMainCategory:""
-
             }
         },
     data:{
@@ -118,8 +150,8 @@ const model = {
                 username:"admin",
                 password:"admin",
                 permissions:"admin",
-                firstname:"Elin",
-                surname:"Herlev Christoffersen",
+                firstName:"Elin",
+                surName:"Herlev Christoffersen",
                 address:"GeTOutOfMyVei",
                 city:"Larvik",
                 zip:"1482",
@@ -131,8 +163,8 @@ const model = {
                 username:"ikkeadmin",
                 password:"ikkeadmin",
                 permissions:"user",
-                firstname:"Marie",
-                surname:"benji",
+                firstName:"Marie",
+                surName:"benji",
                 address:"GeTOutOfMyVei",
                 city:"Larvik",
                 zip:"1482",
@@ -148,12 +180,15 @@ const model = {
                 paymentInformation:[
                     {
                         cardNumber: "133780082420",
-                        expirationDate:"12/12/2025",
+                        expirationDate:"12/25",
+                        cvc: '123',
                         cardHolderFirstName:"Nonja",
                         cardHolderLastName:"Buisness",
                         address:"Grove Street",
                         houseNumber:"69",
                         zip:"6969",
+                        cvc:"123",
+                        city: "Los Santos"
                     },
                 ],
                 messages:[
