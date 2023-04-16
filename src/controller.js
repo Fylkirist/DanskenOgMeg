@@ -8,6 +8,19 @@ function checkFilterBox(index){
     updateView()
 }
 
+function checkProductTypeFilter(filter){
+    switch(filter){
+        case "normal":
+            model.inputs.category.filterNormalCheck = !model.inputs.category.filterNormalCheck
+            updateView()
+            break
+        case "auction":
+            model.inputs.category.filterAuctionCheck = !model.inputs.category.filterAuctionCheck
+            updateView()
+            break
+    }
+}
+
 function filteredItemsAdmin(){
     let filteredArray = [];
     for(let j = 0; j < model.data.items.length; j++){
@@ -451,7 +464,7 @@ function checkLogin()
 
 function setUsersDataForCheckOutPage(){
     for(let usersId in model.data.users){
-        if(usersId == model.app.userId && usersId != "0000001"){
+        if(usersId == model.app.userId && model.data.users[usersId].permissions != "admin"){
             model.inputs.checkOutPage.firstName = model.data.users[usersId].firstName;
             model.inputs.checkOutPage.lastName = model.data.users[usersId].surName;
             model.inputs.checkOutPage.address = model.data.users[usersId].address;
@@ -742,7 +755,6 @@ function filterItems(){
             filterArray.push(eval(item.id))
           }
     })
-    console.log(filterArray)
     let anychecked = false
     let storedArray = filterArray
     filterArray = filterArray.filter(val => {
@@ -766,6 +778,14 @@ function filterItems(){
     filterArray = filterArray.filter(val => {
         console.log(val)
         if(model.data.items[val-1].price>=model.inputs.category.priceRange.min && model.data.items[val-1].price<=model.inputs.category.priceRange.max){
+            return val
+        }
+        else{
+            return false
+        }
+    })
+    filterArray = filterArray.filter(val =>{
+        if(model.data.items[val-1].auction && model.inputs.category.filterAuctionCheck || !model.data.items[val-1].auction && model.inputs.category.filterNormalCheck){
             return val
         }
         else{

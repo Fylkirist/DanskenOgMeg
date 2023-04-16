@@ -861,11 +861,11 @@ function showFilterBox(){
             </div>
             <div>
                 <label>Vis auksjonsvarer: </label>
-                <input oninput = "model.inputs.category.filterAuctionCheck = !model.inputs.category.filterAuctionCheck" type = "checkbox" ${model.inputs.category.filterAuctionCheck? "checked":""}/>
+                <input oninput = "checkProductTypeFilter('auction')" type = "checkbox" ${model.inputs.category.filterAuctionCheck? "checked":""}/>
             </div>
             <div>
                 <label>Vis fastprisvarer: </label>
-                <input onchange = "model.inputs.category.filterNormalCheck = !model.inputs.category.filterNormalCheck" type = "checkbox" ${model.inputs.category.filterNormalCheck? "checked":""}/>
+                <input onchange = "checkProductTypeFilter('normal')" type = "checkbox" ${model.inputs.category.filterNormalCheck? "checked":""}/>
             </div>
             <div>
                 <input type = "range" onchange = "changePriceLevels(this.value)" min="${priceLimits.min}" max = "${priceLimits.max}" value = "${model.inputs.category.priceRange.max}"></input>
