@@ -73,7 +73,7 @@ function sendMessageAsAdmin(){
     updateView();
 }
 
-function findItemsUtløptFrist(){
+function findItemsExpiredDeadline(){
     let filteredItems = [];
     model.data.items.forEach(item => {
         if(item.auction && (new Date() > new Date(item.deadline))){
@@ -81,37 +81,4 @@ function findItemsUtløptFrist(){
         }
     });
     return filteredItems;
-}
-
-// Denne funksjonen skaper nok forvirrelse hos brukere, siden de allerede har en checkout side for auksjoner de har vunnet
-
-function AddToUsersShoppingCartAdmin(highestBidGiversId, highestBid){
-    model.data.items[model.inputs.adminAuctionPage.selectedUtløptFristItemsId-1].price = highestBid;
-    let usersId = '';
-    for(let user in model.data.users){
-    model.inputs.adminAuctionPage.alreadyInShoppingCart = false;
-    if(eval(user) == highestBidGiversId){
-        usersId = user;
-        model.data.users[user].shoppingCart.forEach(items => {
-            if(eval(items.item) == model.inputs.adminAuctionPage.selectedUtløptFristItemsId){
-                model.inputs.adminAuctionPage.alreadyInShoppingCart = true;
-            }
-        });
-    }
-   }
-   if(!model.inputs.adminAuctionPage.alreadyInShoppingCart){
-    let itemsId = '';
-    model.data.items.forEach(item => {
-        if(eval(item.id) == model.inputs.adminAuctionPage.selectedUtløptFristItemsId){
-            itemsId = item.id;
-        }
-    });
-    model.data.users[usersId].shoppingCart.push(
-        {
-            item: itemsId,
-            quantity: 1
-        }
-    );
-   }
-   updateView();
 }
