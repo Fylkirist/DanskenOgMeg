@@ -137,7 +137,7 @@ function itemOnGoingAuctionDetails(){
 
 function auksjonerUtløptFrist(){
     let html = '<h2>Auksjoner med utløpt frist.</h2>';
-    model.inputs.adminAuctionPage.itemsUtløptFrist = findItemsUtløptFrist();
+    model.inputs.adminAuctionPage.itemsUtløptFrist = findItemsExpiredDeadline();
     if(model.inputs.adminAuctionPage.itemsUtløptFrist.length == 0) html += '<p>Ingen varer.</p>';
     else {
         model.inputs.adminAuctionPage.itemsUtløptFrist.forEach(itemsId => {
@@ -186,10 +186,6 @@ function auksjonerUtløptFrist(){
                         </td>
                     </tr>
                 </table>
-            </div>
-            <div>
-                <p>Legge vare til brukerens handlekurv</p>
-                <button onclick="AddToUsersShoppingCartAdmin(${highestBidGiver.id}, ${highestBid})">Legg til</button>
             </div>
             `;
         }
