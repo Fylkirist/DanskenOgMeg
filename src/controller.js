@@ -933,3 +933,17 @@ function raiseBid(productId){
     model.inputs.product.bidIncrease = 0
     updateView()
 }
+
+function changeFrontPagePic(pos,change){
+    if(pos == "top"){
+        if(model.app.frontPageCurrentShowing.topPic + change >= 0 && model.app.frontPageCurrentShowing.topPic + change < model.data.items[model.data.frontPageTop[model.app.frontPageCurrentShowing.top]].images.length){
+            model.app.frontPageCurrentShowing.topPic += change
+        }
+    }
+    else{
+        if(model.app.frontPageCurrentShowing.botPic + change >= 0 && model.app.frontPageCurrentShowing.botPic + change < model.data.items[model.data.frontPageBottom[model.app.frontPageCurrentShowing.bottom]].images.length){
+            model.app.frontPageCurrentShowing.botPic += change
+        }
+    }
+    updateView()
+}

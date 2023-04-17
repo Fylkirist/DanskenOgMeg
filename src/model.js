@@ -9,6 +9,8 @@ const model = {
         frontPageCurrentShowing:{
             top:0,
             bottom:0,
+            topPic:0,
+            botPic:0
         },
         checkOut: {
             invalidEmailOnCheckOutPage: false,

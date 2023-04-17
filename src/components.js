@@ -524,8 +524,8 @@ function showSearchBox() {
 }
 
 function frontPageProductView(){
-    let topElem = generateFrontPageElement(model.data.frontPageTop[model.app.frontPageCurrentShowing.top])
-    let botElem = generateFrontPageElement(model.data.frontPageBottom[model.app.frontPageCurrentShowing.bottom])
+    let topElem = generateFrontPageElement(model.data.frontPageTop[model.app.frontPageCurrentShowing.top],model.app.frontPageCurrentShowing.topPic,"top")
+    let botElem = generateFrontPageElement(model.data.frontPageBottom[model.app.frontPageCurrentShowing.bottom],model.app.frontPageCurrentShowing.botPic,"bot")
     return `
         <div id = "frontPageProductDisplay">
             <div class = "frontPageProductDisplayElement">
@@ -542,7 +542,7 @@ function frontPageProductView(){
     ` 
 }
 
-function generateFrontPageElement(item){
+function generateFrontPageElement(item, pic, pos){
     let varElems;
     if (model.data.items[item].auction){
         varElems = `
@@ -561,10 +561,12 @@ function generateFrontPageElement(item){
     }
     return `
         <div class = "frontPageCenterElem">
-            <img class = "frontPageProductImg" src = "${model.data.items[item].images[0]}"/>
-            <label>⮜</label>
-            <label>${model.data.items[item].images[0]}</label>
-            <label>⮞</label>
+            <img class = "frontPageProductImg" src = "${model.data.items[item].images[pic]}"/>
+            <label onclick = changeFrontPagePic('${pos}',-1)>⮜</label>
+            ${model.data.items[item].images.map((item, i) =>{
+                return `<label class = "frontPageDisplayImageCircles" onclick = "changeFrontPagePic('${pos}',${i - pic})">${i == pic?"⚫":"⚪"}</label>`
+            }).join("")}
+            <label onclick = changeFrontPagePic('${pos}',1)>⮞</label>
             <h4 class = "frontPageProductHeader">${model.data.items[item].title}</h4>
             <p class = "frontPageProductDesc">${model.data.items[item].description}</p>
             ${varElems}    
@@ -1190,4 +1192,11 @@ function betalingsOversikt(){
                 `;
     }
     return html;
+}
+
+function showZoomedPic(){
+    if(model.app.zoomedPic){
+        return `<img id = "zoomedPic" src = "${model.data.items[product].images[model.app.zoomedPic]}" onclick = "unZoom()"></img>`
+    }
+    return ``
 }
