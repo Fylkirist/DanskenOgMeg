@@ -196,7 +196,7 @@ function avsluttendeAuksjoner(){
            <h3>${item.title}</h3>
            <div>${item.description}</div>
            <div>Vunnet Bud: ${item.price}</div>
-           <div>Auksjons ID er: ${auctionID}</div>
+           <div>Auksjons ID er: ${auksjonId}</div>
          </div>`;
            
         }
@@ -206,7 +206,7 @@ function avsluttendeAuksjoner(){
     <div class="container">
     <button>Alle Auksjoner</button> 
     <button onclick="activeAuctionList()">Dine Aktive Auksjoner</button> 
-    <button onclick="endedAuctionList()">Dine Avsluttende auksjoner</button>
+    <button onclick="avsluttendeAuksjoner()">Dine Avsluttende auksjoner</button>
     ${html || '<div>Du har ingen avsluttende Auksjoner</div>'}
     </div>`;
     
