@@ -3,22 +3,39 @@ const model = {
         currentView:'frontPage',
         loggedInStatus: false,
         wrongUserNamePasswordMessage: '',
-        userId:"0000002",
+
+        userId:false,
         zoomedPic:false,
         currentProduct:false,
         showChatBox:"",
         frontPageCurrentShowing:{
             top:0,
             bottom:0,
+            topPic:0,
+            botPic:0
         },
+        checkOut: {
+            invalidEmailOnCheckOutPage: false,
+        },
+        previousPagesToNavigateTo: [],
+        nextPagesToNavigateTo: [],
+        
     },
-
         inputs:{
+            adminAuctionPage:{
+                searchInput: '',
+                selectedItemId: null,
+                messageToUsers: '',
+                userIdsToSendMessage: [],
+                itemsUtløptFrist: [],
+                selectedUtløptFristItemsId: null,
+                alreadyInShoppingCart: false,
+            },
             shoppingCart: {
                 items: {
                     canBuyNow: [
-                        {id: "000001"},
-                        {id: "000002"},
+                        {id: "000001", quantity: 1},
+                        {id: "000002", quantity: 1},
                     ],
                     auctions: {
                         usersWinningBids:[],
@@ -27,6 +44,31 @@ const model = {
                     },
                 },
                 totalPrice: 0,
+            },
+            checkOutPage: {
+                emptyShoppingCart: false,
+                totalPrice: 0,
+                firstName: '',
+                lastName: '',
+                address: '',
+                zipCode: '',
+                email: '',
+                mobile: '',
+                addressFilled: false,
+                selectedDeliveryMethod: '',
+                frakt: 0,
+                deliveryMethod: {
+                    selected: false,
+                    butikk: '',
+                    leveringMedInnbæring: '',
+                    leveringUtenInnbæring: ''
+                },
+                cardNumber: '',
+                expirationDate: '',
+                cvc: '',
+                cardHolderFirstName: '',
+                cardHolderLastName: '',
+                addNewCard: false,
             },
             register: {
                 firstName: '',
@@ -58,6 +100,7 @@ const model = {
 
             },
             category:{
+                filteredItemsAdmin:[],
                 filteredItems:[],
                 priceRange:{
                     max:0,
@@ -147,7 +190,8 @@ const model = {
                 paymentInformation:[
                     {
                         cardNumber: "133780082420",
-                        expirationDate:"12/12/2025",
+                        expirationDate:"12/25",
+                        cvc: '123',
                         cardHolderFirstName:"Nonja",
                         cardHolderLastName:"Buisness",
                         address:"Grove Street",
