@@ -419,16 +419,29 @@ function addNewSubCategory(id){
     }
 }
 
-function addToShoppingCart(productId){ 
-    for(let i = 0; i < model.data.users[model.app.userId].shoppingCart.length;i++){
-        if(model.data.users[model.app.userId].shoppingCart[i].item == productId){
-            model.data.users[model.app.userId].shoppingCart[i].quantity++
-            return
+function addToShoppingCart(productId){
+    if(model.app.loggedInStatus){
+        for(let i = 0; i < model.data.users[model.app.userId].shoppingCart.length;i++){
+            if(model.data.users[model.app.userId].shoppingCart[i].item == productId){
+                model.data.users[model.app.userId].shoppingCart[i].quantity++
+                return
+            }
         }
+        model.data.users[model.app.userId].shoppingCart.push({item:productId,quantity:1})
+        model.inputs.checkOutPage.emptyShoppingCart = false;
+        updateView()
     }
-    model.data.users[model.app.userId].shoppingCart.push({item:productId,quantity:1})
-    model.inputs.checkOutPage.emptyShoppingCart = false;
-    updateView()
+    else{
+        for(let i = 0 ; i < model.inputs.shoppingCart.items.canBuyNow.length; i++){
+            if(model.inputs.shoppingCart.items.canBuyNow[i].id == productId){
+                model.inputs.shoppingCart.items.canBuyNow[i].quantity++
+                return
+            }
+        }
+        model.inputs.shoppingCart.items.canBuyNow.push({id:productId,quantity:1})
+        model.inputs.checkOutPage.emptyShoppingCart = false;
+        updateView()
+    }
 }
 
 function checkValidityOfEmail(emailToCheck){
