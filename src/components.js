@@ -209,7 +209,7 @@ function generateCategoryElems(parentId){
 }
 
 function createPageFooter(){
-    let chatBox = `
+    let chatBox = model.app.loggedInStatus && model.data.users[model.app.userId].permissions == "admin"? "" : `
         <div id = "chatBoxWindow">
             <div id = "chatBox">
                 ${model.app.loggedInStatus?
@@ -978,11 +978,11 @@ function editUserPage(){
  }
 
 function checkOut(){
-    if(model.app.loggedInStatus && model.app.userId != '0000001') {
+    if(model.app.loggedInStatus && model.data.users[model.app.userId].permissions != 'admin') {
         setUsersDataForCheckOutPage();
     }
     let html = '';
-    if(model.app.userId == '0000001') return '';
+    if(model.data.users[model.app.userId].permissions == 'admin') return '';
     html = /*html*/
             `
                 <div class= "checkOutComponentContainer">
