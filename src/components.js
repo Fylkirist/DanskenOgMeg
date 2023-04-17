@@ -5,7 +5,7 @@ function activeAuctionList() {
     const bids = auction.bids;
     const userIDs = Object.keys(bids);
     let maxbid = 0;
-    let bidUserLead;
+    let maxBidUser;
 
              // Sjekker over userid hvis det er likt som userId tegner vi opp de aktive auction
         if (userIDs.includes(model.app.userId)) {
@@ -15,16 +15,20 @@ function activeAuctionList() {
 
 
             //Sjekker om item er samma som auction id og om det er instock
-            if (item && item.inStock) {
+            if (item && item.inStock && item.auction) {
             // vi finner høyest bud og ledende bruker
               Object.keys(bids).forEach((userID) => {
                 const userBid = bids[userID].bid[bids[userID].bid.length - 1];
-                const isAutomatic = bids[userID].autoBid || false;
+                const isAutomatic = bids[userID].automatiskBid;          // vi må compare automatisk bud mot manuelle
                 if (userBid > maxbid || (userBid === maxbid && !isAutomatic)) {
                   maxbid = userBid;
-                  bidUserLead = userID;
+                  maxBidUser = userID;
+                  if (!isAutomatic) { 
+                    item.price = maxbid;
                 }
-              });
+              }
+             });
+            
               // Skriver ut date + time, må desverre skrive det her og ellers må jeg bruke alt for mye get elementByID i controller...
               const deadline = new Date(item.deadline).getTime();
               let html = '';
@@ -50,8 +54,9 @@ function activeAuctionList() {
               <h3>${item.title}</h3>
               <img src="${item.images[0]}">
               <div>${item.description}</div>
-              <div><h4>Ledende Bud: ${item.isAutoBid ? 'Automatic' : item.price}</h4></div> <!-- må sjekke om det er auto -->
-              <div>Ledende bruker: ${bidUserLead}</div>
+              <div><h4>Ledende Bud: ${item.price}</h4></div> 
+              <div>Ledende bruker: ${maxBidUser}</div>
+              <h5></h5>
                       
               <div>Du har totalt: ${userBids.bid.length} bud:</div>
                       <div id="deadline-${item.id}" class="deadline">${html}</div>
@@ -86,53 +91,60 @@ function activeAuctionList() {
     const bids = auction.bids[model.app.userId];
     const item = model.data.items.find((item) => item.id === auction.itemId);
 
+    const otherUsers = Object.keys(auction.bids).filter(userID => userID !== model.app.userId);
+    const maxBid = Math.max(...otherUsers.map(userID => Math.max(...auction.bids[userID].bid)));
+    
+   
+
   if (bids.deleted) {
     return;
   }
-
+  
   if (buttonID === 'minbud') {
     const nyttBud = item.price + item.minBid;
     item.price = nyttBud;
     bids.bid.push(nyttBud);
 
   }
-
+  if (parseInt(input) > item.price && (parseInt(input) - item.price) > item.minBid){
   if (buttonID === 'manuelt') {
-            if (parseInt(input) > item.minBid) {
-      const nyttBud = item.price + parseInt(input);
+            
+      const nyttBud = parseInt(input);
       item.price = nyttBud;
       bids.bid.push(nyttBud);
-            }
+            
   }
   
 
-        if (buttonID === 'automatic') {
+  if (buttonID === 'automatic') {
     const autoBid = parseInt(input);
-    const otherUsers = Object.keys(auction.bids).filter(userID => userID !== model.app.userId);
-    const maxBid = Math.max(...otherUsers.map(userID => Math.max(...auction.bids[userID].bid)));
+    bids.autoBid = autoBid;
+    if (autoBid > maxBid) {
+      const nyttBud = maxBid + item.minBid;
+      item.price = nyttBud;
+      bids.bid.push(nyttBud);
+      auction.bids[model.app.userId].automatiskBid = true;
+    }
+  }
 
-                if (autoBid > item.minBid && autoBid > item.price) {
-      if (autoBid > maxBid) {
-        const nyttBud = maxBid + item.minBid
-        item.price = nyttBud;
-      } else {
-        const nyttBud = autoBid - item.minBid
-        item.price = nyttBud
+}
+        if (buttonID === 'delete') {
+          if (bids.bid.length > 0) {
+          item.price=maxBid
+          bids.deleted = true;
+          bids.bid = [];
+          }
       }
-      bids.autoBid = autoBid
-      bids.bid.push(item.price)
-                }
-        }
-        
-
-  if (buttonID === 'delete') {
-            if (bids.bid.length > 0) {
-      bids.deleted = true;
-      bids.bid = [];
-            }
-        }
-    
 activeAuctionList();  
+}
+function oppdatereFlagForBruker(auctionID, brukerId) {
+  const auction = model.data.auctionListe.find((auction) => auction.itemId === auctionID);
+
+  Object.keys(auction.bids).forEach((userID) => {
+    if (userID !== brukerId) {
+      auction.bids[userID].automatiskBid = false;
+    }
+  });
 }
 
 
@@ -191,11 +203,11 @@ function avsluttendeAuksjoner(){
       const bid = auction.bids;
       const userId = Object.keys(bid)
       const item = model.data.items.find((item) => item.id === auksjonId);
-    
+     
 
+      
       if (userId.includes(model.app.userId) && !item.inStock){
         const item = model.data.items.find((item) => item.id === auksjonId);
-        
            html +=`
            <div class="containerForAvsluttendeAuksjoner">
            <h3>${item.title}</h3>
@@ -237,8 +249,9 @@ function avsluttendeAuksjoner(){
       {
         maxBud = maxBudBruker;
         winner = userId;
+        return winner;
       }
 
     })
-    return winner;
+    
   }

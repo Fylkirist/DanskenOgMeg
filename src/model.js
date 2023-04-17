@@ -190,23 +190,23 @@ const model = {
             {
                 itemId: '000002',
                 bids: {
-                        '0000002': {bid: [1000, 3000], deleted: false,autoBid:true},
-                        '0000001': {bid: [1000, 4000], deleted: false,autoBid:true}
+                        '0000002': {bid: [1000, 3000], deleted: false,automatiskBid:false,  autoBid:0},
+                        '0000001': {bid: [1000, 9000], deleted: false,automatiskBid:true,   autoBid:9000}
                     },
             },
             {
                 itemId: '000001',
                 bids: {
-                        '0000002': {bid: [1000, 4000], deleted: false, autoBid:true},
-                        '0000001': {bid: [1000, 9000], deleted: false, autoBid:true}
+                        '0000002': {bid: [1000, 5000], deleted: false, automatiskBid:false,  autoBid:0},
+                        '0000001': {bid: [1000, 100000], deleted: false, automatiskBid:true, autoBid:0}
                     },
                 
             },  
             {
                 itemId: '000003',
                 bids: {
-                        '0000002': {bid: [1000, 100000], deleted: false, autoBid:true},
-                        '0000001': {bid: [1000, 9000], deleted: false, autoBid:true}
+                        '0000002': {bid: [1000, 8000], deleted: false, automatiskBid:false, autoBid:0},
+                        '0000001': {bid: [1000, 9000], deleted: false, automatiskBid:true,  autoBid:0}
                     },
                 
             },
@@ -219,14 +219,14 @@ const model = {
                 description: 'ipsum lorem',
                 price: 5000,
                 category:['Småting','Tilbehør'],
-                auction:false,
-                deadline:'2023-03-21T18:21',
+                auction:true,
+                deadline:'2023-04-17T11:11',
                 images:['assets/kronebilde1.jpg','assets/kronebilde2.jpg'],
                 inStock:true,
                 deliver:true,
                 mainImage: '',
                 minBid:500,
-                isAutoBid:false,
+                vunnet: false,
 
             },
             {
@@ -236,12 +236,12 @@ const model = {
                 price: 5000,
                 category:['Møbler','Stoler'],
                 auction:true,
-                deadline:'2024-03-21T18:21',
+                deadline:'2025-04-17T10:26',
                 images:['assets/kronebilde1.jpg','assets/kronebilde2.jpg'],
                 inStock:true,
                 deliver:false,
                 minBid:900,
-                isAutoBid:false,
+                vunnet: false,
             },
             {
                 id: "000003",
@@ -255,7 +255,7 @@ const model = {
                 inStock:false,
                 deliver:false,
                 minBid:900,
-                isAutoBid:false,
+                vunnet: false,
             },
         ],
         priceRange: {
