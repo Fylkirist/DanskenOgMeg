@@ -528,6 +528,8 @@ function createProduct(){
                 images : model.inputs.createSale.images.map(elem => elem),
                 inStock :true
             }
+            saveMainCategory()
+            model.data.items.push(newProduct);
             for(key in model.inputs.createSale){
                 switch(typeof model.inputs.createSale[key]){
                     case "string":
@@ -541,9 +543,7 @@ function createProduct(){
                         break
                 }
             }
-     model.data.items.push(newProduct);
-     saveMainCategory()
-     updateView()
+        updateView()
     }
 }
 

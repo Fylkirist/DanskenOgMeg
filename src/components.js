@@ -284,11 +284,9 @@ function profileMenuComponent() {
                 <div class="dropdownContent-line"> </div>
                 <div class="dropdownContent-1" onclick="changeView('auctionPage')">Bud</div>
                 <div class="dropdownContent-line"> </div>
-                <div class="dropdownContent-1" onclick="changeView('newProductPage')>Legg til produkt</div>
+                <div class="dropdownContent-1" onclick="changeView('createProduct')">Legg til produkt</div>
                 <div class="dropdownContent-line"> </div>
-                <div class="dropdownContent-1" onclick="changeView('manageMembersPage')>Medlemmer</div>
-                <div class="dropdownContent-line"> </div>
-                <div class="dropdownContent-1" onclick="changeView('createProduct')>Legg til nytt produkt</div>
+                <div class="dropdownContent-1" onclick="changeView('manageMembersPage')">Medlemmer</div>
                 <div class="dropdownContent-line"> </div>
                 <div onclick="logout()">Logg ut</div>
                 <div class="dropdownContent-line"> </div>
