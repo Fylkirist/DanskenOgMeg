@@ -179,3 +179,35 @@ model.data.items.forEach((item) => {
   }, 1000);
 });
 
+function avsluttendeAuksjoner(){
+    let html = ``;
+
+    model.data.auctionListe.forEach((auction) => {
+      const auksjonId = auction.itemId
+      const bid = auction.bids;
+      const userId = Object.keys(bid)
+
+      if (userId === model.app.userId){
+        const item = model.data.items.find((item) => item.id === auksjonId);
+
+        if (!item.inStock) {
+           html += 
+           `<div class="containerForAvsluttendeAuksjoner">
+           <h3>${item.title}</h3>
+           <div>${item.description}</div>
+           <div>Vunnet Bud: ${item.price}</div>
+           <div>Auksjons ID er: ${auctionID}</div>
+         </div>`;
+           
+        }
+      }
+    })
+    const view = `
+    <div class="container">
+    <button>Alle Auksjoner</button> 
+    <button onclick="activeAuctionList()">Dine Aktive Auksjoner</button> 
+    <button onclick="endedAuctionList()">Dine Avsluttende auksjoner</button>
+    ${html || '<div>Du har ingen avsluttende Auksjoner</div>'}
+    </div>`;
+    
+  }

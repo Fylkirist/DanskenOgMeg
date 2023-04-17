@@ -252,7 +252,7 @@ const model = {
                 auction:true,
                 deadline:'2023-06-21T18:21',
                 images:['assets/kronebilde1.jpg','assets/kronebilde2.jpg'],
-                inStock:true,
+                inStock:false,
                 deliver:false,
                 minBid:900,
                 isAutoBid:false,
