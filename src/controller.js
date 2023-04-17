@@ -829,6 +829,22 @@ let priceLimits = determinePriceLimits()
 model.inputs.category.priceRange.max = priceLimits.max
 model.inputs.category.priceRange.min = priceLimits.min
 
+function showSelectedChat(key){
+    model.app.showChatBox = key
+    updateView()
+}
+
+function adminSendMessage(){
+    if(model.inputs.adminMessagePage.adminMessage ==''){return}
+    let newAdminMessage = {
+        type : 'admin',
+        message: model.inputs.adminMessagePage.adminMessage
+    }
+    model.data.users[model.app.showChatBox].messages.push(newAdminMessage);
+    model.inputs.adminMessagePage.adminMessage = '';
+    updateView()
+}   
+
 function oppdaterPersonalia(verdi){
     
     if (verdi === 'namePhoneEmail') {
@@ -961,6 +977,7 @@ function changeFrontPagePic(pos,change){
     }
     updateView()
 }
+
 function navigateToPreviousPage(){
     model.app.nextPagesToNavigateTo.push(model.app.currentView);
     let newView = model.app.previousPagesToNavigateTo[model.app.previousPagesToNavigateTo.length-1];
@@ -973,6 +990,7 @@ function navigateToPreviousPage(){
     changeView(newView);
     updateView();
 }
+
 function navigateToNextPage(){
     let newViews = model.app.nextPagesToNavigateTo[model.app.nextPagesToNavigateTo.length-1];
     model.app.nextPagesToNavigateTo = [];
