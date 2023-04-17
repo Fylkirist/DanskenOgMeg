@@ -968,8 +968,7 @@ function navigateToPreviousPage(){
         model.app.previousPagesToNavigateTo.splice(model.app.previousPagesToNavigateTo.length-2, 2);
     }
     else {
-        model.app.previousPagesToNavigateTo.splice(model.app.previousPagesToNavigateTo.length-1, 1);
-    }
+    model.app.previousPagesToNavigateTo.splice(model.app.previousPagesToNavigateTo.length-1, 1);
     changeView(newView);
     updateView();
 }
