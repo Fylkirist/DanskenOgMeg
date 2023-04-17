@@ -763,8 +763,8 @@ function decreaseItemQuantity(itemIndex){
 
 
 function goToProduct(index){
-    model.app.currentView = "productPage"
-    model.app.currentProduct = index
+    model.app.currentProduct = index;
+    changeView("productPage");
     updateView()
 }
 
