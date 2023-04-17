@@ -905,6 +905,45 @@ function showFilteredProducts(){
     return container
 }
 
+ function adminChatBox(){
+    return /*html*/`
+    <div class = "adminBoxContainer">
+        <div class = "brukerBox">
+              
+        ${Object.keys(model.data.users).map((key, i) => /*html*/`
+            <ul onclick = "showSelectedChat('${key}')">
+                Brukernavn : ${model.data.users[key].username}
+            </ul>
+        `).join('')}
+            
+        </div>
+
+        <div class = "selectedChatBox">
+         ${model.app.showChatBox!=""?currentShownChatBox():""}
+        </div>
+    </div>
+    `
+}
+
+function currentShownChatBox(){
+    return /*html*/`
+    <div class = "currentChatBoxContainer">
+        <div id = "messages">
+        ${model.data.users[model.app.showChatBox].messages.map(message =>{ 
+            return /*html*/ `
+            <div class = "${message.type}">
+                ${message.message}
+            </div>
+        `}).join('')}
+        </div>
+        <input id = "adminMessageInput" type = "text" 
+            oninput = "model.inputs.adminMessagePage.adminMessage = this.value"
+            value = "${model.inputs.adminMessagePage.adminMessage}">
+        <button id = "admingMessageSendButton" onclick = "adminSendMessage()">Send Melding</button>
+    </div>
+    `
+}
+
 function editUserPage(){
     setUserInputs()
       return  /*html*/ ` 

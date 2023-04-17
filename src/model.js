@@ -3,9 +3,11 @@ const model = {
         currentView:'frontPage',
         loggedInStatus: false,
         wrongUserNamePasswordMessage: '',
+
         userId:false,
         zoomedPic:false,
         currentProduct:false,
+        showChatBox:"",
         frontPageCurrentShowing:{
             top:0,
             bottom:0,
@@ -143,6 +145,10 @@ const model = {
                 adminPriceChange:"",
                 adminAddSubCategory:"",
                 adminChangeMainCategory:""
+
+            },
+            adminMessagePage:{
+                adminMessage: ''
             }
         },
     data:{
@@ -235,6 +241,7 @@ const model = {
                 itemId: '000002',
                 bids: {
                         '0000002': {bid: [1000, 20000], deleted: false},
+                        '0000001': {bid: [1000, 10000], deleted: false}
                     },
             },
         ],
