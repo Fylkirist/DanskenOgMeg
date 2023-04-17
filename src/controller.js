@@ -496,7 +496,15 @@ function setUsersDataForCheckOutPage(){
 }
 
 function changeView(view){
-    model.app.previousPagesToNavigateTo.push(model.app.currentView);
+    if(model.app.currentView != view){
+        if(model.app.pagesToNavigateTo.length == 0){
+            model.app.pagesToNavigateTo.push(model.app.currentView, view);
+        }
+        else {
+            model.app.pagesToNavigateTo.push(view);
+        }
+        model.app.indexOfThePageAreOn = model.app.pagesToNavigateTo.length-1 ;
+    }
     model.app.currentView = view;
     updateView()
 }
@@ -962,19 +970,20 @@ function changeFrontPagePic(pos,change){
     updateView()
 }
 function navigateToPreviousPage(){
-    model.app.nextPagesToNavigateTo.push(model.app.currentView);
-    let newView = model.app.previousPagesToNavigateTo[model.app.previousPagesToNavigateTo.length-1];
-    if(model.app.previousPagesToNavigateTo.length > 1){
-        model.app.previousPagesToNavigateTo.splice(model.app.previousPagesToNavigateTo.length-2, 2);
+    let previousPage = model.app.pagesToNavigateTo[model.app.indexOfThePageAreOn-1];
+    model.app.currentView = previousPage;
+    if(model.app.indexOfThePageAreOn > 0){
+        model.app.indexOfThePageAreOn = model.app.indexOfThePageAreOn-1;
     }
-    else {
-    model.app.previousPagesToNavigateTo.splice(model.app.previousPagesToNavigateTo.length-1, 1);
-    changeView(newView);
+    
     updateView();
 }
 function navigateToNextPage(){
-    let newViews = model.app.nextPagesToNavigateTo[model.app.nextPagesToNavigateTo.length-1];
-    model.app.nextPagesToNavigateTo = [];
-    changeView(newViews);   
+    let nextPage = model.app.pagesToNavigateTo[model.app.indexOfThePageAreOn+1];
+    console.log(nextPage);
+    model.app.currentView = nextPage;
+    if(model.app.indexOfThePageAreOn < (model.app.pagesToNavigateTo.length-1)){
+        model.app.indexOfThePageAreOn = model.app.indexOfThePageAreOn+1;
+    }
     updateView();
 }

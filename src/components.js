@@ -1205,8 +1205,8 @@ function goBackAndGoForwardButtons(){
     let html = '';
     html += `
             <div>
-                <button ${model.app.previousPagesToNavigateTo.length == 0 ? 'disabled' : ''} onclick="navigateToPreviousPage()">Gå tilbake</button>
-                <button ${model.app.nextPagesToNavigateTo.length == 0 ? 'disabled' : ''} onclick="navigateToNextPage()">Gå Frem</button>
+                <button ${model.app.pagesToNavigateTo.length <= 1 || model.app.indexOfThePageAreOn == 0 ? 'disabled' : ''} onclick="navigateToPreviousPage()">Gå tilbake</button>
+                <button ${model.app.pagesToNavigateTo.length <= 1 || (model.app.indexOfThePageAreOn == (model.app.pagesToNavigateTo.length-1)) ? 'disabled' : ''} onclick="navigateToNextPage()">Gå Frem</button>
             </div>
             `;
     return html;
