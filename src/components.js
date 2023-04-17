@@ -576,11 +576,12 @@ function generateFrontPageElement(item, pic, pos){
 function createHeaderSection(){
     return /*html*/`
     <div class="headerSectionContainer">
+        ${goBackAndGoForwardButtons()}
         <h1 class="overskriftHeaderSection" onclick = "toToFrontPage()">Dansken og meg</h1>
         ${!model.app.loggedInStatus ? `<div class="registerButtonHeaderSection" onclick="goToRegisterPage()">Registrer</div>
         <div class="loginButtonHeaderSection" onclick="loginDropDown()">Login</div>` :
         `<div class="userButtonHeaderSection" onclick="">${model.data.users[model.app.userId].username}</div>`}
-        ${!model.app.loggedInStatus || model.data.users[model.app.userId].permissions != "admin"? `<div class="cartIconHeaderSection" onclick="goToShoppingCart()">🛒</div>`:``}
+        ${!model.app.loggedInStatus || model.data.users[model.app.userId].permissions != "admin"? `<div class="cartIconHeaderSection" onclick="changeView('shoppingCart')">🛒</div>`:``}
         <h3 class="underskriftHeaderSection">VintageSkatter</h3>
         ${model.inputs.login.dropdown ? 
             `<input type="text" 
@@ -1199,4 +1200,12 @@ function showZoomedPic(){
         return `<img id = "zoomedPic" src = "${model.data.items[product].images[model.app.zoomedPic]}" onclick = "unZoom()"></img>`
     }
     return ``
+}
+function goBackAndGoForwardButtons(){
+    let html = '';
+    html += `
+                <button ${model.app.previousPagesToNavigateTo.length == 0 ? 'disabled' : ''} onclick="navigateToPreviousPage()">Gå tilbake</button>
+                <button ${model.app.nextPagesToNavigateTo.length == 0 ? 'disabled' : ''} onclick="navigateToNextPage()">Gå Frem</button>
+            `;
+    return html;
 }

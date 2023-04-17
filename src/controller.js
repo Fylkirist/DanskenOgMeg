@@ -496,7 +496,8 @@ function setUsersDataForCheckOutPage(){
 }
 
 function changeView(view){
-    model.app.currentView = view
+    model.app.previousPagesToNavigateTo.push(model.app.currentView);
+    model.app.currentView = view;
     updateView()
 }
 
@@ -959,4 +960,22 @@ function changeFrontPagePic(pos,change){
         }
     }
     updateView()
+}
+function navigateToPreviousPage(){
+    model.app.nextPagesToNavigateTo.push(model.app.currentView);
+    let newView = model.app.previousPagesToNavigateTo[model.app.previousPagesToNavigateTo.length-1];
+    if(model.app.previousPagesToNavigateTo.length > 1){
+        model.app.previousPagesToNavigateTo.splice(model.app.previousPagesToNavigateTo.length-2, 2);
+    }
+    else {
+        model.app.previousPagesToNavigateTo.splice(model.app.previousPagesToNavigateTo.length-1, 1);
+    }
+    changeView(newView);
+    updateView();
+}
+function navigateToNextPage(){
+    let newViews = model.app.nextPagesToNavigateTo[model.app.nextPagesToNavigateTo.length-1];
+    model.app.nextPagesToNavigateTo = [];
+    changeView(newViews);   
+    updateView();
 }

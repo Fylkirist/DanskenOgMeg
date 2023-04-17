@@ -15,6 +15,8 @@ const model = {
         checkOut: {
             invalidEmailOnCheckOutPage: false,
         },
+        previousPagesToNavigateTo: [],
+        nextPagesToNavigateTo: [],
         
     },
         inputs:{
