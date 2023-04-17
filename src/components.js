@@ -33,6 +33,7 @@ function activeAuctionList() {
       
                 const userBidList = renderUserBids(auction);
                 budListe += userBidList;
+
             auksjonsliste += `
             <div class="auction-item">
             <h3>${item.title}</h3>
@@ -59,7 +60,7 @@ function activeAuctionList() {
       <button onclick="${model.app.userId="0000002"}">Logg inn vanlig bruker </button><br><br>
       <button>Alle Auksjoner</button> 
       <button onclick="activeAuctionList()">Dine Aktive Auksjoner</button> 
-      <button> Dine Avsluttende auksjoner</button>
+      <button onclick="avsluttendeAuksjoner()"> Dine Avsluttende auksjoner</button>
       ${auksjonsliste || '<div>Du har ingen aktive Auksjoner</div>'}
     </div>`;
 
@@ -157,13 +158,11 @@ function calculateDeadline(itemsId){
     let secondsRemaining = parseInt(((((((miliSecondsRemaining/(1000*60*60*24)) - daysRemaining) * 24) - hoursRemaining) * 60) - minutesRemaining) * 60);
 
     if (miliSecondsRemaining > 1000){
-        console.log(`Set deadline: ${setDeadline}`);
         html = `
                 ${daysRemaining} dager og ${hoursRemaining} timer og ${minutesRemaining} minutter. sekkunder: ${secondsRemaining}
              `;
     }
     else {
-        console.log(`Set deadline: ${setDeadline}`);
         html = 'Bud er stengt.'
         model.data.items[posistion].inStock = false;
     }
@@ -186,20 +185,21 @@ function avsluttendeAuksjoner(){
       const auksjonId = auction.itemId
       const bid = auction.bids;
       const userId = Object.keys(bid)
+      const item = model.data.items.find((item) => item.id === auksjonId);
 
-      if (userId === model.app.userId){
-        const item = model.data.items.find((item) => item.id === auksjonId);
 
-        if (!item.inStock) {
-           html += 
-           `<div class="containerForAvsluttendeAuksjoner">
+      if (userId.includes(model.app.userId) && !item.inStock){
+
+        
+           html +=`
+           <div class="containerForAvsluttendeAuksjoner">
            <h3>${item.title}</h3>
            <div>${item.description}</div>
-           <div>Vunnet Bud: ${item.price}</div>
-           <div>Auksjons ID er: ${auksjonId}</div>
+           <div>Vunneene Bud: ${item.price}</div>
+           <div>Auksjons ble avsluttet : ${item.deadline}</div>
          </div>`;
            
-        }
+        
       }
     })
     const view = `
@@ -209,5 +209,5 @@ function avsluttendeAuksjoner(){
     <button onclick="avsluttendeAuksjoner()">Dine Avsluttende auksjoner</button>
     ${html || '<div>Du har ingen avsluttende Auksjoner</div>'}
     </div>`;
-    
+    return view;
   }
