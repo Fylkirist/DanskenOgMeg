@@ -261,9 +261,19 @@ let priceLimits = determinePriceLimits()
 model.inputs.category.priceRange.max = priceLimits.max
 model.inputs.category.priceRange.min = priceLimits.min
 
-function showSelectedChat(index){
-    for (let userIdKey in model.data.users){
+function showSelectedChat(key){
+    model.app.showChatBox = key
+    updateView()
+}
 
-        model.app.showChatBox = 
+function adminSendMessage(){
+    if(model.inputs.adminMessagePage.adminMessage ==''){return}
+    let newAdminMessage = {
+        type : 'admin',
+        message: model.inputs.adminMessagePage.adminMessage
     }
+    model.data.users[model.app.showChatBox].messages.push(newAdminMessage);
+    model.inputs.adminMessagePage.adminMessage = '';
+    updateView()
+    
 }

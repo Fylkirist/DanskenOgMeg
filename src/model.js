@@ -103,6 +103,9 @@ const model = {
                 adminAddSubCategory:"",
                 adminChangeMainCategory:""
 
+            },
+            adminMessagePage:{
+                adminMessage: ''
             }
         },
     data:{
