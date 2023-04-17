@@ -299,44 +299,46 @@ function profileMenuComponent() {
 
 function showShoppingCart(){
     let html= '';
-    html = /*html*/`
-        <div class="handlevognContainer">
-            <div>
-                <div class="handlevognHeader">Handlevogn</div>
-                <p>Varer du kan kjøpe nå -</p><span onclick="clearShoppingCart()"></span>
-                <div class="horizontalLines">
-                    <span>Pris</span>
-                </div>
-                <div class="allItemsCanBuy">
-                ${showItemsCanBuyNow()}
-                </div>
-                <div class="totalPrice">
-                    <span>Total</span>
-                    <span>${model.inputs.shoppingCart.totalPrice}</span>
-                    <button onclick="changeView('checkoutPage')">Gå til kassen</button>
+    if(model.app.userId == "0000001") return html;
+    else {
+        html = /*html*/`
+            <div class="handlevognContainer">
+                <div>
+                    <div class="handlevognHeader">Handlevogn</div>
+                    <p>Varer du kan kjøpe nå -</p><span onclick="clearShoppingCart()"></span>
+                    <div class="horizontalLines">
+                        <span>Pris</span>
+                    </div>
+                    <div class="allItemsCanBuy">
+                    ${showItemsCanBuyNow()}
+                    </div>
+                    <div class="totalPrice">
+                        <span>Total</span>
+                        <span>${model.inputs.shoppingCart.totalPrice}</span>
+                        <button ${(model.app.userId && model.data.users[model.app.userId].shoppingCart.length != 0) || (!model.app.userId && model.inputs.shoppingCart.items.canBuyNow.length != 0) ? '' : 'disabled'} onclick="changeView('checkoutPage')">Gå til kassen</button>
 
+                    </div>
+                    ${model.app.loggedInStatus ? `
+                        <h3>Auksjoner du har bud på:</h3>
+                        <div>
+                            <span>Vinnene bud</span>
+                        </div>
+                        <div>${showWinningBids()}</div>
+                        <div>
+                            <span>Tapende bud</span>
+                        </div>
+                        <div>${showLosingBids()}</div>` 
+                    : ''}
                 </div>
-                ${model.app.loggedInStatus ? `
-                    <h3>Auksjoner du har bud på:</h3>
-                    <div>
-                        <span>Vinnene bud</span>
-                    </div>
-                    <div>${showWinningBids()}</div>
-                    <div>
-                        <span>Tapende bud</span>
-                    </div>
-                    <div>${showLosingBids()}</div>` 
-                : ''}
-            </div>
-        </div>`;
+            </div>`;
+    }
     return html;
 }
 
 function showItemsCanBuyNow(){
     let html = '';
-    console.log("bruh")
     model.inputs.shoppingCart.totalPrice = 0;
-    if (model.inputs.shoppingCart.items.canBuyNow.length == 0) {
+    if ((!model.app.userId && model.inputs.shoppingCart.items.canBuyNow.length == 0) || (model.app.userId && model.data.users[model.app.userId].shoppingCart.length == 0)) {
         html = 'You do not have any items in the shopping cart.';
     }
     if(model.app.loggedInStatus){
@@ -1022,94 +1024,95 @@ function checkOut(){
         setUsersDataForCheckOutPage();
     }
     let html = '';
-    if(model.data.users[model.app.userId].permissions == 'admin') return '';
-    html = /*html*/
-            `
-                <div class= "checkOutComponentContainer">
-                    <div class="checkOutLeftSideContainer">
-                        ${model.inputs.checkOutPage.emptyShoppingCart ? 
-                            '' :
-                            `
-                                <div class="checkOutAddress">
-                                    <p>Hvem skal orden sendes til?</p>
-                                    ${model.app.loggedInStatus ? 
-                                        '' : 
-                                        '<p><span onclick="loginDropDown()">Logg inn </span>eller fortsett under. Du kan opprette en konto etter at du har betalt.</p>'
-                                    }
-                                    <p>Fornavn: <input type="text" value="${model.inputs.checkOutPage.firstName}" onchange="model.inputs.checkOutPage.firstName = this.value, updateView()"/></p>
-                                    <p>Etternavn: <input type="text" value="${model.inputs.checkOutPage.lastName}" onchange="model.inputs.checkOutPage.lastName = this.value, updateView()"/></p>
-                                    <p>Addresse: <input type="text" value="${model.inputs.checkOutPage.address}" onchange="model.inputs.checkOutPage.address = this.value, updateView()"/></p>
-                                    <p>Zip: <input type="text" value="${model.inputs.checkOutPage.zipCode}" onchange="model.inputs.checkOutPage.zipCode = this.value, updateView()"/></p>
-                                    <p>E-post: <input type="text" value="${model.inputs.checkOutPage.email}" onchange="checkValidityOfEmail(this.value)"/></p>
-                                    ${model.app.checkOut.invalidEmailOnCheckOutPage ? '<p style="color: red;">Invalid E-post</p>' : ''}
-                                    <p>Mobil: <input type="text" value="${model.inputs.checkOutPage.mobile}" onchange="model.inputs.checkOutPage.mobile = this.value, updateView()"/></p>
-                                    ${!model.inputs.checkOutPage.firstName ||
-                                    !model.inputs.checkOutPage.lastName ||
-                                    !model.inputs.checkOutPage.address ||
-                                    !model.inputs.checkOutPage.zipCode ||
-                                    !model.inputs.checkOutPage.email ||
-                                    model.app.checkOut.invalidEmailOnCheckOutPage ||
-                                    !model.inputs.checkOutPage.mobile ?
-                                        '<p style="color: red;">Fyll ut alle feltene.</p>' :
-                                        `<button onclick="model.inputs.checkOutPage.addressFilled = true, updateView()">Fortsett</button>`
-                                    }
-                                </div>
-                                ${model.inputs.checkOutPage.addressFilled ?
+    if(model.app.loggedInStatus && model.data.users[model.app.userId].permissions == 'admin') return '';
+    else {
+            html = /*html*/
+                    `
+                        <div class= "checkOutComponentContainer">
+                            <div class="checkOutLeftSideContainer">
+                                ${(!model.app.userId && model.inputs.shoppingCart.items.canBuyNow.length == 0) || (model.app.userId && model.data.users[model.app.userId].shoppingCart.length == 0) ? 
+                                    '' :
                                     `
-                                        <div class="checkOutDeliveryMethod">
-                                                <p>Velg en leveringsmetode:</p>
-                                                <form>
-                                                <input type="checkbox" id="deliveryOption1" name="deliveryOption1" value="1" onchange= "setDeliveryMethod(this.value)" ${model.inputs.checkOutPage.deliveryMethod.butikk}/>
-                                                <label for="deliveryOption1">Hent i butikk - Gratis</label><br>
-                                                <input type="checkbox" id="deliveryOption2" name="deliveryOption2" value="2" onchange= "setDeliveryMethod(this.value)" ${model.inputs.checkOutPage.deliveryMethod.leveringMedInnbæring}/>
-                                                <label for="deliveryOption2">Levering med innbæring - 400kr</label><br>  
-                                                <input type="checkbox" id="deliveryOption3" name="deliveryOption3" value="3" onchange= "setDeliveryMethod(this.value)" ${model.inputs.checkOutPage.deliveryMethod.leveringUtenInnbæring}/>
-                                                <label for="deliveryOption3">Levering uten innbæring - 200kr</label><br>
-                                                </form>
-                                                ${model.inputs.checkOutPage.selectedDeliveryMethod ?
-                                                    `<button onclick="model.inputs.checkOutPage.deliveryMethod.selected = true, updateView()">Fortsett</button>` :
-                                                    ''  
-                                                }
-                                        </div> 
-                                    `:
-                                    ''
-                                }
-                                ${model.inputs.checkOutPage.deliveryMethod.selected ?
-                                    `
-                                        <div class="checkOutPaymentMethod">
+                                        <div class="checkOutAddress">
+                                            <p>Hvem skal orden sendes til?</p>
                                             ${model.app.loggedInStatus ? 
-                                                selectCard() : 
-                                                `<p>Card Number: <input type="text" value="${model.inputs.checkOutPage.cardNumber}" onchange="model.inputs.checkOutPage.cardNumber = this.value, updateView()"/></p>
-                                                <p>Expiration Date: <input type="text" value="${model.inputs.checkOutPage.expirationDate}" onchange="model.inputs.checkOutPage.expirationDate = this.value, updateView()"/></p>
-                                                <p>cvc: <input type="text" value="${model.inputs.checkOutPage.cvc}" onchange="model.inputs.checkOutPage.cvc = this.value, updateView()"/></p>
-                                                <p>Card Holders First Name: <input type="text" value="${model.inputs.checkOutPage.cardHolderFirstName}" onchange="model.inputs.checkOutPage.cardHolderFirstName = this.value, updateView()"/></p>
-                                                <p>Card Holders Last Name: <input type="text" value="${model.inputs.checkOutPage.cardHolderLastName}" onchange="model.inputs.checkOutPage.cardHolderLastName = this.value, updateView()"/></p>
-                                                `
+                                                '' : 
+                                                '<p><span onclick="loginDropDown()">Logg inn </span>eller fortsett under. Du kan opprette en konto etter at du har betalt.</p>'
+                                            }
+                                            <p>Fornavn: <input type="text" value="${model.inputs.checkOutPage.firstName}" onchange="model.inputs.checkOutPage.firstName = this.value, updateView()"/></p>
+                                            <p>Etternavn: <input type="text" value="${model.inputs.checkOutPage.lastName}" onchange="model.inputs.checkOutPage.lastName = this.value, updateView()"/></p>
+                                            <p>Addresse: <input type="text" value="${model.inputs.checkOutPage.address}" onchange="model.inputs.checkOutPage.address = this.value, updateView()"/></p>
+                                            <p>Zip: <input type="text" value="${model.inputs.checkOutPage.zipCode}" onchange="model.inputs.checkOutPage.zipCode = this.value, updateView()"/></p>
+                                            <p>E-post: <input type="text" value="${model.inputs.checkOutPage.email}" onchange="checkValidityOfEmail(this.value)"/></p>
+                                            ${model.app.checkOut.invalidEmailOnCheckOutPage ? '<p style="color: red;">Invalid E-post</p>' : ''}
+                                            <p>Mobil: <input type="text" value="${model.inputs.checkOutPage.mobile}" onchange="model.inputs.checkOutPage.mobile = this.value, updateView()"/></p>
+                                            ${!model.inputs.checkOutPage.firstName ||
+                                            !model.inputs.checkOutPage.lastName ||
+                                            !model.inputs.checkOutPage.address ||
+                                            !model.inputs.checkOutPage.zipCode ||
+                                            !model.inputs.checkOutPage.email ||
+                                            model.app.checkOut.invalidEmailOnCheckOutPage ||
+                                            !model.inputs.checkOutPage.mobile ?
+                                                '<p style="color: red;">Fyll ut alle feltene.</p>' :
+                                                `<button onclick="model.inputs.checkOutPage.addressFilled = true, updateView()">Fortsett</button>`
                                             }
                                         </div>
-                                    `: 
-                                    ''
+                                        ${model.inputs.checkOutPage.addressFilled ?
+                                            `
+                                                <div class="checkOutDeliveryMethod">
+                                                        <p>Velg en leveringsmetode:</p>
+                                                        <form>
+                                                        <input type="checkbox" id="deliveryOption1" name="deliveryOption1" value="1" onchange= "setDeliveryMethod(this.value)" ${model.inputs.checkOutPage.deliveryMethod.butikk}/>
+                                                        <label for="deliveryOption1">Hent i butikk - Gratis</label><br>
+                                                        <input type="checkbox" id="deliveryOption2" name="deliveryOption2" value="2" onchange= "setDeliveryMethod(this.value)" ${model.inputs.checkOutPage.deliveryMethod.leveringMedInnbæring}/>
+                                                        <label for="deliveryOption2">Levering med innbæring - 400kr</label><br>  
+                                                        <input type="checkbox" id="deliveryOption3" name="deliveryOption3" value="3" onchange= "setDeliveryMethod(this.value)" ${model.inputs.checkOutPage.deliveryMethod.leveringUtenInnbæring}/>
+                                                        <label for="deliveryOption3">Levering uten innbæring - 200kr</label><br>
+                                                        </form>
+                                                        ${model.inputs.checkOutPage.selectedDeliveryMethod ?
+                                                            `<button onclick="model.inputs.checkOutPage.deliveryMethod.selected = true, updateView()">Fortsett</button>` :
+                                                            ''  
+                                                        }
+                                                </div> 
+                                            `:
+                                            ''
+                                        }
+                                        ${model.inputs.checkOutPage.deliveryMethod.selected ?
+                                            `
+                                                <div class="checkOutPaymentMethod">
+                                                    ${model.app.loggedInStatus ? 
+                                                        selectCard() : 
+                                                        `<p>Card Number: <input type="text" value="${model.inputs.checkOutPage.cardNumber}" onchange="model.inputs.checkOutPage.cardNumber = this.value, updateView()"/></p>
+                                                        <p>Expiration Date: <input type="text" value="${model.inputs.checkOutPage.expirationDate}" onchange="model.inputs.checkOutPage.expirationDate = this.value, updateView()"/></p>
+                                                        <p>cvc: <input type="text" value="${model.inputs.checkOutPage.cvc}" onchange="model.inputs.checkOutPage.cvc = this.value, updateView()"/></p>
+                                                        <p>Card Holders First Name: <input type="text" value="${model.inputs.checkOutPage.cardHolderFirstName}" onchange="model.inputs.checkOutPage.cardHolderFirstName = this.value, updateView()"/></p>
+                                                        <p>Card Holders Last Name: <input type="text" value="${model.inputs.checkOutPage.cardHolderLastName}" onchange="model.inputs.checkOutPage.cardHolderLastName = this.value, updateView()"/></p>
+                                                        `
+                                                    }
+                                                </div>
+                                            `: 
+                                            ''
+                                        }
+                                        ${!model.inputs.checkOutPage.cardNumber ||
+                                        !model.inputs.checkOutPage.expirationDate ||
+                                        !model.inputs.checkOutPage.cvc ||
+                                        !model.inputs.checkOutPage.cardHolderFirstName ||
+                                        !model.inputs.checkOutPage.cardHolderLastName ?
+                                                '' :
+                                                '<button>Betal</button>'
+                                        }
+                                    `
                                 }
-                                ${!model.inputs.checkOutPage.cardNumber ||
-                                !model.inputs.checkOutPage.expirationDate ||
-                                !model.inputs.checkOutPage.cvc ||
-                                !model.inputs.checkOutPage.cardHolderFirstName ||
-                                !model.inputs.checkOutPage.cardHolderLastName ?
-                                        '' :
-                                        '<button>Betal</button>'
-                                }
-                            `
-                        }
-                    </div>
-                    <div class="checkOutRightSideContainer">
-                        ${model.inputs.checkOutPage.emptyShoppingCart ? 
-                            '<p>Du har ingenting i handlevogn.</p>' :
-                            betalingsOversikt()
-                        } 
-                    </div>
-                </div>
-            `;
-
+                            </div>
+                            <div class="checkOutRightSideContainer">
+                                ${model.inputs.checkOutPage.emptyShoppingCart ? 
+                                    '<p>Du har ingenting i handlevogn.</p>' :
+                                    betalingsOversikt()
+                                } 
+                            </div>
+                        </div>
+                    `;
+        }
     return html;
 }
 function selectCard(){
