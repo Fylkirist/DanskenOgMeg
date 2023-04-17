@@ -1204,8 +1204,10 @@ function showZoomedPic(){
 function goBackAndGoForwardButtons(){
     let html = '';
     html += `
+            <div>
                 <button ${model.app.previousPagesToNavigateTo.length == 0 ? 'disabled' : ''} onclick="navigateToPreviousPage()">Gå tilbake</button>
                 <button ${model.app.nextPagesToNavigateTo.length == 0 ? 'disabled' : ''} onclick="navigateToNextPage()">Gå Frem</button>
+            </div>
             `;
     return html;
 }
