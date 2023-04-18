@@ -134,7 +134,7 @@ function usersOrderHistoryAdminPage(){
                             <td>${item.type}</td>
                             <td>${item.price}</td>
                             <td>${item.paid ? 'Betalt' : 'Ubetalt'}</td>
-                            <td>${new Date(item.date).toLocaleDateString()}</td>
+                            <td>${item.date}</td>
                         </tr>
                     `;
         }
