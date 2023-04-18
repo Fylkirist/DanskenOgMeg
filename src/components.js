@@ -148,7 +148,7 @@ function itemOnGoingAuctionDetails(){
     });
     for(let userId in model.data.users){
         if(userId == highestBidGiver.id){
-            highestBidGiver.name = model.data.users[userId].firstname + ' ' + model.data.users[userId].surname;
+            highestBidGiver.name = model.data.users[userId].firstName + ' ' + model.data.users[userId].surName;
             highestBidGiver.email = model.data.users[userId].email;
             highestBidGiver.mobile = model.data.users[userId].mobile;
         }
@@ -231,7 +231,7 @@ function showExpiredAuctions(){
         });
         for(let userId in model.data.users){
             if(userId == highestBidGiver.id){
-                highestBidGiver.name = model.data.users[userId].firstname + ' ' + model.data.users[userId].surname;
+                highestBidGiver.name = model.data.users[userId].firstName + ' ' + model.data.users[userId].surName;
                 highestBidGiver.email = model.data.users[userId].email;
                 highestBidGiver.mobile = model.data.users[userId].mobile;
             }
