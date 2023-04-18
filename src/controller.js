@@ -1026,3 +1026,27 @@ function closeProductList(pos){
     pos == "top"? model.inputs.adminFrontPage.showTopList = false:model.inputs.adminFrontPage.showBotList = false
     updateView()
 }
+
+function payAtTheCheckoutPage(){
+    let newOrder = {};
+    if(model.app.userId){
+        model.data.users[model.app.userId].shoppingCart.forEach(itemInUserCart => {
+            newOrder.itemId = parseInt(itemInUserCart.item);
+            newOrder.paid = true;
+            newOrder.date = new Date().toLocaleDateString();
+            newOrder.userId = model.app.userId;
+            model.data.items.forEach(itemInData => {
+                if(parseInt(itemInData.id) == parseInt(itemInUserCart.item)){
+                    newOrder.price = itemInData.price;
+                    newOrder.type = !itemInData.auction ? 'direkte' : 'auction';
+                    newOrder.image = itemInData.images[0];
+                    newOrder.title = itemInData.title;
+                }
+            });
+            model.data.orderHistory.push(newOrder);
+        });
+        model.data.users[model.app.userId].shoppingCart = []; 
+    }
+    model.inputs.shoppingCart.items.canBuyNow = [];
+    updateView();
+}

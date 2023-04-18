@@ -1165,7 +1165,7 @@ function checkOut(){
                                         !model.inputs.checkOutPage.cardHolderFirstName ||
                                         !model.inputs.checkOutPage.cardHolderLastName ?
                                                 '' :
-                                                '<button>Betal</button>'
+                                                '<button onclick="payAtTheCheckoutPage()">Betal</button>'
                                         }
                                     `
                                 }
