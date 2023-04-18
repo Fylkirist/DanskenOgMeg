@@ -20,7 +20,7 @@ function renderFrontPageAdminSettings(){
                 <div id = "frontPageTopAddProduct">
                     ${model.inputs.adminFrontPage.showTopList?
                         showAddProductList('top'):`
-                        <div class = "frontPageAddDisplay"></div>
+                        <div class = "frontPageAddDisplay" onclick = "openAddProductMenu('top')">Legg til produkt</div>
                     `}
                 </div>
                 ${model.data.frontPageTop.map((elem,i) =>{
@@ -36,7 +36,7 @@ function renderFrontPageAdminSettings(){
                 <div id = "frontPageBotAddProduct">
                 ${model.inputs.adminFrontPage.showBotList?
                     showAddProductList('bot'):`
-                    <div class = "frontPageAddDisplay"></div>
+                    <div class = "frontPageAddDisplay" onclick = "openAddProductMenu('bot')">Legg til produkt</div>
                 `}
                 </div>
                 ${model.data.frontPageBottom.map((elem,i) =>{
@@ -56,11 +56,12 @@ function showAddProductList(pos){
     let arr = pos == "top"? model.data.frontPageTop:model.data.frontPageBottom
     return `
         <div class = "frontPageAddProductList">
+            <button onclick = "closeProductList('${pos}')">Cancel</button>
             ${model.data.items.map((item,i)=>{
                 return arr.includes(i)?"":`
                 <div>
-                    <label onmouseover = "this.innerHTML+=addProductDisplayHover(${i})">${item.title}</label>
-                    <button onclick = "addProductToDisplay(${i},${pos})">Legg til</button>
+                    <label onmouseenter = "()=>{this.innerHTML+=addProductDisplayHover(${i})}">${item.title}</label>
+                    <button onclick = "addProductToDisplay(${i},'${pos}')">Legg til</button>
                 </div>`
             }).join("")}
         </div>
@@ -591,8 +592,8 @@ function showSearchBox() {
 }
 
 function frontPageProductView(){
-    let topElem = generateFrontPageElement(model.data.frontPageTop[model.app.frontPageCurrentShowing.top],model.app.frontPageCurrentShowing.topPic,"top")
-    let botElem = generateFrontPageElement(model.data.frontPageBottom[model.app.frontPageCurrentShowing.bottom],model.app.frontPageCurrentShowing.botPic,"bot")
+    let topElem = model.data.frontPageTop.length > 0?generateFrontPageElement(model.data.frontPageTop[model.app.frontPageCurrentShowing.top],model.app.frontPageCurrentShowing.topPic,"top"):`<div class = "frontPagePlaceholder"></div>`
+    let botElem = model.data.frontPageBottom.length > 0?generateFrontPageElement(model.data.frontPageBottom[model.app.frontPageCurrentShowing.bottom],model.app.frontPageCurrentShowing.botPic,"bot"):`<div class = "frontPagePlaceholder"></div>`
     return `
         <div id = "frontPageProductDisplay">
             <div class = "frontPageProductDisplayElement">

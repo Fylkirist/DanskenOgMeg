@@ -3,7 +3,7 @@ const app = document.getElementById("app")
 function updateView(){
     switch(model.app.currentView){
         case "frontPage":
-            app.innerHTML = createHeaderSection() + profileMenuComponent() + showSearchBox() + frontPageProductView() + createPageFooter()
+            app.innerHTML = createHeaderSection() + profileMenuComponent() + showSearchBox() + (model.app.loggedInStatus && model.data.users[model.app.userId].permissions == "admin"? renderFrontPageAdminSettings() : frontPageProductView()) + createPageFooter()
             break
         case "filteredPage":
             app.innerHTML = createHeaderSection() + profileMenuComponent() + showSearchBox() + showFilterBox() + showFilteredProducts() + createPageFooter()

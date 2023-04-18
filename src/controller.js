@@ -1011,3 +1011,18 @@ function removeFromFrontPageDisplay(pos,i){
     arr.splice(i,1)
     updateView()
 }
+
+function openAddProductMenu(pos){
+    pos == "top"? model.inputs.adminFrontPage.showTopList = !model.inputs.adminFrontPage.showTopList:model.inputs.adminFrontPage.showBotList = !model.inputs.adminFrontPage.showBotList
+    updateView()
+}
+
+function addProductToDisplay(i,pos){
+    pos == "top"? model.data.frontPageTop.push(i):model.data.frontPageBottom.push(i)
+    closeProductList(pos)
+}
+
+function closeProductList(pos){
+    pos == "top"? model.inputs.adminFrontPage.showTopList = false:model.inputs.adminFrontPage.showBotList = false
+    updateView()
+}
