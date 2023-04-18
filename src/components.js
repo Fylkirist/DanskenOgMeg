@@ -350,7 +350,7 @@ function profileMenuComponent() {
                 <div class="dropdownContent-line"> </div>
                 <div class="dropdownContent-1" onclick="changeView('saleHistoryPage')">Salgshistorikk</div>
                 <div class="dropdownContent-line"> </div>
-                <div class="dropdownContent-1" onclick="changeView('auctionPage')">Bud</div>
+                <div class="dropdownContent-1" onclick="changeView('adminAuction')">Bud</div>
                 <div class="dropdownContent-line"> </div>
                 <div class="dropdownContent-1" onclick="changeView('createProduct')">Legg til produkt</div>
                 <div class="dropdownContent-line"> </div>
