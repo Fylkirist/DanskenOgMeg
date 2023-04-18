@@ -21,136 +21,136 @@ const model = {
         indexOfThePageAreOn: 0,
         
     },
-        inputs:{
-            adminAuctionPage:{
-                searchInput: '',
-                selectedItemId: null,
-                messageToUsers: '',
-                userIdsToSendMessage: [],
-                itemsUtløptFrist: [],
-                selectedUtløptFristItemsId: null,
-                alreadyInShoppingCart: false,
-            },
-            shoppingCart: {
-                items: {
-                    canBuyNow: [
-                        {id: "000001", quantity: 1},
-                        {id: "000002", quantity: 1},
-                    ],
-                    auctions: {
-                        usersWinningBids:[],
-                        usersLosingBids:[],
-                        increasedWinningBid: 0,
-                    },
-                },
-                totalPrice: 0,
-            },
-            checkOutPage: {
-                emptyShoppingCart: false,
-                totalPrice: 0,
-                firstName: '',
-                lastName: '',
-                address: '',
-                zipCode: '',
-                email: '',
-                mobile: '',
-                addressFilled: false,
-                selectedDeliveryMethod: '',
-                frakt: 0,
-                deliveryMethod: {
-                    selected: false,
-                    butikk: '',
-                    leveringMedInnbæring: '',
-                    leveringUtenInnbæring: ''
-                },
-                cardNumber: '',
-                expirationDate: '',
-                cvc: '',
-                cardHolderFirstName: '',
-                cardHolderLastName: '',
-                addNewCard: false,
-            },
-            register: {
-                firstName: '',
-                lastName: '',
-                email: '',
-                mobile: '',
-                userName: '',
-                password: '',
-                repeatPassword: '',
-                address: '',
-                zip: '',
-                city: '',
-                cardNumber: '',
-                fromDate: '',
-                toDate: '',
-                cvc: '' ,
-                meldingRegister:'', 
-                cardAddress:'',
-                cardZip:'',
-                cardCity:'',
-                cardFirstName:'',
-                cardLastName:'',              
-            },
-            login:{
-                username:"",
-                password:"",
-                dropdown:false,
-                wrongUserNamePassword: false,
-
-            },
-            category:{
-                filteredItemsAdmin:[],
-                filteredItems:[],
-                priceRange:{
-                    max:0,
-                    min:0
-                },
-                filterAuctionCheck:true,
-                filterNormalCheck:true,
-                categoryList:[
-                    {id:0,name:"Møbler",parent:-1,checked:false},
-                    {id:1,name:"Bord",parent:0,checked:false},
-                    {id:2,name:"Klær",parent:-1,checked:false},
-                    {id:3,name:"Hatter",parent:2,checked:false},
-                    {id:4,name:'Småting',parent:-1,checked:false},
-                    {id:5,name:'Tilbehør',parent:4,checked:false},
-                ]     
-            },
-            createSale: {
-                title:'',
-                description:'',
-                price:'',
-                minimumBid:false,
-                minimumBidAmmount:'',
-                auction:true,
-                deadline:'',
-                images:[],
-                deliver:false,
-                frontPage:false,
-                categoryList: [""], 
-                mainCategory : '',
-                subCategory : '',
-                mainImage: '',
-                addImage: '',
-            },
-            search:{
-                input:'',
-                
-            },
-            profileMenuShowing:false,
-            product:{
-                bidIncrease:"",
-                adminBidIncrease:"",
-                adminPriceChange:"",
-                adminAddSubCategory:"",
-                adminChangeMainCategory:""
-
-            },
-            adminMessagePage:{
-                adminMessage: ''
-            }
+    inputs:{
+        adminAuctionPage:{
+            searchInput: '',
+            selectedItemId: null,
+            messageToUsers: '',
+            userIdsToSendMessage: [],
+            itemsUtløptFrist: [],
+            selectedUtløptFristItemsId: null,
+            alreadyInShoppingCart: false,
         },
+        shoppingCart: {
+            items: {
+                canBuyNow: [
+                    {id: "000001", quantity: 1},
+                    {id: "000002", quantity: 1},
+                ],
+                auctions: {
+                    usersWinningBids:[],
+                    usersLosingBids:[],
+                    increasedWinningBid: 0,
+                },
+            },
+            totalPrice: 0,
+        },
+        checkOutPage: {
+            emptyShoppingCart: false,
+            totalPrice: 0,
+            firstName: '',
+            lastName: '',
+            address: '',
+            zipCode: '',
+            email: '',
+            mobile: '',
+            addressFilled: false,
+            selectedDeliveryMethod: '',
+            frakt: 0,
+            deliveryMethod: {
+                selected: false,
+                butikk: '',
+                leveringMedInnbæring: '',
+                leveringUtenInnbæring: ''
+            },
+            cardNumber: '',
+            expirationDate: '',
+            cvc: '',
+            cardHolderFirstName: '',
+            cardHolderLastName: '',
+            addNewCard: false,
+        },
+        register: {
+            firstName: '',
+            lastName: '',
+            email: '',
+            mobile: '',
+            userName: '',
+            password: '',
+            repeatPassword: '',
+            address: '',
+            zip: '',
+            city: '',
+            cardNumber: '',
+            fromDate: '',
+            toDate: '',
+            cvc: '' ,
+            meldingRegister:'', 
+            cardAddress:'',
+            cardZip:'',
+            cardCity:'',
+            cardFirstName:'',
+            cardLastName:'',              
+        },
+        login:{
+            username:"",
+            password:"",
+            dropdown:false,
+            wrongUserNamePassword: false,
+        },
+        category:{
+            filteredItemsAdmin:[],
+            filteredItems:[],
+            priceRange:{
+                max:0,
+                min:0
+            },
+            filterAuctionCheck:true,
+            filterNormalCheck:true,
+            categoryList:[
+                {id:0,name:"Møbler",parent:-1,checked:false},
+                {id:1,name:"Bord",parent:0,checked:false},
+                {id:4,name:'Småting',parent:-1,checked:false},
+                {id:5,name:'Tilbehør',parent:4,checked:false},
+            ]     
+        },
+        createSale: {
+            title:'',
+            description:'',
+            price:'',
+            minimumBid:false,
+            minimumBidAmmount:'',
+            auction:true,
+            deadline:'',
+            images:[],
+            deliver:false,
+            frontPage:false,
+            categoryList: [""], 
+            mainCategory : '',
+            subCategory : '',
+            mainImage: '',
+            addImage: '',
+        },
+        search:{
+            input:'',                
+        },
+        profileMenuShowing:false,
+        product:{
+            bidIncrease:"",
+            adminBidIncrease:"",
+            adminPriceChange:"",
+            adminAddSubCategory:"",
+            adminChangeMainCategory:""
+        },
+        adminMessagePage:{
+            adminMessage: ''
+        },
+        adminFrontPage:{
+            productSearch:"",
+            showTopList: false,
+            showBotList: false
+        }
+    },
     data:{
         frontPageTop:[0],
         frontPageBottom:[1],

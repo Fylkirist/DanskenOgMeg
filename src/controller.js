@@ -1005,3 +1005,9 @@ function navigateToNextPage(){
     }
     updateView();
 }
+
+function removeFromFrontPageDisplay(pos,i){
+    let arr = pos == "top"?model.data.frontPageTop:model.data.frontPageBottom
+    arr.splice(i,1)
+    updateView()
+}

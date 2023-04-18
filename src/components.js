@@ -13,6 +13,73 @@ function adminAuctionPage(){
         `;
 }
 
+function renderFrontPageAdminSettings(){
+    return `
+        <div id = "frontPageSettingsContainer">
+            <div id = "frontPageTopSettings">
+                <div id = "frontPageTopAddProduct">
+                    ${model.inputs.adminFrontPage.showTopList?
+                        showAddProductList('top'):`
+                        <div class = "frontPageAddDisplay"></div>
+                    `}
+                </div>
+                ${model.data.frontPageTop.map((elem,i) =>{
+                    return `
+                        <div class = "frontPageSettings">
+                            ${model.data.items[elem].title}
+                            <img src = "${model.data.items[elem].images[0]}"/>
+                            <button onclick = "removeFromFrontPageDisplay('top',${i})">Fjern fra forside</button>
+                        </div>`
+                }).join("")}
+            </div>
+            <div id = "frontPageBotSettings">
+                <div id = "frontPageBotAddProduct">
+                ${model.inputs.adminFrontPage.showBotList?
+                    showAddProductList('bot'):`
+                    <div class = "frontPageAddDisplay"></div>
+                `}
+                </div>
+                ${model.data.frontPageBottom.map((elem,i) =>{
+                    return`
+                        <div>
+                            ${model.data.items[elem].title}
+                            <img src = "${model.data.items[elem].images[0]}"/>
+                            <button onclick = "removeFromFrontPageDisplay('bot',${i})">Fjern fra forside</button>
+                        </div>`
+                }).join("")}
+            </div>
+        </div>
+    ` 
+}
+
+function showAddProductList(pos){
+    let arr = pos == "top"? model.data.frontPageTop:model.data.frontPageBottom
+    return `
+        <div class = "frontPageAddProductList">
+            ${model.data.items.map((item,i)=>{
+                return arr.includes(i)?"":`
+                <div>
+                    <label onmouseover = "this.innerHTML+=addProductDisplayHover(${i})">${item.title}</label>
+                    <button onclick = "addProductToDisplay(${i},${pos})">Legg til</button>
+                </div>`
+            }).join("")}
+        </div>
+    `
+}
+
+function addProductDisplayHover(i){
+    let item = model.data.items[i]
+    return`
+        <div onmouseleave = "this = ''">
+            <h3>${item.title}</h3>
+            <img src = "${item.images[0]}"/>
+            <p>${item.description}</p>
+            <p>${item.auction?"Auksjonsvare":"Fastprisvare"}</p>
+            <p>Pris: ${item.price}</p>
+        </div>
+    `
+}
+
 function ongoingAuctions(){
     return `<div>
                 <h2>Pågående Bud</h2>
