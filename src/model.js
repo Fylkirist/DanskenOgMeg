@@ -1,6 +1,6 @@
 const model = {
     app:{
-        currentView:'frontPage',
+        currentView:'adminMembersPage',
         loggedInStatus: false,
         wrongUserNamePasswordMessage: '',
         userId:false,
@@ -12,6 +12,10 @@ const model = {
         },
     },
         inputs:{
+            adminMembersPage:{
+                selectedUsersId: false,
+                messageToUser: '',
+            },
             shoppingCart: {
                 items: {
                     canBuyNow: [
@@ -171,7 +175,7 @@ const model = {
                 price:'10,000,000',
                 date:'03.01.2023',
                 type: 'direkte',
-                userId: '0000001',
+                userId: '0000002',
                 image : 'assets/kronebilde1.jpg',
                 title: 'Krona Til Drøning'
             },
@@ -181,7 +185,7 @@ const model = {
                 price:'10,000,000',
                 date:'03.01.2023',
                 type: 'direkte',
-                userId: '0000001',
+                userId: '0000002',
                 image : 'assets/kronebilde1.jpg',
                 title: 'Maling til Peter'
             },

@@ -23,6 +23,9 @@ function updateView(){
         case "loginPage":
             app.innerHTML = createLoginPage()
             break
+        case "adminMembersPage":
+            app.innerHTML = createHeaderSection() + profileMenuComponent() + adminMembersPage()
+            break
     }
 }
 
