@@ -28,7 +28,7 @@ function showAllMembers(){
                 `;
         }
     }
-    if(!html) html = '<p>Ingen medlemmer.</p>'
+    if(!html) html = '<p>Ingen medlemmer.</p>';
     return html;
 }
 
@@ -138,10 +138,8 @@ function usersOrderHistoryAdminPage(){
                         </tr>
                     `;
         }
-        else {
-            html = '<tr><td colspan="5">Ingen Varer</td></tr>';
-        }
     });
+    if(!html) html = '<tr><td colspan="5">Ingen Varer</td></tr>';
     return html;
 }
 
