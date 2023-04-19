@@ -16,7 +16,7 @@ function addToOrderHistory(auksjonsId,userId) {
       })
      }
     }
-  function calculateDeadline(itemsId){
+  function calculateDeadlineSec(itemsId){
     let setDeadline;
     let html = '';
     const item = model.data.items.find((item, index) => {
@@ -65,7 +65,7 @@ function addToOrderHistory(auksjonsId,userId) {
 
 model.data.items.forEach((item) => {
   setInterval(() => {
-    calculateDeadline(item.id);
+    calculateDeadlineSec(item.id);
   }, 1000);
 });
 
