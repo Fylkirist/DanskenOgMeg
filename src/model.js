@@ -3,7 +3,6 @@ const model = {
         currentView:'frontPage',
         loggedInStatus: false,
         wrongUserNamePasswordMessage: '',
-
         userId:false,
         zoomedPic:false,
         currentProduct:false,
@@ -22,6 +21,60 @@ const model = {
         
     },
     inputs:{
+        adminMembersPage:{
+            selectedUsersId: false,
+            messageToUser: '',
+        },
+        shoppingCart: {
+            items: {
+                canBuyNow: [
+                    {id: "000001"},
+                    {id: "000002"},
+                ],
+                auctions: {
+                    usersWinningBids:[],
+                    usersLosingBids:[],
+                    increasedWinningBid: 0,
+                },
+            },
+            totalPrice: 0,
+        },
+        register: {
+            firstName: '',
+            lastName: '',
+            email: '',
+            mobile: '',
+            userName: '',
+            password: '',
+            repeatPassword: '',
+            address: '',
+            zip: '',
+            city: '',
+            cardNumber: '',
+            fromDate: '',
+            toDate: '',
+            cvc: '' ,
+            meldingRegister:'', 
+            cardAddress:'',
+            cardZip:'',
+            cardCity:'',
+            cardFirstName:'',
+            cardLastName:'',              
+        },
+        login:{
+            username:"",
+            password:"",
+            dropdown:false,
+            wrongUserNamePassword: false,
+
+        },
+        category:{
+            filteredItems:[],
+            priceRange:{
+                max:0,
+                min:0
+            }
+        },
         adminAuctionPage:{
             searchInput: '',
             selectedItemId: null,
