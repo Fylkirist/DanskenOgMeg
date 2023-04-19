@@ -908,11 +908,10 @@ function createPageFooter(){
     ` 
     return`
         <div id = "pageFooterContainer">
-            <div id = "pageSloganContainer">
-            </div>
+            <div id = "pageSloganContainer"> De mest ekslusive produktene.
             <div id = "chatBoxContainer">
                 ${model.app.showChatBox?chatBox:``}
-                <div id = "chatBoxButton" onclick = "toggleChatBox()">
+                <div id = "chatBoxButton" onclick = "toggleChatBox()"> Kontakt oss
                 </div>
             </div>
         </div>
