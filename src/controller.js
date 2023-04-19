@@ -872,6 +872,7 @@ function setDeliveryMethod(deliveryType){
     }
     updateView();
 }
+
 function cardSelected(cardIndex){
     model.inputs.checkOutPage.addNewCard = false;
     model.inputs.checkOutPage.cardNumber = model.data.users[model.app.userId].paymentInformation[cardIndex].cardNumber;
@@ -879,156 +880,9 @@ function cardSelected(cardIndex){
     model.inputs.checkOutPage.cvc = model.data.users[model.app.userId].paymentInformation[cardIndex].cvc;
     model.inputs.checkOutPage.cardHolderFirstName = model.data.users[model.app.userId].paymentInformation[cardIndex].cardHolderFirstName;
     model.inputs.checkOutPage.cardHolderLastName = model.data.users[model.app.userId].paymentInformation[cardIndex].cardHolderLastName;
-    updateView();
-}
-function addNewCardInCheckOut(){
-    model.inputs.checkOutPage.addNewCard = true;
-    model.inputs.checkOutPage.cardNumber = '';
-    model.inputs.checkOutPage.expirationDate = '';
-    model.inputs.checkOutPage.cvc = '';
-    model.inputs.checkOutPage.cardHolderFirstName = '';
-    model.inputs.checkOutPage.cardHolderLastName = '';
-    updateView();
-}
-function clearShoppingCart(){
-    if(model.app.loggedInStatus){
-        model.data.users[model.app.userId].shoppingCart = [];
-        model.inputs.checkOutPage.emptyShoppingCart = true;
-    }
-    else {
-        model.inputs.shoppingCart.items.canBuyNow = [];
-        model.inputs.checkOutPage.emptyShoppingCart = true;
-    }
-    updateView();
-}
-function increaseItemQuantity(itemIndex){
-    if(model.app.loggedInStatus){
-        model.data.users[model.app.userId].shoppingCart[itemIndex].quantity += 1;
-    }
-    else {
-        model.inputs.shoppingCart.items.canBuyNow[itemIndex].quantity += 1;
-    }
-    updateView();
-}
-function cardSelected(cardIndex){
-    model.inputs.checkOutPage.addNewCard = false;
-    model.inputs.checkOutPage.cardNumber = model.data.users[model.app.userId].paymentInformation[cardIndex].cardNumber;
-    model.inputs.checkOutPage.expirationDate = model.data.users[model.app.userId].paymentInformation[cardIndex].expirationDate;
-    model.inputs.checkOutPage.cvc = model.data.users[model.app.userId].paymentInformation[cardIndex].cvc;
-    model.inputs.checkOutPage.cardHolderFirstName = model.data.users[model.app.userId].paymentInformation[cardIndex].cardHolderFirstName;
-    model.inputs.checkOutPage.cardHolderLastName = model.data.users[model.app.userId].paymentInformation[cardIndex].cardHolderLastName;
-    updateView();
-}
-function addNewCardInCheckOut(){
-    model.inputs.checkOutPage.addNewCard = true;
-    model.inputs.checkOutPage.cardNumber = '';
-    model.inputs.checkOutPage.expirationDate = '';
-    model.inputs.checkOutPage.cvc = '';
-    model.inputs.checkOutPage.cardHolderFirstName = '';
-    model.inputs.checkOutPage.cardHolderLastName = '';
-    updateView();
-}
-function clearShoppingCart(){
-    if(model.app.loggedInStatus){
-        model.data.users[model.app.userId].shoppingCart = [];
-        model.inputs.checkOutPage.emptyShoppingCart = true;
-    }
-    else {
-        model.inputs.shoppingCart.items.canBuyNow = [];
-        model.inputs.checkOutPage.emptyShoppingCart = true;
-    }
-    updateView();
-}
-function increaseItemQuantity(itemIndex){
-    if(model.app.loggedInStatus){
-        model.data.users[model.app.userId].shoppingCart[itemIndex].quantity += 1;
-    }
-    else {
-        model.inputs.shoppingCart.items.canBuyNow[itemIndex].quantity += 1;
-    }
     updateView();
 }
 
-function decreaseItemQuantity(itemIndex){
-    if(model.app.loggedInStatus){
-        model.data.users[model.app.userId].shoppingCart[itemIndex].quantity -= 1;
-        if(model.data.users[model.app.userId].shoppingCart[itemIndex].quantity < 1){
-            model.data.users[model.app.userId].shoppingCart.splice(itemIndex, 1);
-        }
-    }
-    else {
-        model.inputs.shoppingCart.items.canBuyNow[itemIndex].quantity -= 1;
-        if(model.inputs.shoppingCart.items.canBuyNow[itemIndex].quantity < 1){
-            model.inputs.shoppingCart.items.canBuyNow.splice(itemIndex, 1);
-        }
-    }
-    updateView();
-}
-            
-
-
-function decreaseItemQuantity(itemIndex){
-    if(model.app.loggedInStatus){
-        model.data.users[model.app.userId].shoppingCart[itemIndex].quantity -= 1;
-        if(model.data.users[model.app.userId].shoppingCart[itemIndex].quantity < 1){
-            model.data.users[model.app.userId].shoppingCart.splice(itemIndex, 1);
-        }
-    }
-    else {
-        model.inputs.shoppingCart.items.canBuyNow[itemIndex].quantity -= 1;
-        if(model.inputs.shoppingCart.items.canBuyNow[itemIndex].quantity < 1){
-            model.inputs.shoppingCart.items.canBuyNow.splice(itemIndex, 1);
-        }
-    }
-    updateView();
-}
-function cardSelected(cardIndex){
-    model.inputs.checkOutPage.addNewCard = false;
-    model.inputs.checkOutPage.cardNumber = model.data.users[model.app.userId].paymentInformation[cardIndex].cardNumber;
-    model.inputs.checkOutPage.expirationDate = model.data.users[model.app.userId].paymentInformation[cardIndex].expirationDate;
-    model.inputs.checkOutPage.cvc = model.data.users[model.app.userId].paymentInformation[cardIndex].cvc;
-    model.inputs.checkOutPage.cardHolderFirstName = model.data.users[model.app.userId].paymentInformation[cardIndex].cardHolderFirstName;
-    model.inputs.checkOutPage.cardHolderLastName = model.data.users[model.app.userId].paymentInformation[cardIndex].cardHolderLastName;
-    updateView();
-}
-function addNewCardInCheckOut(){
-    model.inputs.checkOutPage.addNewCard = true;
-    model.inputs.checkOutPage.cardNumber = '';
-    model.inputs.checkOutPage.expirationDate = '';
-    model.inputs.checkOutPage.cvc = '';
-    model.inputs.checkOutPage.cardHolderFirstName = '';
-    model.inputs.checkOutPage.cardHolderLastName = '';
-    updateView();
-}
-function clearShoppingCart(){
-    if(model.app.loggedInStatus){
-        model.data.users[model.app.userId].shoppingCart = [];
-        model.inputs.checkOutPage.emptyShoppingCart = true;
-    }
-    else {
-        model.inputs.shoppingCart.items.canBuyNow = [];
-        model.inputs.checkOutPage.emptyShoppingCart = true;
-    }
-    updateView();
-}
-function increaseItemQuantity(itemIndex){
-    if(model.app.loggedInStatus){
-        model.data.users[model.app.userId].shoppingCart[itemIndex].quantity += 1;
-    }
-    else {
-        model.inputs.shoppingCart.items.canBuyNow[itemIndex].quantity += 1;
-    }
-    updateView();
-}
-function cardSelected(cardIndex){
-    model.inputs.checkOutPage.addNewCard = false;
-    model.inputs.checkOutPage.cardNumber = model.data.users[model.app.userId].paymentInformation[cardIndex].cardNumber;
-    model.inputs.checkOutPage.expirationDate = model.data.users[model.app.userId].paymentInformation[cardIndex].expirationDate;
-    model.inputs.checkOutPage.cvc = model.data.users[model.app.userId].paymentInformation[cardIndex].cvc;
-    model.inputs.checkOutPage.cardHolderFirstName = model.data.users[model.app.userId].paymentInformation[cardIndex].cardHolderFirstName;
-    model.inputs.checkOutPage.cardHolderLastName = model.data.users[model.app.userId].paymentInformation[cardIndex].cardHolderLastName;
-    updateView();
-}
 function addNewCardInCheckOut(){
     model.inputs.checkOutPage.addNewCard = true;
     model.inputs.checkOutPage.cardNumber = '';
@@ -1059,8 +913,6 @@ function increaseItemQuantity(itemIndex){
     }
     updateView();
 }
-            
-
 
 function decreaseItemQuantity(itemIndex){
     if(model.app.loggedInStatus){
@@ -1078,26 +930,6 @@ function decreaseItemQuantity(itemIndex){
     updateView();
 }
             
-
-
-function decreaseItemQuantity(itemIndex){
-    if(model.app.loggedInStatus){
-        model.data.users[model.app.userId].shoppingCart[itemIndex].quantity -= 1;
-        if(model.data.users[model.app.userId].shoppingCart[itemIndex].quantity < 1){
-            model.data.users[model.app.userId].shoppingCart.splice(itemIndex, 1);
-        }
-    }
-    else {
-        model.inputs.shoppingCart.items.canBuyNow[itemIndex].quantity -= 1;
-        if(model.inputs.shoppingCart.items.canBuyNow[itemIndex].quantity < 1){
-            model.inputs.shoppingCart.items.canBuyNow.splice(itemIndex, 1);
-        }
-    }
-    updateView();
-}
-            
-
-
 function goToProduct(index){
     model.app.currentProduct = index;
     changeView("productPage");

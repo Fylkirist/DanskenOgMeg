@@ -28,8 +28,8 @@ const model = {
         shoppingCart: {
             items: {
                 canBuyNow: [
-                    {id: "000001"},
-                    {id: "000002"},
+                    {id: "000001",quantity:1},
+                    {id: "000002",quantity:1},
                 ],
                 auctions: {
                     usersWinningBids:[],
