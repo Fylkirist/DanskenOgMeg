@@ -276,6 +276,524 @@ function generateCategoryElems(parentId){
     return html
 }
 
+
+ function adminMembersPage(){
+    let html = '';
+    if(!model.app.userId || (model.app.userId && model.app.userId != "0000001")) return html;
+    html = `
+            <div>
+                <h2>Medlemmer:</h2>
+                <div>
+                    ${showAllMembers()}
+                </div>
+            </div>
+            <div>
+                ${membersInformation()}
+            </div>
+        `;
+    return html;
+}
+
+function showAllMembers(){
+    let html = '';
+    for(let usersId in model.data.users){
+        if(usersId != "0000001"){
+            html += `
+                    <div onclick="model.inputs.adminMembersPage.selectedUsersId = ${usersId}; updateView()">
+                        ${model.data.users[usersId].firstName} ${model.data.users[usersId].surName}
+                    </div>
+                `;
+        }
+    }
+    if(!html) html = '<p>Ingen medlemmer.</p>';
+    return html;
+}
+
+function membersInformation(){
+    let html = '';
+    if(!model.inputs.adminMembersPage.selectedUsersId) return html;
+    let usersId;
+    for(let userId in model.data.users){
+        if(parseInt(userId) == model.inputs.adminMembersPage.selectedUsersId){
+            usersId = userId;
+        }
+    }
+    let lastMessage = {
+        type: '',
+        message: '',
+    };
+    for(let i = 0; i < model.data.users[usersId].messages.length; i++){
+        if(i == (model.data.users[usersId].messages.length-1)){
+            lastMessage.type = model.data.users[usersId].messages[i].type;
+            lastMessage.message = model.data.users[usersId].messages[i].message;
+        }
+    }
+    html = `<div>
+                <div>
+                    <h3>Medlems opplysninger</h3>
+                    <div>
+                        Brukernavn: ${model.data.users[usersId].username} <br/>
+                        Navn: ${model.data.users[usersId].firstName} ${model.data.users[usersId].surName} <br/>
+                        Adresse: ${model.data.users[usersId].address}, ${model.data.users[usersId].zip}, ${model.data.users[usersId].city}. <br/>
+                        E-post: ${model.data.users[usersId].email} <br/>
+                        Mobil: ${model.data.users[usersId].mobile}
+                    </div>
+                </div>
+                <div>
+                    <h3>Siste Melding</h3>
+                    <div>
+                        <p>${lastMessage.type == 'admin' ? 'Dansken og meg:' : `${model.data.users[usersId].firstName}:`}</p> <div>${lastMessage.message}</div> <br/>
+                        <input value="${model.inputs.adminMembersPage.messageToUser}" onchange="model.inputs.adminMembersPage.messageToUser = this.value"/>
+                        <button onclick="sendMessageToUserAdminMembersPage()">Svar</button>
+                    </div>
+                </div>
+                <div>
+                    <h3>Bestilling historikk</h3>
+                    <div>
+                        <table border = 1>
+                            <tr>
+                                <th>Item</th>
+                                <th>Type</th>
+                                <th>Pris</th>
+                                <th>Betalt/ Ubetalt</th>
+                                <th>Dato</th>
+                            </tr>
+                            ${usersOrderHistoryAdminPage()}
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <h3>Bud Historikk</h3>
+                    <div>
+                        <h5>Pågånede bud</h5>
+                        <div>
+                            <table border = 1>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Frist Dato</th>
+                                    <th>Brukers Høyeste Bud</th>
+                                </tr>
+                                ${usersOngoingBidHistoryAdminPage()}
+                            </table>
+                        </div>
+                        <div>
+                            <h5>Auksjoner med utløpt frist</h5>
+                            <div>
+                                <table border = 1>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Vunnet/ Tapet</th>
+                                        <th>Frist Dato</th>
+                                        <th>Brukers Høyeste Bud</th>
+                                    </tr>
+                                    ${usersPastBidHistoryAdminPage()}
+                                    
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button onclick="if(confirm('Are you sure?')) deleteUserAsAdmin()"><h3>Fjern Medlem</h3></button>
+                </div>
+            </div>
+        `;
+    return html;
+}
+
+function usersOrderHistoryAdminPage(){
+    let html = '';
+    model.data.orderHistory.forEach(item => {
+        if(parseInt(item.userId) == model.inputs.adminMembersPage.selectedUsersId){
+            html += `
+                        <tr>
+                            <td>${item.title}</td>
+                            <td>${item.type}</td>
+                            <td>${item.price}</td>
+                            <td>${item.paid ? 'Betalt' : 'Ubetalt'}</td>
+                            <td>${item.date}</td>
+                        </tr>
+                    `;
+        }
+    });
+    if(!html) html = '<tr><td colspan="5">Ingen Varer</td></tr>';
+    return html;
+}
+
+function findUsersAuctionItems(){
+    let itemInfo = [];
+    model.data.auctionListe.forEach(item => {
+        for(userId in item.bids){
+            if(parseInt(userId) == model.inputs.adminMembersPage.selectedUsersId && !item.bids[userId].deleted){
+                itemInfo.push({
+                    id: item.itemId,
+                    usersHighestBid: item.bids[userId].bid[item.bids[userId].bid.length-1],
+                });
+            }
+        }
+    });
+    return itemInfo;
+}
+
+function usersOngoingBidHistoryAdminPage(){
+    let html = '';
+    let itemsInfo = findUsersAuctionItems();
+    itemsInfo = itemsInfo.filter(item => {
+        for(let i = 0; i < model.data.items.length; i++){
+            if(model.data.items[i].id == item.id && (new Date(model.data.items[i].deadline) > new Date())){
+                return item;
+            }
+        }
+    });
+    if(itemsInfo.length == 0) return html = '<tr><td colspan="4">Ingen Varer</td></tr>';
+    itemsInfo.forEach(item => {
+        model.data.items.forEach(itemInData => {
+            if(item.id == itemInData.id){
+                item.title = itemInData.title;
+                item.deadline = new Date(itemInData.deadline).toLocaleDateString();
+            }
+        });
+    });
+    itemsInfo.forEach(item => {
+        html += `
+                    <tr>
+                        <td>${item.title}</td>
+                        <td>${item.deadline}</td>
+                        <td>${item.usersHighestBid}</td>
+                    </tr>
+                `;
+    });
+    return html;
+}
+
+function usersPastBidHistoryAdminPage(){
+    let html = '';
+    let itemsInfo = findUsersAuctionItems();
+    itemsInfo = itemsInfo.filter(item => {
+        for(let i = 0; i < model.data.items.length; i++){
+            if(model.data.items[i].id == item.id && (new Date(model.data.items[i].deadline) < new Date())){
+                return item;
+            }
+        }
+    });
+    if(itemsInfo.length == 0) return html = '<tr><td colspan="4">Ingen Varer</td></tr>';
+    itemsInfo.forEach(item => {
+        model.data.auctionListe.forEach(itemInAuctionList => {
+            if(itemInAuctionList.itemId == item.id){
+                let maximumBid = 0;
+                for(usersId in itemInAuctionList.bids){
+                    if(itemInAuctionList.bids[usersId].bid[itemInAuctionList.bids[usersId].bid.length-1] > maximumBid){
+                        maximumBid = itemInAuctionList.bids[usersId].bid[itemInAuctionList.bids[usersId].bid.length-1]
+                    }
+                }
+                if(item.usersHighestBid == maximumBid){
+                    item.bidWon = true;
+                }
+                else {
+                    item.bidWon = false;
+                }
+            }
+        });
+    });
+    itemsInfo.forEach(item => {
+        model.data.items.forEach(itemInData => {
+            if(item.id == itemInData.id){
+                item.title = itemInData.title;
+                item.deadline = new Date(itemInData.deadline).toLocaleDateString();
+            }
+        });
+    });
+    itemsInfo.forEach(item => {
+        html += `
+                    <tr>
+                        <td>${item.title}</td>
+                        <td>${item.bidWon ? 'Vunnet' : 'Tapet'}</td>
+                        <td>${item.deadline}</td>
+                        <td>${item.usersHighestBid}</td>
+                    </tr>
+                `;
+    });
+    return html;
+}
+
+function adminAuctionPage(){
+    return `${model.data.users[model.app.userId].permissions == 'admin' ? 
+                `
+                <div>
+                    ${ongoingAuctions()}
+                </div>
+                <div>
+                    ${showExpiredAuctions()}
+                </div>
+                `: 
+                ''
+            }
+        `;
+}
+
+function renderFrontPageAdminSettings(){
+    return `
+        <div id = "frontPageSettingsContainer">
+            <div id = "frontPageTopSettings">
+                <div id = "frontPageTopAddProduct">
+                    ${model.inputs.adminFrontPage.showTopList?
+                        showAddProductList('top'):`
+                        <div class = "frontPageAddDisplay" onclick = "openAddProductMenu('top')">Legg til produkt</div>
+                    `}
+                </div>
+                ${model.data.frontPageTop.map((elem,i) =>{
+                    return `
+                        <div class = "frontPageSettings">
+                            ${model.data.items[elem].title}
+                            <img src = "${model.data.items[elem].images[0]}"/>
+                            <button onclick = "removeFromFrontPageDisplay('top',${i})">Fjern fra forside</button>
+                        </div>`
+                }).join("")}
+            </div>
+            <div id = "frontPageBotSettings">
+                <div id = "frontPageBotAddProduct">
+                ${model.inputs.adminFrontPage.showBotList?
+                    showAddProductList('bot'):`
+                    <div class = "frontPageAddDisplay" onclick = "openAddProductMenu('bot')">Legg til produkt</div>
+                `}
+                </div>
+                ${model.data.frontPageBottom.map((elem,i) =>{
+                    return`
+                        <div>
+                            ${model.data.items[elem].title}
+                            <img src = "${model.data.items[elem].images[0]}"/>
+                            <button onclick = "removeFromFrontPageDisplay('bot',${i})">Fjern fra forside</button>
+                        </div>`
+                }).join("")}
+            </div>
+        </div>
+    ` 
+}
+
+function showAddProductList(pos){
+    let arr = pos == "top"? model.data.frontPageTop:model.data.frontPageBottom
+    return `
+        <div class = "frontPageAddProductList">
+            <button onclick = "closeProductList('${pos}')">Cancel</button>
+            ${model.data.items.map((item,i)=>{
+                return arr.includes(i)?"":`
+                <div>
+                    <label onmouseenter = "()=>{this.innerHTML+=addProductDisplayHover(${i})}">${item.title}</label>
+                    <button onclick = "addProductToDisplay(${i},'${pos}')">Legg til</button>
+                </div>`
+            }).join("")}
+        </div>
+    `
+}
+
+function addProductDisplayHover(i){
+    let item = model.data.items[i]
+    return`
+        <div onmouseleave = "this = ''">
+            <h3>${item.title}</h3>
+            <img src = "${item.images[0]}"/>
+            <p>${item.description}</p>
+            <p>${item.auction?"Auksjonsvare":"Fastprisvare"}</p>
+            <p>Pris: ${item.price}</p>
+        </div>
+    `
+}
+
+function ongoingAuctions(){
+    return `<div>
+                <h2>Pågående Bud</h2>
+            </div>
+            <div>
+                <p>Items</p>
+            </div>
+            <div>
+                <div>
+                    <input type="search" placeholder="Søk for item her..." value="${model.inputs.adminAuctionPage.searchInput}" onchange="model.inputs.adminAuctionPage.searchInput = this.value; updateView()"/>
+                    <button onclick="filteredItemsAdmin(); updateView()">Search</button>
+                </div>
+                <div>
+                    ${generateCategoryElems(-1)}
+                </div>
+                <div>
+                    ${filteredItemsAdminAuctionPage()}
+                </div>
+                ${model.inputs.adminAuctionPage.selectedItemId ? 
+                    `
+                    <div>
+                    ${itemOnGoingAuctionDetails()}
+                    </div>`:
+                    ''
+                }
+                
+            </div>
+            `;
+}
+
+function filteredItemsAdminAuctionPage(){
+    filteredItemsAdmin();
+    let html = '';
+    if(!model.inputs.category.filteredItemsAdmin.includes(model.inputs.adminAuctionPage.selectedItemId)){
+        model.inputs.adminAuctionPage.selectedItemId = null;
+    }
+    for(let i = 0; i < model.inputs.category.filteredItemsAdmin.length; i++){
+        html += `
+                <div onclick='model.inputs.adminAuctionPage.selectedItemId = ${model.inputs.category.filteredItemsAdmin[i]}; updateView()'>
+                    <p>${model.data.items[model.inputs.category.filteredItemsAdmin[i]-1].title}</p>
+                </div>
+                `;
+    }
+    return html;
+}
+
+function itemOnGoingAuctionDetails(){
+    let html = '';
+    let findAuctionDeadline = new Date(model.data.items[model.inputs.adminAuctionPage.selectedItemId-1].deadline).toLocaleDateString();
+    let highestBid = 0;
+    let highestBidGiver= {id: '', name: '', email: '', mobile: ''};
+    let antallDeltaker = 0;
+    model.inputs.adminAuctionPage.userIdsToSendMessage = [];
+    model.data.auctionListe.forEach(item =>{
+        if(eval(item.itemId) ==  model.inputs.adminAuctionPage.selectedItemId){
+            for(userId in item.bids){
+                antallDeltaker++;
+                model.inputs.adminAuctionPage.userIdsToSendMessage.push(userId);
+                if(item.bids[userId].bid[item.bids[userId].bid.length-1] > highestBid){
+                    highestBid = item.bids[userId].bid[item.bids[userId].bid.length-1];
+                    highestBidGiver.id = userId;
+                }
+            }
+        }
+    });
+    for(let userId in model.data.users){
+        if(userId == highestBidGiver.id){
+            highestBidGiver.name = model.data.users[userId].firstName + ' ' + model.data.users[userId].surName;
+            highestBidGiver.email = model.data.users[userId].email;
+            highestBidGiver.mobile = model.data.users[userId].mobile;
+        }
+    }
+    html += `
+            <div>
+                <div>
+                    <table border = 1>
+                        <tr>
+                            <th>Bud Frist</th>
+                            <th>Høyeste Bud</th>
+                            <th>Høyeste Bud Giver</th>
+                            <th>Antall av deltakerne</th>
+                        </tr>
+                        <tr>
+                            <td>${findAuctionDeadline}</td>
+                            <td>${highestBid}</td>
+                            <td>
+                                Navn: ${highestBidGiver.name}<br/>
+                                E-post: ${highestBidGiver.email}<br/>
+                                Mobil: ${highestBidGiver.mobile}
+                            </td>
+                            <td>${antallDeltaker}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <div>
+                        <p>Endre bud frist</p>
+                        <input type="date" value="${model.data.items[model.inputs.adminAuctionPage.selectedItemId-1].deadline.substring(0, 10)}"
+                        onchange="changeDeadlineAdminAuctionPage(${model.inputs.adminAuctionPage.selectedItemId-1}, this.value)"
+                        />
+                    </div>
+                    <div>
+                        <button onclick="model.app.currentProduct = ${model.inputs.adminAuctionPage.selectedItemId-1}; changeView('productPage'); updateView() ">Gå til Item side</button>
+                    </div>
+                    <div>
+                        <p>Endre til kjøpre nå vare</p>
+                        <button onclick="model.data.items[${model.inputs.adminAuctionPage.selectedItemId-1}].auction = false; model.inputs.adminAuctionPage.selectedItemId = null; updateView()">Endre</button>
+                    </div>
+                    <div>
+                        <p>Send Melding til alle deltakerne</p>
+                        <input type="text" placeholder="Type here to chat..." maxlength="200" autocomplete="off"
+                               value="${model.inputs.adminAuctionPage.messageToUsers}"
+                               onchange="model.inputs.adminAuctionPage.messageToUsers = this.value; updateView()"
+                        />
+                        <button ${model.inputs.adminAuctionPage.messageToUsers ? '' : 'disabled'} onclick="sendMessageAsAdmin()">Send</button>
+                    </div>
+                </div>
+            </div>
+            `;
+    return html;
+}
+
+function showExpiredAuctions(){
+    let html = '<h2>Auksjoner med utløpt frist.</h2>';
+    model.inputs.adminAuctionPage.itemsUtløptFrist = findItemsExpiredDeadline();
+    if(model.inputs.adminAuctionPage.itemsUtløptFrist.length == 0) html += '<p>Ingen varer.</p>';
+    else {
+        model.inputs.adminAuctionPage.itemsUtløptFrist.forEach(itemsId => {
+            html+= `
+                    <div onclick="model.inputs.adminAuctionPage.selectedUtløptFristItemsId = ${itemsId}; updateView()">
+                        <p>${model.data.items[itemsId-1].title}</p>
+                    </div>
+                   `;
+        });
+    if(model.inputs.adminAuctionPage.selectedUtløptFristItemsId){
+        let findAuctionDeadline = new Date(model.data.items[model.inputs.adminAuctionPage.selectedUtløptFristItemsId-1].deadline).toLocaleDateString();
+        let highestBid = 0;
+        let highestBidGiver= {id: '', name: '', email: '', mobile: ''};
+        model.data.auctionListe.forEach(item =>{
+            if(eval(item.itemId) ==  model.inputs.adminAuctionPage.selectedUtløptFristItemsId){
+                for(userId in item.bids){
+                    if(item.bids[userId].bid[item.bids[userId].bid.length-1] > highestBid){
+                        highestBid = item.bids[userId].bid[item.bids[userId].bid.length-1];
+                        highestBidGiver.id = userId;
+                    }
+                }
+            }
+        });
+        for(let userId in model.data.users){
+            if(userId == highestBidGiver.id){
+                highestBidGiver.name = model.data.users[userId].firstName + ' ' + model.data.users[userId].surName;
+                highestBidGiver.email = model.data.users[userId].email;
+                highestBidGiver.mobile = model.data.users[userId].mobile;
+            }
+        }
+        html += `
+            <div>
+                <table border = 1>
+                    <tr>
+                        <th>Utløpsdato</th>
+                        <th>Høyeste Bud</th>
+                        <th>Høyeste Bud giver</th>
+                    </tr>
+                    <tr>
+                        <td>${findAuctionDeadline}</td>
+                        <td>${highestBid}</td>
+                        <td>
+                            Navn: ${highestBidGiver.name}<br/>
+                            E-post: ${highestBidGiver.email}<br/>
+                            Mobile: ${highestBidGiver.mobile}<br/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            `;
+        }
+    }
+    return html;
+}
+
+function generateCategoryElems(parentId){
+    let html = ""
+    for(let i = 0; i<model.inputs.category.categoryList.length; i++){
+        if(model.inputs.category.categoryList[i].parent==parentId){
+            html += `
+                <div>
+                    <label>${model.inputs.category.categoryList[i].name}</label>
+                    <input type = "checkbox" ${model.inputs.category.categoryList[i].checked? "checked":""} onchange = "checkFilterBox(${i})"/>
+                    ${model.inputs.category.categoryList[i].checked? generateCategoryElems(model.inputs.category.categoryList[i].id):""}
+                </div>`
+        }
+    }
+    return html
+}
+
 function createPageFooter(){
     let chatBox = model.app.loggedInStatus && model.data.users[model.app.userId].permissions == "admin"? "" : `
         <div id = "chatBoxWindow">

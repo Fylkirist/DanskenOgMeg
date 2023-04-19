@@ -1,6 +1,6 @@
 const model = {
     app:{
-        currentView:'frontPage',
+        currentView:'adminMembersPage',
         loggedInStatus: false,
         wrongUserNamePasswordMessage: '',
 
@@ -21,6 +21,60 @@ const model = {
         indexOfThePageAreOn: 0,
         
     },
+        inputs:{
+            adminMembersPage:{
+                selectedUsersId: false,
+                messageToUser: '',
+            },
+            shoppingCart: {
+                items: {
+                    canBuyNow: [
+                        {id: "000001"},
+                        {id: "000002"},
+                    ],
+                    auctions: {
+                        usersWinningBids:[],
+                        usersLosingBids:[],
+                        increasedWinningBid: 0,
+                    },
+                },
+                totalPrice: 0,
+            },
+            register: {
+                firstName: '',
+                lastName: '',
+                email: '',
+                mobile: '',
+                userName: '',
+                password: '',
+                repeatPassword: '',
+                address: '',
+                zip: '',
+                city: '',
+                cardNumber: '',
+                fromDate: '',
+                toDate: '',
+                cvc: '' ,
+                meldingRegister:'', 
+                cardAddress:'',
+                cardZip:'',
+                cardCity:'',
+                cardFirstName:'',
+                cardLastName:'',              
+            },
+            login:{
+                username:"",
+                password:"",
+                dropdown:false,
+                wrongUserNamePassword: false,
+
+            },
+            category:{
+                filteredItems:[],
+                priceRange:{
+                    max:0,
+                    min:0
+                }
     inputs:{
         adminAuctionPage:{
             searchInput: '',
@@ -30,20 +84,6 @@ const model = {
             itemsUtløptFrist: [],
             selectedUtløptFristItemsId: null,
             alreadyInShoppingCart: false,
-        },
-        shoppingCart: {
-            items: {
-                canBuyNow: [
-                    {id: "000001", quantity: 1},
-                    {id: "000002", quantity: 1},
-                ],
-                auctions: {
-                    usersWinningBids:[],
-                    usersLosingBids:[],
-                    increasedWinningBid: 0,
-                },
-            },
-            totalPrice: 0,
         },
         checkOutPage: {
             emptyShoppingCart: false,
@@ -221,7 +261,7 @@ const model = {
                 price:'10,000,000',
                 date:'03/01/2023',
                 type: 'direkte',
-                userId: '0000001',
+                userId: '0000002',
                 image : 'assets/kronebilde1.jpg',
                 title: 'Krona Til Drøning'
             },
@@ -231,7 +271,7 @@ const model = {
                 price:'10,000,000',
                 date:'03/01/2023',
                 type: 'direkte',
-                userId: '0000001',
+                userId: '0000002',
                 image : 'assets/kronebilde1.jpg',
                 title: 'Maling til Peter'
             },
