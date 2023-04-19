@@ -395,13 +395,26 @@
 }
 
 .frontPageSettingsHoverImg{
-
+    width: 70px;
+    height: 70px;
 }
 
 .frontPageSettingsHoverDesc{
-
+    
 }
 
 .frontPageSettingsHoverDiv{
-    
+    position: absolute;
+    padding: 20px;
+    border: 1px solid black;
+    width: 200px;
+    height: 150px;
+    background-color: white;
+}
+
+.frontPageAddProductList{
+    width: 200px;
+    height: 400px;
+    border: 1px solid black;
+    overflow-y: scroll;
 }

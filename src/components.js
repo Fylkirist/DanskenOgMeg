@@ -60,7 +60,7 @@ function showAddProductList(pos) {
             ${model.data.items.map((item, i) => {
                 return arr.includes(i) ? "" : `
                 <div>
-                    <label onmouseenter="addProductDisplayHover(this.parentElement, ${i})">${item.title}</label>
+                    <label onmouseleave = "updateView()" onmouseenter="addProductDisplayHover(this.parentElement, ${i})">${item.title}</label>
                     <button onclick="addProductToDisplay(${i},'${pos}')">Legg til</button>
                 </div>`;
             }).join("")}
