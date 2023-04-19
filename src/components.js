@@ -1912,9 +1912,9 @@ function showZoomedPic(){
 function goBackAndGoForwardButtons(){
     let html = '';
     html += `
-            <div>
-                <button ${model.app.pagesToNavigateTo.length <= 1 || model.app.indexOfThePageAreOn == 0 ? 'disabled' : ''} onclick="navigateToPreviousPage()">Gå tilbake</button>
-                <button ${model.app.pagesToNavigateTo.length <= 1 || (model.app.indexOfThePageAreOn == (model.app.pagesToNavigateTo.length-1)) ? 'disabled' : ''} onclick="navigateToNextPage()">Gå Frem</button>
+            <div class="navigationButtonsHeader">
+                <button class="navigateLeftButtonHeader" ${model.app.pagesToNavigateTo.length <= 1 || model.app.indexOfThePageAreOn == 0 ? 'disabled' : ''} onclick="navigateToPreviousPage()">&#8678;</button>
+                <button class="navigateRightButtonHeader"  ${model.app.pagesToNavigateTo.length <= 1 || (model.app.indexOfThePageAreOn == (model.app.pagesToNavigateTo.length-1)) ? 'disabled' : ''} onclick="navigateToNextPage()">&#8680;</button>
             </div>
             `;
     return html;
