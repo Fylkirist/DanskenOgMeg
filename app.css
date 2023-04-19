@@ -418,3 +418,26 @@
     border: 1px solid black;
     overflow-y: scroll;
 }
+
+#frontPageSettingsContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+#frontPageTopSettings{
+    display: flex;
+}
+
+#frontPageBotSettings{
+    display: flex;
+}
+
+.frontPageSettingsBotPic{
+    width: 100px;
+    height: 100px;
+}
+
+.frontPageSettingsTopPic{
+    width: 100px;
+    height: 100px;
+}

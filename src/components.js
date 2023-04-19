@@ -152,7 +152,7 @@ function renderFrontPageAdminSettings(){
                     return `
                         <div class = "frontPageSettings">
                             ${model.data.items[elem].title}
-                            <img src = "${model.data.items[elem].images[0]}"/>
+                            <img class = "frontPageSettingsTopPic" src = "${model.data.items[elem].images[0]}"/>
                             <button onclick = "removeFromFrontPageDisplay('top',${i})">Fjern fra forside</button>
                         </div>`
                 }).join("")}
@@ -168,7 +168,7 @@ function renderFrontPageAdminSettings(){
                     return`
                         <div>
                             ${model.data.items[elem].title}
-                            <img src = "${model.data.items[elem].images[0]}"/>
+                            <img class = "frontPageSettingsBotPic" src = "${model.data.items[elem].images[0]}"/>
                             <button onclick = "removeFromFrontPageDisplay('bot',${i})">Fjern fra forside</button>
                         </div>`
                 }).join("")}
