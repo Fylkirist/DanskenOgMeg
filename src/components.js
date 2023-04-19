@@ -1,53 +1,51 @@
 function activeAuctionList() {
-  let auksjonsliste = ``;
+  let auksjonsliste = ``
   model.data.auctionListe.forEach((auction) => {
-    const auctionID = auction.itemId;
-    const bids = auction.bids;
-    const userIDs = Object.keys(bids);
-    let maxbid = 0;
-    let maxBidUser;
+    const auctionID = auction.itemId
+    const bids = auction.bids
+    const userIDs = Object.keys(bids)
+    let maxbid = 0
+    let maxBidUser
 
              // Sjekker over userid hvis det er likt som userId tegner vi opp de aktive auction
         if (userIDs.includes(model.app.userId)) {
-            const userBids = bids[model.app.userId];
-            const item = model.data.items.find((item) => item.id === auctionID);
-            let budListe ="";
+            const userBids = bids[model.app.userId]
+            const item = model.data.items.find((item) => item.id === auctionID)
+            let budListe =""
 
 
             //Sjekker om item er samma som auction id og om det er instock
             if (item && item.inStock && item.auction) {
             // vi finner høyest bud og ledende bruker
               Object.keys(bids).forEach((userID) => {
-                const userBid = bids[userID].bid[bids[userID].bid.length - 1];
-                const isAutomatic = bids[userID].automatiskBid;          // vi må compare automatisk bud mot manuelle
-                if (userBid > maxbid || (userBid === maxbid && !isAutomatic)) {
-                  maxbid = userBid;
-                  maxBidUser = userID;
-                  if (!isAutomatic) { 
-                    item.price = maxbid;
-                }
+                const userBid = bids[userID].bid[bids[userID].bid.length - 1]  
+                if (userBid > maxbid) {
+                  maxbid = userBid
+                  userID = model.data.users[userID].username
+                  maxBidUser = userID
+                  item.price = maxbid
               }
-             });
+             })
             
-              // Skriver ut date + time, må desverre skrive det her og ellers må jeg bruke alt for mye get elementByID i controller...
-              const deadline = new Date(item.deadline).getTime();
-              let html = '';
+              // Skriver ut date + time, må desverre skrive det her og ellers må jeg bruke alt for mye getelementByID i auctioncontroller...
+              const deadline = new Date(item.deadline).getTime()
+              let clock = '';
               if (deadline > new Date().getTime()) {
-                item.timerValue = deadline;
-                let miliSecondsRemaining = deadline - new Date().getTime();
-                let daysRemaining = parseInt(miliSecondsRemaining / (1000 * 60 * 60 * 24));
-                let hoursRemaining = parseInt(((miliSecondsRemaining / (1000 * 60 * 60 * 24)) - daysRemaining) * 24);
-                let minutesRemaining = parseInt((((miliSecondsRemaining / (1000 * 60 * 60 * 24)) - daysRemaining) * 24 - hoursRemaining) * 60);
+                item.timerValue = deadline
+                let miliSecondsRemaining = deadline - new Date().getTime()
+                let daysRemaining = parseInt(miliSecondsRemaining / (1000 * 60 * 60 * 24))
+                let hoursRemaining = parseInt(((miliSecondsRemaining / (1000 * 60 * 60 * 24)) - daysRemaining) * 24)
+                let minutesRemaining = parseInt((((miliSecondsRemaining / (1000 * 60 * 60 * 24)) - daysRemaining) * 24 - hoursRemaining) * 60)
                 let secondsRemaining = parseInt((((((miliSecondsRemaining / (1000 * 60 * 60 * 24)) - daysRemaining) * 24) - hoursRemaining) * 60 - minutesRemaining) * 60);
       
-                html = `
+                clock = `
                 ${daysRemaining} dager og ${hoursRemaining} timer og ${minutesRemaining} minutter. sekkunder: ${secondsRemaining}
-                `;
+                `
               }
             // går igjennom bud arrayet i auctionListen, teller bud + budmengde!
             userBids.bid.forEach((budMengde, index) => {
                 budListe += `<div>Bud: ${index + 1}: ${budMengde}</div>`;
-              });
+              })
             //skriver ut alt!!
               auksjonsliste += `
               <div class="auctionItem">
@@ -59,141 +57,32 @@ function activeAuctionList() {
               <h5></h5>
                       
               <div>Du har totalt: ${userBids.bid.length} bud:</div>
-                      <div id="deadline-${item.id}" class="deadline">${html}</div>
+                      <div id="deadline-${item.id}" class="deadline">${clock}</div>
                       <div id="user-bids-${auctionID}">
                       ${budListe}
               </div>
               <button onclick="activeAuctionController('${auctionID}','minbud')"> Øk med min bud:' ${item.minBid} '</button>
               <input type="number" placeholder="Sett manuelt bud" onchange="activeAuctionController('${auctionID}','manuelt', this.value)">
-              <input type="number" placeholder="Sett automatisk bud" onchange="activeAuctionController('${auctionID}','automatic', this.value)">
+              <input type="number" placeholder="Sett automatisk bud" onchange="activeAuctionController('${auctionID}','automatic', this.value )">
               <button onclick="activeAuctionController('${auctionID}','delete')">Slett bud</button>
+              <div onclick="activeAuctionController('${auctionID}','editAuto'),", >Ditt automatiskeBud:${bids[model.app.userId].autoBid} </div>
+              <input type="number" placeholder="Endre automatiskBud" onchange="activeAuctionController('${auctionID}','editAuto', this.value)">
               </div>`;
             }
         }
       }
     );
 
-  const auctionView = `
+  const html = `
     <div class="auction-container">
-      <button onclick="${model.app.userId="0000002"}">Logg inn vanlig bruker </button><br><br>
-      <button>Alle Auksjoner</button> 
       <button onclick="activeAuctionList()">Dine Aktive Auksjoner</button> 
       <button onclick="avsluttendeAuksjoner()"> Dine Avsluttende auksjoner</button>
       ${auksjonsliste || '<div>Du har ingen aktive Auksjoner</div>'}
     </div>`;
 
-  document.getElementById('app').innerHTML = auctionView;
+  return html;
     }
 
-
-  function activeAuctionController(auctionID, buttonID, input) {
-    const auction = model.data.auctionListe.find((navigation) => navigation.itemId === auctionID);
-    const bids = auction.bids[model.app.userId];
-    const item = model.data.items.find((item) => item.id === auction.itemId);
-
-    const otherUsers = Object.keys(auction.bids).filter(userID => userID !== model.app.userId);
-    const maxBid = Math.max(...otherUsers.map(userID => Math.max(...auction.bids[userID].bid)));
-    
-   
-
-  if (bids.deleted) {
-    return;
-  }
-  
-  if (buttonID === 'minbud') {
-    const nyttBud = item.price + item.minBid;
-    item.price = nyttBud;
-    bids.bid.push(nyttBud);
-
-  }
-  if (parseInt(input) > item.price && (parseInt(input) - item.price) > item.minBid){
-  if (buttonID === 'manuelt') {
-            
-      const nyttBud = parseInt(input);
-      item.price = nyttBud;
-      bids.bid.push(nyttBud);
-            
-  }
-  
-
-  if (buttonID === 'automatic') {
-    const autoBid = parseInt(input);
-    bids.autoBid = autoBid;
-    if (autoBid > maxBid) {
-      const nyttBud = maxBid + item.minBid;
-      item.price = nyttBud;
-      bids.bid.push(nyttBud);
-      auction.bids[model.app.userId].automatiskBid = true;
-    }
-  }
-
-}
-        if (buttonID === 'delete') {
-          if (bids.bid.length > 0) {
-          item.price=maxBid
-          bids.deleted = true;
-          bids.bid = [];
-          }
-      }
-activeAuctionList();  
-}
-function oppdatereFlagForBruker(auctionID, brukerId) {
-  const auction = model.data.auctionListe.find((auction) => auction.itemId === auctionID);
-
-  Object.keys(auction.bids).forEach((userID) => {
-    if (userID !== brukerId) {
-      auction.bids[userID].automatiskBid = false;
-    }
-  });
-}
-
-
-function calculateDeadline(itemsId){
-    let setDeadline;
-    let posistion;
-    let html = '';
-    const item = model.data.items.find((item, index) => {
-        if (item.id == itemsId) {
-          posistion = index;
-          return true;
-        }
-        return false;
-      });
-            setDeadline = item.deadline;
-
-
-    let miliSecondsRemaining = parseInt(new Date(setDeadline) - new Date());
-    let daysRemaining = parseInt(miliSecondsRemaining/(1000*60*60*24));
-    let hoursRemaining = parseInt(((miliSecondsRemaining/(1000*60*60*24)) - daysRemaining) * 24);
-    let minutesRemaining = parseInt(((((miliSecondsRemaining/(1000*60*60*24)) - daysRemaining) * 24) - hoursRemaining) * 60);
-    let secondsRemaining = parseInt(((((((miliSecondsRemaining/(1000*60*60*24)) - daysRemaining) * 24) - hoursRemaining) * 60) - minutesRemaining) * 60);
-
-    if (miliSecondsRemaining > 1000){
-        html = `
-                ${daysRemaining} dager og ${hoursRemaining} timer og ${minutesRemaining} minutter. sekkunder: ${secondsRemaining}
-             `;
-    }
-    else {
-      const vunnet = winner(itemsId);
-      model.data.items[posistion].inStock = false;
-    
-      
-      if (vunnet === model.app.userId) {
-        model.data.items[posistion].vunnet = true;
-      }
-    
-    }
-  const deadlineElement = document.getElementById(`deadline-${itemsId}`);
-  if (deadlineElement) {
-    deadlineElement.innerHTML = html;
-  }
-}
-
-model.data.items.forEach((item) => {
-  setInterval(() => {
-    calculateDeadline(item.id);
-  }, 1000);
-});
 
 function avsluttendeAuksjoner(){
     let html = ``;
@@ -202,7 +91,7 @@ function avsluttendeAuksjoner(){
       const auksjonId = auction.itemId
       const bid = auction.bids;
       const userId = Object.keys(bid)
-      const item = model.data.items.find((item) => item.id === auksjonId);
+      const item = model.data.items.find((item) => item.id === auksjonId)
      
 
       
@@ -217,8 +106,9 @@ function avsluttendeAuksjoner(){
            <div>Auksjonen ble avsluttet : ${item.deadline}</div>
          </div>`
         
-         if(item.vunnet){
-          html+= `<h4>Vinner!!!</h4><button> Betal nå! </button>`
+         if(auction.bids[model.app.userId].vunnet){
+          html+= `<h4>Vinner!!!</h4><button onclick="changeView('checkoutPage')"> Betal nå! </button>`
+          addToOrderHistory(auksjonId,model.app.userId)
          }
         
         
@@ -226,32 +116,10 @@ function avsluttendeAuksjoner(){
     })
     const view = `
     <div class="container">
-    <button>Alle Auksjoner</button> 
     <button onclick="activeAuctionList()">Dine Aktive Auksjoner</button> 
     <button onclick="avsluttendeAuksjoner()">Dine Avsluttende auksjoner</button>
     ${html || '<div>Du har ingen avsluttende Auksjoner</div>'}
     </div>`;
-    return view;
+     return view;
   }
-
-  function winner(itemId) {
-    const auction = model.data.auctionListe.find((auksjon) => auksjon.itemId === itemId);
-    const bud = auction.bids
-
-    let winner= null;
-    let maxBud = 0;
-
-    Object.keys(bud).forEach((userId) =>{
-      const brukerSineBud = bud[userId].bid;
-      const maxBudBruker = Math.max(...brukerSineBud)
-
-      if (maxBudBruker > maxBud)
-      {
-        maxBud = maxBudBruker;
-        winner = userId;
-        return winner;
-      }
-
-    })
-    
-  }
+  
