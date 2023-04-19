@@ -472,3 +472,77 @@
     width: 100px;
     height: 100px;
 }
+
+.filteredProductListContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .filteredProductContainer {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .filteredProductImg {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .filteredProductTitle {
+    margin: 0;
+  }
+  
+  .filteredProductDescription {
+    margin: 5px 0;
+  }
+  
+  .filteredProductPriceContainer {
+    display: flex;
+    align-items: center;
+  }
+  
+  .filteredProductPriceLabel {
+    margin-right: 10px;
+  }
+  
+  .filteredProductGoToButton {
+    margin-left: 10px;
+  }
+  
+  .filterBoxTitle {
+    margin: 0;
+  }
+  
+  .filterBoxCategoryElem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .filterBoxCategoryElemLabel {
+    margin-right: 5px;
+  }
+  
+  .filterBoxCategoryCheck {
+    margin-right: 5px;
+  }
+  
+  .filterBoxAuctionLabel,
+  .filterBoxNormalLabel {
+    margin-right: 5px;
+  }
+  
+  .filterBoxPriceRange {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    width: 100%;
+  }
+  
+  .filterBoxLowestPrice,
+  .filterBoxHighestPrice {
+    width: 70px;
+  }
+  
