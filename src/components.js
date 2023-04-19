@@ -691,8 +691,9 @@ function createSaleView(){
                 <input id = "productName" type = "text" placeholder = "Produkt Navn" value = "${model.inputs.createSale.title}"  oninput = "model.inputs.createSale.title = this.value"/>
                 <label id = "productId">Produkt ID: ${model.inputs.createSale.newId}</label>
                 <input id = "priceInput" type = "text" placeholder = "Pris" value = "${model.inputs.createSale.price}" oninput = "model.inputs.createSale.price = this.value">
-            </div>
+            </div class = "descriptionCategoryContainer">
             <input id = "productDescription" type = "text" placeholder = "Beskrivelse" value = "${model.inputs.createSale.description}" oninput = "model.inputs.createSale.description = this.value"/>
+            <input id = "mainPicture" type = "file" value = "${model.inputs.createSale.mainImage}" oninput = "uploadImg(event)">
             <div id = "categoryListContainer">
                 <ul>${categoryList}</ul>
             </div>
@@ -707,7 +708,6 @@ function createSaleView(){
                 <button id = "addImageButton" onclick = "insertImage()">"Legg til bilde"</button>
                 ${model.inputs.createSale.images.map(img => `<img class = "newProductImageGalleryElement" src = "${img}"></img>`).join('')}
             </div>
-                <input id = "mainPicture" type = "file" value = "${model.inputs.createSale.mainImage}" oninput = "uploadImg(event)">
             <div class = "checkBoxesCreate">
                 <label id = "aucionLabel">Auksjon: </label>
                 <input type = "checkbox" id = "auctionBox" ${model.inputs.createSale.auction? 'checked':''} onchange = "model.inputs.createSale.auction = !model.inputs.createSale.auction"/>
@@ -716,8 +716,8 @@ function createSaleView(){
                 <input id = "minimumBidInput" type = "text" placeholder = "Minste tillatte budøkning" value = "${model.inputs.createSale.minimumBidAmmount}" oninput = "model.inputs.createSale.minimumBidAmmount = this.value">
                 <label id = "deliveryCheckBoxLabel" >Kan leveres:</label>
                 <input id = "deliveryBox" type = "checkbox" ${model.inputs.createSale.deliver? "checked":""} onchange = "model.inputs.createSale.deliver = this.checked">
+                <button id = "saveButton" onclick = "createProduct()">Lagre produkt</button>
             </div>
-            <button id = "saveButton" onclick = "createProduct()">Lagre produkt</button>
         </div>` 
 }
 
