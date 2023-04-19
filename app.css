@@ -1,4 +1,6 @@
-
+.body {
+    font-family: 'Abhaya Libre', serif;
+}
 .searchContainer{
     position: relative;
     width: 22vw;
@@ -49,6 +51,7 @@
 .dropdownKnapp:focus {
     background-color: rgba(189, 189, 189, 1);
     cursor: pointer;
+    text-decoration: underline;
 }
 
 #dropdownContent {
@@ -471,4 +474,56 @@
 .frontPageSettingsTopPic{
     width: 100px;
     height: 100px;
+}
+
+#pageFooterContainer{
+    font-family: 'Abhaya Libre', serif;
+    background-color: rgba(200, 238, 244, 1);
+    color: rgba(63, 65, 68, 1);
+    width: 100vw;
+    height: 11vh;
+    position: relative;
+}
+#pageSloganContainer{
+    color: rgba(63, 65, 68, 1);
+    font-size: larger;
+    height: 7vh;
+    width: 15vw;
+    position: absolute;
+    left: 5vw;
+    top: 4vh;
+}
+#chatBoxButton{
+    color: rgba(63, 65, 68, 1);
+    font-size: large;
+    position: absolute;
+    width: 7vw;
+    left: 80vw;
+    top: 1vh;
+}
+#chatBoxButton:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+#chatBoxWindow{
+    color: rgba(63, 65, 68, 1);
+    border: 1px solid black;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 1;
+    left: 80vw;
+    top: -32vh;
+    width: 7vw;
+    height: 25vh;
+    overflow-y: scroll;
+    font-size: small;
+    margin: 5px;
+}
+#chatBox{
+    font-size: small;
+    margin: 5px;
+}
+#adminChatElem{
+    font-size: small;
+    margin: 5px;
 }
