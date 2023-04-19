@@ -921,12 +921,13 @@ function createPageFooter(){
 
 function profileMenuComponent() {
     let html = `<div class="profileMenuContainer" onmouseleave = "retractDropDown()">
-                <button class="dropdownKnapp" onclick="toggleProfileMenuDropDown()"><h2>Meny</h2></button>` 
+                <button class="dropdownKnapp" onclick="toggleProfileMenuDropDown()">&#x2630; Meny</button>` 
     if(!model.inputs.profileMenuShowing){return html+`</div>`}
     if (!model.app.loggedInStatus) {
         html += `
         <div id="dropdownContent">
             <div onclick="changeView('filteredPage')">Alle produkter</div>
+            <div class="dropdownContent-line"> </div>
             <div onclick="loginDropDown()">Logg inn</div>
         </div>` 
     }
@@ -934,10 +935,15 @@ function profileMenuComponent() {
         html += `
         <div id="dropdownContent">
                 <div onclick="changeView('myProfilePage')">Min Profil</div>
+                <div class="dropdownContent-line"> </div>
                 <div onclick="changeView('inboxPage')">Inbox</div>
+                <div class="dropdownContent-line"> </div>
                 <div onclick="changeView('filteredPage')">Alle produkter</div>
+                <div class="dropdownContent-line"> </div>
                 <div onclick="changeView('saleHistoryPage')">Salgshistorikk</div>
+                <div class="dropdownContent-line"> </div>
                 <div onclick="changeView('auctionPage')">Bud</div>
+                <div class="dropdownContent-line"> </div>
                 <div onclick="logout()">Logg ut</div>
         </div>`
     }
@@ -960,7 +966,6 @@ function profileMenuComponent() {
                 <div class="dropdownContent-1" onclick="changeView('manageMembersPage')">Medlemmer</div>
                 <div class="dropdownContent-line"> </div>
                 <div onclick="logout()">Logg ut</div>
-                <div class="dropdownContent-line"> </div>
         </div>`
     }
     return html += `</div>`
@@ -1188,7 +1193,7 @@ function showSearchBox() {
     <div class="searchContainer">
         <div class="searchBox">
             <input class="SearchBox-1" type="text" oninput="model.inputs.search.input = this.value" onchange="doSearch()">
-            <button class="SearchBox-1"   onclick="doSearch()">Søk</button>
+            <button class="SearchBox-2"   onclick="doSearch()">Søk</button>
         </div>
     </div>
     `;
