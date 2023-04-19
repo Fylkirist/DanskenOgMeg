@@ -185,6 +185,7 @@ function logout(){
     model.app.userId = false
     model.app.loggedInStatus = false
     model.inputs.profileMenuShowing = false
+    setUsersDataForCheckOutPage();
     changeView("frontPage")
 }
 
@@ -382,6 +383,7 @@ function checkUserIdPassword(){
                 model.inputs.login.wrongUserNamePassword = false;
                 model.app.wrongUserNamePasswordMessage = '';
                 model.app.userId = userKeys
+                setUsersDataForCheckOutPage();
                 changeView("frontPage")
                 break;
             }
@@ -477,7 +479,7 @@ function checkLogin()
 
 function setUsersDataForCheckOutPage(){
     for(let usersId in model.data.users){
-        if(usersId == model.app.userId && model.data.users[usersId].permissions != "admin"){
+        if(model.app.userId && usersId == model.app.userId && model.data.users[usersId].permissions != "admin"){
             model.inputs.checkOutPage.firstName = model.data.users[usersId].firstName;
             model.inputs.checkOutPage.lastName = model.data.users[usersId].surName;
             model.inputs.checkOutPage.address = model.data.users[usersId].address;
@@ -491,6 +493,21 @@ function setUsersDataForCheckOutPage(){
             model.inputs.checkOutPage.address = '';
             model.inputs.checkOutPage.email = '';
             model.inputs.checkOutPage.mobile = '';
+            model.inputs.checkOutPage.zipCode = '';
+            model.inputs.checkOutPage.addressFilled = false;
+            model.app.checkOut.invalidEmailOnCheckOutPage = false;
+            model.inputs.checkOutPage.selectedDeliveryMethod = '';
+            model.inputs.checkOutPage.deliveryMethod.selected = false;
+            model.inputs.checkOutPage.deliveryMethod.butikk = '';
+            model.inputs.checkOutPage.deliveryMethod.leveringMedInnbæring = '';
+            model.inputs.checkOutPage.deliveryMethod.leveringUtenInnbæring = '';
+            model.inputs.checkOutPage.frakt = 0;
+            model.inputs.checkOutPage.cardNumber = '';
+            model.inputs.checkOutPage.expirationDate = '';
+            model.inputs.checkOutPage.cvc = '';
+            model.inputs.checkOutPage.cardHolderFirstName = '';
+            model.inputs.checkOutPage.cardHolderLastName = '';
+            model.inputs.checkOutPage.addNewCard = false;
         }
     }
 }

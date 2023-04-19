@@ -1086,9 +1086,6 @@ function editUserPage(){
  }
 
 function checkOut(){
-    if(model.app.loggedInStatus && model.data.users[model.app.userId].permissions != 'admin') {
-        setUsersDataForCheckOutPage();
-    }
     let html = '';
     if(model.app.loggedInStatus && model.data.users[model.app.userId].permissions == 'admin') return '';
     else {
