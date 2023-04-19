@@ -1065,5 +1065,6 @@ function payAtTheCheckoutPage(){
         model.data.users[model.app.userId].shoppingCart = []; 
     }
     model.inputs.shoppingCart.items.canBuyNow = [];
+    setUsersDataForCheckOutPage();
     updateView();
 }
