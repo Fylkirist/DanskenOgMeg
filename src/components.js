@@ -52,33 +52,37 @@ function renderFrontPageAdminSettings(){
     ` 
 }
 
-function showAddProductList(pos){
-    let arr = pos == "top"? model.data.frontPageTop:model.data.frontPageBottom
+function showAddProductList(pos) {
+    let arr = pos === "top" ? model.data.frontPageTop : model.data.frontPageBottom;
     return `
-        <div class = "frontPageAddProductList">
-            <button onclick = "closeProductList('${pos}')">Cancel</button>
-            ${model.data.items.map((item,i)=>{
-                return arr.includes(i)?"":`
+        <div class="frontPageAddProductList">
+            <button onclick="closeProductList('${pos}')">Cancel</button>
+            ${model.data.items.map((item, i) => {
+                return arr.includes(i) ? "" : `
                 <div>
-                    <label onmouseenter = "()=>{this.innerHTML+=addProductDisplayHover(${i})}">${item.title}</label>
-                    <button onclick = "addProductToDisplay(${i},'${pos}')">Legg til</button>
-                </div>`
+                    <label onmouseenter="addProductDisplayHover(this.parentElement, ${i})">${item.title}</label>
+                    <button onclick="addProductToDisplay(${i},'${pos}')">Legg til</button>
+                </div>`;
             }).join("")}
         </div>
-    `
+    `;
 }
 
-function addProductDisplayHover(i){
-    let item = model.data.items[i]
-    return`
-        <div onmouseleave = "this = ''">
-            <h3>${item.title}</h3>
-            <img src = "${item.images[0]}"/>
-            <p>${item.description}</p>
-            <p>${item.auction?"Auksjonsvare":"Fastprisvare"}</p>
-            <p>Pris: ${item.price}</p>
-        </div>
-    `
+function addProductDisplayHover(element, i) {
+    let item = model.data.items[i];
+    let hoverDiv = document.createElement('div');
+    hoverDiv.className = "frontPageSettingsHoverDiv"
+    hoverDiv.innerHTML = `
+        <h3 class = "frontPageSettingsHoverTitle">${item.title}</h3>
+        <img class = "frontPageSettingsHoverImg" src="${item.images[0]}"/>
+        <p class = "frontPageSettingsHoverDesc" >${item.description}</p>
+        <p class = "frontPageSettingsHoverType" >${item.auction ? "Auksjonsvare" : "Fastprisvare"}</p>
+        <p class = "frontPageSettingsHoverPrice" >Pris: ${item.price}</p>
+    `;
+    hoverDiv.onmouseleave = function() {
+        this.parentNode.removeChild(this);
+    };
+    element.appendChild(hoverDiv);
 }
 
 function ongoingAuctions(){
@@ -568,35 +572,6 @@ function renderFrontPageAdminSettings(){
             </div>
         </div>
     ` 
-}
-
-function showAddProductList(pos){
-    let arr = pos == "top"? model.data.frontPageTop:model.data.frontPageBottom
-    return `
-        <div class = "frontPageAddProductList">
-            <button onclick = "closeProductList('${pos}')">Cancel</button>
-            ${model.data.items.map((item,i)=>{
-                return arr.includes(i)?"":`
-                <div>
-                    <label onmouseenter = "()=>{this.innerHTML+=addProductDisplayHover(${i})}">${item.title}</label>
-                    <button onclick = "addProductToDisplay(${i},'${pos}')">Legg til</button>
-                </div>`
-            }).join("")}
-        </div>
-    `
-}
-
-function addProductDisplayHover(i){
-    let item = model.data.items[i]
-    return`
-        <div onmouseleave = "this = ''">
-            <h3>${item.title}</h3>
-            <img src = "${item.images[0]}"/>
-            <p>${item.description}</p>
-            <p>${item.auction?"Auksjonsvare":"Fastprisvare"}</p>
-            <p>Pris: ${item.price}</p>
-        </div>
-    `
 }
 
 function ongoingAuctions(){

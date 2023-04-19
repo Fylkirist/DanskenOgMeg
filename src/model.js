@@ -1,6 +1,6 @@
 const model = {
     app:{
-        currentView:'adminMembersPage',
+        currentView:'frontPage',
         loggedInStatus: false,
         wrongUserNamePasswordMessage: '',
 
@@ -75,6 +75,8 @@ const model = {
                     max:0,
                     min:0
                 }
+            }
+        },
     inputs:{
         adminAuctionPage:{
             searchInput: '',
