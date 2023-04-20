@@ -84,6 +84,9 @@ const model = {
             selectedUtløptFristItemsId: null,
             alreadyInShoppingCart: false,
         },
+        chatBox:{
+            message:""
+        },
         checkOutPage: {
             emptyShoppingCart: false,
             totalPrice: 0,
