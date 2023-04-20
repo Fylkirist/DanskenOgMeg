@@ -1312,10 +1312,8 @@ function createSaleView(){
             </div>
             <div id = "galleryFrame">Bildegalleri
                 <input value = "${model.inputs.createSale.addImage}" oninput = "uploadImg(event)" type = "file" id = "galleryInput">
-                <button id = "addImageButton" onclick = "insertImage()">"Legg til bilde"</button>
                 ${model.inputs.createSale.images.map(img => `<img class = "newProductImageGalleryElement" src = "${img}"></img>`).join('')}
             </div>
-                <input id = "mainPicture" type = "file" value = "${model.inputs.createSale.mainImage}" oninput = "uploadImg(event)">
             <div class = "checkBoxesCreate">
                 <label id = "aucionLabel">Auksjon: </label>
                 <input type = "checkbox" id = "auctionBox" ${model.inputs.createSale.auction? 'checked':''} onchange = "model.inputs.createSale.auction = !model.inputs.createSale.auction"/>

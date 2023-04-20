@@ -938,13 +938,13 @@ function goToProduct(index){
 
 function filterItems(){
     let filterArray = []
-    model.data.items.forEach(item =>{
-        if(item.title.includes(model.inputs.search.input) ||
-         item.description.includes(model.inputs.search.input) ||
-          item.category.includes(model.inputs.search.input)){
-            filterArray.push(eval(item.id))
-          }
-    })
+    model.data.items.forEach(item => {
+        if (item.title.toLowerCase().includes(model.inputs.search.input.toLowerCase()) ||
+          item.description.toLowerCase().includes(model.inputs.search.input.toLowerCase()) ||
+          item.category.toLowerCase().includes(model.inputs.search.input.toLowerCase())) {
+          filterArray.push(eval(item.id));
+        }
+    });      
     let anychecked = false
     let storedArray = filterArray
     filterArray = filterArray.filter(val => {
@@ -1115,9 +1115,6 @@ function convertTob64(image){
         fr.readAsDataURL(image)
         fr.onload = () => {
             resolve(fr.result)
-        }
-        fr.onerror = (error) => {
-            reject(error)
         }
     })
 }
