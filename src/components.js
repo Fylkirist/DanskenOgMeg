@@ -894,7 +894,7 @@ function createPageFooter(){
             <div>
                 ${model.app.loggedInStatus?`
                     <div>
-                        <input id = "chatBoxMessageInput" type = "text" oninput = "model.inputs.chatBox.message = this.value" value = "model.inputs.chatBox.message"/>
+                        <input id = "chatBoxMessageInput" type = "text" oninput = "model.inputs.chatBox.message = this.value" value = "${model.inputs.chatBox.message}"/>
                         <button id = "chatBoxSendMessage" onclick = "sendMessage()">Send melding</button>
                     </div>
                 `:`
@@ -909,10 +909,10 @@ function createPageFooter(){
     return`
         <div id = "pageFooterContainer">
             <div id = "pageSloganContainer"> De mest ekslusive produktene.
+            </div>
             <div id = "chatBoxContainer">
                 ${model.app.showChatBox?chatBox:``}
                 <div id = "chatBoxButton" onclick = "toggleChatBox()"> Kontakt oss
-                </div>
             </div>
         </div>
     `
@@ -1252,7 +1252,7 @@ function createHeaderSection(){
     return /*html*/`
     <div class="headerSectionContainer">
         ${goBackAndGoForwardButtons()}
-        <h1 class="overskriftHeaderSection" onclick = "toToFrontPage()">Dansken og meg</h1>
+        <h1 class="overskriftHeaderSection" onclick = "toToFrontPage()">Dansken&Meg</h1>
         ${!model.app.loggedInStatus ? `<div class="registerButtonHeaderSection" onclick="goToRegisterPage()">Registrer</div>
         <div class="loginButtonHeaderSection" onclick="loginDropDown()">Login</div>` :
         `<div class="userButtonHeaderSection" onclick="">${model.data.users[model.app.userId].username}</div>`}
@@ -1492,11 +1492,11 @@ function createLoginPage(){
             <div id = "loginPageElement">
                 <div id = "loginPageLogo" onclick = "toToFrontPage()">Dansken&meg</div>
                 <label id = "loginPageUserLabel">Brukernavn</label>
-                <input oninput = "model.inputs.login.username = this.value" type = "text"/>
+                <input id ="loginPageUserInput" oninput = "model.inputs.login.username = this.value" type = "text"/>
                 <label id = "loginPagePassLabel">Passord</label>
-                <input oninput = "model.inputs.login.password = this.value" type = "text"/>
-                <button onclick = "checkUserIdPassword()">Logg inn</button>
-                <button onclick = "changeView('registerPage')">Registrer</button>
+                <input id = "loginPagePassInput" oninput = "model.inputs.login.password = this.value" type = "text"/>
+                <button id = "loginPageEnterButton" onclick = "checkUserIdPassword()">Logg inn</button>
+                <button id = "loginPageBackButton" onclick = "changeView('registerPage')">Registrer</button>
             </div>
         </div>
     ` 
