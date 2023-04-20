@@ -1630,7 +1630,7 @@ function editUserPage(){
                 
                     <h1>Betalingsinformasjon: </h1> <br>
                     ${model.data.users[model.app.userId].paymentInformation.map((payment, i) => /*html*/`
-                        <div id ="showCardInfo">
+                        <div class ="showCardInfo">
                             Kortnummer: ${payment.cardNumber}<br>
                             Utløpsdato: ${payment.expirationDate}<br>
                             Kortholders fornavn: ${payment.cardHolderFirstName}<br>

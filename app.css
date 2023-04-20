@@ -782,7 +782,7 @@ body {
     
 }
 
-#showCardInfo{
+.showCardInfo{
     display: inline-block;
     border: solid 2px;
     width: 20%;
