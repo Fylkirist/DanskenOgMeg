@@ -693,7 +693,6 @@ function createSaleView(){
                 <input id = "priceInput" type = "text" placeholder = "Pris" value = "${model.inputs.createSale.price}" oninput = "model.inputs.createSale.price = this.value">
             </div class = "descriptionCategoryContainer">
             <input id = "productDescription" type = "text" placeholder = "Beskrivelse" value = "${model.inputs.createSale.description}" oninput = "model.inputs.createSale.description = this.value"/>
-            <input id = "mainPicture" type = "file" value = "${model.inputs.createSale.mainImage}" oninput = "uploadImg(event)">
             <div id = "categoryListContainer">
                 <ul>${categoryList}</ul>
             </div>
@@ -704,8 +703,7 @@ function createSaleView(){
                 <button id = "subCategoryAdd" onclick = "addSubCategory()">Legg til underkategori</button>
             </div>
             <div id = "galleryFrame">Bildegalleri
-                <input value = "${model.inputs.createSale.addImage}" oninput = "uploadImg(event)" type = "file" id = "galleryInput">
-                <button id = "addImageButton" onclick = "insertImage()">"Legg til bilde"</button>
+                <input id = "picturesOfCreateSale" value = "${model.inputs.createSale.addImage}" oninput = "uploadImg(event)" type = "file" id = "galleryInput">
                 ${model.inputs.createSale.images.map(img => `<img class = "newProductImageGalleryElement" src = "${img}"></img>`).join('')}
             </div>
             <div class = "checkBoxesCreate">

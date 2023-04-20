@@ -298,6 +298,9 @@
     grid-template-rows: 0.5fr repeat(4, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+    border: solid 3px;
+    background-color: #FFFAED;
+
 }
 
 
@@ -325,6 +328,7 @@
 }
 
 #mainCategoryAdd{
+    background-color:rgba(180, 148, 87, 0.07);
     
 }
 
@@ -333,12 +337,18 @@
 }
 
 #subCategoryAdd{
-    
+    background-color:rgba(180, 148, 87, 0.07);
 }
 
 #galleryFrame{
+    grid-area: 4 / 3 / 5 / 4;;
+    
+}
+
+#pictureOfCreateSale{
     grid-area: 5 / 1 / 6 / 4;
 }
+
 
 #galleryInput{
     
@@ -380,7 +390,7 @@
 }
 
 #saveButton{
-    
+    background-color:rgba(180, 148, 87, 0.07);
 }
 
 #deadlineLabel{
