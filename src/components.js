@@ -1593,9 +1593,10 @@ function currentShownChatBox(){
 function editUserPage(){
     setUserInputs()
       return  /*html*/ ` 
-       <div class = "containerDiv">
+       <div class = "editUserContainerDiv">
             <div id = "persoinalInfo">
                 <div id = firstLast>
+                    <h1>Personelig Informasjon</h1>
                     <input id ="firstNameChangeBox" type = "text" placeholder = "Fornavn"
                         value  = "${model.data.users[model.app.userId].firstName}" oninput = "model.inputs.register.firstName = this.value">
                     <input id ="lastNameChangeBox" type = "text" placeholder = "Etternavn"
@@ -1607,6 +1608,7 @@ function editUserPage(){
                         <button id = "personalInfoConfirm" onclick = "oppdaterPersonalia('namePhoneEmail')">Confirm</button>
                 </div>
                 <div id = addressChange>
+                    <h1>Addresse</h1>
                     <input id ="cityNameChangeBox" type = "text" placeholder = "By"
                         value = "${model.data.users[model.app.userId].city}" oninput = "model.inputs.register.city = this.value">
                     <input id ="adressNameChangeBox" type = "text" placeholder = "Adresse"
@@ -1617,6 +1619,7 @@ function editUserPage(){
                 </div>
                
                 <div id = "changePassword">
+                <h1>Bytt Passord</h1>
                     <input id = "currentPassword" type = "password" placeholder = "Passord"
                         oninput = "model.inputs.register.password = this.value">
                     <input id = "newPassword" type = "password" placeholder = "Ny passord"
@@ -1624,10 +1627,10 @@ function editUserPage(){
                     <button id= "passwordConfirm" onclick = "oppdaterPersonalia('byttPassord')">Confirm</button>
             </div>
             <div id = "cardInfoBox">
-                <ul>
-                    Betalingsinformasjon:
+                
+                    <h1>Betalingsinformasjon: </h1> <br>
                     ${model.data.users[model.app.userId].paymentInformation.map((payment, i) => /*html*/`
-                        <div>
+                        <div class ="showCardInfo">
                             Kortnummer: ${payment.cardNumber}<br>
                             Utløpsdato: ${payment.expirationDate}<br>
                             Kortholders fornavn: ${payment.cardHolderFirstName}<br>
@@ -1635,10 +1638,10 @@ function editUserPage(){
                             By: ${payment.city}<br>
                             Adresse: ${payment.address}<br>
                             Postnummer: ${payment.zip}<br>
-                            <button onclick = deleteCard(${i})>Slett Kort</button>
+                            <button id = "deleteCardButton" onclick = deleteCard(${i})>Slett Kort</button>
                         </div>
                     `).join('')}
-                </ul>
+                
             </div>
             <div id = "cardAddBox">
                     <input id = "cardNumber" placeholder = "Kort Nummer"
@@ -1646,11 +1649,11 @@ function editUserPage(){
                     <input id = "expirationDate" placeholder = "Utløps Dato" type = "date"
                          oninput = "model.inputs.register.toDate = this.value">
                     <input id = "cvc" placeholder ="CVC"
-                         oninput = "model.inputs.register.cvc = this.value">
+                         oninput = "model.inputs.register.cvc = this.value"> <br>
                     <input id = "cardFirstName" placeholder = "Fornavn"
                          oninput = "model.inputs.register.cardFirstName = this.value">
                     <input id = "cardLastName" placeholder = "Etternavn"
-                         oninput = "model.inputs.register.cardLastName = this.value">
+                         oninput = "model.inputs.register.cardLastName = this.value"><br>
                     <input id ="cardCityNameChangeBox"  placeholder = "By"
                          oninput = "model.inputs.register.cardCity = this.value">
                     <input id ="cardAdressNameChangeBox"  placeholder = "Adresse"
