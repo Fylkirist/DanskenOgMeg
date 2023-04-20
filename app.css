@@ -6,7 +6,7 @@ body {
     font-family: 'Abhaya Libre', serif;
     overflow-y: scroll;
     margin-bottom: 11.1vh;
-    background-color: rgba(234, 234, 234, 1);
+    background-color: rgba(230, 230, 230, 1);
 }
 .searchContainer{
     position: relative;
@@ -288,25 +288,30 @@ body {
     left: 81.2vw;
 }
 #frontPageProductDisplay{
-    border: #000000 solid 1px;
-    background-color: white;
+    border: 0.1vw solid black;
+    background-color: rgba(112, 183, 205, 1);
     display: flex;
+    position: relative;
+    left: 25vw;
+    width: 50vw;
     align-items: center;
     flex-direction: column;
 }
 
 .frontPageProductDisplayElement{
-    height: 300px;
-    width: 650px;
-    min-width: 650px;
-    margin: 30px;
+    height: 20vw;
+    width: 35vw;
+    min-width: 35vw;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    margin: 3vw;
     display:flex;
 }
 
 .frontPageRightArrow{
     height: 100%;
     background-color: #E7EBF6;
-    width: 50px;
+    width: 5vw;
     display: inline-block;
     border-radius: 0px 10px 10px 0px;
 }
@@ -322,7 +327,7 @@ body {
 .frontPageLeftArrow{
     height: 100%;
     background-color: #E7EBF6;
-    width: 50px;
+    width: 5vw;
     display: inline-block;
     border-radius: 10px 0px 0px 10px;
 }
