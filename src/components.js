@@ -933,7 +933,7 @@ function profileMenuComponent() {
     else if (model.data.users[model.app.userId].permissions === 'user') {
         html += `
         <div id="dropdownContent">
-                <div onclick="changeView('editUserPage)">Min Profil</div>
+                <div onclick="changeView('editUserPage')">Min Profil</div>
                 <div class="dropdownContent-line"> </div>
                 <div onclick="changeView('inboxPage')">Inbox</div>
                 <div class="dropdownContent-line"> </div>
