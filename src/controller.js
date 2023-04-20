@@ -551,6 +551,7 @@ function doSearch() {
 function changeFrontPageBotProduct(direction){
     if(model.app.frontPageCurrentShowing.bottom + direction >= 0 && model.app.frontPageCurrentShowing.bottom + direction < model.data.frontPageBottom.length){
         model.app.frontPageCurrentShowing.bottom += direction
+        model.app.frontPageCurrentShowing.botPic = 0
     }
     updateView()
 }
@@ -558,6 +559,7 @@ function changeFrontPageBotProduct(direction){
 function changeFrontPageTopProduct(direction){
     if(model.app.frontPageCurrentShowing.top + direction >= 0 && model.app.frontPageCurrentShowing.top + direction < model.data.frontPageTop.length){
         model.app.frontPageCurrentShowing.top += direction
+        model.app.frontPageCurrentShowing.topPic = 0
     }
     updateView()
 }
