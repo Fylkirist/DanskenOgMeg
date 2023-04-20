@@ -782,3 +782,79 @@ body {
     align-self: flex-end;
     display: inline-block;
 }
+
+.editUserContainerDiv{
+    background-color:rgba(239, 239, 239, 1);
+    border: solid 3px;
+    display: flex;
+    justify-content: center;
+
+}
+
+#cardInfoBox{
+    display: inline;
+    
+}
+
+.showCardInfo{
+    display: inline-block;
+    border: solid 2px;
+    width: 20%;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin-top: 2px;
+    background-color: rgba(255, 250, 237, 1);
+    
+
+    
+    
+}
+
+#deleteCardButton{
+    background-color:rgba(225, 225, 210, 0.99) ;
+}
+
+#cardConfirm{
+    background-color:rgba(225, 225, 210, 0.99) ;
+}
+
+#passwordConfirm{
+    background-color:rgba(225, 225, 210, 0.99) ;
+}
+
+#personalInfoConfirm{
+    background-color:rgba(225, 225, 210, 0.99) ;
+}
+
+#addressConfirm{
+    background-color:rgba(225, 225, 210, 0.99) ;
+}
+
+#firstLast{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#addressChange{
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+#changePassword{
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+
+#cardAddBox{
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+#cardNumber{
+    margin-bottom: 10px;
+}
+
+#cardFirstName{
+    margin-bottom: 10px;
+}
