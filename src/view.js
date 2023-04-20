@@ -36,7 +36,8 @@ function updateView(){
             app.innerHTML = createHeaderSection() + profileMenuComponent() + createPageFooter()
             break
         case "editUserPage":
-            app.innerHTML = createHeaderSection() + profileMenuComponent + editUserPage() + createPageFooter()
+            app.innerHTML = createHeaderSection() + profileMenuComponent() + editUserPage() + createPageFooter()
+            break
     }
 }
 
