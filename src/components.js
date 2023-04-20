@@ -426,7 +426,7 @@ function generateCategoryElems(parentId){
 function showAllMembers(){
     let html = '';
     for(let usersId in model.data.users){
-        if(usersId != "0000001"){
+        if(model.data.users[usersId].permissions != "admin"){
             html += `
                     <div onclick="model.inputs.adminMembersPage.selectedUsersId = ${usersId}; updateView()">
                         ${model.data.users[usersId].firstName} ${model.data.users[usersId].surName}
