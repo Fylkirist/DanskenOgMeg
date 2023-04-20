@@ -238,7 +238,7 @@ function filteredItemsAdmin(){
         filteredArray = filteredArray.filter(itemsId => {
             if(model.data.items[itemsId-1].title.toLowerCase().includes(model.inputs.adminAuctionPage.searchInput.toLowerCase())||
                model.data.items[itemsId-1].description.toLowerCase().includes(model.inputs.adminAuctionPage.searchInput.toLowerCase())||
-               model.data.items[itemsId-1].category.toLowerCase().includes(model.inputs.adminAuctionPage.searchInput.toLowerCase())){
+               model.data.items[itemsId-1].category.join(',').toLowerCase().split(',').includes(model.inputs.adminAuctionPage.searchInput.toLowerCase())){
                 return itemsId;
                }
         });
@@ -249,7 +249,7 @@ function filteredItemsAdmin(){
         let included = true
         for(let i = 0; i<model.inputs.category.categoryList.length; i++){
             if(model.inputs.category.categoryList[i].checked){anychecked = true}
-            if(model.data.items[val-1].category.toLowerCase().includes(model.inputs.category.categoryList[i].name.toLowerCase()) && model.inputs.category.categoryList[i].checked){
+            if(model.data.items[val-1].category.includes(model.inputs.category.categoryList[i].name) && model.inputs.category.categoryList[i].checked){
                 included = true
                 break
             }
@@ -941,7 +941,7 @@ function filterItems(){
     model.data.items.forEach(item => {
         if (item.title.toLowerCase().includes(model.inputs.search.input.toLowerCase()) ||
           item.description.toLowerCase().includes(model.inputs.search.input.toLowerCase()) ||
-          item.category.toLowerCase().includes(model.inputs.search.input.toLowerCase())) {
+          item.category.join(',').toLowerCase().split(',').includes(model.inputs.search.input.toLowerCase())) {
           filterArray.push(eval(item.id));
         }
     });      
