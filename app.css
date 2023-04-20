@@ -695,6 +695,8 @@ body {
     margin: 0 auto;
     padding: 2vh;
     position: absolute;
+    top: -42vh;
+    right: -5vw;
     font-size: 1.5vh;
   }
   
@@ -713,12 +715,13 @@ body {
   }
   
   #chatBoxMessageInput {
-    width: 10vw;
-    padding: 1vh;
-    margin-top: 1vh;
+    width: 8vw;
+    padding: 0.5w;
+    font-size: 1vw;
+    margin-top: 0.5vh;
     border: none;
-    border-radius: 0.3vh;
-    margin-right: 0.5vh;
+    border-radius: 0.1vw;
+    margin-right: 0.1vw;
   }
   
   #chatBoxSendMessage {
@@ -765,6 +768,9 @@ body {
     text-decoration: underline;
 }
 #chatBoxContainer{
+    position: absolute;
+    right: 10vw;
+    top: 5vh;
     align-self: flex-end;
     display: inline-block;
 }
