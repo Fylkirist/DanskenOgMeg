@@ -1593,7 +1593,7 @@ function currentShownChatBox(){
 function editUserPage(){
     setUserInputs()
       return  /*html*/ ` 
-       <div class = "containerDiv">
+       <div class = "editUserContainerDiv">
             <div id = "persoinalInfo">
                 <div id = firstLast>
                     <input id ="firstNameChangeBox" type = "text" placeholder = "Fornavn"
