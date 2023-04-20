@@ -34,6 +34,12 @@ function updateView(){
         case "auctionPage":
             app.innerHTML = createHeaderSection() + profileMenuComponent() + createPageFooter()
             break
+        case "activeAuction":
+            app.innerHTML = createHeaderSection() + profileMenuComponent() + activeAuctionList() + createPageFooter()
+            break
+        case "endedAuctions":
+            app.innerHTML = createHeaderSection() + profileMenuComponent() + avsluttendeAuksjoner() + createPageFooter()
+            break
     }
 }
 

@@ -1,9 +1,9 @@
 const model = {
     app:{
         currentView:'frontPage',
-        loggedInStatus: false,
+        loggedInStatus: true,
         wrongUserNamePasswordMessage: '',
-        userId:false,
+        userId:"0000002",
         zoomedPic:false,
         currentProduct:false,
         showChatBox:"",
@@ -308,7 +308,7 @@ const model = {
                 price: 5000,
                 category:['Møbler','Stoler'],
                 auction:true,
-                deadline:'2024-03-21T18:21',
+                deadline:'2023-05-20T10:25',
                 images:['assets/kronebilde1.jpg','assets/kronebilde2.jpg'],
                 inStock:true,
                 deliver:false,
