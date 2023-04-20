@@ -114,9 +114,9 @@ body {
 .navigateLeftButtonHeader{
     background-color: rgba(70, 198, 217, 1);
     color: rgba(63, 65, 68, 1);
-    font-size: 1.5vh;
+    font-size: 1vw;
     width: 1.5vw;
-    height: 3vh;
+    height: auto;
     position: absolute;
     top: 0vh;
     left: 0vw;
@@ -135,9 +135,9 @@ body {
 .navigateRightButtonHeader{
     background-color: rgba(70, 198, 217, 1);
     color: rgba(63, 65, 68, 1);
-    font-size: 1.5vh;
+    font-size: 1vw;
     width: 1.5vw;
-    height: 3vh;
+    height: auto;
     position: absolute;
     top: 0vh;
     left: 1.6vw;
@@ -154,22 +154,22 @@ body {
 }
 
 .overskriftHeaderSection{
-    font-size: 4vh;
+    font-size: 2vw;
     font: bolder;
     color: rgba(63, 65, 68, 1);
     position: absolute;
     top: 1vh;
     left: 42vw;
     margin: 0;
-    padding: 0.1vh;
+    padding: 0.01vw;
 }
 .registerButtonHeaderSection{
     background-color: rgba(70, 198, 217, 1);
     color: rgba(63, 65, 68, 1);
-    font-size: 1.5vh;
-    border: 0.01vh solid rgba(63, 65, 68, 1);
+    font-size: 0.85vw;
+    border: 0.005vw solid rgba(63, 65, 68, 1);
     margin: 0;
-    padding: 0.2vh;
+    padding: 0.1vw;
     position: absolute;
     top: 1vh;
     left: 83vw;
@@ -181,10 +181,10 @@ body {
 .loginButtonHeaderSection{
     background-color: rgba(70, 198, 217, 1);
     color: rgba(63, 65, 68, 1);
-    font-size: 1.5vh;
-    border: 0.01vh solid rgba(63, 65, 68, 1);
+    font-size: 0.85vw;
+    border: 0.005vw solid rgba(63, 65, 68, 1);
     margin: 0;
-    padding: 0.2vh;
+    padding: 0.1vw;
     position: absolute;
     top: 1vh;
     left: 87vw;
@@ -196,10 +196,10 @@ body {
 .userButtonHeaderSection{
     background-color: rgba(70, 198, 217, 1);
     color: rgba(63, 65, 68, 1);
-    font-size: 1.5vh;
+    font-size: 0.85vw;
     margin: 0vh;
-    padding: 0.2vh;
-    border: 0.01vh solid rgba(63, 65, 68, 1);
+    padding: 0.1vw;
+    border: 0.005vw solid rgba(63, 65, 68, 1);
     position: absolute;
     top: 1vh;
     left: 83vw;
@@ -210,82 +210,82 @@ body {
 }
 .cartIconHeaderSection{
     background-color: transparent;
-    font-size: 2vh;
+    font-size: 1vw;
     width: 1.7vw;
     height: 2.2vh;
     margin: 0;
-    padding: 0.2vh;
+    padding: 0.1vw;
     position: absolute;
     top: 1vh;
     left: 93vw;
 }
 .underskriftHeaderSection{
-    font-size: 3vh;
+    font-size: 1.5vw;
     color: rgba(63, 65, 68, 1);
     position: absolute;
     top: 6vh;
     left: 43.5vw;
     margin: 0vh;
-    padding: 0.1vh;
+    padding: 0.05vw;
 }
 .userNameInputLoginDropdown{
     background-color: rgba(70, 198, 217, 1);
     color: rgba(63, 65, 68, 1);
-    font-size: 1.5vh;
-    margin: 0.1vh;
+    font-size: 0.80vw;
+    margin: 0.05vw;
     padding: 0;
-    border: 0.01vh solid rgba(63, 65, 68, 1);
+    border: 0.005vw solid rgba(63, 65, 68, 1);
     width: 5vw;
     position: absolute;
-    top: 3.5vh;
-    left: 83.75vw;
+    top: 3.9vh;
+    left: 84.1vw;
 }
 .passwordInputLoginDropdown{    
     background-color: rgba(70, 198, 217, 1);
     color: rgba(63, 65, 68, 1);
-    font-size: 1.5vh;
-    margin: 0.1vh;
+    font-size: 0.80vw;
+    margin: 0.05vw;
     padding: 0;
-    border: 0.01vh solid rgba(63, 65, 68, 1);
+    border: 0.005vw solid rgba(63, 65, 68, 1);
     width: 5vw;
     position: absolute;
-    top: 5.5vh;
-    left: 83.75vw;
+    top: 6.2vh;
+    left: 84.1vw;
 
 }
 .loginSubmitButtonLoginDropdown{
     background-color: rgba(70, 198, 217, 1);
     color: rgba(63, 65, 68, 1);
-    font-size: 1.5vh;
+    font-size: 0.80vw;
     margin: 0;
-    padding: 0.1vh;
-    border: 0.01vh solid rgba(63, 65, 68, 1);
+    padding: 0.05vw;
+    border: 0.005vw solid rgba(63, 65, 68, 1);
     position: absolute;
-    top: 7.55vh;
-    left: 86.6vw;
+    top: 8.7vh;
+    left: 86.65vw;
 }
 .loginSubmitButtonLoginDropdown:hover{
     text-decoration: underline;
     cursor: pointer;
 }
 .wrongUserLoginDropdown{
-    font-size: 1.5vh;
+    font-size: 0.70vw;
     color: red;
-    margin: 0.01vh;
-    padding: 0.01vh;
+    margin: 0.005vw;
+    padding: 0.005vw;
     position: absolute;
-    top: 10vh;
-    left: 81vw;
+    top: 11.2vh;
+    left: 81.2vw;
 
 }
 .forgotPasswordLoginDropdown{
-    font-size: 1.5vh;
+    font-size: 0.70vw;
     color: rgba(63, 65, 68, 1);
-    margin: 0.01vh;
-    padding: 0.01vh;
+    margin: 0.005vw;
+    padding: 0.005vw;
     position: absolute;
-    top: 11.3vh;
-    left: 81vw;
+    top: 12.5vh;
+    left: 81.2vw;
 }
 #frontPageProductDisplay{
     border: #000000 solid 1px;
