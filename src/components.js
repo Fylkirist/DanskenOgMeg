@@ -1191,8 +1191,8 @@ function showSearchBox() {
     return /*html*/ `
     <div class="searchContainer">
         <div class="searchBox">
-            <input class="SearchBox-1" type="text" oninput="model.inputs.search.input = this.value" onchange="doSearch()">
-            <button class="SearchBox-2"   onclick="doSearch()">Søk</button>
+            <input class="SearchBox-1" type="search" value="${model.inputs.search.input}" onchange="model.inputs.search.input = this.value; updateView()">
+            <button class="SearchBox-2" onclick="doSearch()">Søk</button>
         </div>
     </div>
     `;
