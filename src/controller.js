@@ -16,28 +16,32 @@ function addToOrderHistory(auksjonsId,userId) {
       })
      }
     }
+   
   function calculateDeadlineSec(itemsId){
-    let setDeadline;
-    let html = '';
     const item = model.data.items.find((item, index) => {
         if (item.id == itemsId) {
-          return true;
-        }
-        return false;
-      });
-            setDeadline = item.deadline;
-
-
-    let miliSecondsRemaining = parseInt(new Date(setDeadline) - new Date());
-    let daysRemaining = parseInt(miliSecondsRemaining/(1000*60*60*24));
-    let hoursRemaining = parseInt(((miliSecondsRemaining/(1000*60*60*24)) - daysRemaining) * 24);
-    let minutesRemaining = parseInt(((((miliSecondsRemaining/(1000*60*60*24)) - daysRemaining) * 24) - hoursRemaining) * 60);
-    let secondsRemaining = parseInt(((((((miliSecondsRemaining/(1000*60*60*24)) - daysRemaining) * 24) - hoursRemaining) * 60) - minutesRemaining) * 60);
-
+        return true;
+      }
+      return false;
+    });
+  
+    let setDeadline;
+    let html = '';
+    setDeadline = item.deadline;
+    const deadlineClock = document.getElementById(`deadline-${itemsId}`);
+    if (!deadlineClock) {
+        return;
+      }
+      let miliSecondsRemaining = parseInt(new Date(setDeadline) - new Date());
+      let daysRemaining = Math.floor(miliSecondsRemaining / (1000 * 60 * 60 * 24));
+      let hoursRemaining = Math.floor((miliSecondsRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      let minutesRemaining = Math.floor((miliSecondsRemaining % (1000 * 60 * 60)) / (1000 * 60));
+      let secondsRemaining = Math.floor((miliSecondsRemaining % (1000 * 60)) / 1000);
     if (miliSecondsRemaining > 1000){ 
-        html = `
+        deadlineClock.innerHTML=`
                 ${daysRemaining} dager og ${hoursRemaining} timer og ${minutesRemaining} minutter. sekkunder: ${secondsRemaining}
              `;
+
     }
     else {
       const auction = model.data.auctionListe.find((auction) => auction.itemId == itemsId);
@@ -56,18 +60,18 @@ function addToOrderHistory(auksjonsId,userId) {
       if (maxBidAlleBrukere > (item.price-1)) {
         auction.bids[vunnetBruker].vunnet = true;
       }
+      
     }
-  const deadlineClock = document.getElementById(`deadline-${itemsId}`);
-  if (deadlineClock) {
-    deadlineClock.innerHTML = html;
-  }
+}
+function updateAllTimers() {
+    model.data.items.forEach(item => {
+        if (item.auction) {
+            calculateDeadlineSec(item.id);
+        }
+    });
 }
 
-model.data.items.forEach((item) => {
-  setInterval(() => {
-    calculateDeadlineSec(item.id);
-  }, 1000);
-});
+
 
 function getHighestAutoBid(auctionID) {
     const auction = model.data.auctionListe.find((navigation) => navigation.itemId === auctionID);
@@ -87,6 +91,7 @@ function getHighestAutoBid(auctionID) {
     };
   }
   function activeAuctionController(auctionID, buttonID, input) {
+    initializeUserBid(auctionID);
     const auction = model.data.auctionListe.find((navigation) => navigation.itemId === auctionID);
     const bids = auction.bids[model.app.userId];
     const item = model.data.items.find((item) => item.id === auction.itemId);
@@ -99,8 +104,8 @@ function getHighestAutoBid(auctionID) {
     const highestAutoBid = highestAutoBidData.highestAutoBid;
     const highestAutoBidUser = highestAutoBidData.highestAutoBidUser;
    
-
-  if (bids.deleted) {
+if(!model.app.userId || bids.deleted)
+  {
     return;
   }
 
@@ -174,8 +179,42 @@ if(parseInt(input) > item.price){
       bids.bid = []
       }
     }
-    activeAuctionList()
+    updateAllTimers()
+    updateView()
 }
+function addNewItemToAuctionList(itemId) {
+    // Check if auction with given itemId already exists
+    const auctionExists = model.data.auctionListe.some(auction => auction.itemId === itemId);
+  
+    // If auction doesn't exist, create a new auction object and push it to the auctionListe array
+    if (!auctionExists) {
+      const newAuction = {
+        itemId: itemId,
+        bids: {}
+      };
+      model.data.auctionListe.push(newAuction);
+    }
+  }
+  // lager nyy objekt hvis det ikke eksisterer
+  function initializeUserBid(auctionID) {
+    let auction = model.data.auctionListe.find(auction => auction.itemId == auctionID);
+    
+    if (!auction) {
+      auction = {
+        itemId: auctionID,
+        bids: {}
+      };
+      model.data.auctionListe.push(auction);
+    }
+  
+    if (!auction.bids[model.app.userId]) {
+      auction.bids[model.app.userId] = {
+        bid: [],
+        autoBid: 0,
+        deleted: false
+      };
+    }
+  }
 
 function sendMessageToUserAdminMembersPage(){
     for(let usersId in model.data.users){
@@ -743,8 +782,8 @@ function createProduct(){
                 title: model.inputs.createSale.title,
                 id: model.inputs.createSale.newId,
                 description: model.inputs.createSale.description,
-                price:model.inputs.createSale.price,
-                minBid:model.inputs.createSale.minimumBidAmmount,
+                price:parseInt(model.inputs.createSale.price),
+                minBid:parseInt(model.inputs.createSale.minimumBidAmmount),
                 auction: model.inputs.createSale.auction,
                 deadline: new Date(model.inputs.createSale.deadline).toISOString().substring(0,16),
                 deliver:model.inputs.createSale.deliver,
@@ -755,6 +794,7 @@ function createProduct(){
             }
             saveMainCategory()
             model.data.items.push(newProduct);
+            addNewItemToAuctionList(newProduct.id)
             for(key in model.inputs.createSale){
                 switch(typeof model.inputs.createSale[key]){
                     case "string":
@@ -768,6 +808,7 @@ function createProduct(){
                         break
                 }
             }
+
         updateView()
     }
 }
