@@ -275,9 +275,9 @@ function filteredItemsAdmin(){
     }
     if(model.inputs.adminAuctionPage.searchInput.length > 0){
         filteredArray = filteredArray.filter(itemsId => {
-            if(model.data.items[itemsId-1].title.includes(model.inputs.adminAuctionPage.searchInput)||
-               model.data.items[itemsId-1].description.includes(model.inputs.adminAuctionPage.searchInput)||
-               model.data.items[itemsId-1].category.includes(model.inputs.adminAuctionPage.searchInput)){
+            if(model.data.items[itemsId-1].title.toLowerCase().includes(model.inputs.adminAuctionPage.searchInput.toLowerCase())||
+               model.data.items[itemsId-1].description.toLowerCase().includes(model.inputs.adminAuctionPage.searchInput.toLowerCase())||
+               model.data.items[itemsId-1].category.join(',').toLowerCase().split(',').includes(model.inputs.adminAuctionPage.searchInput.toLowerCase())){
                 return itemsId;
                }
         });
@@ -590,6 +590,7 @@ function doSearch() {
 function changeFrontPageBotProduct(direction){
     if(model.app.frontPageCurrentShowing.bottom + direction >= 0 && model.app.frontPageCurrentShowing.bottom + direction < model.data.frontPageBottom.length){
         model.app.frontPageCurrentShowing.bottom += direction
+        model.app.frontPageCurrentShowing.botPic = 0
     }
     updateView()
 }
@@ -597,6 +598,7 @@ function changeFrontPageBotProduct(direction){
 function changeFrontPageTopProduct(direction){
     if(model.app.frontPageCurrentShowing.top + direction >= 0 && model.app.frontPageCurrentShowing.top + direction < model.data.frontPageTop.length){
         model.app.frontPageCurrentShowing.top += direction
+        model.app.frontPageCurrentShowing.topPic = 0
     }
     updateView()
 }
@@ -979,13 +981,13 @@ function goToProduct(index){
 
 function filterItems(){
     let filterArray = []
-    model.data.items.forEach(item =>{
-        if(item.title.includes(model.inputs.search.input) ||
-         item.description.includes(model.inputs.search.input) ||
-          item.category.includes(model.inputs.search.input)){
-            filterArray.push(eval(item.id))
-          }
-    })
+    model.data.items.forEach(item => {
+        if (item.title.toLowerCase().includes(model.inputs.search.input.toLowerCase()) ||
+          item.description.toLowerCase().includes(model.inputs.search.input.toLowerCase()) ||
+          item.category.join(',').toLowerCase().split(',').includes(model.inputs.search.input.toLowerCase())) {
+          filterArray.push(eval(item.id));
+        }
+    });      
     let anychecked = false
     let storedArray = filterArray
     filterArray = filterArray.filter(val => {
@@ -1156,9 +1158,6 @@ function convertTob64(image){
         fr.readAsDataURL(image)
         fr.onload = () => {
             resolve(fr.result)
-        }
-        fr.onerror = (error) => {
-            reject(error)
         }
     })
 }

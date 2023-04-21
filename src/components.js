@@ -162,7 +162,7 @@ function renderFrontPageAdminSettings(){
                     return `
                         <div class = "frontPageSettings">
                             ${model.data.items[elem].title}
-                            <img src = "${model.data.items[elem].images[0]}"/>
+                            <img class = "frontPageSettingsTopPic" src = "${model.data.items[elem].images[0]}"/>
                             <button onclick = "removeFromFrontPageDisplay('top',${i})">Fjern fra forside</button>
                         </div>`
                 }).join("")}
@@ -178,7 +178,7 @@ function renderFrontPageAdminSettings(){
                     return`
                         <div>
                             ${model.data.items[elem].title}
-                            <img src = "${model.data.items[elem].images[0]}"/>
+                            <img class = "frontPageSettingsBotPic" src = "${model.data.items[elem].images[0]}"/>
                             <button onclick = "removeFromFrontPageDisplay('bot',${i})">Fjern fra forside</button>
                         </div>`
                 }).join("")}
@@ -405,9 +405,9 @@ function generateCategoryElems(parentId){
     for(let i = 0; i<model.inputs.category.categoryList.length; i++){
         if(model.inputs.category.categoryList[i].parent==parentId){
             html += `
-                <div>
-                    <label>${model.inputs.category.categoryList[i].name}</label>
-                    <input type = "checkbox" ${model.inputs.category.categoryList[i].checked? "checked":""} onchange = "checkFilterBox(${i})"/>
+                <div class = "filterBoxCategoryElem">
+                    <label class = "filterBoxCategoryElemLabel">${model.inputs.category.categoryList[i].name}</label>
+                    <input class = "filterBoxCategoryCheck" type = "checkbox" ${model.inputs.category.categoryList[i].checked? "checked":""} onchange = "checkFilterBox(${i})"/>
                     ${model.inputs.category.categoryList[i].checked? generateCategoryElems(model.inputs.category.categoryList[i].id):""}
                 </div>`
         }
@@ -436,7 +436,7 @@ function generateCategoryElems(parentId){
 function showAllMembers(){
     let html = '';
     for(let usersId in model.data.users){
-        if(usersId != "0000001"){
+        if(model.data.users[usersId].permissions != "admin"){
             html += `
                     <div onclick="model.inputs.adminMembersPage.selectedUsersId = ${usersId}; updateView()">
                         ${model.data.users[usersId].firstName} ${model.data.users[usersId].surName}
@@ -904,7 +904,7 @@ function createPageFooter(){
             <div>
                 ${model.app.loggedInStatus?`
                     <div>
-                        <input id = "chatBoxMessageInput" type = "text" oninput = "model.inputs.chatBox.message = this.value" value = "model.inputs.chatBox.message"/>
+                        <input id = "chatBoxMessageInput" type = "text" oninput = "model.inputs.chatBox.message = this.value" value = "${model.inputs.chatBox.message}"/>
                         <button id = "chatBoxSendMessage" onclick = "sendMessage()">Send melding</button>
                     </div>
                 `:`
@@ -918,12 +918,11 @@ function createPageFooter(){
     ` 
     return`
         <div id = "pageFooterContainer">
-            <div id = "pageSloganContainer">
+            <div id = "pageSloganContainer"> De mest ekslusive produktene.
             </div>
             <div id = "chatBoxContainer">
                 ${model.app.showChatBox?chatBox:``}
-                <div id = "chatBoxButton" onclick = "toggleChatBox()">
-                </div>
+                <div id = "chatBoxButton" onclick = "toggleChatBox()"> Kontakt oss
             </div>
         </div>
     `
@@ -931,24 +930,29 @@ function createPageFooter(){
 
 function profileMenuComponent() {
     let html = `<div class="profileMenuContainer" onmouseleave = "retractDropDown()">
-                <button class="dropdownKnapp" onclick="toggleProfileMenuDropDown()"><h2>Meny</h2></button>` 
+                <button class="dropdownKnapp" onclick="toggleProfileMenuDropDown()">&#x2630; Meny</button>` 
     if(!model.inputs.profileMenuShowing){return html+`</div>`}
     if (!model.app.loggedInStatus) {
         html += `
         <div id="dropdownContent">
             <div onclick="changeView('filteredPage')">Alle produkter</div>
+            <div class="dropdownContent-line"> </div>
             <div onclick="loginDropDown()">Logg inn</div>
         </div>` 
     }
     else if (model.data.users[model.app.userId].permissions === 'user') {
         html += `
         <div id="dropdownContent">
-                <div onclick="changeView('myProfilePage')">Min Profil</div>
+                <div onclick="changeView('editUserPage')">Min Profil</div>
+                <div class="dropdownContent-line"> </div>
                 <div onclick="changeView('inboxPage')">Inbox</div>
+                <div class="dropdownContent-line"> </div>
                 <div onclick="changeView('filteredPage')">Alle produkter</div>
+                <div class="dropdownContent-line"> </div>
                 <div onclick="changeView('saleHistoryPage')">Salgshistorikk</div>
+                <div class="dropdownContent-line"> </div>
                 <div onclick="changeView('auctionPage')">Bud</div>
-                <div onclick="changeView('activeAuction')">Auksjons Liste </div>
+                <div class="dropdownContent-line"> </div>
                 <div onclick="logout()">Logg ut</div>
         </div>`
     }
@@ -971,7 +975,6 @@ function profileMenuComponent() {
                 <div class="dropdownContent-1" onclick="changeView('manageMembersPage')">Medlemmer</div>
                 <div class="dropdownContent-line"> </div>
                 <div onclick="logout()">Logg ut</div>
-                <div class="dropdownContent-line"> </div>
         </div>`
     }
     return html += `</div>`
@@ -983,9 +986,9 @@ function showShoppingCart(){
     else {
         html = /*html*/`
             <div class="handlevognContainer">
+                <div class="handlevognHeader">Handlevogn</div>
                 <div>
-                    <div class="handlevognHeader">Handlevogn</div>
-                    <p>Varer du kan kjøpe nå -</p><span onclick="clearShoppingCart()"></span>
+                    <div id="kanBuyNowHeaders"><p>Varer du kan kjøpe nå -</p><span onclick="clearShoppingCart()">Tøm handlevogn</span></div>
                     <div class="horizontalLines">
                         <span>Pris</span>
                     </div>
@@ -998,6 +1001,8 @@ function showShoppingCart(){
                         <button ${(model.app.userId && model.data.users[model.app.userId].shoppingCart.length != 0) || (!model.app.userId && model.inputs.shoppingCart.items.canBuyNow.length != 0) ? '' : 'disabled'} onclick="changeView('checkoutPage')">Gå til kassen</button>
 
                     </div>
+                </div>
+                <div>
                     ${model.app.loggedInStatus ? `
                         <h3>Auksjoner du har bud på:</h3>
                         <div>
@@ -1025,7 +1030,7 @@ function showItemsCanBuyNow(){
         for(let i = 0; i<model.data.users[model.app.userId].shoppingCart.length;i++){
             html += `
             <div>
-                <img src = "${model.data.items[eval(model.data.users[model.app.userId].shoppingCart[i].item)-1].images[0]}"/>
+                <img class="imageOfItemsCanBuyCart" src = "${model.data.items[eval(model.data.users[model.app.userId].shoppingCart[i].item)-1].images[0]}"/>
                 <span>${model.data.items[eval(model.data.users[model.app.userId].shoppingCart[i].item)-1].title}</span>
                 <button onclick = "removeFromUserShoppingCart(${i})">X</button>
                 <span>${model.data.items[eval(model.data.users[model.app.userId].shoppingCart[i].item)-1].price}</span>
@@ -1042,7 +1047,7 @@ function showItemsCanBuyNow(){
                 if(model.inputs.shoppingCart.items.canBuyNow[j].id === model.data.items[i].id){
                     html += `
                     <div>
-                        <img src="${model.data.items[i].images[0]}" />
+                        <img class="imageOfItemsCanBuyCart" src="${model.data.items[i].images[0]}" />
                         <span>${model.data.items[i].title}</span>
                         <button onclick="deleteItemFromShoppingCart(${j})">X</button>
                         <span>${model.data.items[i].price}</span>
@@ -1192,8 +1197,8 @@ function showSearchBox() {
     return /*html*/ `
     <div class="searchContainer">
         <div class="searchBox">
-            <input class="SearchBox-1" type="text" oninput="model.inputs.search.input = this.value" onchange="doSearch()">
-            <button class="SearchBox-1"   onclick="doSearch()">Søk</button>
+            <input class="SearchBox-1" type="search" value="${model.inputs.search.input}" onchange="model.inputs.search.input = this.value; updateView()">
+            <button class="SearchBox-2" onclick="doSearch()">Søk</button>
         </div>
     </div>
     `;
@@ -1253,7 +1258,7 @@ function createHeaderSection(){
     return /*html*/`
     <div class="headerSectionContainer">
         ${goBackAndGoForwardButtons()}
-        <h1 class="overskriftHeaderSection" onclick = "toToFrontPage()">Dansken og meg</h1>
+        <h1 class="overskriftHeaderSection" onclick = "toToFrontPage()">Dansken&Meg</h1>
         ${!model.app.loggedInStatus ? `<div class="registerButtonHeaderSection" onclick="goToRegisterPage()">Registrer</div>
         <div class="loginButtonHeaderSection" onclick="loginDropDown()">Login</div>` :
         `<div class="userButtonHeaderSection" onclick="">${model.data.users[model.app.userId].username}</div>`}
@@ -1313,10 +1318,8 @@ function createSaleView(){
             </div>
             <div id = "galleryFrame">Bildegalleri
                 <input value = "${model.inputs.createSale.addImage}" oninput = "uploadImg(event)" type = "file" id = "galleryInput">
-                <button id = "addImageButton" onclick = "insertImage()">"Legg til bilde"</button>
                 ${model.inputs.createSale.images.map(img => `<img class = "newProductImageGalleryElement" src = "${img}"></img>`).join('')}
             </div>
-                <input id = "mainPicture" type = "file" value = "${model.inputs.createSale.mainImage}" oninput = "uploadImg(event)">
             <div class = "checkBoxesCreate">
                 <label id = "aucionLabel">Auksjon: </label>
                 <input type = "checkbox" id = "auctionBox" ${model.inputs.createSale.auction? 'checked':''} onchange = "model.inputs.createSale.auction = !model.inputs.createSale.auction"/>
@@ -1493,11 +1496,11 @@ function createLoginPage(){
             <div id = "loginPageElement">
                 <div id = "loginPageLogo" onclick = "toToFrontPage()">Dansken&meg</div>
                 <label id = "loginPageUserLabel">Brukernavn</label>
-                <input oninput = "model.inputs.login.username = this.value" type = "text"/>
+                <input id ="loginPageUserInput" oninput = "model.inputs.login.username = this.value" type = "text"/>
                 <label id = "loginPagePassLabel">Passord</label>
-                <input oninput = "model.inputs.login.password = this.value" type = "text"/>
-                <button onclick = "checkUserIdPassword()">Logg inn</button>
-                <button onclick = "changeView('registerPage')">Registrer</button>
+                <input id = "loginPagePassInput" oninput = "model.inputs.login.password = this.value" type = "text"/>
+                <button id = "loginPageEnterButton" onclick = "checkUserIdPassword()">Logg inn</button>
+                <button id = "loginPageBackButton" onclick = "changeView('registerPage')">Registrer</button>
             </div>
         </div>
     ` 
@@ -1509,16 +1512,16 @@ function showFilteredProducts(){
     for(let i = 0; i<model.inputs.category.filteredItems.length;i++){
         productList += `
             <div class = "filteredProductContainer">
-                <img src = "${model.data.items[model.inputs.category.filteredItems[i]-1].images[0]}"/>
+                <img class = "filteredProductImg" src = "${model.data.items[model.inputs.category.filteredItems[i]-1].images[0]}"/>
                 <div>
-                    <h3>${model.data.items[model.inputs.category.filteredItems[i]-1].title}</h3>
+                    <h3 class = "filteredProductTitle" >${model.data.items[model.inputs.category.filteredItems[i]-1].title}</h3>
                     <br>
-                    <p>${model.data.items[model.inputs.category.filteredItems[i]-1].description}</p>
+                    <p class = "filteredProductDescription">${model.data.items[model.inputs.category.filteredItems[i]-1].description}</p>
                     <br>
-                    <div>
-                        <label>${model.data.items[model.inputs.category.filteredItems[i]-1].price},-</label>
+                    <div class = "filteredProductPriceContainer">
+                        <label class = "filteredProductPriceLabel">${model.data.items[model.inputs.category.filteredItems[i]-1].price},-</label>
                         ${model.data.items[model.inputs.category.filteredItems[i]-1].auction || model.app.loggedInStatus && model.data.users[model.app.userId].permissions == "admin"?``:`<button onclick = "addToShoppingCart('${model.data.items[model.inputs.category.filteredItems[i]-1].id}')">Legg til I handlekurv</button>`}
-                        <button onclick = "goToProduct(${i})">Gå til produktside</button>
+                        <button class = "filteredProductGoToButton" onclick = "goToProduct(${i})">Gå til produktside</button>
                     </div>
                 </div>
             </div>`
@@ -1533,52 +1536,25 @@ function showFilteredProducts(){
 function showFilterBox(){
     let priceLimits = determinePriceLimits()
     return `
-        <div id="ShowFilterBoxContainer>
-            <h3 class=">Kategorier</h3>
+        <div id = "ShowFilterBoxContainer>
+            <h3 class = "filterBoxTitle"">Kategorier</h3>
             <div>
                 ${generateCategoryElems(-1)}
             </div>
             <div>
-                <label>Vis auksjonsvarer: </label>
-                <input oninput = "checkProductTypeFilter('auction')" type = "checkbox" ${model.inputs.category.filterAuctionCheck? "checked":""}/>
+                <label id = "filterBoxAuctionLabel">Vis auksjonsvarer: </label>
+                <input id = "filterBoxAuctionCheck" oninput = "checkProductTypeFilter('auction')" type = "checkbox" ${model.inputs.category.filterAuctionCheck? "checked":""}/>
             </div>
             <div>
-                <label>Vis fastprisvarer: </label>
-                <input onchange = "checkProductTypeFilter('normal')" type = "checkbox" ${model.inputs.category.filterNormalCheck? "checked":""}/>
+                <label id = "filterBoxNormalLabel">Vis fastprisvarer: </label>
+                <input id = "filterBoxNormalCheck" onchange = "checkProductTypeFilter('normal')" type = "checkbox" ${model.inputs.category.filterNormalCheck? "checked":""}/>
             </div>
             <div>
-                <input type = "range" onchange = "changePriceLevels(this.value)" min="${priceLimits.min}" max = "${priceLimits.max}" value = "${model.inputs.category.priceRange.max}"></input>
-                <input type = "text" value = "${priceLimits.min}">
-                <input type = "text" onchange = "changePriceLevels(this.value)" value = "${model.inputs.category.priceRange.max}"></input>
+                <input id = "filterBoxPriceRange" type = "range" onchange = "changePriceLevels(this.value)" min="${priceLimits.min}" max = "${priceLimits.max}" value = "${model.inputs.category.priceRange.max}"></input>
+                <input id = "filterBoxLowestPrice" type = "text" value = "${priceLimits.min}">
+                <input id = "filterBoxHighestPrice" type = "text" onchange = "changePriceLevels(this.value)" value = "${model.inputs.category.priceRange.max}"></input>
             </div>
         </div>`
-}
-
-function showFilteredProducts(){
-    model.inputs.category.filteredItems = filterItems()
-    let productList = ``
-    for(let i = 0; i<model.inputs.category.filteredItems.length;i++){
-        productList += `
-            <div class = "filteredProductContainer">
-                <img src = "${model.data.items[model.inputs.category.filteredItems[i]-1].images[0]}"/>
-                <div>
-                    <h3>${model.data.items[model.inputs.category.filteredItems[i]-1].title}</h3>
-                    <br>
-                    <p>${model.data.items[model.inputs.category.filteredItems[i]-1].description}</p>
-                    <br>
-                    <div>
-                        <label>${model.data.items[model.inputs.category.filteredItems[i]-1].price},-</label>
-                        ${!model.data.items[model.inputs.category.filteredItems[i]-1].auction?`<button onclick = "addToShoppingCart('${model.data.items[model.inputs.category.filteredItems[i]-1].id}')">Legg til I handlekurv</button>`:""}
-                        <button onclick = "goToProduct(${i})">Gå til produktside</button>
-                    </div>
-                </div>
-            </div>`
-    }
-    let container = `
-        <div "filteredProductListContainer">
-            ${productList}
-        </div>`
-    return container
 }
 
  function adminChatBox(){
@@ -1623,9 +1599,10 @@ function currentShownChatBox(){
 function editUserPage(){
     setUserInputs()
       return  /*html*/ ` 
-       <div class = "containerDiv">
+       <div class = "editUserContainerDiv">
             <div id = "persoinalInfo">
                 <div id = firstLast>
+                    <h1>Personelig Informasjon</h1>
                     <input id ="firstNameChangeBox" type = "text" placeholder = "Fornavn"
                         value  = "${model.data.users[model.app.userId].firstName}" oninput = "model.inputs.register.firstName = this.value">
                     <input id ="lastNameChangeBox" type = "text" placeholder = "Etternavn"
@@ -1637,6 +1614,7 @@ function editUserPage(){
                         <button id = "personalInfoConfirm" onclick = "oppdaterPersonalia('namePhoneEmail')">Confirm</button>
                 </div>
                 <div id = addressChange>
+                    <h1>Addresse</h1>
                     <input id ="cityNameChangeBox" type = "text" placeholder = "By"
                         value = "${model.data.users[model.app.userId].city}" oninput = "model.inputs.register.city = this.value">
                     <input id ="adressNameChangeBox" type = "text" placeholder = "Adresse"
@@ -1647,6 +1625,7 @@ function editUserPage(){
                 </div>
                
                 <div id = "changePassword">
+                <h1>Bytt Passord</h1>
                     <input id = "currentPassword" type = "password" placeholder = "Passord"
                         oninput = "model.inputs.register.password = this.value">
                     <input id = "newPassword" type = "password" placeholder = "Ny passord"
@@ -1654,10 +1633,10 @@ function editUserPage(){
                     <button id= "passwordConfirm" onclick = "oppdaterPersonalia('byttPassord')">Confirm</button>
             </div>
             <div id = "cardInfoBox">
-                <ul>
-                    Betalingsinformasjon:
+                
+                    <h1>Betalingsinformasjon: </h1> <br>
                     ${model.data.users[model.app.userId].paymentInformation.map((payment, i) => /*html*/`
-                        <div>
+                        <div class ="showCardInfo">
                             Kortnummer: ${payment.cardNumber}<br>
                             Utløpsdato: ${payment.expirationDate}<br>
                             Kortholders fornavn: ${payment.cardHolderFirstName}<br>
@@ -1665,10 +1644,10 @@ function editUserPage(){
                             By: ${payment.city}<br>
                             Adresse: ${payment.address}<br>
                             Postnummer: ${payment.zip}<br>
-                            <button onclick = deleteCard(${i})>Slett Kort</button>
+                            <button id = "deleteCardButton" onclick = deleteCard(${i})>Slett Kort</button>
                         </div>
                     `).join('')}
-                </ul>
+                
             </div>
             <div id = "cardAddBox">
                     <input id = "cardNumber" placeholder = "Kort Nummer"
@@ -1676,11 +1655,11 @@ function editUserPage(){
                     <input id = "expirationDate" placeholder = "Utløps Dato" type = "date"
                          oninput = "model.inputs.register.toDate = this.value">
                     <input id = "cvc" placeholder ="CVC"
-                         oninput = "model.inputs.register.cvc = this.value">
+                         oninput = "model.inputs.register.cvc = this.value"> <br>
                     <input id = "cardFirstName" placeholder = "Fornavn"
                          oninput = "model.inputs.register.cardFirstName = this.value">
                     <input id = "cardLastName" placeholder = "Etternavn"
-                         oninput = "model.inputs.register.cardLastName = this.value">
+                         oninput = "model.inputs.register.cardLastName = this.value"><br>
                     <input id ="cardCityNameChangeBox"  placeholder = "By"
                          oninput = "model.inputs.register.cardCity = this.value">
                     <input id ="cardAdressNameChangeBox"  placeholder = "Adresse"
@@ -1917,9 +1896,9 @@ function showZoomedPic(){
 function goBackAndGoForwardButtons(){
     let html = '';
     html += `
-            <div>
-                <button ${model.app.pagesToNavigateTo.length <= 1 || model.app.indexOfThePageAreOn == 0 ? 'disabled' : ''} onclick="navigateToPreviousPage()">Gå tilbake</button>
-                <button ${model.app.pagesToNavigateTo.length <= 1 || (model.app.indexOfThePageAreOn == (model.app.pagesToNavigateTo.length-1)) ? 'disabled' : ''} onclick="navigateToNextPage()">Gå Frem</button>
+            <div class="navigationButtonsHeader">
+                <button class="navigateLeftButtonHeader" ${model.app.pagesToNavigateTo.length <= 1 || model.app.indexOfThePageAreOn == 0 ? 'disabled' : ''} onclick="navigateToPreviousPage()">&#8678;</button>
+                <button class="navigateRightButtonHeader"  ${model.app.pagesToNavigateTo.length <= 1 || (model.app.indexOfThePageAreOn == (model.app.pagesToNavigateTo.length-1)) ? 'disabled' : ''} onclick="navigateToNextPage()">&#8680;</button>
             </div>
             `;
     return html;

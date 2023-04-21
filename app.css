@@ -37,3 +37,894 @@
     gap: 10px;
   }
   
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    font-family: 'Abhaya Libre', serif;
+    overflow-y: scroll;
+    margin-bottom: 11.1vh;
+    background-color: rgba(230, 230, 230, 1);
+}
+.searchContainer{
+    position: relative;
+    width: 15vw;
+    height: 2vh;
+    margin: 0;
+    top:-5vh;
+    left: 70vw;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.SearchBox-1 {
+   position: relative;
+   top: 1vh;
+   font-size: 2vh;
+   width: 10vw;
+   height: 1.3vw; 
+   font-size: 1.7vh;
+   border: 0.01vh solid rgba(63, 65, 68, 1);   
+}
+.SearchBox-2 {
+   position: relative;
+   top: 1vh;
+   font-size: 1vw;
+   padding: 0.1vh;
+   background-color: rgba(225, 225, 210, 0.99);
+   border: 0.01vh solid rgba(63, 65, 68, 1);
+   color: rgba(63, 65, 68, 1);
+   width: 3vw; 
+   height: 1.3vw;    
+}
+.SearchBox-2:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.profileMenuContainer{
+    position: relative;
+    width: 100vw;
+    height: 5vh;
+    background: rgba(212, 214, 215, 1);
+    border: 0.1vh solid rgba(212, 214, 215, 1);
+    box-shadow: 0px 0.1vh 0.1vh rgba(212, 214, 215, 1);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.dropdownKnapp {
+    box-sizing: border-box;
+    position: relative;
+    font-size: 1.5vw;
+    color: black;
+    background-color: rgba(189, 189, 189, 1);
+    width: 10vw;
+    height: 4vh;
+    left: 0vw;
+    top: 1vh;
+    border: 0.1vh solid black;
+    border-radius: 1vh;
+}
+
+.dropdownKnapp:hover,
+.dropdownKnapp:focus {
+    background-color: rgba(189, 189, 189, 1);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#dropdownContent {
+    text-align: center;
+    font-size: 2vh;
+    position: absolute;
+    background-color: rgba(210, 210, 210, 1);
+    color: black;
+    min-width: 10vw;
+    top:5vh;
+    border:0.05vh solid black;
+    border-radius: 1vh;
+    box-shadow: 0vh 0.4vh 0.8vh 0vh rgba(210, 210, 210, 1);
+    z-index: 1;
+}
+
+#dropdownContent div:hover {
+    background-color: rgba(189, 189, 189, 1);
+    border-radius: 1vh;
+    cursor: pointer;
+}
+
+.dropdownContent-line {
+    height: 0.1vh;
+    background-color: #000; 
+}
+
+
+.headerSectionContainer{
+    font-family: 'Abhaya Libre', serif;
+    background-color: rgba(200, 238, 244, 1);
+    color: rgba(63, 65, 68, 1);
+    width: 100vw;
+    height: 15vh;
+    position: relative;
+    top: 0vh;
+    user-select: none;
+    display: flex;  
+    flex-wrap: wrap;
+}
+
+.navigateLeftButtonHeader{
+    background-color: rgba(70, 198, 217, 1);
+    color: rgba(63, 65, 68, 1);
+    font-size: 1vw;
+    width: 1.5vw;
+    height: auto;
+    position: absolute;
+    top: 0vh;
+    left: 0vw;
+    border: 0.1vh solid rgba(63, 65, 68, 1);
+    margin: 0;
+    padding: 0;
+}
+
+.navigateLeftButtonHeader:disabled,
+.navigateLeftButtonHeader[disabled]{
+    border: 0;
+    background-color: rgba(70, 198, 217, 1);
+    color: #666666;
+}
+
+.navigateRightButtonHeader{
+    background-color: rgba(70, 198, 217, 1);
+    color: rgba(63, 65, 68, 1);
+    font-size: 1vw;
+    width: 1.5vw;
+    height: auto;
+    position: absolute;
+    top: 0vh;
+    left: 1.6vw;
+    border: 0;
+    border: 0.1vh solid rgba(63, 65, 68, 1);
+    margin: 0;
+    padding: 0;
+}
+.navigateRightButtonHeader:disabled,
+.navigateRightButtonHeader[disabled]{
+    border: 0;
+    background-color: rgba(70, 198, 217, 1);
+    color: #666666;
+}
+
+.overskriftHeaderSection{
+    font-size: 2vw;
+    font: bolder;
+    color: rgba(63, 65, 68, 1);
+    position: absolute;
+    top: 1vh;
+    left: 42vw;
+    margin: 0;
+    padding: 0.01vw;
+}
+.registerButtonHeaderSection{
+    background-color: rgba(70, 198, 217, 1);
+    color: rgba(63, 65, 68, 1);
+    font-size: 0.85vw;
+    border: 0.005vw solid rgba(63, 65, 68, 1);
+    margin: 0;
+    padding: 0.1vw;
+    position: absolute;
+    top: 1vh;
+    left: 83vw;
+}
+.registerButtonHeaderSection:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.loginButtonHeaderSection{
+    background-color: rgba(70, 198, 217, 1);
+    color: rgba(63, 65, 68, 1);
+    font-size: 0.85vw;
+    border: 0.005vw solid rgba(63, 65, 68, 1);
+    margin: 0;
+    padding: 0.1vw;
+    position: absolute;
+    top: 1vh;
+    left: 87vw;
+}
+.loginButtonHeaderSection:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.userButtonHeaderSection{
+    background-color: rgba(70, 198, 217, 1);
+    color: rgba(63, 65, 68, 1);
+    font-size: 0.85vw;
+    margin: 0vh;
+    padding: 0.1vw;
+    border: 0.005vw solid rgba(63, 65, 68, 1);
+    position: absolute;
+    top: 1vh;
+    left: 83vw;
+}
+.userButtonHeaderSection:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.cartIconHeaderSection{
+    background-color: transparent;
+    font-size: 1vw;
+    width: 1.7vw;
+    height: 2.2vh;
+    margin: 0;
+    padding: 0.1vw;
+    position: absolute;
+    top: 1vh;
+    left: 93vw;
+}
+.underskriftHeaderSection{
+    font-size: 1.5vw;
+    color: rgba(63, 65, 68, 1);
+    position: absolute;
+    top: 6vh;
+    left: 43.5vw;
+    margin: 0vh;
+    padding: 0.05vw;
+}
+.userNameInputLoginDropdown{
+    background-color: rgba(70, 198, 217, 1);
+    color: rgba(63, 65, 68, 1);
+    font-size: 0.80vw;
+    margin: 0.05vw;
+    padding: 0;
+    border: 0.005vw solid rgba(63, 65, 68, 1);
+    width: 5vw;
+    position: absolute;
+    top: 3.9vh;
+    left: 84.1vw;
+}
+.passwordInputLoginDropdown{    
+    background-color: rgba(70, 198, 217, 1);
+    color: rgba(63, 65, 68, 1);
+    font-size: 0.80vw;
+    margin: 0.05vw;
+    padding: 0;
+    border: 0.005vw solid rgba(63, 65, 68, 1);
+    width: 5vw;
+    position: absolute;
+    top: 6.2vh;
+    left: 84.1vw;
+
+}
+.loginSubmitButtonLoginDropdown{
+    background-color: rgba(70, 198, 217, 1);
+    color: rgba(63, 65, 68, 1);
+    font-size: 0.80vw;
+    margin: 0;
+    padding: 0.05vw;
+    border: 0.005vw solid rgba(63, 65, 68, 1);
+    position: absolute;
+    top: 8.7vh;
+    left: 86.65vw;
+}
+.loginSubmitButtonLoginDropdown:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.wrongUserLoginDropdown{
+    font-size: 0.70vw;
+    color: red;
+    margin: 0.005vw;
+    padding: 0.005vw;
+    position: absolute;
+    top: 11.2vh;
+    left: 81.2vw;
+
+}
+.forgotPasswordLoginDropdown{
+    font-size: 0.70vw;
+    color: rgba(63, 65, 68, 1);
+    margin: 0.005vw;
+    padding: 0.005vw;
+    position: absolute;
+    top: 12.5vh;
+    left: 81.2vw;
+}
+#frontPageProductDisplay{
+    border: 0.1vw solid black;
+    background-color: rgba(112, 183, 205, 1);
+    display: flex;
+    position: relative;
+    left: 25vw;
+    width: 50vw;
+    align-items: center;
+    flex-direction: column;
+}
+
+.frontPageProductDisplayElement{
+    height: 20vw;
+    width: 35vw;
+    min-width: 35vw;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    margin: 3vw;
+    display:flex;
+}
+
+.frontPageRightArrow{
+    height: 100%;
+    background-color: #E7EBF6;
+    width: 5vw;
+    display: inline-block;
+    border-radius: 0px 10px 10px 0px;
+}
+
+.frontPageRightArrow:hover{
+    background-color: #c5c8d1;
+}
+
+.frontPageLeftArrow:hover{
+    background-color: #c5c8d1;
+}
+
+.frontPageLeftArrow{
+    height: 100%;
+    background-color: #E7EBF6;
+    width: 5vw;
+    display: inline-block;
+    border-radius: 10px 0px 0px 10px;
+}
+
+.frontPagePriceDescLabel{
+    font: bolder;
+    font-family: 'Abhaya Libre', serif;
+    color: #242354;
+}
+
+.frontPagePriceLabel{
+    font: bolder;
+    font-family: 'Abhaya Libre', serif;
+    color: #242354;
+}
+
+.frontPageAddProductButton{
+    background-color: #b493577a;
+    font-family: 'Abhaya Libre', serif;
+    font-weight: 700;
+    border: #3C230C, 2px ,solid;
+}
+
+.frontPageGoToProductButton{
+    background-color: #b493577a;
+    font-family: 'Abhaya Libre', serif;
+    font-weight: 700;
+    border: #3C230C, 2px ,solid;
+}
+
+.frontPageProductImg{
+    margin: 20px;
+    height: 100px;
+    width: 160px;
+}
+
+.frontPageProductHeader{
+    font: bolder;
+    font-family: 'Abhaya Libre', serif;
+    color: #242354;
+}
+
+.frontPageProductDesc{
+    font-family: 'Abhaya Libre', serif;
+    color: #000000;
+}
+
+.frontPageCenterElem{
+    background-color: #FFFAED;
+    display: inline-block;
+    height: 100%;
+    width: 500px;
+}
+#ShowFilterBoxContainer {
+    background-color: #CDC7B6;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    padding: 15px;
+    width: 300px;
+}
+
+
+.CreateSaleContainer{
+    display: grid;
+}
+
+
+#productName { 
+    
+    
+}
+ 
+#productDescription{
+    
+}
+
+#priceInput{
+    
+}
+    
+#categoryListContainer{
+     
+}
+
+
+#categoryMain{
+    
+}
+
+#mainCategoryAdd{
+    
+}
+
+#categorySub{
+    
+}
+
+#subCategoryAdd{
+    
+}
+
+#galleryFrame{
+   
+}
+
+#galleryInput{
+    
+}
+
+#addImageButton{
+    
+}
+
+#mainPicture{
+   
+}
+
+#productId{
+    
+}
+
+#aucionLabel{
+
+}
+#auctionBox{
+   
+}
+
+#deadlineInput{
+   
+}
+
+#minimumBidInput{
+    
+}
+
+#deliveryCheckBoxLabel{
+    
+}
+
+#deliveryBox{
+   
+}
+
+#saveButton{
+    
+}
+
+#deadlineLabel{
+    
+}
+ 
+.frontPageSettingsHoverTitle{
+
+}
+
+.frontPageSettingsHoverPrice{
+
+}
+
+.frontPageSettingsHoverType{
+
+}
+
+.frontPageSettingsHoverImg{
+    width: 70px;
+    height: 70px;
+}
+
+.frontPageSettingsHoverDesc{
+    
+}
+
+.frontPageSettingsHoverDiv{
+    position: absolute;
+    padding: 20px;
+    border: 1px solid black;
+    width: 200px;
+    height: 150px;
+    background-color: white;
+}
+
+.frontPageAddProductList{
+    width: 200px;
+    height: 400px;
+    border: 1px solid black;
+    overflow-y: scroll;
+}
+
+#frontPageSettingsContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+#frontPageTopSettings{
+    display: flex;
+}
+
+#frontPageBotSettings{
+    display: flex;
+}
+
+.frontPageSettingsBotPic{
+    width: 100px;
+    height: 100px;
+}
+
+.frontPageSettingsTopPic{
+    width: 100px;
+    height: 100px;
+}
+
+#pageFooterContainer{
+    font-family: 'Abhaya Libre', serif;
+    background-color: rgba(200, 238, 244, 1);
+    color: rgba(63, 65, 68, 1);
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    height: 11.1vh;
+    display: flex;  
+    flex-direction: row;
+}
+
+#pageSloganContainer{
+    color: rgba(63, 65, 68, 1);
+    font-size: 1.2vw;
+    height: 4vw;
+    width: 15vw;
+    position: relative;
+    left: 5vw;
+    top: 4vh;
+    display: inline-block;
+}
+
+.filteredProductListContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .filteredProductContainer {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .filteredProductImg {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .filteredProductTitle {
+    margin: 0;
+  }
+  
+  .filteredProductDescription {
+    margin: 5px 0;
+  }
+  
+  .filteredProductPriceContainer {
+    display: flex;
+    align-items: center;
+  }
+  
+  .filteredProductPriceLabel {
+    margin-right: 10px;
+  }
+  
+  .filteredProductGoToButton {
+    margin-left: 10px;
+  }
+  
+  .filterBoxTitle {
+    margin: 0;
+  }
+  
+  .filterBoxCategoryElem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .filterBoxCategoryElemLabel {
+    margin-right: 5px;
+  }
+  
+  .filterBoxCategoryCheck {
+    margin-right: 5px;
+  }
+  
+  .filterBoxAuctionLabel,
+  .filterBoxNormalLabel {
+    margin-right: 5px;
+  }
+  
+  .filterBoxPriceRange {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    width: 100%;
+  }
+  
+  .filterBoxLowestPrice,
+  .filterBoxHighestPrice {
+    width: 70px;
+  }
+  
+  #loginPageContainer {
+    background-color:rgba(200, 238, 244, 1);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #loginPageElement {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  #loginPageLogo {
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  #loginPageUserLabel,
+  #loginPagePassLabel {
+    display: block;
+    margin-top: 20px;
+  }
+  
+  #loginPageUserInput,
+  #loginPagePassInput {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 3px;
+  }
+  
+  #loginPageEnterButton,
+  #loginPageBackButton {
+    background-color: rgba(70, 198, 217, 1);
+    color: #fff;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+  }
+  
+  #loginPageEnterButton:hover,
+  #loginPageBackButton:hover {
+    background-color: #0056b3;
+  }
+
+#chatBoxWindow {
+    background-color: #61ae26;
+    border: 0.05vw solid #61ae26;
+    border-radius: 0.2vw;
+    max-width: 8vw;
+    max-height: 12vw;
+    width: 10vw;
+    margin: 0 auto;
+    padding: 1vw;
+    position: absolute;
+    top: -35vh;
+    right: -1vw;
+    font-size: 0.8vw;
+  }
+  
+  #chatBox {
+    max-height: 7vw;
+    padding: 0.5vw;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    background-color: white;
+  }
+  .userChatElem
+  .adminChatElem {
+    background-color: #efefef;
+    border-radius: 0.2vw;
+    padding: 0.5vw;
+    margin-bottom: 0.5vw;
+  }
+  
+  #chatBoxMessageInput {
+    width: 7.8vw;
+    padding: 0.1vw;
+    font-size: 1vw;
+    margin-top: 0.2vw;
+    border: none;
+    border-radius: 0.1vw;
+    margin-right: 0.1vw;
+  }
+  
+  #chatBoxSendMessage {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 0.6vw;
+    padding: 0.5vw 1vw;
+    margin-top: 0.5vw;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.1vw;
+    transition: background-color 0.3s ease;
+  }
+  
+  #chatBoxSendMessage:hover {
+    background-color: #0056b3;
+  }
+  
+  #chatBoxRegisterButton,
+  #chatBoxLoginButton {
+    background-color: #007bff;
+    color: #fff;
+    padding: 0.5vw 0.5vw;
+    margin-top: 0.5vw;
+    cursor: pointer;
+    border: none;
+    border-radius: 0.1vw;
+    transition: background-color 0.3s ease;
+  }
+  
+  #chatBoxRegisterButton:hover,
+  #chatBoxLoginButton:hover {
+    background-color: #0056b3;
+  }
+  
+  #chatBoxButton{
+    color: rgba(63, 65, 68, 1);
+    font-size: 1vw;
+    position: relative;
+    width: 7vw;
+}
+
+#chatBoxButton:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+#chatBoxContainer{
+    position: absolute;
+    right: 10vw;
+    top: 5vh;
+    align-self: flex-end;
+    display: inline-block;
+}
+
+.editUserContainerDiv{
+    background-color:rgba(239, 239, 239, 1);
+    border: solid 3px;
+    display: flex;
+    justify-content: center;
+
+}
+
+#cardInfoBox{
+    display: inline;
+    
+}
+
+.showCardInfo{
+    display: inline-block;
+    border: solid 2px;
+    width: 20%;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin-top: 2px;
+    background-color: rgba(255, 250, 237, 1);
+    
+
+    
+    
+}
+
+#deleteCardButton{
+    background-color:rgba(225, 225, 210, 0.99) ;
+}
+
+#cardConfirm{
+    background-color:rgba(225, 225, 210, 0.99) ;
+}
+
+#passwordConfirm{
+    background-color:rgba(225, 225, 210, 0.99) ;
+}
+
+#personalInfoConfirm{
+    background-color:rgba(225, 225, 210, 0.99) ;
+}
+
+#addressConfirm{
+    background-color:rgba(225, 225, 210, 0.99) ;
+}
+
+#firstLast{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#addressChange{
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+#changePassword{
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+
+#cardAddBox{
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+#cardNumber{
+    margin-bottom: 10px;
+}
+
+#cardFirstName{
+    margin-bottom: 10px;
+}
+
+.handlevognContainer{
+    background-color: rgba(112, 183, 205, 1);
+    border: 0.1vw solid black;
+    display: flex;
+    position: relative;
+    left: 20vw;
+    width: 60vw;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.handlevognHeader{
+    font-size: 1.5vw;
+    width: 10vw;
+    padding: 0.5vw;
+    background-color: rgba(217, 217, 217, 1);
+    position: relative;
+    left: 0vw;
+    margin: 1vw;
+}
+
+.imageOfItemsCanBuyCart{
+    width: 10vw;
+    height: auto;
+}

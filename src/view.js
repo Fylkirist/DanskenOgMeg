@@ -9,7 +9,7 @@ function updateView(){
             app.innerHTML = createHeaderSection() + profileMenuComponent() + showSearchBox() + showFilterBox() + showFilteredProducts() + createPageFooter()
             break
         case "registerPage":
-            app.innerHTML = createHeaderSection() + profileMenuComponent() + registerFormView();
+            app.innerHTML = registerFormView();
             break
         case "productPage":
             app.innerHTML = createHeaderSection() + profileMenuComponent() + showSearchBox() + productDisplay(model.app.currentProduct) + createPageFooter()
@@ -25,6 +25,7 @@ function updateView(){
             break
         case "manageMembersPage":
             app.innerHTML = createHeaderSection() + profileMenuComponent() + adminMembersPage()
+            break
         case "checkoutPage":
             app.innerHTML = createHeaderSection() + checkOut() + createPageFooter()
             break
@@ -32,13 +33,12 @@ function updateView(){
             app.innerHTML = createHeaderSection() + profileMenuComponent() + adminAuctionPage() + createPageFooter()
             break
         case "auctionPage":
-            app.innerHTML = createHeaderSection() + profileMenuComponent() + createPageFooter()
-            break
-        case "activeAuction":
             app.innerHTML = createHeaderSection() + profileMenuComponent() + activeAuctionList() + createPageFooter()
             break
         case "endedAuctions":
             app.innerHTML = createHeaderSection() + profileMenuComponent() + avsluttendeAuksjoner() + createPageFooter()
+        case "editUserPage":
+            app.innerHTML = createHeaderSection() + profileMenuComponent() + editUserPage() + createPageFooter()
             break
     }
 }
