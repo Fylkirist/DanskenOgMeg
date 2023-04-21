@@ -1,9 +1,9 @@
 const model = {
     app:{
         currentView:'frontPage',
-        loggedInStatus: true,
+        loggedInStatus: false,
         wrongUserNamePasswordMessage: '',
-        userId:"0000002",
+        userId:false,
         zoomedPic:false,
         currentProduct:false,
         showChatBox:"",

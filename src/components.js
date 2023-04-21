@@ -85,7 +85,7 @@ function activeAuctionList() {
     setInterval(updateAllTimers, 1000);
   const html = `
     <div class="auction-container">
-      <button onclick="updateView()">Dine Aktive Auksjoner</button> 
+      <button onclick="changeView('auctionPage')">Dine Aktive Auksjoner</button> 
       <button onclick="changeView('endedAuctions')"> Dine Avsluttende auksjoner</button>
       ${auksjonsliste || '<div>Du har ingen aktive Auksjoner</div>'}
     </div>`;
@@ -126,7 +126,7 @@ function avsluttendeAuksjoner(){
     })
     const view = `
     <div class="container">
-    <button onclick="changeView('activeAuction')">Dine Aktive Auksjoner</button> 
+    <button onclick="changeView('auctionPage')">Dine Aktive Auksjoner</button> 
     <button onclick="updateView()">Dine Avsluttende auksjoner</button>
     ${html || '<div>Du har ingen avsluttende Auksjoner</div>'}
     </div>`;

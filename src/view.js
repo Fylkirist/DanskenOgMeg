@@ -37,6 +37,7 @@ function updateView(){
             break
         case "endedAuctions":
             app.innerHTML = createHeaderSection() + profileMenuComponent() + avsluttendeAuksjoner() + createPageFooter()
+            break
         case "editUserPage":
             app.innerHTML = createHeaderSection() + profileMenuComponent() + editUserPage() + createPageFooter()
             break
