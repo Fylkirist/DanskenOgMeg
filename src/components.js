@@ -1077,16 +1077,10 @@ function showWinningBids(){
                                 >Trekk bud</button>
                                 <span>Bud: ${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid}</span>
                                 <span>Stenges om : ${calculateDeadline(model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id)}</span>
-                                <input  type="number" 
-                                        min="${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid}" 
-                                        step= 100
-                                        value="${model.inputs.shoppingCart.items.auctions.increasedWinningBid || ''}" 
-                                        
-                                        onchange="model.inputs.shoppingCart.items.auctions.increasedWinningBid = this.value, updateView()"
-                                />
+                                <input type="number" onchange="activeAuctionController('${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id}', 'manuelt', this.value)" />
                                 <button
                                     ${model.inputs.shoppingCart.items.auctions.increasedWinningBid > model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid ? '' : 'disabled'}
-                                    onclick="increaseBid(${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id}, ${model.app.userId}, ${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid}, ${model.inputs.shoppingCart.items.auctions.increasedWinningBid})"
+                                    onclick="activeAuctionController('${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id}', 'manuelt', ${model.inputs.shoppingCart.items.auctions.increasedWinningBid})"
                                 >Øk bud</button>
                             `}
                         </div>
