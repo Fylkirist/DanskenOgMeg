@@ -976,9 +976,9 @@ function showShoppingCart(){
     else {
         html = /*html*/`
             <div class="handlevognContainer">
+                <div class="handlevognHeader">Handlevogn</div>
                 <div>
-                    <div class="handlevognHeader">Handlevogn</div>
-                    <p>Varer du kan kjøpe nå -</p><span onclick="clearShoppingCart()"></span>
+                    <div id="kanBuyNowHeaders"><p>Varer du kan kjøpe nå -</p><span onclick="clearShoppingCart()">Tøm handlevogn</span></div>
                     <div class="horizontalLines">
                         <span>Pris</span>
                     </div>
@@ -991,6 +991,8 @@ function showShoppingCart(){
                         <button ${(model.app.userId && model.data.users[model.app.userId].shoppingCart.length != 0) || (!model.app.userId && model.inputs.shoppingCart.items.canBuyNow.length != 0) ? '' : 'disabled'} onclick="changeView('checkoutPage')">Gå til kassen</button>
 
                     </div>
+                </div>
+                <div>
                     ${model.app.loggedInStatus ? `
                         <h3>Auksjoner du har bud på:</h3>
                         <div>
@@ -1018,7 +1020,7 @@ function showItemsCanBuyNow(){
         for(let i = 0; i<model.data.users[model.app.userId].shoppingCart.length;i++){
             html += `
             <div>
-                <img src = "${model.data.items[eval(model.data.users[model.app.userId].shoppingCart[i].item)-1].images[0]}"/>
+                <img class="imageOfItemsCanBuyCart" src = "${model.data.items[eval(model.data.users[model.app.userId].shoppingCart[i].item)-1].images[0]}"/>
                 <span>${model.data.items[eval(model.data.users[model.app.userId].shoppingCart[i].item)-1].title}</span>
                 <button onclick = "removeFromUserShoppingCart(${i})">X</button>
                 <span>${model.data.items[eval(model.data.users[model.app.userId].shoppingCart[i].item)-1].price}</span>
@@ -1035,7 +1037,7 @@ function showItemsCanBuyNow(){
                 if(model.inputs.shoppingCart.items.canBuyNow[j].id === model.data.items[i].id){
                     html += `
                     <div>
-                        <img src="${model.data.items[i].images[0]}" />
+                        <img class="imageOfItemsCanBuyCart" src="${model.data.items[i].images[0]}" />
                         <span>${model.data.items[i].title}</span>
                         <button onclick="deleteItemFromShoppingCart(${j})">X</button>
                         <span>${model.data.items[i].price}</span>
