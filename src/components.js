@@ -22,7 +22,7 @@ function activeAuctionList() {
         let secondsRemaining = parseInt((((((miliSecondsRemaining / (1000 * 60 * 60 * 24)) - daysRemaining) * 24) - hoursRemaining) * 60 - minutesRemaining) * 60);
 
         clock = `
-        ${daysRemaining} dager og ${hoursRemaining} timer og ${minutesRemaining} minutter. sekkunder: ${secondsRemaining}
+        ${daysRemaining} dager og ${hoursRemaining} timer og ${minutesRemaining} minutter. sekunder: ${secondsRemaining}
         `
         }
          Object.keys(bids).forEach((userID) => {
@@ -59,23 +59,23 @@ function activeAuctionList() {
             // Sjekker over userid hvis det er likt som userId tegner vi opp de aktive auction
 
             if (userIDs.includes(model.app.userId)) {
-            const userBids = bids[model.app.userId];
-            let budListe = "";
-            userBids.bid.forEach((budMengde, index) => {
-                budListe += `<div>Bud: ${index + 1}: ${budMengde}</div>`;
-              });
-              auksjonsliste += `
-              <div class="user-auction-info">
-                <div>Du har totalt: ${userBids.bid.length} bud:</div>
-                <div id="user-bids-${auctionID}">
-                  ${budListe}
-                </div>
-              </div>`;
+                const userBids = bids[model.app.userId];
+                let budListe = "";
+                userBids.bid.forEach((budMengde, index) => {
+                    budListe += `<div>Bud: ${index + 1}: ${budMengde}</div>`;
+                });
+                auksjonsliste += `
+                <div class="user-auction-info">
+                    <div>Du har totalt: ${userBids.bid.length} bud:</div>
+                    <div id="user-bids-${auctionID}">
+                        ${budListe}
+                    </div>
+                </div>`;
              
             // går igjennom bud arrayet i auctionListen, teller bud + budmengde!
-            userBids.bid.forEach((budMengde, index) => {
-                budListe += `<div>Bud: ${index + 1}: ${budMengde}</div>`;
-              });
+                userBids.bid.forEach((budMengde, index) => {
+                    budListe += `<div>Bud: ${index + 1}: ${budMengde}</div>`;
+                });
             //skriver ut alt!!
              
             }
@@ -189,11 +189,12 @@ function renderFrontPageAdminSettings(){
 
 function showAddProductList(pos) {
     let arr = pos === "top" ? model.data.frontPageTop : model.data.frontPageBottom;
+    let auction = pos === "top" ? true:false
     return `
         <div class="frontPageAddProductList">
             <button onclick="closeProductList('${pos}')">Cancel</button>
             ${model.data.items.map((item, i) => {
-                return arr.includes(i) ? "" : `
+                    return arr.includes(i) || item.auction != auction ? "" : `
                 <div>
                     <label onmouseleave = "updateView()" onmouseenter="addProductDisplayHover(this.parentElement, ${i})">${item.title}</label>
                     <button onclick="addProductToDisplay(${i},'${pos}')">Legg til</button>
@@ -943,8 +944,6 @@ function profileMenuComponent() {
     else if (model.data.users[model.app.userId].permissions === 'user') {
         html += `
         <div id="dropdownContent">
-                <div onclick="changeView('editUserPage')">Min Profil</div>
-                <div class="dropdownContent-line"> </div>
                 <div onclick="changeView('inboxPage')">Inbox</div>
                 <div class="dropdownContent-line"> </div>
                 <div onclick="changeView('filteredPage')">Alle produkter</div>
@@ -982,7 +981,7 @@ function profileMenuComponent() {
 
 function showShoppingCart(){
     let html= '';
-    if(model.app.userId == "0000001") return html;
+    if(model.app.loggedInStatus && model.data.users[model.app.userId].permissions == "admin") return html;
     else {
         html = /*html*/`
             <div class="handlevognContainer">
@@ -1006,7 +1005,7 @@ function showShoppingCart(){
                     ${model.app.loggedInStatus ? `
                         <h3>Auksjoner du har bud på:</h3>
                         <div>
-                            <span>Vinnene bud</span>
+                            <span>Vinnende bud</span>
                         </div>
                         <div>${showWinningBids()}</div>
                         <div>
@@ -1024,7 +1023,7 @@ function showItemsCanBuyNow(){
     let html = '';
     model.inputs.shoppingCart.totalPrice = 0;
     if ((!model.app.userId && model.inputs.shoppingCart.items.canBuyNow.length == 0) || (model.app.userId && model.data.users[model.app.userId].shoppingCart.length == 0)) {
-        html = 'You do not have any items in the shopping cart.';
+        html = 'Handlekurven din er tom';
     }
     if(model.app.loggedInStatus){
         for(let i = 0; i<model.data.users[model.app.userId].shoppingCart.length;i++){
@@ -1106,28 +1105,27 @@ function showLosingBids(){
             for(let j = 0; j < model.data.items.length; j++){
                 if(model.inputs.shoppingCart.items.auctions.usersLosingBids[i].id === model.data.items[j].id){
                     html += `
-                            <img src="${model.data.items[j].images[0]}" />
-                            <span>${model.data.items[j].title}</span>
-                            ${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].deleted ? 'Du trukket bud.' : `
-                                <button onclick="if(confirm('Are you sure?')) trekkBud(${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].id}, 
-                                                        ${model.app.userId})"
+                        <img src="${model.data.items[j].images[0]}" />
+                        <span>${model.data.items[j].title}</span>
+                        ${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].deleted ? 'Du trukket bud.' : `
+                            <button onclick="if(confirm('Are you sure?')) trekkBud(${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].id}, 
+                                ${model.app.userId})"
                                 >Trekk bud</button>
-                                <span>Nåværende bud: ${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].ItemsMaximumBid}</span>
-                                <span>Stenges om : ${calculateDeadline(model.inputs.shoppingCart.items.auctions.usersLosingBids[i].id)}</span>
-                                <input  type="number" 
-                                        min="${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].ItemsMaximumBid}" 
-                                        step= 100
-                                        value="${model.inputs.shoppingCart.items.auctions.increasedWinningBid || ''}" 
-                                        
-                                        onchange="model.inputs.shoppingCart.items.auctions.increasedWinningBid = this.value, updateView()"
-                                />
-                                <button
-                                    ${model.inputs.shoppingCart.items.auctions.increasedWinningBid > model.inputs.shoppingCart.items.auctions.usersLosingBids[i].ItemsMaximumBid ? '' : 'disabled'}
-                                    onclick="increaseBid(${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].id}, ${model.app.userId}, ${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].ItemsMaximumBid}, ${model.inputs.shoppingCart.items.auctions.increasedWinningBid})"
-                                >Øk bud</button>
+                            <span>Nåværende bud: ${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].ItemsMaximumBid}</span>
+                            <span>Stenges om : ${calculateDeadline(model.inputs.shoppingCart.items.auctions.usersLosingBids[i].id)}</span>
+                            <input  type="number" 
+                                min="${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].ItemsMaximumBid}" 
+                                step= 100
+                                value="${model.inputs.shoppingCart.items.auctions.increasedWinningBid || ''}"   
+                                onchange="model.inputs.shoppingCart.items.auctions.increasedWinningBid = this.value, updateView()"
+                            />
+                            <button
+                                ${model.inputs.shoppingCart.items.auctions.increasedWinningBid > model.inputs.shoppingCart.items.auctions.usersLosingBids[i].ItemsMaximumBid ? '' : 'disabled'}
+                                onclick="increaseBid(${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].id}, ${model.app.userId}, ${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].ItemsMaximumBid}, ${model.inputs.shoppingCart.items.auctions.increasedWinningBid})"
+                            >Øk bud</button>
                             `}
-                        </div>
-                        `;
+                    </div>
+                `;
                 }
             }
         }
@@ -1210,11 +1208,13 @@ function frontPageProductView(){
     return `
         <div id = "frontPageProductDisplay">
             <div class = "frontPageProductDisplayElement">
+                <div><h1>Utstilte auksjoner</h1></div>
                 <div onclick = "changeFrontPageTopProduct(-1)" class = "frontPageLeftArrow"></div>
                 ${topElem}
                 <div onclick = "changeFrontPageTopProduct(1)" class = "frontPageRightArrow"></div>
             </div>
             <div class = "frontPageProductDisplayElement">
+                <div><h1>Utstilte varer</h1></div>
                 <div onclick = "changeFrontPageBotProduct(-1)" class = "frontPageLeftArrow"></div>
                 ${botElem}
                 <div onclick = "changeFrontPageBotProduct(1)" class = "frontPageRightArrow"></div>

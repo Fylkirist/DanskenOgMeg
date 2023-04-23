@@ -177,11 +177,28 @@ if(parseInt(input) > item.price){
       item.price = maxBidAlleBrukere
       bids.deleted = true
       bids.bid = []
+      setDisplayPrice(auctionID)
       }
     }
     updateAllTimers()
     updateView()
 }
+
+function setDisplayPrice(id){
+    let topBid = 0;
+    Object.keys(model.data.auctionListe[id].bids).map(val => {
+        if (!val.deleted){
+            topBid = Math.max(val.bid)>topBid? Math.max(val.bid) : topBid
+        }
+    })
+    for(let i = 0; i < model.data.items.length; i++){
+        if(id==model.data.items[i].id){
+            model.data.items[i].price = topBid
+            return
+        }
+    }
+}
+
 function addNewItemToAuctionList(itemId) {
     // Check if auction with given itemId already exists
     const auctionExists = model.data.auctionListe.some(auction => auction.itemId === itemId);
