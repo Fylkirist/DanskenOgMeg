@@ -5,27 +5,49 @@
   }
   
   .auctionItem {
-    background-color: #EFEFEF;
+    background: #F4F4F4;
+    border: 1px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    padding: 20px;
+    margin-bottom: 40px;
+    padding: 60px;
     width: 100%;
-    max-width: 800px;
+    max-width: 1000px;
   }
+  .buttonAuctionStart
+  {
+    display: flex;
+    padding-top: 5px;
+    
+
+    flex-direction: row;
+    gap:200px;
+    background: #F4F4F4;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.817);
+    padding-inline: 265px;
+    border-radius: 8%;
+    width:60vh;
+    height:7vh;
+ 
+}
   
   .auctionItem-info {
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: 10px;
+    grid-gap: 5px;
+    background-color: #15301c09;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.89);
+
   }
   
   .auctionItem img {
-    width: 100%;
-    height: auto;
+    width: 100vh;
+    height: 60vh;
     object-fit: cover;
     border-radius: 4px;
-  }
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.609);
+    margin-bottom:10px ;  }
   
   .auctionItem-buttons {
     display: flex;
@@ -34,7 +56,8 @@
   
   .input-fields {
     display: flex;
-    gap: 10px;
+    gap: 30px;
+    height: 30px;
   }
   
 html {

@@ -9,7 +9,7 @@ function activeAuctionList() {
         const userIDs = Object.keys(bids);
         let maxbid = 0;
         let maxBidUser;
-             // vi finner høyest bud og ledende bruker
+        const bidDeleted = bids?.[model.app.userId]?.deleted ?? false;
         // Skriver ut date + time, må desverre skrive det her og ellers må jeg bruke alt for mye getelementByID i auctioncontroller...
         const deadline = new Date(item.deadline).getTime()
         let clock = '';
@@ -25,6 +25,7 @@ function activeAuctionList() {
         ${daysRemaining} dager og ${hoursRemaining} timer og ${minutesRemaining} minutter. sekunder: ${secondsRemaining}
         `
         }
+         // vi finner høyest bud og ledende bruker
          Object.keys(bids).forEach((userID) => {
             const userBid = bids[userID].bid[bids[userID].bid.length - 1];
             if (userBid > maxbid) {
@@ -41,20 +42,32 @@ function activeAuctionList() {
                 <img src="${item.images[0]}">
                 <div>${item.description}</div>
                 <div><h4>Ledende Bud: ${item.price}</h4></div>
-                <div>Ledende bruker: ${maxBidUser}</div>
+                <div>Ledende bruker: ${maxBidUser ? maxBidUser : 'Det er ingen bud for øyeblikket'}</div>
                 <div class="auction" id="auction-${auctionID}">
                   <p>Tid igjen: <span id="deadline-${item.id}">${clock}</span></p>
-                </div>
-                <div class="auctionItem-buttons">
-                  <button onclick="activeAuctionController('${auctionID}','minbud')"> Øk med min bud:' ${item.minBid} '</button>
-                  <button onclick="activeAuctionController('${auctionID}','delete')">Slett bud</button>
-                </div>
-                <div class="input-fields">
-                  <input type="number" placeholder="Sett manuelt bud" onchange="activeAuctionController('${auctionID}','manuelt', this.value)">
-                  <input type="number" placeholder="Sett automatisk bud" onchange="activeAuctionController('${auctionID}','automatic', this.value )">
-                  <input type="number" placeholder="Endre automatiskBud" onchange="activeAuctionController('${auctionID}','editAuto', this.value)">
-                </div>
-              </div>`;
+                </div>`
+                if (bidDeleted) {
+                    auksjonsliste += `<div> Du har avsluttet Auksjonen!</div>`;
+
+                  } else {
+                    auksjonsliste += `
+                      <div class="auctionItem-buttons">
+                        <button onclick="activeAuctionController('${auctionID}','minbud')"> Øk med min bud:' ${item.minBid} '</button>
+                        <button onclick="activeAuctionController('${auctionID}','delete')">Slett bud</button>
+                      </div>
+                      <div class="input-fields">
+                        <input type="number" placeholder="Sett manuelt bud" onchange="activeAuctionController('${auctionID}','manuelt', this.value)">
+                        <input type="number" placeholder="Sett automatisk bud" onchange="activeAuctionController('${auctionID}','automatic', this.value )">
+                        <input type="number" placeholder="Endre automatiskBud" onchange="activeAuctionController('${auctionID}','editAuto', this.value)">
+                      </div>
+                      <div><p>Ditt autobud er : ${bids[model.app.userId]?.autoBid ?? '0'}</p></div>
+                      `;
+                  }
+                  
+                  auksjonsliste += `</div>`;
+            
+                  
+                  
       
             // Sjekker over userid hvis det er likt som userId tegner vi opp de aktive auction
 
@@ -85,10 +98,13 @@ function activeAuctionList() {
     setInterval(updateAllTimers, 1000);
   const html = `
     <div class="auction-container">
+      <div class="buttonAuctionStart">
       <button onclick="changeView('auctionPage')">Dine Aktive Auksjoner</button> 
       <button onclick="changeView('endedAuctions')"> Dine Avsluttende auksjoner</button>
+      </div>
       ${auksjonsliste || '<div>Du har ingen aktive Auksjoner</div>'}
-    </div>`;
+      </div>
+    `;
     
   return html;
     }
@@ -123,6 +139,9 @@ function avsluttendeAuksjoner(){
          if(auction.bids[model.app.userId].vunnet){
           html+= `<h4>Vinner!!!</h4><button onclick="changeView('checkoutPage')"> Betal nå! </button>`
           addToOrderHistory(auksjonId,model.app.userId)
+          addToShoppingCart(auksjonId);
+
+
          }
         
         
@@ -130,8 +149,10 @@ function avsluttendeAuksjoner(){
     })
     const view = `
     <div class="auction-container">
-    <button onclick="changeView('auctionPage')">Dine Aktive Auksjoner</button> 
-    <button onclick="updateView()">Dine Avsluttende auksjoner</button>
+    <div class="buttonAuctionStart">
+      <button onclick="changeView('auctionPage')">Dine Aktive Auksjoner</button> 
+      <button onclick="changeView('endedAuctions')"> Dine Avsluttende auksjoner</button>
+      </div>
     ${html || '<div>Du har ingen avsluttende Auksjoner</div>'}
     </div>`;
      return view;
@@ -1389,13 +1410,22 @@ function orderHistoryView (){
 function productDisplay(product){
     let content;
     let images = `` 
-    if(model.data.items[product].auction){
+    if(model.data.items[product].auction && model.app.loggedInStatus && model.data.users[model.app.userId].permissions != "admin"){
         content = `
             <label class = "productDisplayPriceLabel">Nåværende Bud: </label>
             <label class = "productDisplayPrice">${model.data.items[product].price}</label>
-            <input id = "productDisplayPriceInput" oninput="model.input.product.bidIncrease = this.value">${model.inputs.product.bidIncrease}</input>
-            <button class = "productDisplayBuyButton" onclick = "raiseBid('${model.data.items[product].id}')">Øk bud</button>
+            <input id = "productDisplayPriceInput" oninput="model.inputs.product.bidIncrease = this.value">${model.inputs.product.bidIncrease}</input>
+            <button class = "productDisplayBuyButton" onclick = "raiseBid(model.data.items[${product}].id)">Øk bud</button>
             <div id = "productDisplayDeadline">Auksjonen stenges om: ${model.data.items[product].deadline}</div>`
+    }
+    else if(model.data.items[product].auction && !model.app.loggedInStatus){
+        content = `
+            <label class = "productDisplayPriceLabel">Nåværende Bud: </label>
+            <label class = "productDisplayPrice">${model.data.items[product].price}</label>
+            <label class = "productDisplayNoBid">Du må være innlogget for å by på auksjoner</label>
+            <button class = "productDisplayNoBidRegister" onclick = "changeView('registerPage')">Registrer</button>
+            <button class = "productDisplayNoBidLogin" onclick = "changeView('loginPage')">Logg inn</button>
+        `
     }
     else{
         content = `
@@ -1509,7 +1539,7 @@ function showFilteredProducts(){
                     <div class = "filteredProductPriceContainer">
                         <label class = "filteredProductPriceLabel">${model.data.items[model.inputs.category.filteredItems[i]-1].price},-</label>
                         ${model.data.items[model.inputs.category.filteredItems[i]-1].auction || model.app.loggedInStatus && model.data.users[model.app.userId].permissions == "admin"?``:`<button onclick = "addToShoppingCart('${model.data.items[model.inputs.category.filteredItems[i]-1].id}')">Legg til I handlekurv</button>`}
-                        <button class = "filteredProductGoToButton" onclick = "goToProduct(${i})">Gå til produktside</button>
+                        <button class = "filteredProductGoToButton" onclick = "goToProduct(${model.inputs.category.filteredItems[i]-1})">Gå til produktside</button>
                     </div>
                 </div>
             </div>`
