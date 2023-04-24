@@ -272,7 +272,7 @@ const model = {
             {
                 itemId: '000002',
                 bids: {
-                        '0000002': {bid: [1000, 20000], deleted: false, autoBid:0, vunnet:false},
+                        '0000002': {bid: [1000, 20000], deleted: false, autoBid:0, vunnet:true},
                         '0000001': {bid: [1000, 10000], deleted: false, autoBid:0, vunnet:false}
                     },
             },

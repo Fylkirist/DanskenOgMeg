@@ -97,10 +97,13 @@ function activeAuctionList() {
     setInterval(updateAllTimers, 1000);
   const html = `
     <div class="auction-container">
+      <div class="buttonAuctionStart">
       <button onclick="changeView('auctionPage')">Dine Aktive Auksjoner</button> 
       <button onclick="changeView('endedAuctions')"> Dine Avsluttende auksjoner</button>
+      </div>
       ${auksjonsliste || '<div>Du har ingen aktive Auksjoner</div>'}
-    </div>`;
+      </div>
+    `;
     
   return html;
     }
@@ -135,6 +138,9 @@ function avsluttendeAuksjoner(){
          if(auction.bids[model.app.userId].vunnet){
           html+= `<h4>Vinner!!!</h4><button onclick="changeView('checkoutPage')"> Betal nå! </button>`
           addToOrderHistory(auksjonId,model.app.userId)
+          addToShoppingCart(auksjonId);
+
+
          }
         
         
@@ -142,8 +148,10 @@ function avsluttendeAuksjoner(){
     })
     const view = `
     <div class="auction-container">
-    <button onclick="changeView('auctionPage')">Dine Aktive Auksjoner</button> 
-    <button onclick="updateView()">Dine Avsluttende auksjoner</button>
+    <div class="buttonAuctionStart">
+      <button onclick="changeView('auctionPage')">Dine Aktive Auksjoner</button> 
+      <button onclick="changeView('endedAuctions')"> Dine Avsluttende auksjoner</button>
+      </div>
     ${html || '<div>Du har ingen avsluttende Auksjoner</div>'}
     </div>`;
      return view;
