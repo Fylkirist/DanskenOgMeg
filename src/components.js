@@ -108,12 +108,16 @@ function avsluttendeAuksjoner(){
       if (userId.includes(model.app.userId) && !item.inStock){
         const item = model.data.items.find((item) => item.id === auksjonId);
            html +=`
+           <div class="auctionItem">
+           <div class="auctionItem-info">
            <div class="containerForAvsluttendeAuksjoner">
            <h3>${item.title}</h3>
            <div>${item.description}</div>
            <div>Siste bud: ${item.price}</div>
            <img src="${item.images[0]}">
            <div>Auksjonen ble avsluttet : ${item.deadline}</div>
+         </div>
+         </div>
          </div>`
         
          if(auction.bids[model.app.userId].vunnet){
@@ -125,7 +129,7 @@ function avsluttendeAuksjoner(){
       }
     })
     const view = `
-    <div class="container">
+    <div class="auction-container">
     <button onclick="changeView('auctionPage')">Dine Aktive Auksjoner</button> 
     <button onclick="updateView()">Dine Avsluttende auksjoner</button>
     ${html || '<div>Du har ingen avsluttende Auksjoner</div>'}
