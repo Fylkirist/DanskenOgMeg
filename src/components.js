@@ -1401,7 +1401,7 @@ function orderHistoryView (){
 function productDisplay(product){
     let content;
     let images = `` 
-    if(model.data.items[product].auction && model.app.loggedInStatus && model.data.users[model.app.userID].permissions != "admin"){
+    if(model.data.items[product].auction && model.app.loggedInStatus && model.data.users[model.app.userId].permissions != "admin"){
         content = `
             <label class = "productDisplayPriceLabel">Nåværende Bud: </label>
             <label class = "productDisplayPrice">${model.data.items[product].price}</label>
