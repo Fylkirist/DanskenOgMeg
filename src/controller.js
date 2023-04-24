@@ -677,11 +677,23 @@ function unZoom(){
     updateView()
 }
 
+function changeMainCategory(id){
+    if(model.inputs.product.adminChangeMainCategory != ""){
+        model.data.items[id].category[0] = model.inputs.product.adminChangeMainCategory
+        model.inputs.product.adminChangeMainCategory = ""
+        updateView()
+        model.inputs.category.categoryList = []
+        populateCategoryList()
+    }
+}
+
 function addNewSubCategory(id){
     if(model.inputs.product.adminAddSubCategory != ""){
         model.data.items[id].category.push(model.inputs.product.adminAddSubCategory)
         model.inputs.product.adminAddSubCategory = ""
-        updateView()   
+        updateView()
+        model.inputs.category.categoryList = []
+        populateCategoryList()
     }
 }
 
