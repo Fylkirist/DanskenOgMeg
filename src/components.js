@@ -42,7 +42,7 @@ function activeAuctionList() {
                 <div>${item.description}</div>
                 <div><h4>Ledende Bud: ${item.price}</h4></div>
                 <div>Ledende bruker: ${maxBidUser}</div>
-                <div class="auction" id="auction-${auction.itemId}">
+                <div class="auction" id="auction-${auctionID}">
                   <p>Tid igjen: <span id="deadline-${item.id}">${clock}</span></p>
                 </div>
                 <div class="auctionItem-buttons">
