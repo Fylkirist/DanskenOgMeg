@@ -683,7 +683,7 @@ function changeMainCategory(id){
         model.inputs.product.adminChangeMainCategory = ""
         updateView()
         model.inputs.category.categoryList = []
-        populateCategoryList()
+        populateCategoryInputs()
     }
 }
 
@@ -693,7 +693,7 @@ function addNewSubCategory(id){
         model.inputs.product.adminAddSubCategory = ""
         updateView()
         model.inputs.category.categoryList = []
-        populateCategoryList()
+        populateCategoryInputs()
     }
 }
 
@@ -1289,7 +1289,7 @@ function payAtTheCheckoutPage(){
     updateView();
 }
 
-function populateCategoryList(){
+function populateCategoryInputs(){
     model.data.items.forEach(item => {
         let storedId;
         item.category.forEach((cat,i) => {
@@ -1331,4 +1331,4 @@ function populateCategoryList(){
 }
 
 
-populateCategoryList()
+populateCategoryInputs()
