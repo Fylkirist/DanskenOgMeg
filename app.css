@@ -1239,6 +1239,7 @@ body {
     left: 26vw;
     font-size: 1vw;
     background-color: rgba(217, 217, 217, 1);
+    border: 0.1vw solid black;
     border-radius: 0.5vw;
 }
 
@@ -1351,6 +1352,7 @@ body {
     left: 26vw;
     font-size: 1vw;
     background-color: rgba(217, 217, 217, 1);
+    border: 0.15vw solid rgba(217, 217, 217, 1);
     border-radius: 0.5vw;
 }
 
