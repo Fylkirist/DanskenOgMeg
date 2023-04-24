@@ -150,10 +150,7 @@ const model = {
             filterAuctionCheck:true,
             filterNormalCheck:true,
             categoryList:[
-                {id:0,name:"Møbler",parent:-1,checked:false},
-                {id:1,name:"Bord",parent:0,checked:false},
-                {id:4,name:'Småting',parent:-1,checked:false},
-                {id:5,name:'Tilbehør',parent:4,checked:false},
+                
             ]     
         },
         createSale: {

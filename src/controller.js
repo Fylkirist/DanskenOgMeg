@@ -1276,3 +1276,47 @@ function payAtTheCheckoutPage(){
     setUsersDataForCheckOutPage();
     updateView();
 }
+
+function populateCategoryList(){
+    model.data.items.forEach(item => {
+        let storedId;
+        item.category.forEach((cat,i) => {
+            let exists = false
+            let parent = -1
+            for(thing in model.inputs.category.categoryList){
+                if(i==0){
+                    parent = -1
+                    if(thing.name == cat){
+                        exists = true
+                        break
+                    }
+                }
+                else{
+                    if(storedId !== undefined){
+                        parent = storedId
+                        exists = false
+                        break
+                    }
+                    if(thing.name == cat && thing.parent != -1){
+                        exists = true
+                        break
+                    }
+                }
+            }
+            if(!exists){
+                model.inputs.category.categoryList.push({
+                    id:model.inputs.category.categoryList.length,
+                    parent:parent,
+                    name:cat,
+                    checked:false
+                })
+                if(parent == -1){
+                    storedId = model.inputs.category.categoryList.length-1
+                }
+            }
+        })
+    })
+}
+
+
+populateCategoryList()
