@@ -9,7 +9,7 @@ function activeAuctionList() {
         const userIDs = Object.keys(bids);
         let maxbid = 0;
         let maxBidUser;
-             // vi finner høyest bud og ledende bruker
+        const bidDeleted = bids?.[model.app.userId]?.deleted ?? false;
         // Skriver ut date + time, må desverre skrive det her og ellers må jeg bruke alt for mye getelementByID i auctioncontroller...
         const deadline = new Date(item.deadline).getTime()
         let clock = '';
@@ -25,6 +25,7 @@ function activeAuctionList() {
         ${daysRemaining} dager og ${hoursRemaining} timer og ${minutesRemaining} minutter. sekunder: ${secondsRemaining}
         `
         }
+         // vi finner høyest bud og ledende bruker
          Object.keys(bids).forEach((userID) => {
             const userBid = bids[userID].bid[bids[userID].bid.length - 1];
             if (userBid > maxbid) {
@@ -41,20 +42,31 @@ function activeAuctionList() {
                 <img src="${item.images[0]}">
                 <div>${item.description}</div>
                 <div><h4>Ledende Bud: ${item.price}</h4></div>
-                <div>Ledende bruker: ${maxBidUser}</div>
+                <div>Ledende bruker: ${maxBidUser ? maxBidUser : 'Det er ingen bud for øyeblikket'}</div>
                 <div class="auction" id="auction-${auctionID}">
                   <p>Tid igjen: <span id="deadline-${item.id}">${clock}</span></p>
-                </div>
-                <div class="auctionItem-buttons">
-                  <button onclick="activeAuctionController('${auctionID}','minbud')"> Øk med min bud:' ${item.minBid} '</button>
-                  <button onclick="activeAuctionController('${auctionID}','delete')">Slett bud</button>
-                </div>
-                <div class="input-fields">
-                  <input type="number" placeholder="Sett manuelt bud" onchange="activeAuctionController('${auctionID}','manuelt', this.value)">
-                  <input type="number" placeholder="Sett automatisk bud" onchange="activeAuctionController('${auctionID}','automatic', this.value )">
-                  <input type="number" placeholder="Endre automatiskBud" onchange="activeAuctionController('${auctionID}','editAuto', this.value)">
-                </div>
-              </div>`;
+                </div>`
+                if (bidDeleted) {
+                    auksjonsliste += `<div> Du har avsluttet Auksjonen!</div>`;
+
+                  } else {
+                    auksjonsliste += `
+                      <div class="auctionItem-buttons">
+                        <button onclick="activeAuctionController('${auctionID}','minbud')"> Øk med min bud:' ${item.minBid} '</button>
+                        <button onclick="activeAuctionController('${auctionID}','delete')">Slett bud</button>
+                      </div>
+                      <div class="input-fields">
+                        <input type="number" placeholder="Sett manuelt bud" onchange="activeAuctionController('${auctionID}','manuelt', this.value)">
+                        <input type="number" placeholder="Sett automatisk bud" onchange="activeAuctionController('${auctionID}','automatic', this.value )">
+                        <input type="number" placeholder="Endre automatiskBud" onchange="activeAuctionController('${auctionID}','editAuto', this.value)">
+                        <div><p>Ditt autobud er : ${bids[model.app.userId]?.autoBid ?? '0'}</p></div>
+                      </div>`;
+                  }
+                  
+                  auksjonsliste += `</div>`;
+            
+                  
+                  
       
             // Sjekker over userid hvis det er likt som userId tegner vi opp de aktive auction
 

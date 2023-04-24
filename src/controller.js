@@ -59,6 +59,7 @@ function addToOrderHistory(auksjonsId,userId) {
       item.auction = false;
       if (maxBidAlleBrukere > (item.price-1)) {
         auction.bids[vunnetBruker].vunnet = true;
+        addToShoppingCart(itemsId)
       }
       
     }
@@ -174,7 +175,7 @@ if(parseInt(input) > item.price){
   }
   if (buttonID === 'delete') {
     if (bids.bid.length > 0) {
-      item.price = maxBidAlleBrukere
+        
       bids.deleted = true
       bids.bid = []
       setDisplayPrice(auctionID)
@@ -185,25 +186,31 @@ if(parseInt(input) > item.price){
 }
 
 function setDisplayPrice(id){
-    let topBid = 0;
-    Object.keys(model.data.auctionListe[id].bids).map(val => {
-        if (!val.deleted){
-            topBid = Math.max(val.bid)>topBid? Math.max(val.bid) : topBid
+    console.log(id)
+    let topBid = -Infinity;
+    const auction = model.data.auctionListe.find((auction) => auction.itemId === id);
+    if (auction) {
+    Object.keys(auction.bids).map(val => {
+      if (!auction.bids[val].deleted) {
+        topBid = Math.max(val.bid) > topBid ? Math.max(val.bid) : topBid;
+      }
+    });
+    for (let i = 0; i < model.data.items.length; i++) {
+      if (id == model.data.items[i].id) {
+        if (topBid === -Infinity) {
+          model.data.items[i].price = model.data.items[i].originalPrice;
+        } else {
+          model.data.items[i].price = topBid;
         }
-    })
-    for(let i = 0; i < model.data.items.length; i++){
-        if(id==model.data.items[i].id){
-            model.data.items[i].price = topBid
-            return
-        }
+        return;
+      }
+     }
     }
-}
+  }
 
 function addNewItemToAuctionList(itemId) {
-    // Check if auction with given itemId already exists
     const auctionExists = model.data.auctionListe.some(auction => auction.itemId === itemId);
   
-    // If auction doesn't exist, create a new auction object and push it to the auctionListe array
     if (!auctionExists) {
       const newAuction = {
         itemId: itemId,
@@ -800,6 +807,7 @@ function createProduct(){
                 id: model.inputs.createSale.newId,
                 description: model.inputs.createSale.description,
                 price:parseInt(model.inputs.createSale.price),
+                originalPrice:parseInt(model.inputs.createSale.price),
                 minBid:parseInt(model.inputs.createSale.minimumBidAmmount),
                 auction: model.inputs.createSale.auction,
                 deadline: new Date(model.inputs.createSale.deadline).toISOString().substring(0,16),
