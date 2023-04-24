@@ -68,13 +68,6 @@ const model = {
             wrongUserNamePassword: false,
 
         },
-        category:{
-            filteredItems:[],
-            priceRange:{
-                max:0,
-                min:0
-            }
-        },
         adminAuctionPage:{
             searchInput: '',
             selectedItemId: null,
@@ -150,10 +143,7 @@ const model = {
             filterAuctionCheck:true,
             filterNormalCheck:true,
             categoryList:[
-                {id:0,name:"Møbler",parent:-1,checked:false},
-                {id:1,name:"Bord",parent:0,checked:false},
-                {id:4,name:'Småting',parent:-1,checked:false},
-                {id:5,name:'Tilbehør',parent:4,checked:false},
+                
             ]     
         },
         createSale: {
@@ -194,8 +184,8 @@ const model = {
         }
     },
     data:{
-        frontPageTop:[0],
-        frontPageBottom:[1],
+        frontPageTop:[1],
+        frontPageBottom:[0,2],
         users:{
             "0000001":{
                 id:"0000001",
@@ -402,7 +392,7 @@ const model = {
                 category:['Sykler','Vintage'],
                 auction:false,
                 deadline:'',
-                images:['https://i.imgur.com/Y8DkhIW.jpeg','https://i.pinimg.com/originals/00/ca/d6/00cad6fe33b271fe5b3805ede7d8d4d3.jpg'],
+                images:['https://i.pinimg.com/originals/00/ca/d6/00cad6fe33b271fe5b3805ede7d8d4d3.jpg'],
                 inStock:true,
                 deliver:true,
                 mainImage: '',
