@@ -1012,9 +1012,11 @@ function filterItems(){
     let filterArray = []
     model.data.items.forEach(item => {
         if (item.title.toLowerCase().includes(model.inputs.search.input.toLowerCase()) ||
-          item.description.toLowerCase().includes(model.inputs.search.input.toLowerCase()) ||
-          item.category.join(',').toLowerCase().split(',').includes(model.inputs.search.input.toLowerCase())) {
-          filterArray.push(eval(item.id));
+            item.description.toLowerCase().includes(model.inputs.search.input.toLowerCase()) ||
+            item.category.join(',').toLowerCase().split(',').includes(model.inputs.search.input.toLowerCase())) {
+            if(item.inStock){
+                filterArray.push(eval(item.id));
+            }
         }
     });      
     let anychecked = false
