@@ -59,8 +59,9 @@ function activeAuctionList() {
                         <input type="number" placeholder="Sett manuelt bud" onchange="activeAuctionController('${auctionID}','manuelt', this.value)">
                         <input type="number" placeholder="Sett automatisk bud" onchange="activeAuctionController('${auctionID}','automatic', this.value )">
                         <input type="number" placeholder="Endre automatiskBud" onchange="activeAuctionController('${auctionID}','editAuto', this.value)">
-                        <div><p>Ditt autobud er : ${bids[model.app.userId]?.autoBid ?? '0'}</p></div>
-                      </div>`;
+                      </div>
+                      <div><p>Ditt autobud er : ${bids[model.app.userId]?.autoBid ?? '0'}</p></div>
+                      `;
                   }
                   
                   auksjonsliste += `</div>`;
