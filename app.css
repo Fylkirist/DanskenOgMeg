@@ -937,6 +937,7 @@ body {
     align-items: center;
     flex-direction: column;
     text-align: center;
+    padding-bottom: 2vw;
 }
 
 .handlevognHeader{
@@ -1132,7 +1133,6 @@ body {
     text-align: start;
     margin: 0;
     margin-top: 1vw;
-    overflow-y: scroll;
 }
 
 #auctionsHeaderShoppingCart{
@@ -1162,9 +1162,11 @@ body {
     position: relative;
     top: 0;
     left: 0;
-    height: 20vh;
+    height: 18vh;
     border-bottom: 0.3vh solid rgba(217, 217, 217, 1);
     font-size: 0.8vw;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .singleItemContainerInWinningBidsShoppingcart{
@@ -1175,8 +1177,8 @@ body {
     margin: 0.3vw;
     padding-right: 0;
     margin-right: 0;
-    width: 50vw;
-    height: 8vw;
+    width: 50.5vw;
+    height: 7vw;
     background-color: rgba(255, 250, 237, 1);
 }
 
@@ -1206,7 +1208,7 @@ body {
     border: 0.15vw solid rgba(217, 217, 217, 1);
     border-radius: 0.5vw;
 }
-.winningBidsItemRemoveButtonShoppingCart{
+.winningBidsItemRemoveButtonShoppingCart:hover{
     cursor: pointer;
 }
 
@@ -1252,6 +1254,118 @@ body {
 }
 
 .winningItemIncreaseBidButtonShoppingCart:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#losingBidHeaderShoppingCart{
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 1.5vw;
+    border-bottom: 0.3vh solid rgba(217, 217, 217, 1);
+    font-size: 1vw;
+    padding: 0.3vw;
+    padding-top: 0.5vw;
+    margin: 0;
+}
+
+#losingBidsItemsContainerShoppingCart{
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 18vh;
+    border-bottom: 0.3vh solid rgba(217, 217, 217, 1);
+    font-size: 0.8vw;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.singleItemContainerInLosingBidsShoppingcart{
+    position: relative;
+    top: 0;
+    left: 0;
+    padding: 0.3vw;
+    margin: 0.3vw;
+    padding-right: 0;
+    margin-right: 0;
+    width: 50.5vw;
+    height: 7vw;
+    background-color: rgba(255, 250, 237, 1);
+}
+
+.losingBidsItemImageShoppingCart{
+    width: 8vw;
+    height: 6vw;
+    position: relative;
+    top: 0.3vw;
+    left: 0;
+    border: 0.15vw solid rgba(217, 217, 217, 1);
+    margin: 0.3vw;
+}
+
+.losingBidsItemTitleShoppingCart{
+    font-size: 1vw;
+    position: relative;
+    top: -3vw;
+    padding: 0.5vw;
+}
+
+.losingBidsItemRemoveButtonShoppingCart{
+    font-size: 0.8vw;
+    position: relative;
+    top: -3vw;
+    padding: 0.15vw;
+    background-color: rgba(255, 250, 237, 1);
+    border: 0.15vw solid rgba(217, 217, 217, 1);
+    border-radius: 0.5vw;
+}
+.losingBidsItemRemoveButtonShoppingCart:hover{
+    cursor: pointer;
+}
+
+.losingItemMaxBidShoppingCart{
+    font-size: 1vw;
+    position: relative;
+    top: -7vw;
+    left: 26vw;
+    width: 18vw;
+    padding: 0;
+    margin: 0;
+}
+
+.losingItemDeadlineShoppingCart{
+    font-size: 1vw;
+    position: relative;
+    top: -6.5vw;
+    left: 26vw;
+    width: 24vw;
+    padding: 0;
+    margin: 0;
+}
+
+.losingItemIncreaseBidInputShoppingCart{
+    font-size: 1vw;
+    position: relative;
+    top: -6vw;
+    left: 26vw;
+    font-size: 1vw;
+    background-color: rgba(217, 217, 217, 1);
+    border-radius: 0.5vw;
+}
+
+.losingItemIncreaseBidButtonShoppingCart{
+    font-size: 0.8vw;
+    position: relative;
+    top: -6vw;
+    left: 28vw;
+    font-size: 1vw;
+    background-color: rgba(255, 250, 237, 1);
+    border: 0.15vw solid rgba(217, 217, 217, 1);
+    border-radius: 1vw;
+}
+
+.losingItemIncreaseBidButtonShoppingCart:hover{
     cursor: pointer;
     text-decoration: underline;
 }

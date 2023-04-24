@@ -1017,10 +1017,10 @@ function showShoppingCart(){
                             <span>Vinnende bud</span>
                         </div>
                         <div id="winningBidsItemsContainerShoppingCart">${showWinningBids()}</div>
-                        <div>
+                        <div id="losingBidHeaderShoppingCart">
                             <span>Tapende bud</span>
                         </div>
-                        <div>${showLosingBids()}</div>` 
+                        <div id="losingBidsItemsContainerShoppingCart">${showLosingBids()}</div>` 
                     : ''}
                 </div>
             </div>`;
@@ -1109,26 +1109,28 @@ function showLosingBids(){
     findWinningBids();
     if(model.inputs.shoppingCart.items.auctions.usersLosingBids.length == 0) return '';
     else {
-        html += `<div>`;
         for (let i = 0; i < model.inputs.shoppingCart.items.auctions.usersLosingBids.length; i++){
             for(let j = 0; j < model.data.items.length; j++){
                 if(model.inputs.shoppingCart.items.auctions.usersLosingBids[i].id === model.data.items[j].id){
                     html += `
-                        <img src="${model.data.items[j].images[0]}" />
-                        <span>${model.data.items[j].title}</span>
-                        ${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].deleted ? 'Du trukket bud.' : `
-                            <button onclick="if(confirm('Du kan ikke by igjen på denne varen om du trekker deg, er du sikker?')) trekkBud(${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].id}, 
+                    <div class="singleItemContainerInLosingBidsShoppingcart">
+                        <img class="losingBidsItemImageShoppingCart"  src="${model.data.items[j].images[0]}" />
+                        <span class="losingBidsItemTitleShoppingCart">${model.data.items[j].title}</span>
+                        ${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].deleted ? '<span class="losingBidsItemRemoveButtonShoppingCart">Du trukket bud.</span>' : `
+                            <button class="losingBidsItemRemoveButtonShoppingCart" onclick="if(confirm('Du kan ikke by igjen på denne varen om du trekker deg, er du sikker?')) trekkBud(${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].id}, 
                                 ${model.app.userId})"
                                 >Trekk bud</button>
-                            <span>Nåværende bud: ${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].ItemsMaximumBid}</span>
-                            <span>Stenges om : ${calculateDeadline(model.inputs.shoppingCart.items.auctions.usersLosingBids[i].id)}</span>
+                            <div class="losingItemMaxBidShoppingCart">Nåværende bud: ${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].ItemsMaximumBid}</div>
+                            <div class="losingItemDeadlineShoppingCart">Stenges om : ${calculateDeadline(model.inputs.shoppingCart.items.auctions.usersLosingBids[i].id)}</div>
                             <input  type="number" 
+                                class="losingItemIncreaseBidInputShoppingCart"
                                 min="${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].ItemsMaximumBid}" 
                                 step= 100
                                 value="${model.inputs.shoppingCart.items.auctions.increasedWinningBid || ''}"   
                                 onchange="model.inputs.shoppingCart.items.auctions.increasedWinningBid = this.value, updateView()"
                             />
                             <button
+                                class="losingItemIncreaseBidButtonShoppingCart"
                                 ${model.inputs.shoppingCart.items.auctions.increasedWinningBid > model.inputs.shoppingCart.items.auctions.usersLosingBids[i].ItemsMaximumBid ? '' : 'disabled'}
                                 onclick="increaseBid(${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].id}, ${model.app.userId}, ${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].ItemsMaximumBid}, ${model.inputs.shoppingCart.items.auctions.increasedWinningBid})"
                             >Øk bud</button>
