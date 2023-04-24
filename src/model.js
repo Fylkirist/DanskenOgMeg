@@ -303,8 +303,8 @@ const model = {
                 category:['Møbler','Stoler','Bord'],
                 auction:true,
                 deadline:'2023-04-24T10:32',
-                images:['https://img.tradera.net/images/902/345913902_a2eb9c41-1683-4535-a336-6aa79e211c70.jpg','https://i.pinimg.com/originals/53/00/d1/5300d17610ce6dc3b78c3b895c649e7e.jpg'],
-                inStock:false,
+                images:['https://img.tradera.net/images/902/345913902_a2eb9c41-1683-4535-a336-6aa79e211c70.jpg'],
+                inStock:true,
                 deliver:false,
                 minBid:300
             },
