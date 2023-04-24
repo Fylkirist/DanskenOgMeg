@@ -39,7 +39,7 @@ function addToOrderHistory(auksjonsId,userId) {
       let secondsRemaining = Math.floor((miliSecondsRemaining % (1000 * 60)) / 1000);
     if (miliSecondsRemaining > 1000){ 
         deadlineClock.innerHTML=`
-                ${daysRemaining} dager og ${hoursRemaining} timer og ${minutesRemaining} minutter. sekkunder: ${secondsRemaining}
+                ${daysRemaining} dager og ${hoursRemaining} timer og ${minutesRemaining} minutter. sekunder: ${secondsRemaining}
              `;
 
     }
@@ -677,11 +677,23 @@ function unZoom(){
     updateView()
 }
 
+function changeMainCategory(id){
+    if(model.inputs.product.adminChangeMainCategory != ""){
+        model.data.items[id].category[0] = model.inputs.product.adminChangeMainCategory
+        model.inputs.product.adminChangeMainCategory = ""
+        updateView()
+        model.inputs.category.categoryList = []
+        populateCategoryInputs()
+    }
+}
+
 function addNewSubCategory(id){
     if(model.inputs.product.adminAddSubCategory != ""){
         model.data.items[id].category.push(model.inputs.product.adminAddSubCategory)
         model.inputs.product.adminAddSubCategory = ""
-        updateView()   
+        updateView()
+        model.inputs.category.categoryList = []
+        populateCategoryInputs()
     }
 }
 
@@ -1000,9 +1012,11 @@ function filterItems(){
     let filterArray = []
     model.data.items.forEach(item => {
         if (item.title.toLowerCase().includes(model.inputs.search.input.toLowerCase()) ||
-          item.description.toLowerCase().includes(model.inputs.search.input.toLowerCase()) ||
-          item.category.join(',').toLowerCase().split(',').includes(model.inputs.search.input.toLowerCase())) {
-          filterArray.push(eval(item.id));
+            item.description.toLowerCase().includes(model.inputs.search.input.toLowerCase()) ||
+            item.category.join(',').toLowerCase().split(',').includes(model.inputs.search.input.toLowerCase())) {
+            if(item.inStock){
+                filterArray.push(eval(item.id));
+            }
         }
     });      
     let anychecked = false
@@ -1276,3 +1290,47 @@ function payAtTheCheckoutPage(){
     setUsersDataForCheckOutPage();
     updateView();
 }
+
+function populateCategoryInputs(){
+    model.data.items.forEach(item => {
+        let storedId;
+        item.category.forEach((cat,i) => {
+            let exists = false
+            let parent = -1
+            for(thing in model.inputs.category.categoryList){
+                if(i==0){
+                    parent = -1
+                    if(thing.name == cat){
+                        exists = true
+                        break
+                    }
+                }
+                else{
+                    if(storedId !== undefined){
+                        parent = storedId
+                        exists = false
+                        break
+                    }
+                    if(thing.name == cat && thing.parent != -1){
+                        exists = true
+                        break
+                    }
+                }
+            }
+            if(!exists){
+                model.inputs.category.categoryList.push({
+                    id:model.inputs.category.categoryList.length,
+                    parent:parent,
+                    name:cat,
+                    checked:false
+                })
+                if(parent == -1){
+                    storedId = model.inputs.category.categoryList.length-1
+                }
+            }
+        })
+    })
+}
+
+
+populateCategoryInputs()
