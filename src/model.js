@@ -184,8 +184,8 @@ const model = {
         }
     },
     data:{
-        frontPageTop:[0],
-        frontPageBottom:[1],
+        frontPageTop:[1],
+        frontPageBottom:[0,2],
         users:{
             "0000001":{
                 id:"0000001",

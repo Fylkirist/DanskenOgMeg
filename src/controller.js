@@ -39,7 +39,7 @@ function addToOrderHistory(auksjonsId,userId) {
       let secondsRemaining = Math.floor((miliSecondsRemaining % (1000 * 60)) / 1000);
     if (miliSecondsRemaining > 1000){ 
         deadlineClock.innerHTML=`
-                ${daysRemaining} dager og ${hoursRemaining} timer og ${minutesRemaining} minutter. sekkunder: ${secondsRemaining}
+                ${daysRemaining} dager og ${hoursRemaining} timer og ${minutesRemaining} minutter. sekunder: ${secondsRemaining}
              `;
 
     }

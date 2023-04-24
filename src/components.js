@@ -1141,7 +1141,7 @@ function calculateDeadline(itemsId){
              `;
     }
     else {
-        html = 'Bud er stengt.'
+        html = 'Budrunden er ferdig.'
     }
     return html;
 }
