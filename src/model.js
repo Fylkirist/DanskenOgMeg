@@ -68,13 +68,6 @@ const model = {
             wrongUserNamePassword: false,
 
         },
-        category:{
-            filteredItems:[],
-            priceRange:{
-                max:0,
-                min:0
-            }
-        },
         adminAuctionPage:{
             searchInput: '',
             selectedItemId: null,
