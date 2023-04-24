@@ -983,19 +983,19 @@ function showShoppingCart(){
                     ${showItemsCanBuyNow()}
                     </div>
                     <div id="totalPriceContainerShoppingCart">
-                        <span>Total</span>
-                        <span>${model.inputs.shoppingCart.totalPrice}</span>
-                        <button ${(model.app.userId && model.data.users[model.app.userId].shoppingCart.length != 0) || (!model.app.userId && model.inputs.shoppingCart.items.canBuyNow.length != 0) ? '' : 'disabled'} onclick="changeView('checkoutPage')">Gå til kassen</button>
+                        <span id="totalTextBuyNowShoppingCart">Total NOK</span>
+                        <span id="totalKrBuyNowShoppingCart">${model.inputs.shoppingCart.totalPrice}</span>
+                        <button id="checkOutPageButtonShoppingCart" ${(model.app.userId && model.data.users[model.app.userId].shoppingCart.length != 0) || (!model.app.userId && model.inputs.shoppingCart.items.canBuyNow.length != 0) ? '' : 'disabled'} onclick="changeView('checkoutPage')">Gå til kassen</button>
 
                     </div>
                 </div>
-                <div>
+                <div id="auctionsUserHaveBidOnContainerShoppingCart">
                     ${model.app.loggedInStatus ? `
-                        <h3>Auksjoner du har bud på:</h3>
-                        <div>
+                        <h3 id="auctionsHeaderShoppingCart">Auksjoner du har bud på:</h3>
+                        <div id="winningBidHeaderShoppingCart">
                             <span>Vinnende bud</span>
                         </div>
-                        <div>${showWinningBids()}</div>
+                        <div id="winningBidsItemsContainerShoppingCart">${showWinningBids()}</div>
                         <div>
                             <span>Tapende bud</span>
                         </div>
@@ -1056,21 +1056,21 @@ function showWinningBids(){
     if(model.inputs.shoppingCart.items.auctions.usersWinningBids.length == 0) return '';
 
     else {
-        html += `<div>`;
         for (let i = 0; i < model.inputs.shoppingCart.items.auctions.usersWinningBids.length; i++){
             for(let j = 0; j < model.data.items.length; j++){
                 if(model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id === model.data.items[j].id){
                     html += `
-                        <img src="${model.data.items[j].images[0]}" />
-                        <span>${model.data.items[j].title}</span>
-                        ${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].deleted ? 'Du trukket bud.' : `
-                            <button onclick="if(confirm('Are you sure?')) trekkBud(${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id}, 
+                    <div class="singleItemContainerInWinningBidsShoppingcart">
+                        <img class="winningBidsItemImageShoppingCart" src="${model.data.items[j].images[0]}" />
+                        <span class="winningBidsItemTitleShoppingCart">${model.data.items[j].title}</span>
+                        ${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].deleted ? '<span class="winningBidsItemRemoveButtonShoppingCart">Du trukket bud.</span>' : `
+                            <button class="winningBidsItemRemoveButtonShoppingCart" onclick="if(confirm('Are you sure?')) trekkBud(${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id}, 
                                  ${model.app.userId})"
                             >Trekk bud</button>
-                            <span>Bud: ${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid}</span>
-                            <span>Stenges om : ${calculateDeadline(model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id)}</span>
-                            <input type="number" onchange="activeAuctionController('${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id}', 'manuelt', this.value)" />
-                            <button
+                            <div class="winningItemMaxBidShoppingCart">Bud: ${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid}</div>
+                            <div class="winningItemDeadlineShoppingCart">Stenges om : ${calculateDeadline(model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id)}</div>
+                            <input class="winningItemIncreaseBidInputShoppingCart" type="number" onchange="activeAuctionController('${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id}', 'manuelt', this.value)" />
+                            <button class="winningItemIncreaseBidButtonShoppingCart"
                                 ${model.inputs.shoppingCart.items.auctions.increasedWinningBid > model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid ? '' : 'disabled'}
                                 onclick="activeAuctionController('${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id}', 'manuelt', ${model.inputs.shoppingCart.items.auctions.increasedWinningBid})"
                             >Øk bud</button>

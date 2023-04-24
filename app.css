@@ -927,13 +927,11 @@ body {
 }
 
 #allItemsBuyNowShoppingCartContainer{
-    /* overflow-y: scroll; */
     position: relative;
     left: 0;
     top: 0;
     height: 40vh;
-    width: 50vw;
-
+    width: 52vw; 
 }
 
 #allItemsBuyNowShoppingCartContainerAnonym{
@@ -941,15 +939,14 @@ body {
     left: 0;
     top: 0;
     height: 80vh;
-    width: 50vw;
-    overflow-y: scroll;
+    width: 52vw;
 }
 
 #kanBuyNowHeaders{
     position: relative;
     top: 0;
     left: 0;
-    height: 2.5vh;
+    height: 2.7vh;
     border-bottom: 0.3vh solid rgba(217, 217, 217, 1);
 }
 
@@ -959,7 +956,7 @@ body {
     left: 0;
     padding: 0;
     margin: 0;
-    font-size: 0.8vw;
+    font-size: 1.2vw;
 }
 
 #emptyShoppingCartButton{
@@ -985,7 +982,8 @@ body {
     display: flex;
     justify-content: right;
     text-align: center;
-    padding-right: 3vw;
+    padding: 0.3vw;
+    padding-right: 5vw;
 }
 
 #allItemsContainerShoppingCartBuyNowSection{
@@ -995,7 +993,11 @@ body {
     border-bottom: 0.3vh solid rgba(217, 217, 217, 1);
     font-size: 1vw;
     padding: 0.5vw;
+    padding-right: 0;
+    margin-right: 0;
+    height: 25vh;
     text-align: start;
+    overflow-y: scroll;
 }
 
 .singleItemCanBuyShoppingCart{
@@ -1004,7 +1006,9 @@ body {
     left: 0;
     padding: 0.3vw;
     margin: 0.3vw;
-    width: 47vw;
+    padding-right: 0;
+    margin-right: 0;
+    width: 50vw;
     background-color: rgba(255, 250, 237, 1);
 }
 
@@ -1012,8 +1016,10 @@ body {
     width: 8vw;
     height: 6vw;
     position: relative;
-    top: 0;
+    top: 0.3vw;
     left: 0;
+    border: 0.15vw solid rgba(217, 217, 217, 1);
+    margin: 0.3vw;
 }
 
 .titleOfItemsCanBuyCart{
@@ -1024,14 +1030,18 @@ body {
 }
 
 .deleteSingeItemCanBuyCart{
-    font-size: 1vw;
+    font-size: 0.8vw;
     position: relative;
     top: -3vw;
-    padding: 0.3vw;
+    padding: 0.15vw;
+    background-color: rgba(255, 250, 237, 1);
+    border: 0.15vw solid rgba(217, 217, 217, 1);
+    border-radius: 0.5vw;
 }
 
 .deleteSingeItemCanBuyCart:hover{
     cursor: pointer;
+    background-color: rgba(217, 217, 217, 1);
 }
 
 .quantityOfItemCanBuyCart{
@@ -1054,5 +1064,171 @@ body {
     position: relative;
     top: 0vw;
     left: 0vw;
+    padding: 0.2vw;
+    margin: 0.2vw;
+    width: 47vw;
+    text-align: start;
+}
+
+#totalTextBuyNowShoppingCart{
+    position: relative;
+    top: 0;
+    left: 0.3vw;
+    font-size: 1.2vw;
+}
+
+#totalKrBuyNowShoppingCart{
+    position: relative;
+    top: 0;
+    left: 38vw;
+    font-size: 1.5vw;
+}
+
+#checkOutPageButtonShoppingCart{
+    position: relative;
+    top: 2vw;
+    left: 32vw;
+    font-size: 1vw;
+    background-color: rgba(255, 250, 237, 1);
+    border: 0.15vw solid rgba(217, 217, 217, 1);
+    border-radius: 1vw;
+}
+
+#checkOutPageButtonShoppingCart:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#auctionsUserHaveBidOnContainerShoppingCart{
+    position: relative;
+    left: 0;
+    top: 0;
+    height: 40vh;
+    width: 52vw;
+    font-size: 1vw;
+    text-align: start;
+    margin: 0;
+    margin-top: 1vw;
+    overflow-y: scroll;
+}
+
+#auctionsHeaderShoppingCart{
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 2vw;
+    border-bottom: 0.3vh solid rgba(217, 217, 217, 1);
+    font-size: 1.2vw;
     padding: 0.3vw;
+    margin: 0;
+}
+
+#winningBidHeaderShoppingCart{
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 1.5vw;
+    border-bottom: 0.3vh solid rgba(217, 217, 217, 1);
+    font-size: 1vw;
+    padding: 0.3vw;
+    padding-top: 0.5vw;
+    margin: 0;
+}
+
+#winningBidsItemsContainerShoppingCart{
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 20vh;
+    border-bottom: 0.3vh solid rgba(217, 217, 217, 1);
+    font-size: 0.8vw;
+}
+
+.singleItemContainerInWinningBidsShoppingcart{
+    position: relative;
+    top: 0;
+    left: 0;
+    padding: 0.3vw;
+    margin: 0.3vw;
+    padding-right: 0;
+    margin-right: 0;
+    width: 50vw;
+    height: 8vw;
+    background-color: rgba(255, 250, 237, 1);
+}
+
+.winningBidsItemImageShoppingCart{
+    width: 8vw;
+    height: 6vw;
+    position: relative;
+    top: 0.3vw;
+    left: 0;
+    border: 0.15vw solid rgba(217, 217, 217, 1);
+    margin: 0.3vw;
+}
+
+.winningBidsItemTitleShoppingCart{
+    font-size: 1vw;
+    position: relative;
+    top: -3vw;
+    padding: 0.5vw;
+}
+
+.winningBidsItemRemoveButtonShoppingCart{
+    font-size: 0.8vw;
+    position: relative;
+    top: -3vw;
+    padding: 0.15vw;
+    background-color: rgba(255, 250, 237, 1);
+    border: 0.15vw solid rgba(217, 217, 217, 1);
+    border-radius: 0.5vw;
+}
+.winningBidsItemRemoveButtonShoppingCart{
+    cursor: pointer;
+}
+
+.winningItemMaxBidShoppingCart{
+    font-size: 1.2vw;
+    position: relative;
+    top: -7vw;
+    left: 26vw;
+    width: 7vw;
+    padding: 0;
+    margin: 0;
+}
+
+.winningItemDeadlineShoppingCart{
+    font-size: 1vw;
+    position: relative;
+    top: -6.5vw;
+    left: 26vw;
+    width: 24vw;
+    padding: 0;
+    margin: 0;
+}
+
+.winningItemIncreaseBidInputShoppingCart{
+    font-size: 1vw;
+    position: relative;
+    top: -6vw;
+    left: 26vw;
+    font-size: 1vw;
+    background-color: rgba(217, 217, 217, 1);
+    border-radius: 0.5vw;
+}
+
+.winningItemIncreaseBidButtonShoppingCart{
+    font-size: 0.8vw;
+    position: relative;
+    top: -6vw;
+    left: 28vw;
+    font-size: 1vw;
+    background-color: rgba(255, 250, 237, 1);
+    border: 0.15vw solid rgba(217, 217, 217, 1);
+    border-radius: 1vw;
+}
+
+.winningItemIncreaseBidButtonShoppingCart:hover{
+    cursor: pointer;
+    text-decoration: underline;
 }
