@@ -384,7 +384,7 @@ const model = {
                 category:['Sykler','Vintage'],
                 auction:false,
                 deadline:'',
-                images:['https://i.imgur.com/Y8DkhIW.jpeg','https://i.pinimg.com/originals/00/ca/d6/00cad6fe33b271fe5b3805ede7d8d4d3.jpg'],
+                images:['https://i.pinimg.com/originals/00/ca/d6/00cad6fe33b271fe5b3805ede7d8d4d3.jpg'],
                 inStock:true,
                 deliver:true,
                 mainImage: '',
