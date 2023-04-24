@@ -1539,7 +1539,7 @@ function showFilteredProducts(){
                     <div class = "filteredProductPriceContainer">
                         <label class = "filteredProductPriceLabel">${model.data.items[model.inputs.category.filteredItems[i]-1].price},-</label>
                         ${model.data.items[model.inputs.category.filteredItems[i]-1].auction || model.app.loggedInStatus && model.data.users[model.app.userId].permissions == "admin"?``:`<button onclick = "addToShoppingCart('${model.data.items[model.inputs.category.filteredItems[i]-1].id}')">Legg til I handlekurv</button>`}
-                        <button class = "filteredProductGoToButton" onclick = "goToProduct(${i})">Gå til produktside</button>
+                        <button class = "filteredProductGoToButton" onclick = "goToProduct(${model.inputs.category.filteredItems[i]-1})">Gå til produktside</button>
                     </div>
                 </div>
             </div>`
