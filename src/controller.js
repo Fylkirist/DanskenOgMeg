@@ -1209,13 +1209,30 @@ async function uploadImg(event){
 }
 
 function raiseBid(productId){
-    if(model.data.auctionListe[productId].bids[model.app.userId]){
-        model.data.auctionListe[productId].bids[model.app.userId].push(model.inputs.product.bidIncrease)
+    const regexp = /^\d+$/;
+    if(!regexp.test(model.inputs.product.bidIncrease)){
+        return
+    }
+    const item = model.data.auctionListe.find(elem => elem.itemId == productId)
+    if(item === undefined){
+        model.data.auctionListe.push({
+            itemId:productId,
+            bids:{}
+        })
+    }
+    if(item.bids[model.app.userId] === undefined){
+        item.bids[model.app.userId]={
+            bid:[parseInt(model.inputs.product.bidIncrease)],
+            deleted:false,
+            autoBid:0,
+            vunnet:false
+        }
     }
     else{
-        model.data.auctionListe[productId].bids[model.app.userId] = [model.inputs.product.bidIncrease]
+        item.bids[model.app.userId].bid.push(parseInt(model.inputs.product.bidIncrease))
     }
     model.inputs.product.bidIncrease = 0
+    setDisplayPrice(productId)
     updateView()
 }
 
