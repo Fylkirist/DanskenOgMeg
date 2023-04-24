@@ -986,15 +986,15 @@ function showShoppingCart(){
         html = /*html*/`
             <div class="handlevognContainer">
                 <div class="handlevognHeader">Handlevogn</div>
-                <div>
-                    <div id="kanBuyNowHeaders"><p>Varer du kan kjøpe nå -</p><span onclick="clearShoppingCart()">Tøm handlevogn</span></div>
-                    <div class="horizontalLines">
-                        <span>Pris</span>
+                <div id=${model.app.userId ? "allItemsBuyNowShoppingCartContainer" : "allItemsBuyNowShoppingCartContainerAnonym"}>
+                    <div id="kanBuyNowHeaders"><p id="canBuyNowTextCart">Varer du kan kjøpe nå -</p><span id="emptyShoppingCartButton" onclick="clearShoppingCart()">Tøm handlevogn</span></div>
+                    <div id="priceHeaderShoppingCart">
+                        <span id="priceTextShoppingCart">Pris</span>
                     </div>
-                    <div class="allItemsCanBuy">
+                    <div id="allItemsContainerShoppingCartBuyNowSection">
                     ${showItemsCanBuyNow()}
                     </div>
-                    <div class="totalPrice">
+                    <div id="totalPriceContainerShoppingCart">
                         <span>Total</span>
                         <span>${model.inputs.shoppingCart.totalPrice}</span>
                         <button ${(model.app.userId && model.data.users[model.app.userId].shoppingCart.length != 0) || (!model.app.userId && model.inputs.shoppingCart.items.canBuyNow.length != 0) ? '' : 'disabled'} onclick="changeView('checkoutPage')">Gå til kassen</button>
@@ -1028,12 +1028,12 @@ function showItemsCanBuyNow(){
     if(model.app.loggedInStatus){
         for(let i = 0; i<model.data.users[model.app.userId].shoppingCart.length;i++){
             html += `
-            <div>
+            <div class="singleItemCanBuyShoppingCart">
                 <img class="imageOfItemsCanBuyCart" src = "${model.data.items[eval(model.data.users[model.app.userId].shoppingCart[i].item)-1].images[0]}"/>
-                <span>${model.data.items[eval(model.data.users[model.app.userId].shoppingCart[i].item)-1].title}</span>
-                <button onclick = "removeFromUserShoppingCart(${i})">X</button>
-                <span>${model.data.items[eval(model.data.users[model.app.userId].shoppingCart[i].item)-1].price}</span>
-                <span>x${model.data.users[model.app.userId].shoppingCart[i].quantity}</span>
+                <span class="titleOfItemsCanBuyCart">${model.data.items[eval(model.data.users[model.app.userId].shoppingCart[i].item)-1].title}</span>
+                <button class="deleteSingeItemCanBuyCart" onclick = "removeFromUserShoppingCart(${i})">X</button>
+                <span class="priceOfSingleItemCanBuyCart">${model.data.items[eval(model.data.users[model.app.userId].shoppingCart[i].item)-1].price * model.data.users[model.app.userId].shoppingCart[i].quantity}</span>
+                <span class="quantityOfItemCanBuyCart">x${model.data.users[model.app.userId].shoppingCart[i].quantity}</span>
             </div>
             `
             model.inputs.shoppingCart.totalPrice += model.data.items[eval(model.data.users[model.app.userId].shoppingCart[i].item)-1].price * model.data.users[model.app.userId].shoppingCart[i].quantity
@@ -1045,11 +1045,11 @@ function showItemsCanBuyNow(){
                 
                 if(model.inputs.shoppingCart.items.canBuyNow[j].id === model.data.items[i].id){
                     html += `
-                    <div>
+                    <div class="singleItemCanBuyShoppingCart">
                         <img class="imageOfItemsCanBuyCart" src="${model.data.items[i].images[0]}" />
-                        <span>${model.data.items[i].title}</span>
-                        <button onclick="deleteItemFromShoppingCart(${j})">X</button>
-                        <span>${model.data.items[i].price}</span>
+                        <span class="titleOfItemsCanBuyCart">${model.data.items[i].title}</span>
+                        <button class="deleteSingeItemCanBuyCart" onclick="deleteItemFromShoppingCart(${j})">X</button>
+                        <span class="priceOfSingleItemCanBuyCart">${model.data.items[i].price}</span>
                     </div>`;
                     
                     model.inputs.shoppingCart.totalPrice += model.data.items[i].price;
