@@ -867,18 +867,18 @@ body {
 }
 
 #canBuyNowTextCart{
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative;
+    top: -0.5vw;
+    left: -20vw;
     padding: 0;
     margin: 0;
     font-size: 1.2vw;
 }
 
 #emptyShoppingCartButton{
-    position: absolute;
-    top: 0;
-    right: 1vw;
+    position: relative;
+    top: -2vw;
+    left: 20vw;
     font-size: 0.8vw;
 }
 
@@ -893,12 +893,13 @@ body {
     top: 0;
     left: 0;
     height: 2.5vh;
-    font-size: 1.2vw;
+    font-size: 0.8vw;
     border-bottom: 0.3vh solid rgba(217, 217, 217, 1);
     display: flex;
+    flex-wrap: wrap;
     justify-content: right;
     text-align: center;
-    padding: 0.3vw;
+    padding: 0.1vw;
     padding-right: 5vw;
 }
 
@@ -932,7 +933,7 @@ body {
     width: 8vw;
     height: 6vw;
     position: relative;
-    top: 0.3vw;
+    top: 0.1vw;
     left: 0;
     border: 0.15vw solid rgba(217, 217, 217, 1);
     margin: 0.3vw;
@@ -941,14 +942,14 @@ body {
 .titleOfItemsCanBuyCart{
     font-size: 1vw;
     position: relative;
-    top: -3vw;
+    top: 0vw;
     padding: 0.5vw;
 }
 
 .deleteSingeItemCanBuyCart{
     font-size: 0.8vw;
     position: relative;
-    top: -3vw;
+    top: 0vw;
     padding: 0.15vw;
     background-color: rgba(255, 250, 237, 1);
     border: 0.15vw solid rgba(217, 217, 217, 1);
@@ -963,14 +964,14 @@ body {
 .quantityOfItemCanBuyCart{
     font-size: 1.5vw;
     position: relative;
-    top: -3vw;
+    top: 0vw;
     padding: 0.3vw;
 }
 
 .priceOfSingleItemCanBuyCart{
     font-size: 1.2vw;
     position: absolute;
-    top: 2vw;
+    top: 2.5vw;
     left: 43vw;
     padding: 0.3vw;
 }
@@ -1042,10 +1043,11 @@ body {
     position: relative;
     top: 0;
     left: 0;
-    height: 1.5vw;
+    height: 1.7vw;
     border-bottom: 0.3vh solid rgba(217, 217, 217, 1);
     font-size: 1vw;
-    padding: 0.3vw;
+    padding: 0.1vw;
+    padding-left: 0.3vw;
     padding-top: 0.5vw;
     margin: 0;
 }
@@ -1078,7 +1080,7 @@ body {
     width: 8vw;
     height: 6vw;
     position: relative;
-    top: 0.3vw;
+    top: 0vw;
     left: 0;
     border: 0.15vw solid rgba(217, 217, 217, 1);
     margin: 0.3vw;
@@ -1087,14 +1089,14 @@ body {
 .winningBidsItemTitleShoppingCart{
     font-size: 1vw;
     position: relative;
-    top: -3vw;
+    top: 0vw;
     padding: 0.5vw;
 }
 
 .winningBidsItemRemoveButtonShoppingCart{
     font-size: 0.8vw;
     position: relative;
-    top: -3vw;
+    top: 0vw;
     padding: 0.15vw;
     background-color: rgba(255, 250, 237, 1);
     border: 0.15vw solid rgba(217, 217, 217, 1);
@@ -1107,7 +1109,7 @@ body {
 .winningItemMaxBidShoppingCart{
     font-size: 1.2vw;
     position: relative;
-    top: -7vw;
+    top: -6.5vw;
     left: 26vw;
     width: 7vw;
     padding: 0;
@@ -1155,10 +1157,11 @@ body {
     position: relative;
     top: 0;
     left: 0;
-    height: 1.5vw;
+    height: 1.7vw;
     border-bottom: 0.3vh solid rgba(217, 217, 217, 1);
     font-size: 1vw;
-    padding: 0.3vw;
+    padding: 0.1vw;
+    padding-left: 0.3vw;
     padding-top: 0.5vw;
     margin: 0;
 }
@@ -1191,7 +1194,7 @@ body {
     width: 8vw;
     height: 6vw;
     position: relative;
-    top: 0.3vw;
+    top: 0vw;
     left: 0;
     border: 0.15vw solid rgba(217, 217, 217, 1);
     margin: 0.3vw;
@@ -1200,14 +1203,14 @@ body {
 .losingBidsItemTitleShoppingCart{
     font-size: 1vw;
     position: relative;
-    top: -3vw;
+    top: 0vw;
     padding: 0.5vw;
 }
 
 .losingBidsItemRemoveButtonShoppingCart{
     font-size: 0.8vw;
     position: relative;
-    top: -3vw;
+    top: 0vw;
     padding: 0.15vw;
     background-color: rgba(255, 250, 237, 1);
     border: 0.15vw solid rgba(217, 217, 217, 1);
@@ -1220,7 +1223,7 @@ body {
 .losingItemMaxBidShoppingCart{
     font-size: 1vw;
     position: relative;
-    top: -7vw;
+    top: -6.5vw;
     left: 26vw;
     width: 18vw;
     padding: 0;
