@@ -656,9 +656,10 @@ body {
     background-color: #61ae26;
     border: 0.05vw solid #61ae26;
     border-radius: 0.2vw;
-    max-width: 8vw;
+    max-width: 16vw;
     max-height: 12vw;
-    width: 10vw;
+    width: 20vw;
+    height: 24vw;
     margin: 0 auto;
     padding: 1vw;
     position: absolute;
@@ -668,7 +669,7 @@ body {
   }
   
   #chatBox {
-    max-height: 7vw;
+    height: 80%;
     padding: 0.5vw;
     overflow-y: scroll;
     scroll-behavior: smooth;
@@ -1704,15 +1705,17 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-y: scroll;
 }
 
 .frontPageProductDisplayElement {
     width: 100%;
+    height: 70vh;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    margin: 5vh;
 }
 
 .frontPageCenterElem {
@@ -1721,7 +1724,6 @@ body {
     padding: 20px;
     box-sizing: border-box;
     border: 1px solid #ccc;
-    margin-bottom: 20px;
     flex-direction: column;
     background-color: #FFFAED;
 }
@@ -1753,15 +1755,25 @@ body {
 }
 
 .frontPageLeftArrow{
-    height: 100%;
+    height: 88%;
     min-width: 100px;
     background-color: #E7EBF6;
-    border-radius: 15px;
+    border-radius: 15px 0px 0px 15px;
+    display: inline;
 }
 
 .frontPageRightArrow{
-    height: 100%;
+    height: 88%;
     min-width: 100px;
     background-color: #E7EBF6;
-    border-radius: 15px;
+    border-radius: 0px 15px 15px 0px;
+    display: inline;
+}
+
+.frontPageRightArrow:hover{
+    background-color: #c9d2eb;
+}
+
+.frontPageLeftArrow:hover{
+    background-color: #c9d2eb;
 }
