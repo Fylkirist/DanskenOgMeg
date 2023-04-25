@@ -248,7 +248,7 @@ const model = {
         orderHistory: [
             {
 
-                itemId:000003,
+                itemId:"000003",
                 paid: true,
                 price:'10,000,000',
                 date:'03/01/2023',
@@ -258,7 +258,7 @@ const model = {
                 title: 'Krona Til Drøning'
             },
             {
-                itemId:000002,
+                itemId:"000002",
                 paid: true,
                 price:'10,000,000',
                 date:'03/01/2023',

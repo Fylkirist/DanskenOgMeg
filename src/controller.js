@@ -549,6 +549,9 @@ function registerUser() {
                 newUserID = "0" + newUserID
             }
             model.data.users[newUserID] = newUser
+            model.app.userId=newUserID;
+            model.app.loggedInStatus=true;
+
             model.inputs.register.registerUser = "Velkommen til Dansken & Meg antikkmarked"
             model.app.currentView = "frontPage"
         }
@@ -1313,6 +1316,7 @@ function payAtTheCheckoutPage(){
     }
     model.inputs.shoppingCart.items.canBuyNow = [];
     setUsersDataForCheckOutPage();
+    changeView("frontPage");
     updateView();
 }
 

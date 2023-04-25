@@ -952,7 +952,7 @@ function profileMenuComponent() {
     else if (model.data.users[model.app.userId].permissions === 'user') {
         html += `
         <div id="dropdownContent">
-            <div class="dropdownContent-1" onclick="changeView('myProfilePage')">Min Profil</div>
+            <div class="dropdownContent-1" onclick="changeView('editUserPage')"><i class="bi bi-person-circle"></i> Min Profil</div>
             <div class="dropdownContent-line"> </div>
             <div onclick="changeView('filteredPage')">Alle produkter</div>
             <div class="dropdownContent-line"> </div>
@@ -967,7 +967,7 @@ function profileMenuComponent() {
     if (model.data.users[model.app.userId] && model.data.users[model.app.userId].permissions === "admin") {
         html += `
         <div id="dropdownContent">
-            <div class="dropdownContent-1" onclick="changeView('adminMessage')">Innbox</div>
+            <div class="dropdownContent-1" onclick="changeView('adminMessage')"><i class="bi bi-chat-dots"></i> Innbox</div>
             <div class="dropdownContent-line"> </div>
             <div class="dropdownContent-1" onclick="changeView('filteredPage')">Alle produkter</div>
             <div class="dropdownContent-line"> </div>
@@ -1168,34 +1168,40 @@ function calculateDeadline(itemsId){
 
 function registerFormView() {
     let container = /*html */`
-      <div class="form-container">
-        <div class="form-group">
-          <input type="text" placeholder="First Name" oninput="model.inputs.register.firstName = this.value;">
-          <input type="text" placeholder="Last Name" oninput="model.inputs.register.lastName = this.value;">
-        </div>
-        <div class="form-group">
-          <input type="email" placeholder="Email" oninput="model.inputs.register.email = this.value;">
-          <input type="tel" placeholder="Telefon Nr:" oninput="model.inputs.register.mobile = this.value;">
-        </div>
-        <div class="form-group">
-          <input type="text" placeholder="Brukernavn:" oninput="model.inputs.register.userName = this.value;">
-          <input type="password" placeholder="Passord:" oninput="model.inputs.register.password = this.value;">
-          <input type="password" placeholder="Gjenta Passord:" oninput="model.inputs.register.repeatPassword = this.value;">
-        </div>
-        <div class="form-group">
-          <input type="text" placeholder="Adresse:" oninput="model.inputs.register.address = this.value;">
-          <input type="text" placeholder="Post nummer:" oninput="model.inputs.register.zip = this.value;">
-          <input type="text" placeholder="By:" oninput="model.inputs.register.city = this.value;">
-        </div>
-        <div class="form-group">
-          <input type="text" placeholder="Card info" onchange="model.inputs.register.cardNumber = this.value; isValid(this)">
-          <input type="date" oninput="model.inputs.register.fromDate = this.value;">
-          <input type="text" placeholder="CVE" oninput="model.inputs.register.cve = this.value;">
-        </div>
-        <button onclick="goBackToFrontPage()">Tilbake</button>
-        <button onclick="registerUser()">Register</button>
-        <div>${model.inputs.register.meldingRegister}</div>
-      </div>`;
+    <h1 class ="BannerRegister">Registering For Dansken & Meg</h1>
+    <div class="register-form-container">
+    <div class="register-formBox">
+    <div class="tittleRegister">Fyllut Skjema</div>
+    <div class="register-form-group">
+    <input type="text" class="register-Form-Input" placeholder="First Name" oninput="model.inputs.register.firstName = this.value;">
+    <input type="text" class="register-Form-Input" placeholder="Last Name" oninput="model.inputs.register.lastName = this.value;">
+  </div>
+  <div class="register-form-group">
+    <input type="email" class="register-Form-Input" placeholder="Email" oninput="model.inputs.register.email = this.value;">
+    <input type="tel" class="register-Form-Input" placeholder="Telefon Nr:" oninput="model.inputs.register.mobile = this.value;">
+  </div>
+  <div class="register-form-group">
+    <input type="text" class="register-Form-Input" placeholder="Brukernavn:" oninput="model.inputs.register.userName = this.value;">
+    <input type="password" class="register-Form-Input" placeholder="Passord:" oninput="model.inputs.register.password = this.value;">
+    <input type="password" class="register-Form-Input" placeholder="Gjenta Passord:" oninput="model.inputs.register.repeatPassword = this.value;">
+  </div>
+  <div class="register-form-group">
+    <input type="text" class="register-Form-Input" placeholder="Adresse:" oninput="model.inputs.register.address = this.value;">
+    <input type="text" class="register-Form-Input" placeholder="Post nummer:" oninput="model.inputs.register.zip = this.value;">
+    <input type="text" class="register-Form-Input" placeholder="By:" oninput="model.inputs.register.city = this.value;">
+  </div>
+  <div class="register-form-group">
+    <label class="invinsible-card">1755245733</label><input type="text" class="register-Form-Input" placeholder="Card info" onchange="model.inputs.register.cardNumber = this.value; isValid(this)">
+    <input type="date" class="register-Form-Input" oninput="model.inputs.register.fromDate = this.value;">
+    <input type="text" class="register-Form-Input" placeholder="CVE" oninput="model.inputs.register.cve = this.value;">
+  </div>
+  <div class="register-form-group">
+  <button class="register-form-btn" onclick="goBackToFrontPage()">Tilbake</button>
+  <button class="register-form-btn" onclick="registerUser()">Register</button>
+  <div>${model.inputs.register.meldingRegister}</div>
+  </div>
+  </div>
+</div>`
     return container;
 }
 
@@ -1215,17 +1221,17 @@ function frontPageProductView(){
     let botElem = model.data.frontPageBottom.length > 0?generateFrontPageElement(model.data.frontPageBottom[model.app.frontPageCurrentShowing.bottom],model.app.frontPageCurrentShowing.botPic,"bot"):`<div class = "frontPagePlaceholder"></div>`
     return `
         <div id = "frontPageProductDisplay">
+            <div><h1>Utstilte auksjoner</h1></div>
             <div class = "frontPageProductDisplayElement">
-                <div><h1>Utstilte auksjoner</h1></div>
-                <div onclick = "changeFrontPageTopProduct(-1)" class = "frontPageLeftArrow"></div>
+                <div onclick = "changeFrontPageTopProduct(-1)" class = "frontPageLeftArrow"><i class="bi bi-caret-left-square"></i></div>
                 ${topElem}
-                <div onclick = "changeFrontPageTopProduct(1)" class = "frontPageRightArrow"></div>
+                <div onclick = "changeFrontPageTopProduct(1)" class = "frontPageRightArrow"><i class="bi bi-caret-right-square"></i></div>
             </div>
+            <div><h1>Utstilte varer</h1></div>
             <div class = "frontPageProductDisplayElement">
-                <div><h1>Utstilte varer</h1></div>
-                <div onclick = "changeFrontPageBotProduct(-1)" class = "frontPageLeftArrow"></div>
+                <div onclick = "changeFrontPageBotProduct(-1)" class = "frontPageLeftArrow"><i class="bi bi-caret-left-square"></i></div>
                 ${botElem}
-                <div onclick = "changeFrontPageBotProduct(1)" class = "frontPageRightArrow"></div>
+                <div onclick = "changeFrontPageBotProduct(1)" class = "frontPageRightArrow"><i class="bi bi-caret-right-square"></i></div>
             </div>
         </div>
     ` 
@@ -1236,14 +1242,14 @@ function generateFrontPageElement(item, pic, pos){
     if (model.data.items[item].auction){
         varElems = `
             <label class = "frontPagePriceDescLabel">Høyeste bud: </label>
-            <label class = "frontPagePriceLabel">${model.data.items[item].price}</label>
+            <label class = "frontPagePriceLabel">${model.data.items[item].price},-</label>
             <button class = "frontPageGoToProductButton" onclick = "goToProduct(${item})">Gå til auksjon</button>
         `
     }
     else{
         varElems = `
             <label class = "frontPagePriceDescLabel">Pris: </label>
-            <label class = "frontPagePriceLabel">${model.data.items[item].price}</label>
+            <label class = "frontPagePriceLabel">${model.data.items[item].price},-</label>
             ${model.app.loggedInStatus && model.data.users[model.app.userId].permissions == "admin"?``:`<button class = "frontPageAddProductButton" onclick = "addToShoppingCart('${model.data.items[item].id}')">Legg til i handlekurv</button>`}
             <button class = "frontPageGoToProductButton" onclick = "goToProduct(${item})">Gå til produktside</button>
         `  
@@ -1309,9 +1315,9 @@ function createSaleView(){
     }
     return /*html*/ ` 
         <div class = "CreateSaleContainer">
+        <label id = "productId">Produkt ID: ${model.inputs.createSale.newId}</label>
             <div class = "createProductTopOfPage">
                 <input id = "productName" type = "text" placeholder = "Produkt Navn" value = "${model.inputs.createSale.title}"  oninput = "model.inputs.createSale.title = this.value"/>
-                <label id = "productId">Produkt ID: ${model.inputs.createSale.newId}</label>
                 <input id = "priceInput" type = "text" placeholder = "Pris" value = "${model.inputs.createSale.price}" oninput = "model.inputs.createSale.price = this.value">
             </div>
             <input id = "productDescription" type = "text" placeholder = "Beskrivelse" value = "${model.inputs.createSale.description}" oninput = "model.inputs.createSale.description = this.value"/>
@@ -1325,6 +1331,7 @@ function createSaleView(){
                 <button id = "subCategoryAdd" onclick = "addSubCategory()">Legg til underkategori</button>
             </div>
             <div id = "galleryFrame">Bildegalleri
+                <i class="bi bi-upload"></i>
                 <input value = "${model.inputs.createSale.addImage}" oninput = "uploadImg(event)" type = "file" id = "galleryInput">
                 ${model.inputs.createSale.images.map(img => `<img class = "newProductImageGalleryElement" src = "${img}"></img>`).join('')}
             </div>
@@ -1370,15 +1377,16 @@ function orderHistoryView (){
     if(model.data.users[model.app.userId].permissions === "admin"){
         for(let i = 0; i < model.data.orderHistory.length; i++){
         /*html*/
-            html+= `<div>
-                <div id = "itemID">Item ID: ${model.data.orderHistory[i].itemId}</div>
-                <div id = "staus">Betalt: ${model.data.orderHistory[i].paid}</div>
-                <div id = "pris">Pris: ${model.data.orderHistory[i].price}</div>
-                <div id = "date">Dato: ${model.data.orderHistory[i].date}</div>
-                <div id = "type">Type: ${model.data.orderHistory[i].type}</div>
-                <div id = "userId">Kjøper : ${model.data.orderHistory[i].userId} 
-                Fornavn: ${model.data.users[model.data.orderHistory[i].userId].firstname}
-                Etternavn: ${model.data.users[model.data.orderHistory[i].userId].surname} </div>
+            html+= `<div class = "orderHistoryElem">
+                <img class = "orderHistoryItemImage" src = ${model.data.orderHistory[i].image}>
+                <div class = "orderHistoryItemID">Item ID: ${model.data.orderHistory[i].itemId}</div>
+                <div class = "orderHistoryStatus">Betalt: ${model.data.orderHistory[i].paid}</div>
+                <div class = "orderHistoryPrice">Pris: ${model.data.orderHistory[i].price}</div>
+                <div class = "orderHistoryDate">Dato: ${model.data.orderHistory[i].date}</div>
+                <div class = "orderHistoryType">Type: ${model.data.orderHistory[i].type}</div>
+                <div class = "orderHistoryUserId">Kjøper : ${model.data.orderHistory[i].userId} <br>
+                Fornavn: ${model.data.users[model.data.orderHistory[i].userId].firstName} <br>
+                Etternavn: ${model.data.users[model.data.orderHistory[i].userId].surName} </div>
             </div>`
             }
             }
@@ -1388,18 +1396,18 @@ function orderHistoryView (){
                         
                  /*html*/
                     html+=`<ul>
-                        <div id = "title">Produkt Navn: ${model.data.orderHistory[i].title}</div>
-                        <img id = "itemImage" src = ${model.data.orderHistory[i].image}>
-                        <div id = "type">Type: ${model.data.orderHistory[i].type}</div>
-                        <div id = "date">Dato: ${model.data.orderHistory[i].date}</div>
-                        <div id = "pris">Pris: ${model.data.orderHistory[i].price}</div>
+                        <div class = "orderHistoryTitle">Produkt Navn: ${model.data.orderHistory[i].title}</div>
+                        <img class = "orderHistoryItemImage" src = ${model.data.orderHistory[i].image}>
+                        <div class = "orderHistoryType">Type: ${model.data.orderHistory[i].type}</div>
+                        <div class = "orderHistoryDate">Dato: ${model.data.orderHistory[i].date}</div>
+                        <div class = "orderHistoryPrice">Pris: ${model.data.orderHistory[i].price}</div>
                     </ul>`
                 }
             } 
         }
         return /*html*/ `
             <div id = "mainOrderHistoryDiv">
-                <h1 id = "topText">Orderhistorikk</h1>
+                <h1 id = "orderHistoryTopText">Kjøpshistorikk</h1>
                 <div class = "OrderHistoryContainer">
                     ${html}
                 </div>
@@ -1699,24 +1707,24 @@ function checkOut(){
     else {
         html = /*html*/
             `
-            <div class= "checkOutComponentContainer">
-                <div class="checkOutLeftSideContainer">
+            <div id= "checkOutComponentContainer">
+                <div id="checkOutLeftSideContainer">
                     ${(!model.app.userId && model.inputs.shoppingCart.items.canBuyNow.length == 0) || (model.app.userId && model.data.users[model.app.userId].shoppingCart.length == 0) ? 
                         '' :
                         `
-                        <div class="checkOutAddress">
+                        <div id="checkOutAddress">
                         <p>Hvem skal orden sendes til?</p>
                             ${model.app.loggedInStatus ? 
                                 '' : 
                                 '<p><span onclick="loginDropDown()">Logg inn </span>eller fortsett under. Du kan opprette en konto etter at du har betalt.</p>'
                             }
-                        <p>Fornavn: <input type="text" value="${model.inputs.checkOutPage.firstName}" onchange="model.inputs.checkOutPage.firstName = this.value, updateView()"/></p>
-                        <p>Etternavn: <input type="text" value="${model.inputs.checkOutPage.lastName}" onchange="model.inputs.checkOutPage.lastName = this.value, updateView()"/></p>
-                        <p>Addresse: <input type="text" value="${model.inputs.checkOutPage.address}" onchange="model.inputs.checkOutPage.address = this.value, updateView()"/></p>
-                        <p>Zip: <input type="text" value="${model.inputs.checkOutPage.zipCode}" onchange="model.inputs.checkOutPage.zipCode = this.value, updateView()"/></p>
-                        <p>E-post: <input type="text" value="${model.inputs.checkOutPage.email}" onchange="checkValidityOfEmail(this.value)"/></p>
+                        <p>Fornavn: <input id="firstNameInputCheckout" type="text" value="${model.inputs.checkOutPage.firstName}" onchange="model.inputs.checkOutPage.firstName = this.value, updateView()"/></p>
+                        <p>Etternavn: <input id="lastNameInputCheckout" type="text" value="${model.inputs.checkOutPage.lastName}" onchange="model.inputs.checkOutPage.lastName = this.value, updateView()"/></p>
+                        <p>Addresse: <input id="addressInputCheckout" type="text" value="${model.inputs.checkOutPage.address}" onchange="model.inputs.checkOutPage.address = this.value, updateView()"/></p>
+                        <p>Zip: <input id="zipInputCheckout" type="text" value="${model.inputs.checkOutPage.zipCode}" onchange="model.inputs.checkOutPage.zipCode = this.value, updateView()"/></p>
+                        <p>E-post: <input id="emailInputCheckout" type="text" value="${model.inputs.checkOutPage.email}" onchange="checkValidityOfEmail(this.value)"/></p>
                         ${model.app.checkOut.invalidEmailOnCheckOutPage ? '<p style="color: red;">Invalid E-post</p>' : ''}
-                        <p>Mobil: <input type="text" value="${model.inputs.checkOutPage.mobile}" onchange="model.inputs.checkOutPage.mobile = this.value, updateView()"/></p>
+                        <p>Mobil: <input id="mobileInputCheckout" type="text" value="${model.inputs.checkOutPage.mobile}" onchange="model.inputs.checkOutPage.mobile = this.value, updateView()"/></p>
                             ${!model.inputs.checkOutPage.firstName ||
                             !model.inputs.checkOutPage.lastName ||
                             !model.inputs.checkOutPage.address ||
@@ -1725,12 +1733,12 @@ function checkOut(){
                             model.app.checkOut.invalidEmailOnCheckOutPage ||
                             !model.inputs.checkOutPage.mobile ?
                             '<p style="color: red;">Fyll ut alle feltene.</p>' :
-                            `<button onclick="model.inputs.checkOutPage.addressFilled = true, updateView()">Fortsett</button>`
+                            `<button id="addressCompletedButtonCheckout" onclick="model.inputs.checkOutPage.addressFilled = true, updateView()">Fortsett</button>`
                             }
                         </div>
                         ${model.inputs.checkOutPage.addressFilled ?
                         `
-                        <div class="checkOutDeliveryMethod">
+                        <div id="checkOutDeliveryMethod">
                             <p>Velg en leveringsmetode:</p>
                             <form>
                                 <input type="checkbox" id="deliveryOption1" name="deliveryOption1" value="1" onchange= "setDeliveryMethod(this.value)" ${model.inputs.checkOutPage.deliveryMethod.butikk}/>
@@ -1741,7 +1749,7 @@ function checkOut(){
                                 <label for="deliveryOption3">Levering uten innbæring - 200kr</label><br>
                             </form>
                             ${model.inputs.checkOutPage.selectedDeliveryMethod ?
-                                `<button onclick="model.inputs.checkOutPage.deliveryMethod.selected = true, updateView()">Fortsett</button>` :
+                                `<button id="deliveryCompletedButtonCheckout" onclick="model.inputs.checkOutPage.deliveryMethod.selected = true, updateView()">Fortsett</button>` :
                                 ''  
                             }
                         </div> 
@@ -1750,14 +1758,14 @@ function checkOut(){
                         }
                         ${model.inputs.checkOutPage.deliveryMethod.selected ?
                         `
-                            <div class="checkOutPaymentMethod">
+                            <div id="checkOutPaymentMethod">
                                 ${model.app.loggedInStatus ? 
                                     selectCard() : 
-                                    `<p>Card Number: <input type="text" value="${model.inputs.checkOutPage.cardNumber}" onchange="model.inputs.checkOutPage.cardNumber = this.value, updateView()"/></p>
-                                    <p>Expiration Date: <input type="text" value="${model.inputs.checkOutPage.expirationDate}" onchange="model.inputs.checkOutPage.expirationDate = this.value, updateView()"/></p>
-                                    <p>cvc: <input type="text" value="${model.inputs.checkOutPage.cvc}" onchange="model.inputs.checkOutPage.cvc = this.value, updateView()"/></p>
-                                    <p>Card Holders First Name: <input type="text" value="${model.inputs.checkOutPage.cardHolderFirstName}" onchange="model.inputs.checkOutPage.cardHolderFirstName = this.value, updateView()"/></p>
-                                    <p>Card Holders Last Name: <input type="text" value="${model.inputs.checkOutPage.cardHolderLastName}" onchange="model.inputs.checkOutPage.cardHolderLastName = this.value, updateView()"/></p>
+                                    `<p>Card Number: <input class="cardNumberInputCheckout" type="text" value="${model.inputs.checkOutPage.cardNumber}" onchange="model.inputs.checkOutPage.cardNumber = this.value, updateView()"/></p>
+                                    <p>Expiration Date: <input class="cardDateInputCheckout" type="text" value="${model.inputs.checkOutPage.expirationDate}" onchange="model.inputs.checkOutPage.expirationDate = this.value, updateView()"/></p>
+                                    <p>cvc: <input class="cardCvcInputCheckout" type="text" value="${model.inputs.checkOutPage.cvc}" onchange="model.inputs.checkOutPage.cvc = this.value, updateView()"/></p>
+                                    <p>Card Holders First Name: <input class="cardFirstNameInputCheckout" type="text" value="${model.inputs.checkOutPage.cardHolderFirstName}" onchange="model.inputs.checkOutPage.cardHolderFirstName = this.value, updateView()"/></p>
+                                    <p>Card Holders Last Name: <input class="cardLastNameInputCheckout" type="text" value="${model.inputs.checkOutPage.cardHolderLastName}" onchange="model.inputs.checkOutPage.cardHolderLastName = this.value, updateView()"/></p>
                                      `
                                 }
                             </div>
@@ -1770,12 +1778,12 @@ function checkOut(){
                         !model.inputs.checkOutPage.cardHolderFirstName ||
                         !model.inputs.checkOutPage.cardHolderLastName ?
                             '' :
-                            '<button onclick="payAtTheCheckoutPage()">Betal</button>'
+                            '<button id="payButtonCheckout" onclick="payAtTheCheckoutPage()">Betal</button>'
                         }
                     `
                     }
                 </div>
-                <div class="checkOutRightSideContainer">
+                <div id="checkOutRightSideContainer">
                     ${model.inputs.checkOutPage.emptyShoppingCart ? 
                         '<p>Du har ingenting i handlevogn.</p>' :
                         betalingsOversikt()
@@ -1790,34 +1798,34 @@ function selectCard(){
     let html= '';
     if (model.data.users[model.app.userId].paymentInformation[0].cardNumber.length < 1){
         html = `
-            <p>Card Number: <input type="text" value="${model.inputs.checkOutPage.cardNumber}" onchange="model.inputs.checkOutPage.cardNumber = this.value, updateView()"/></p>
-            <p>Expiration Date: <input type="text" value="${model.inputs.checkOutPage.expirationDate}" onchange="model.inputs.checkOutPage.expirationDate = this.value, updateView()"/></p>
-            <p>cvc: <input type="text" value="${model.inputs.checkOutPage.cvc}" onchange="model.inputs.checkOutPage.cvc = this.value, updateView()"/></p>
-            <p>Card Holders First Name: <input type="text" value="${model.inputs.checkOutPage.cardHolderFirstName}" onchange="model.inputs.checkOutPage.cardHolderFirstName = this.value, updateView()"/></p>
-            <p>Card Holders Last Name: <input type="text" value="${model.inputs.checkOutPage.cardHolderLastName}" onchange="model.inputs.checkOutPage.cardHolderLastName = this.value, updateView()"/></p>
+            <p>Card Number: <input class="cardNumberInputCheckout" type="text" value="${model.inputs.checkOutPage.cardNumber}" onchange="model.inputs.checkOutPage.cardNumber = this.value, updateView()"/></p>
+            <p>Expiration Date: <input class="cardDateInputCheckout" type="text" value="${model.inputs.checkOutPage.expirationDate}" onchange="model.inputs.checkOutPage.expirationDate = this.value, updateView()"/></p>
+            <p>cvc: <input class="cardCvcInputCheckout" type="text" value="${model.inputs.checkOutPage.cvc}" onchange="model.inputs.checkOutPage.cvc = this.value, updateView()"/></p>
+            <p>Card Holders First Name: <input class="cardFirstNameInputCheckout" type="text" value="${model.inputs.checkOutPage.cardHolderFirstName}" onchange="model.inputs.checkOutPage.cardHolderFirstName = this.value, updateView()"/></p>
+            <p>Card Holders Last Name: <input class="cardLastNameInputCheckout" type="text" value="${model.inputs.checkOutPage.cardHolderLastName}" onchange="model.inputs.checkOutPage.cardHolderLastName = this.value, updateView()"/></p>
         `;
     }
     else {
-        html = '<p>Velg kort:</p>';
         if(!model.inputs.checkOutPage.addNewCard){
+            html = '<p>Velg kort:</p>';
             for(let i = 0; i < model.data.users[model.app.userId].paymentInformation.length; i++){
                 let lastFourDigitOfCard = parseInt(model.data.users[model.app.userId].paymentInformation[i].cardNumber.split('').splice(8,4).join(''));
                 html += `
-                    <div onclick="cardSelected(${i})">
+                    <div class="cardBoxCheckout" onclick="cardSelected(${i})">
                         <p>Kort Nummer: ****-****-${lastFourDigitOfCard}
                         ${checkCardValidTil(i)}
                     </div>
                 `;
             }
         }
-        html += `<button onclick="addNewCardInCheckOut()">Legg til nytt kort</button>`;
+        html += !model.inputs.checkOutPage.addNewCard ? `<button id="addNewCardButtonCheckOut" onclick="addNewCardInCheckOut()">Legg til nytt kort</button>` : '';
         if(model.inputs.checkOutPage.addNewCard){
             html += `
-                    <p>Card Number: <input type="text" value="${model.inputs.checkOutPage.cardNumber}" onchange="model.inputs.checkOutPage.cardNumber = this.value, updateView()"/></p>
-                    <p>Expiration Date: <input type="text" value="${model.inputs.checkOutPage.expirationDate}" onchange="model.inputs.checkOutPage.expirationDate = this.value, updateView()"/></p>
-                    <p>cvc: <input type="text" value="${model.inputs.checkOutPage.cvc}" onchange="model.inputs.checkOutPage.cvc = this.value, updateView()"/></p>
-                    <p>Card Holders First Name: <input type="text" value="${model.inputs.checkOutPage.cardHolderFirstName}" onchange="model.inputs.checkOutPage.cardHolderFirstName = this.value, updateView()"/></p>
-                    <p>Card Holders Last Name: <input type="text" value="${model.inputs.checkOutPage.cardHolderLastName}" onchange="model.inputs.checkOutPage.cardHolderLastName = this.value, updateView()"/></p>
+                    <p>Card Number: <input class="cardNumberInputCheckout" type="text" value="${model.inputs.checkOutPage.cardNumber}" onchange="model.inputs.checkOutPage.cardNumber = this.value, updateView()"/></p>
+                    <p>Expiration Date: <input class="cardDateInputCheckout" type="text" value="${model.inputs.checkOutPage.expirationDate}" onchange="model.inputs.checkOutPage.expirationDate = this.value, updateView()"/></p>
+                    <p>cvc: <input class="cardCvcInputCheckout" type="text" value="${model.inputs.checkOutPage.cvc}" onchange="model.inputs.checkOutPage.cvc = this.value, updateView()"/></p>
+                    <p>Card Holders First Name: <input class="cardFirstNameInputCheckout" type="text" value="${model.inputs.checkOutPage.cardHolderFirstName}" onchange="model.inputs.checkOutPage.cardHolderFirstName = this.value, updateView()"/></p>
+                    <p>Card Holders Last Name: <input class="cardLastNameInputCheckout" type="text" value="${model.inputs.checkOutPage.cardHolderLastName}" onchange="model.inputs.checkOutPage.cardHolderLastName = this.value, updateView()"/></p>
  
             `;
         }
@@ -1830,7 +1838,7 @@ function checkCardValidTil(cardIndex){
     let cardValiditTil = model.data.users[model.app.userId].paymentInformation[cardIndex].expirationDate.split('/');
     if(parseInt(todaysDateArray[0].substring(2,2)) > parseInt(cardValiditTil[1]) ||
         (parseInt(todaysDateArray[0].substring(2,2)) == parseInt(cardValiditTil[1]) && parseInt(todaysDateArray[1]) > parseInt(cardValiditTil[0]))){
-            html = '<p>Card is not valid</p>';
+            html = '<p style="color: red;">Card is not valid</p>';
         }
     else {
         html = '<p>Card is valid</p>';
@@ -1838,7 +1846,7 @@ function checkCardValidTil(cardIndex){
     return html;
 }
 function betalingsOversikt(){
-    let html = '<h3>Betalingsoversikt</h3>';
+    let html = '<p id="paymentOverviewHeader">Betalingsoversikt</p>';
     model.inputs.checkOutPage.totalPrice = 0;
     if(model.app.loggedInStatus){
         for(let i = 0; i < model.data.users[model.app.userId].shoppingCart.length; i++){
@@ -1846,10 +1854,10 @@ function betalingsOversikt(){
                 if(model.data.users[model.app.userId].shoppingCart[i].item == model.data.items[j].id){
                     model.inputs.checkOutPage.totalPrice += (model.data.items[j].price * model.data.users[model.app.userId].shoppingCart[i].quantity);
                     html += `
-                        <div>
-                            <p>${model.data.items[j].title}</p>
-                            <button onclick="increaseItemQuantity(${i})">+</button> ${model.data.users[model.app.userId].shoppingCart[i].quantity} <button onclick="decreaseItemQuantity(${i})">-</button>
-                            <p>${model.data.items[j].price * model.data.users[model.app.userId].shoppingCart[i].quantity}</p>
+                        <div class="singleItemInfoCheckout">
+                            <p class="singleItemTitleCheckout">${model.data.items[j].title}</p>
+                            <button class="singleItemQuantityIncreaseCheckout" onclick="increaseItemQuantity(${i})">+</button> <p class="singleItemQuantityCheckout">${model.data.users[model.app.userId].shoppingCart[i].quantity}</p> <button class="singleItemQuantityDecreaseCheckout" onclick="decreaseItemQuantity(${i})">-</button>
+                            <p class="singleItemPriceCheckout">${model.data.items[j].price * model.data.users[model.app.userId].shoppingCart[i].quantity}</p>
                         </div>
                     `;
                 }
@@ -1857,17 +1865,15 @@ function betalingsOversikt(){
         }
         html += `
                 <div>
-                    <div>
-                        <p>Frakt - </p>
-                        <p>${model.inputs.checkOutPage.frakt}</p>
+                    <div class="fraktAndMomsContainer">
+                        <p class="fraktTextPaymentOverview">Frakt - </p>
+                        <p class="fraktPricePaymentOverview">${model.inputs.checkOutPage.frakt}</p>
+                        <p class="vatTextPaymentOverview">Total moms</p>
+                        <p class="vatpricePaymentOverview">${model.inputs.checkOutPage.totalPrice * 0.25}</p>
                     </div>
-                    <div>
-                        <p>Total moms</p>
-                        <p>${model.inputs.checkOutPage.totalPrice * 0.25}</p>
-                    </div>
-                    <div>
-                        <p>Total Nok</p>
-                        <p>${model.inputs.checkOutPage.totalPrice + (model.inputs.checkOutPage.totalPrice * 0.25) + model.inputs.checkOutPage.frakt}</p>
+                    <div class="totalNokContainerCheckout">
+                        <p class="totalNokTextCheckout">Total NOK</p>
+                        <p class="totalNokAmountCheckout">${model.inputs.checkOutPage.totalPrice + (model.inputs.checkOutPage.totalPrice * 0.25) + model.inputs.checkOutPage.frakt}</p>
                     </div>
                 </div>
                 `;
@@ -1879,10 +1885,10 @@ function betalingsOversikt(){
                 if(model.inputs.shoppingCart.items.canBuyNow[i].id == model.data.items[j].id){
                     model.inputs.checkOutPage.totalPrice += (model.data.items[j].price * model.inputs.shoppingCart.items.canBuyNow[i].quantity);
                     html += `
-                        <div>
-                            <p>${model.data.items[j].title}</p>
-                            <button onclick="increaseItemQuantity(${i})">+</button> ${model.inputs.shoppingCart.items.canBuyNow[i].quantity} <button onclick="decreaseItemQuantity(${i})">-</button>
-                            <p>${model.data.items[j].price * model.inputs.shoppingCart.items.canBuyNow[i].quantity}</p>
+                        <div class="singleItemInfoCheckout">
+                            <p class="singleItemTitleCheckout">${model.data.items[j].title}</p>
+                            <button class="singleItemQuantityIncreaseCheckout" onclick="increaseItemQuantity(${i})">+</button> <p class="singleItemQuantityCheckout">${model.inputs.shoppingCart.items.canBuyNow[i].quantity}</p> <button class="singleItemQuantityDecreaseCheckout" onclick="decreaseItemQuantity(${i})">-</button>
+                            <p class="singleItemPriceCheckout">${model.data.items[j].price * model.inputs.shoppingCart.items.canBuyNow[i].quantity}</p>
                         </div>
                     `;
                 }
@@ -1890,17 +1896,15 @@ function betalingsOversikt(){
         }
          html += `
                 <div>
-                    <div>
-                        <p>Frakt - </p>
-                        <p>${model.inputs.checkOutPage.frakt}</p>
+                    <div class="fraktAndMomsContainer">
+                        <p class="fraktTextPaymentOverview">Frakt - </p>
+                        <p class="fraktPricePaymentOverview">${model.inputs.checkOutPage.frakt}</p>
+                        <p class="vatTextPaymentOverview">Total moms</p>
+                        <p class="vatpricePaymentOverview">${model.inputs.checkOutPage.totalPrice * 0.25}</p>
                     </div>
-                    <div>
-                        <p>Total moms</p>
-                        <p>${model.inputs.checkOutPage.totalPrice * 0.25}</p>
-                    </div>
-                    <div>
-                        <p>Total Nok</p>
-                        <p>${model.inputs.checkOutPage.totalPrice + (model.inputs.checkOutPage.totalPrice * 0.25) + model.inputs.checkOutPage.frakt}</p>
+                    <div class="totalNokContainerCheckout">
+                        <p class="totalNokTextCheckout">Total NOK</p>
+                        <p class="totalNokAmountCheckout">${model.inputs.checkOutPage.totalPrice + (model.inputs.checkOutPage.totalPrice * 0.25) + model.inputs.checkOutPage.frakt}</p>
                     </div>
                 </div>
                 `;
