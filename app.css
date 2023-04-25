@@ -31,16 +31,16 @@
  
 }
   
-  .auctionItem-info {
+.auctionItem-info {
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 5px;
     background-color: #15301c09;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.89);
 
-  }
+}
   
-  .auctionItem img {
+.auctionItem img {
     display: flex;
     justify-self: center;
     width: 100vh;
@@ -50,12 +50,12 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.609);
     margin-bottom:10px ;  }
   
-  .auctionItem-buttons {
+.auctionItem-buttons {
     display: flex;
     gap: 10px;
   }
   
-  .input-fields {
+.input-fields {
     display: flex;
     gap: 30px;
     height: 30px;
@@ -1617,12 +1617,12 @@ body {
     padding: 10px;
   }
   
-  .currentChatBoxContainer input[type="text"] {
+  .currentChatBoxContainer{
     padding: 10px;
     margin-top: 10px;
   }
   
-  .currentChatBoxContainer button {
+  .currentChatBoxContainer{
     padding: 10px;
     margin-top: 10px;
     background-color: #007bff;
@@ -1631,7 +1631,7 @@ body {
     cursor: pointer;
   }
   
-  .currentChatBoxContainer button:hover {
+  .currentChatBoxContainer{
     background-color: #0056b3;
   }
   
@@ -1644,13 +1644,10 @@ body {
 .frontPageProductDisplayElement {
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
     margin-bottom: 20px;
-}
-
-.frontPageProductDisplayElement > div:first-child {
-    margin-bottom: 10px;
 }
 
 .frontPageCenterElem {
@@ -1660,12 +1657,16 @@ body {
     box-sizing: border-box;
     border: 1px solid #ccc;
     margin-bottom: 20px;
+    flex-direction: column;
+    background-color: #FFFAED;
 }
 
 .frontPageProductImg {
-    max-width: 100%;
+    max-height: 300px;
+    width: 100%;
     height: auto;
     margin-bottom: 10px;
+    object-fit: cover;
 }
 
 .frontPageDisplayImageCircles {
@@ -1684,4 +1685,18 @@ body {
 .frontPageGoToProductButton {
     margin-top: 0;
     margin-bottom: 10px;
+}
+
+.frontPageLeftArrow{
+    height: 100%;
+    min-width: 100px;
+    background-color: #E7EBF6;
+    border-radius: 15px;
+}
+
+.frontPageRightArrow{
+    height: 100%;
+    min-width: 100px;
+    background-color: #E7EBF6;
+    border-radius: 15px;
 }

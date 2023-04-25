@@ -952,7 +952,7 @@ function profileMenuComponent() {
     else if (model.data.users[model.app.userId].permissions === 'user') {
         html += `
         <div id="dropdownContent">
-            <div class="dropdownContent-1" onclick="changeView('myProfilePage')"><i class="bi bi-person-circle"></i> Min Profil</div>
+            <div class="dropdownContent-1" onclick="changeView('editUserPage')"><i class="bi bi-person-circle"></i> Min Profil</div>
             <div class="dropdownContent-line"> </div>
             <div onclick="changeView('filteredPage')">Alle produkter</div>
             <div class="dropdownContent-line"> </div>
@@ -1215,14 +1215,14 @@ function frontPageProductView(){
     let botElem = model.data.frontPageBottom.length > 0?generateFrontPageElement(model.data.frontPageBottom[model.app.frontPageCurrentShowing.bottom],model.app.frontPageCurrentShowing.botPic,"bot"):`<div class = "frontPagePlaceholder"></div>`
     return `
         <div id = "frontPageProductDisplay">
+            <div><h1>Utstilte auksjoner</h1></div>
             <div class = "frontPageProductDisplayElement">
-                <div><h1>Utstilte auksjoner</h1></div>
                 <div onclick = "changeFrontPageTopProduct(-1)" class = "frontPageLeftArrow"><i class="bi bi-caret-left-square"></i></div>
                 ${topElem}
                 <div onclick = "changeFrontPageTopProduct(1)" class = "frontPageRightArrow"><i class="bi bi-caret-right-square"></i></div>
             </div>
+            <div><h1>Utstilte varer</h1></div>
             <div class = "frontPageProductDisplayElement">
-                <div><h1>Utstilte varer</h1></div>
                 <div onclick = "changeFrontPageBotProduct(-1)" class = "frontPageLeftArrow"><i class="bi bi-caret-left-square"></i></div>
                 ${botElem}
                 <div onclick = "changeFrontPageBotProduct(1)" class = "frontPageRightArrow"><i class="bi bi-caret-right-square"></i></div>
