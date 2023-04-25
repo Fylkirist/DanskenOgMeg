@@ -1313,6 +1313,7 @@ function payAtTheCheckoutPage(){
     }
     model.inputs.shoppingCart.items.canBuyNow = [];
     setUsersDataForCheckOutPage();
+    changeView("frontPage");
     updateView();
 }
 
