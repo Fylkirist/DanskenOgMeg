@@ -1471,6 +1471,12 @@ body {
     cursor: pointer;
     margin-top: 1em;
     margin-bottom: 1em;
+    top:-1vw;
+    position: relative;
+    margin-right: 5px;
+    margin-left: 5px;
+    max-height: 20%;
+    
   }
   
   .productDisplayGalleryImage {
@@ -1482,14 +1488,4 @@ body {
 
   #productDisplayPriceInput{
     max-height: 5%;
-  }
-  .productDisplayBuyButton{
-    max-height: 10%;
-    font-size: small;
-    top:-1vw;
-    position: relative;
-    
-  }
-  .productDisplayBuyButton{
-    max-height: 20%;
   }
