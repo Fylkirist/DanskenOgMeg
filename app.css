@@ -1840,6 +1840,8 @@ body {
 
 #allCategoryNames{
     font-size: 1vw;
+    overflow-y: scroll;
+    height: 40vh;
 }
 
 .filterBoxCategoryElem {
