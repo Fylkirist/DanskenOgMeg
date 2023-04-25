@@ -359,7 +359,7 @@ body {
     top: 12.5vh;
     left: 81.2vw;
 }
-
+ 
 #ShowFilterBoxContainer {
     background-color: #CDC7B6;
     border: 1px solid #000000;
@@ -367,7 +367,6 @@ body {
     padding: 15px;
     width: 300px;
 }
-
 
  
 
@@ -407,7 +406,7 @@ body {
     font-family: 'Abhaya Libre', serif;
     background-color: rgba(200, 238, 244, 1);
     color: rgba(63, 65, 68, 1);
-    position: fixed;
+    position: relative;
     bottom: 0;
     left: 0;
     width: 100vw;
@@ -426,78 +425,6 @@ body {
     display: inline-block;
 }
 
-.filteredProductListContainer {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-  
-  .filteredProductContainer {
-    display: flex;
-    margin-bottom: 20px;
-  }
-  
-  .filteredProductImg {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    margin-right: 10px;
-  }
-  
-  .filteredProductTitle {
-    margin: 0;
-  }
-  
-  .filteredProductDescription {
-    margin: 5px 0;
-  }
-  
-  .filteredProductPriceContainer {
-    display: flex;
-    align-items: center;
-  }
-  
-  .filteredProductPriceLabel {
-    margin-right: 10px;
-  }
-  
-  .filteredProductGoToButton {
-    margin-left: 10px;
-  }
-  
-  .filterBoxTitle {
-    margin: 0;
-  }
-  
-  .filterBoxCategoryElem {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-  }
-  
-  .filterBoxCategoryElemLabel {
-    margin-right: 5px;
-  }
-  
-  .filterBoxCategoryCheck {
-    margin-right: 5px;
-  }
-  
-  .filterBoxAuctionLabel,
-  .filterBoxNormalLabel {
-    margin-right: 5px;
-  }
-  
-  .filterBoxPriceRange {
-    margin-top: 10px;
-    margin-bottom: 5px;
-    width: 100%;
-  }
-  
-  .filterBoxLowestPrice,
-  .filterBoxHighestPrice {
-    width: 70px;
-  }
   
   #loginPageContainer {
     background-color:rgba(200, 238, 244, 1);
@@ -1842,49 +1769,260 @@ body {
     background-color: #E7EBF6;
     margin-top: 2px;
   }
-.CreateSaleContainer {
-     display: flex;
-    flex-direction: column;
-     max-width: 70%;
-    height: 70%;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #0000009d;
-    background-color: #f8f8f8;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 50%;
-    align-items: center;
-    gap:10px
+
+#filteredPageContainer{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-areas: "categoryContainer productListContainer";
+    height: 100vh;
 }
   
-  .createProductTopOfPage {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+#ShowFilterBoxContainer{
+    grid-area: categoryContainer;
+    background-color: rgba(210, 210, 210, 1);
+    font-size: 1vw;
+    border: 0.1vw solid black;
+    border-radius: 1vw;
+    padding: 1vw;
+    margin: 1vw;
+    width: 20vw;
+    height: 80vh;
+}
 
-  
-  .categoryCreateContainer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 15%;
-  }
+.filterBoxMainTitle{
+    font-size: 1.5vw;
+    margin-bottom: 1vh;
+}
 
-  
-  .newProductImageGalleryElement {
-    max-width: 150px;
-    max-height: 150px;
-    margin: 5px;
-    border: 1px solid #ccc;
-  }
-  
-  .checkBoxesCreate {
+#allCategoryNames{
+    font-size: 1vw;
+    overflow-y: scroll;
+    height: 40vh;
+}
+
+.filterBoxCategoryElem {
     display: flex;
     align-items: center;
+    margin-bottom: 0.5vh;
+    position: relative;
+}
+
+.filterBoxCategoryCheck {
+    position: relative;
+    top: -0.3vw;
+    margin-right: 0.5vw;
+    width: 1vw;
+    height: auto;
+}
+
+.filterBoxCategoryCheck:hover{
+    cursor: pointer;
+}
+
+.filterBoxCategoryElemLabel{
+    font-size: 1vw;
+}
+
+.subcategoryContainer{
+    padding-left: 1.5vw;
+}
+
+#filterBoxAuctionContainer,
+#filterBoxNormalContainer{
+    margin: 0.5vw;
+}
+
+#filterBoxAuctionCheck,
+#filterBoxNormalCheck{
+    width: 1.5vw;
+    height: auto;
+}
+
+#filterBoxAuctionLabel,
+#filterBoxNormalLabel{
+    font-size: 1vw;
+}
+
+#priceRangeContainer{
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+}
+
+#filterBoxPriceRange {
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    height: 1vh;
+    width: 100%;
+}
+
+#filterBoxLowestPrice,
+#filterBoxHighestPrice {
+  width: 7vw;
+  font-size: 1vw;
+}
+
+#filteredProductListContainer{
+    grid-area: productListContainer;
+    height: 80vh;
+    padding: 1vw;
+    margin-top: 2vh;
+    border: 0.1vw solid black;
+    background-color: rgba(70, 198, 217, 1);
+    overflow-y: scroll;
+}
+
+.filteredSingleProductContainer{
+    background-color: rgba(255, 250, 237, 1);
+    margin: 1vw;
+    padding: 1vw;
+}
+
+.filteredProductImg {
+    width: 10vw;
+    height: 9vw;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.filteredProductTitle{
+    font-size: 1.5vw;
+    position: relative;
+    top: -6vw;
+    left: 12vw;
+}
+
+.filteredProductDescription{
+    position: relative;
+    top: -2vw;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+}
+
+.filteredProductPriceLabel{
+    font-size: 1.2vw;
+    position: relative;
+    top: -2vw;
+}
+
+.filteredProductButtonsContainer{
+    font-size: 1vw;
+    position: relative;
+    top: -2vw;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.CreateSaleContainer {
+    height: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.createProductTopOfPage {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+#productName,
+#priceInput {
+    flex: 1;
+    margin-right: 10px;
+    padding: 10px;
+    font-size: 18px;
+}
+
+#productDescription {
+    width: 100%;
+    height: 150px;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 18px;
+    resize: vertical;
+}
+
+.createSaleCategoryList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
     flex-wrap: wrap;
-  }
+}
 
+.createSaleCategoryElement {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+}
+
+.createSaleCategoryElement button {
+    margin-left: 5px;
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px;
+}
+
+.categoryCreateContainer {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+#categoryMain,
+#categorySub {
+    flex: 1;
+    margin-right: 10px;
+    padding: 10px;
+    font-size: 18px;
+}
+
+#mainCategoryAdd,
+#subCategoryAdd {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 10px;
+}
+
+#galleryFrame {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.newProductImageGalleryElement {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: cover;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.checkBoxesCreate {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#aucionLabel,
+#deadlineLabel,
+#deliveryCheckBoxLabel {
+    margin-right: 10px;
+    font-size: 18px;
+}
 #frontPageSettingsContainer {
     display: flex;
     flex-direction: column;
@@ -1894,6 +2032,22 @@ body {
     padding: 2rem 0;
 }
 
+#deadlineInput,
+#minimumBidInput {
+    margin-right: 10px;
+    padding: 10px;
+    font-size: 18px;
+}
+
+#saveButton {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 10px;
+}
 .frontPageAddProductList{
   width: 20vw;
 }

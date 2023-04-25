@@ -6,7 +6,7 @@ function updateView(){
             app.innerHTML = createHeaderSection() + profileMenuComponent() + showSearchBox() + (model.app.loggedInStatus && model.data.users[model.app.userId].permissions == "admin"? renderFrontPageAdminSettings() : frontPageProductView()) + createPageFooter()
             break
         case "filteredPage":
-            app.innerHTML = createHeaderSection() + profileMenuComponent() + showSearchBox() + showFilterBox() + showFilteredProducts() + createPageFooter()
+            app.innerHTML = createHeaderSection() + profileMenuComponent() + showSearchBox() + '<div id="filteredPageContainer">' + showFilterBox() + showFilteredProducts() + '</div>' + createPageFooter()
             break
         case "registerPage":
             app.innerHTML = registerFormView();

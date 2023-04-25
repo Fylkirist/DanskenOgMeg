@@ -675,6 +675,8 @@ function checkUserIdPassword(){
 function removeCategory(item,cat){
     model.data.items[item].category.splice(cat,1)
     updateView()
+    model.inputs.category.categoryList = []
+    populateCategoryInputs()
 }
 
 function blowUpGalleryImg(img){
