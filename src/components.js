@@ -1170,6 +1170,7 @@ function registerFormView() {
     let container = /*html */`
     <h1 class ="BannerRegister">Registering For Dansken & Meg</h1>
     <div class="register-form-container">
+    <div class="register-formBox">
     <div class="tittleRegister">Fyllut Skjema</div>
     <div class="register-form-group">
     <input type="text" class="register-Form-Input" placeholder="First Name" oninput="model.inputs.register.firstName = this.value;">
@@ -1190,7 +1191,7 @@ function registerFormView() {
     <input type="text" class="register-Form-Input" placeholder="By:" oninput="model.inputs.register.city = this.value;">
   </div>
   <div class="register-form-group">
-    <input type="text" class="register-Form-Input" placeholder="Card info" onchange="model.inputs.register.cardNumber = this.value; isValid(this)">
+    <label class="invinsible-card">1755245733</label><input type="text" class="register-Form-Input" placeholder="Card info" onchange="model.inputs.register.cardNumber = this.value; isValid(this)">
     <input type="date" class="register-Form-Input" oninput="model.inputs.register.fromDate = this.value;">
     <input type="text" class="register-Form-Input" placeholder="CVE" oninput="model.inputs.register.cve = this.value;">
   </div>
@@ -1198,6 +1199,7 @@ function registerFormView() {
   <button class="register-form-btn" onclick="goBackToFrontPage()">Tilbake</button>
   <button class="register-form-btn" onclick="registerUser()">Register</button>
   <div>${model.inputs.register.meldingRegister}</div>
+  </div>
   </div>
 </div>`
     return container;
