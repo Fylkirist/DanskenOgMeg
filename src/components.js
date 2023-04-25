@@ -1420,15 +1420,15 @@ function productDisplay(product){
     if(model.data.items[product].auction && model.app.loggedInStatus && model.data.users[model.app.userId].permissions != "admin"){
         content = `
             <label class = "productDisplayPriceLabel">Nåværende Bud: </label>
-            <label class = "productDisplayPrice">${model.data.items[product].price}</label>
+            <label class = "productDisplayPrice">${model.data.items[product].price},-</label>
             <input id = "productDisplayPriceInput" oninput="model.inputs.product.bidIncrease = this.value">${model.inputs.product.bidIncrease}</input>
             <button class = "productDisplayBuyButton" onclick = "raiseBid(model.data.items[${product}].id)">Øk bud</button>
-            <div id = "productDisplayDeadline">Auksjonen stenges om: ${model.data.items[product].deadline}</div>`
+            <div id = "productDisplayDeadline">Auksjonen åpent til: ${model.data.items[product].deadline}</div>`
     }
     else if(model.data.items[product].auction && !model.app.loggedInStatus){
         content = `
             <label class = "productDisplayPriceLabel">Nåværende Bud: </label>
-            <label class = "productDisplayPrice">${model.data.items[product].price}</label>
+            <label class = "productDisplayPrice">${model.data.items[product].price},-</label>
             <label class = "productDisplayNoBid">Du må være innlogget for å by på auksjoner</label>
             <button class = "productDisplayNoBidRegister" onclick = "changeView('registerPage')">Registrer</button>
             <button class = "productDisplayNoBidLogin" onclick = "changeView('loginPage')">Logg inn</button>
@@ -1436,22 +1436,24 @@ function productDisplay(product){
     }
     else{
         content = `
-            <label class = "productDisplayPriceLabel">Pris: </label>
-            <label class = "productDisplayPrice">${model.data.items[product].price}</label>
-            <button class = "productDisplayBuyButton" onclick = "addToShoppingCart('${model.data.items[product].id}')">Legg til i handlekurv</button>
+            <div class = "productPriceAndBuyNow"
+                <label class = "productDisplayPriceLabel">Pris: </label>
+                <label class = "productDisplayPrice">${model.data.items[product].price},-</label>
+                <button class = "productDisplayBuyButton" onclick = "addToShoppingCart('${model.data.items[product].id}')">Legg til i handlekurv</button>
+            </div>
         `
     }
     for(let i = 1; i<model.data.items[product].images.length;i++){
         images += `<img class = "productDisplayGalleryImage" src = "${model.data.items[product].images[i]}"></img>`
     }      
     return `
+    <h1 class = "productDisplayTitle">${model.data.items[product].title}</h1>
+    <h1 class = "productDisplayDescriptionTitle">Beskrivelse</h1>
     <div class = "productDisplayContainer">
         ${showZoomedPic()}
-        <div class = "productDisplayTitle">${model.data.items[product].title}</div>
         <div class = "productDisplayDescriptionContainer">
-            <img class = "productDisplayImage" src = "${model.data.items[product].images[0]}" onclick = "blowUpGalleryImg(0)"></img>
-            <h1 class = "productDisplayDescriptionTitle">Beskrivelse</h1>
-            <p class = "productDisplayDescription">${model.data.items[product].description}</p>
+        <img class = "productDisplayImage" src = "${model.data.items[product].images[0]}" onclick = "blowUpGalleryImg(0)"></img>
+        <p class = "productDisplayDescription">${model.data.items[product].description}</p>
             ${content}
         </div>
         ${model.app.loggedInStatus && model.data.users[model.app.userId].permissions == "admin"?
@@ -1459,7 +1461,7 @@ function productDisplay(product){
             ``
         }
         <div id = "productDisplayImageGalleryContainer">
-            ${images}	
+           ${images}
         </div>
     </div>`
 }

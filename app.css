@@ -1505,7 +1505,6 @@ body {
 }
 
 
-
 .adminBoxContainer {
     display: flex;
     flex-direction: row;
@@ -1536,6 +1535,8 @@ body {
     padding: 10px;
   }
   
+
+
   .currentChatBoxContainer{
     padding: 10px;
     margin-top: 10px;
@@ -1548,6 +1549,98 @@ body {
     color: #fff;
     border: none;
     cursor: pointer;
+  }
+  
+  .currentChatBoxContainer button:hover {
+    background-color: #0056b3;
+  }
+
+  .productDisplayContainer {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    margin: 2em;
+  }
+  
+  .productDisplayDescriptionContainer {
+    display: flex;
+    flex-direction: row;
+    margin-right: 2em;
+  }
+  
+  .productDisplayImage {
+    object-fit: cover;
+    max-width: 550px;
+    height: auto;
+    margin-bottom: 1em;
+    cursor: pointer;
+  }
+  
+  .productDisplayTitle{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .productDisplayDescriptionTitle {
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+    text-align: center;
+  }
+  
+  .productDisplayDescription {
+    margin: 0;
+    border: solid 2px;
+    margin-left: 2px;
+    margin-right: 2px;
+    max-height: 409px;
+  }
+  
+  .productPriceAndBuyNow {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  .productDisplayPriceLabel {
+    font-weight: bold;
+    font-size: large;
+  }
+  
+  .productDisplayPrice {
+    margin-left: 0.25em;
+    margin-right: 0.25em;
+  }
+  
+  .productDisplayBuyButton {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    top:-1vw;
+    position: relative;
+    margin-right: 5px;
+    margin-left: 5px;
+    max-height: 20%;
+    
+  }
+  
+  .productDisplayGalleryImage {
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 1em;
+    cursor: pointer;
+  }
+
+  #productDisplayPriceInput{
+    max-height: 5%;
   }
   
   .currentChatBoxContainer{
@@ -1802,4 +1895,4 @@ body {
     align-items: center;
     flex-wrap: wrap;
   }
-  
+
