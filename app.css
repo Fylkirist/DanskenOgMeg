@@ -68,6 +68,8 @@ body {
     overflow-y: scroll;
     background-color: rgba(230, 230, 230, 1);
     font-size: 1vw;
+    min-height: 100vh;
+    display: flex;
 }
 .searchContainer{
     position: relative;
@@ -352,100 +354,7 @@ body {
     top: 12.5vh;
     left: 81.2vw;
 }
-#frontPageProductDisplay{
-    border: 0.1vw solid black;
-    background-color: rgba(112, 183, 205, 1);
-    display: flex;
-    position: relative;
-    left: 25vw;
-    width: 50vw;
-    align-items: center;
-    flex-direction: column;
-}
 
-.frontPageProductDisplayElement{
-    height: 20vw;
-    width: 35vw;
-    min-width: 35vw;
-    padding-left: 5vw;
-    padding-right: 5vw;
-    margin: 3vw;
-    display:flex;
-}
-
-.frontPageRightArrow{
-    height: 100%;
-    background-color: #E7EBF6;
-    width: 5vw;
-    display: inline-block;
-    border-radius: 0px 10px 10px 0px;
-}
-
-.frontPageRightArrow:hover{
-    background-color: #c5c8d1;
-}
-
-.frontPageLeftArrow:hover{
-    background-color: #c5c8d1;
-}
-
-.frontPageLeftArrow{
-    height: 100%;
-    background-color: #E7EBF6;
-    width: 5vw;
-    display: inline-block;
-    border-radius: 10px 0px 0px 10px;
-}
-
-.frontPagePriceDescLabel{
-    font: bolder;
-    font-family: 'Abhaya Libre', serif;
-    color: #242354;
-}
-
-.frontPagePriceLabel{
-    font: bolder;
-    font-family: 'Abhaya Libre', serif;
-    color: #242354;
-}
-
-.frontPageAddProductButton{
-    background-color: #b493577a;
-    font-family: 'Abhaya Libre', serif;
-    font-weight: 700;
-    border: #3C230C, 2px ,solid;
-}
-
-.frontPageGoToProductButton{
-    background-color: #b493577a;
-    font-family: 'Abhaya Libre', serif;
-    font-weight: 700;
-    border: #3C230C, 2px ,solid;
-}
-
-.frontPageProductImg{
-    margin: 20px;
-    height: 100px;
-    width: 160px;
-}
-
-.frontPageProductHeader{
-    font: bolder;
-    font-family: 'Abhaya Libre', serif;
-    color: #242354;
-}
-
-.frontPageProductDesc{
-    font-family: 'Abhaya Libre', serif;
-    color: #000000;
-}
-
-.frontPageCenterElem{
-    background-color: #FFFAED;
-    display: inline-block;
-    height: 100%;
-    width: 500px;
-}
 #ShowFilterBoxContainer {
     background-color: #CDC7B6;
     border: 1px solid #000000;
@@ -1401,3 +1310,53 @@ body {
     background-color: #0056b3;
   }
   
+  #frontPageProductDisplay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.frontPageProductDisplayElement {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.frontPageProductDisplayElement > div:first-child {
+    margin-bottom: 10px;
+}
+
+.frontPageCenterElem {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.frontPageProductImg {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.frontPageDisplayImageCircles {
+    font-size: 16px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.frontPageProductHeader {
+    margin-top: 0;
+}
+
+.frontPagePriceDescLabel,
+.frontPagePriceLabel,
+.frontPageAddProductButton,
+.frontPageGoToProductButton {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
