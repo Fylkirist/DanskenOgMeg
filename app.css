@@ -359,16 +359,6 @@ body {
     top: 12.5vh;
     left: 81.2vw;
 }
-
-#ShowFilterBoxContainer {
-    background-color: #CDC7B6;
-    border: 1px solid #000000;
-    border-radius: 10px;
-    padding: 15px;
-    width: 300px;
-}
-
-
  
 #frontPageSettingsContainer {
     display: flex;
@@ -437,78 +427,6 @@ body {
     display: inline-block;
 }
 
-.filteredProductListContainer {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-  
-  .filteredProductContainer {
-    display: flex;
-    margin-bottom: 20px;
-  }
-  
-  .filteredProductImg {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    margin-right: 10px;
-  }
-  
-  .filteredProductTitle {
-    margin: 0;
-  }
-  
-  .filteredProductDescription {
-    margin: 5px 0;
-  }
-  
-  .filteredProductPriceContainer {
-    display: flex;
-    align-items: center;
-  }
-  
-  .filteredProductPriceLabel {
-    margin-right: 10px;
-  }
-  
-  .filteredProductGoToButton {
-    margin-left: 10px;
-  }
-  
-  .filterBoxTitle {
-    margin: 0;
-  }
-  
-  .filterBoxCategoryElem {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-  }
-  
-  .filterBoxCategoryElemLabel {
-    margin-right: 5px;
-  }
-  
-  .filterBoxCategoryCheck {
-    margin-right: 5px;
-  }
-  
-  .filterBoxAuctionLabel,
-  .filterBoxNormalLabel {
-    margin-right: 5px;
-  }
-  
-  .filterBoxPriceRange {
-    margin-top: 10px;
-    margin-bottom: 5px;
-    width: 100%;
-  }
-  
-  .filterBoxLowestPrice,
-  .filterBoxHighestPrice {
-    width: 70px;
-  }
   
   #loginPageContainer {
     background-color:rgba(200, 238, 244, 1);
@@ -1802,4 +1720,143 @@ body {
     align-items: center;
     flex-wrap: wrap;
   }
+
+#filteredPageContainer{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-areas: "categoryContainer productListContainer";
+    height: 100vh;
+}
   
+#ShowFilterBoxContainer{
+    grid-area: categoryContainer;
+    background-color: rgba(210, 210, 210, 1);
+    font-size: 1vw;
+    border: 0.1vw solid black;
+    border-radius: 1vw;
+    padding: 1vw;
+    margin: 1vw;
+    width: 20vw;
+    height: 80vh;
+}
+
+.filterBoxMainTitle{
+    font-size: 1.5vw;
+    margin-bottom: 1vh;
+}
+
+#allCategoryNames{
+    font-size: 1vw;
+}
+
+.filterBoxCategoryElem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5vh;
+    position: relative;
+}
+
+.filterBoxCategoryCheck {
+    position: relative;
+    top: -0.3vw;
+    margin-right: 0.5vw;
+    width: 1vw;
+    height: auto;
+}
+
+.filterBoxCategoryCheck:hover{
+    cursor: pointer;
+}
+
+.filterBoxCategoryElemLabel{
+    font-size: 1vw;
+}
+
+.subcategoryContainer{
+    padding-left: 1.5vw;
+}
+
+#filterBoxAuctionContainer,
+#filterBoxNormalContainer{
+    margin: 0.5vw;
+}
+
+#filterBoxAuctionCheck,
+#filterBoxNormalCheck{
+    width: 1.5vw;
+    height: auto;
+}
+
+#filterBoxAuctionLabel,
+#filterBoxNormalLabel{
+    font-size: 1vw;
+}
+
+#priceRangeContainer{
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+}
+
+#filterBoxPriceRange {
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    height: 1vh;
+    width: 100%;
+}
+
+#filterBoxLowestPrice,
+#filterBoxHighestPrice {
+  width: 7vw;
+  font-size: 1vw;
+}
+
+#filteredProductListContainer{
+    grid-area: productListContainer;
+    height: 80vh;
+    padding: 1vw;
+    margin-top: 2vh;
+    border: 0.1vw solid black;
+    background-color: rgba(70, 198, 217, 1);
+    overflow-y: scroll;
+}
+
+.filteredSingleProductContainer{
+    background-color: rgba(255, 250, 237, 1);
+    margin: 1vw;
+    padding: 1vw;
+}
+
+.filteredProductImg {
+    width: 10vw;
+    height: 9vw;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.filteredProductTitle{
+    font-size: 1.5vw;
+    position: relative;
+    top: -6vw;
+    left: 12vw;
+}
+
+.filteredProductDescription{
+    position: relative;
+    top: -2vw;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+}
+
+.filteredProductPriceLabel{
+    font-size: 1.2vw;
+    position: relative;
+    top: -2vw;
+}
+
+.filteredProductButtonsContainer{
+    font-size: 1vw;
+    position: relative;
+    top: -2vw;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}

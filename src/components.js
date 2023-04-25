@@ -431,10 +431,10 @@ function generateCategoryElems(parentId){
         if(model.inputs.category.categoryList[i].parent==parentId){
             html += `
                 <div class = "filterBoxCategoryElem">
-                    <label class = "filterBoxCategoryElemLabel">${model.inputs.category.categoryList[i].name}</label>
                     <input class = "filterBoxCategoryCheck" type = "checkbox" ${model.inputs.category.categoryList[i].checked? "checked":""} onchange = "checkFilterBox(${i})"/>
-                    ${model.inputs.category.categoryList[i].checked? generateCategoryElems(model.inputs.category.categoryList[i].id):""}
-                </div>`
+                    <label class = "filterBoxCategoryElemLabel">${model.inputs.category.categoryList[i].name}</label>
+                </div>
+                <div class="subcategoryContainer">${model.inputs.category.categoryList[i].checked? generateCategoryElems(model.inputs.category.categoryList[i].id):""}</div>`
         }
     }
     return html
@@ -1536,23 +1536,19 @@ function showFilteredProducts(){
     let productList = ``
     for(let i = 0; i<model.inputs.category.filteredItems.length;i++){
         productList += `
-            <div class = "filteredProductContainer">
+            <div class = "filteredSingleProductContainer">
                 <img class = "filteredProductImg" src = "${model.data.items[model.inputs.category.filteredItems[i]-1].images[0]}"/>
-                <div>
-                    <h3 class = "filteredProductTitle" >${model.data.items[model.inputs.category.filteredItems[i]-1].title}</h3>
-                    <br>
-                    <p class = "filteredProductDescription">${model.data.items[model.inputs.category.filteredItems[i]-1].description}</p>
-                    <br>
-                    <div class = "filteredProductPriceContainer">
-                        <label class = "filteredProductPriceLabel">${model.data.items[model.inputs.category.filteredItems[i]-1].price},-</label>
-                        ${model.data.items[model.inputs.category.filteredItems[i]-1].auction || model.app.loggedInStatus && model.data.users[model.app.userId].permissions == "admin"?``:`<button onclick = "addToShoppingCart('${model.data.items[model.inputs.category.filteredItems[i]-1].id}')">Legg til I handlekurv</button>`}
-                        <button class = "filteredProductGoToButton" onclick = "goToProduct(${model.inputs.category.filteredItems[i]-1})">Gå til produktside</button>
-                    </div>
+                <div class = "filteredProductTitle" >${model.data.items[model.inputs.category.filteredItems[i]-1].title}</div>
+                <p class = "filteredProductDescription">${model.data.items[model.inputs.category.filteredItems[i]-1].description}</p>
+                <label class = "filteredProductPriceLabel">${model.data.items[model.inputs.category.filteredItems[i]-1].price},-</label>
+                <div class = "filteredProductButtonsContainer">
+                    ${model.data.items[model.inputs.category.filteredItems[i]-1].auction || model.app.loggedInStatus && model.data.users[model.app.userId].permissions == "admin"?``:`<button onclick = "addToShoppingCart('${model.data.items[model.inputs.category.filteredItems[i]-1].id}')">Legg til I handlekurv</button>`}
+                    <button class = "filteredProductGoToButton" onclick = "goToProduct(${model.inputs.category.filteredItems[i]-1})">Gå til produktside</button>
                 </div>
             </div>`
     }
     let container = `
-        <div "filteredProductListContainer">
+        <div id="filteredProductListContainer">
             ${productList}
         </div>`
     return container
@@ -1561,20 +1557,23 @@ function showFilteredProducts(){
 function showFilterBox(){
     let priceLimits = determinePriceLimits()
     return `
-        <div id = "ShowFilterBoxContainer>
-            <h3 class = "filterBoxTitle"">Kategorier</h3>
-            <div>
+        <div id="ShowFilterBoxContainer">
+            <div class = "filterBoxMainTitle""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-nested" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M4.5 11.5A.5.5 0 0 1 5 11h10a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm-2-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm-2-4A.5.5 0 0 1 1 3h10a.5.5 0 0 1 0 1H1a.5.5 0 0 1-.5-.5z"/>
+          </svg> Kategorier</div>
+            <div id="allCategoryNames">
                 ${generateCategoryElems(-1)}
             </div>
-            <div>
-                <label id = "filterBoxAuctionLabel">Vis auksjonsvarer: </label>
+            <div id="filterBoxAuctionContainer">
                 <input id = "filterBoxAuctionCheck" oninput = "checkProductTypeFilter('auction')" type = "checkbox" ${model.inputs.category.filterAuctionCheck? "checked":""}/>
+                <label id = "filterBoxAuctionLabel">Vis auksjonsvarer</label>
             </div>
-            <div>
-                <label id = "filterBoxNormalLabel">Vis fastprisvarer: </label>
+            <div id="filterBoxNormalContainer">
                 <input id = "filterBoxNormalCheck" onchange = "checkProductTypeFilter('normal')" type = "checkbox" ${model.inputs.category.filterNormalCheck? "checked":""}/>
+                <label id = "filterBoxNormalLabel">Vis fastprisvarer: </label>
             </div>
-            <div>
+            <div id="priceRangeContainer">
+                <p>Angi pris range</p>
                 <input id = "filterBoxPriceRange" type = "range" onchange = "changePriceLevels(this.value)" min="${priceLimits.min}" max = "${priceLimits.max}" value = "${model.inputs.category.priceRange.max}"></input>
                 <input id = "filterBoxLowestPrice" type = "text" value = "${priceLimits.min}">
                 <input id = "filterBoxHighestPrice" type = "text" onchange = "changePriceLevels(this.value)" value = "${model.inputs.category.priceRange.max}"></input>
