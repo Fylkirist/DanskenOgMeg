@@ -1796,3 +1796,56 @@ body {
 .frontPageLeftArrow:hover{
     background-color: #c9d2eb;
 }
+
+#mainOrderHistoryDiv {
+    height: 100%;
+    overflow-y: auto;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+  }
+  
+  .OrderHistoryContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 2px;
+    align-items: center;
+    overflow-y: scroll;
+  }
+  
+  .orderHistoryElem{
+    display: flex;
+    flex-direction: row;
+    border: inset black 1px;
+  }
+
+  .orderHistoryItemID,
+  .orderHistoryStatus,
+  .orderHistoryPrice,
+  .orderHistoryDate,
+  .orderHistoryType,
+  .orderHistoryUserId,
+  .orderHistoryTitle,
+  .orderHistoryItemImage {
+    margin: 5px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    font-weight: normal;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline;
+  }
+  
+  .orderHistoryItemImage {
+    max-height: 100px;
+    border-radius: 5px;
+  }
+
+  button:active{
+    background-color: #E7EBF6;
+    margin-top: 2px;
+  }

@@ -1377,15 +1377,16 @@ function orderHistoryView (){
     if(model.data.users[model.app.userId].permissions === "admin"){
         for(let i = 0; i < model.data.orderHistory.length; i++){
         /*html*/
-            html+= `<div>
-                <div id = "itemID">Item ID: ${model.data.orderHistory[i].itemId}</div>
-                <div id = "staus">Betalt: ${model.data.orderHistory[i].paid}</div>
-                <div id = "pris">Pris: ${model.data.orderHistory[i].price}</div>
-                <div id = "date">Dato: ${model.data.orderHistory[i].date}</div>
-                <div id = "type">Type: ${model.data.orderHistory[i].type}</div>
-                <div id = "userId">Kjøper : ${model.data.orderHistory[i].userId} 
-                Fornavn: ${model.data.users[model.data.orderHistory[i].userId].firstname}
-                Etternavn: ${model.data.users[model.data.orderHistory[i].userId].surname} </div>
+            html+= `<div class = "orderHistoryElem">
+                <img class = "orderHistoryItemImage" src = ${model.data.orderHistory[i].image}>
+                <div class = "orderHistoryItemID">Item ID: ${model.data.orderHistory[i].itemId}</div>
+                <div class = "orderHistoryStatus">Betalt: ${model.data.orderHistory[i].paid}</div>
+                <div class = "orderHistoryPrice">Pris: ${model.data.orderHistory[i].price}</div>
+                <div class = "orderHistoryDate">Dato: ${model.data.orderHistory[i].date}</div>
+                <div class = "orderHistoryType">Type: ${model.data.orderHistory[i].type}</div>
+                <div class = "orderHistoryUserId">Kjøper : ${model.data.orderHistory[i].userId} <br>
+                Fornavn: ${model.data.users[model.data.orderHistory[i].userId].firstName} <br>
+                Etternavn: ${model.data.users[model.data.orderHistory[i].userId].surName} </div>
             </div>`
             }
             }
@@ -1395,18 +1396,18 @@ function orderHistoryView (){
                         
                  /*html*/
                     html+=`<ul>
-                        <div id = "title">Produkt Navn: ${model.data.orderHistory[i].title}</div>
-                        <img id = "itemImage" src = ${model.data.orderHistory[i].image}>
-                        <div id = "type">Type: ${model.data.orderHistory[i].type}</div>
-                        <div id = "date">Dato: ${model.data.orderHistory[i].date}</div>
-                        <div id = "pris">Pris: ${model.data.orderHistory[i].price}</div>
+                        <div class = "orderHistoryTitle">Produkt Navn: ${model.data.orderHistory[i].title}</div>
+                        <img class = "orderHistoryItemImage" src = ${model.data.orderHistory[i].image}>
+                        <div class = "orderHistoryType">Type: ${model.data.orderHistory[i].type}</div>
+                        <div class = "orderHistoryDate">Dato: ${model.data.orderHistory[i].date}</div>
+                        <div class = "orderHistoryPrice">Pris: ${model.data.orderHistory[i].price}</div>
                     </ul>`
                 }
             } 
         }
         return /*html*/ `
             <div id = "mainOrderHistoryDiv">
-                <h1 id = "topText">Orderhistorikk</h1>
+                <h1 id = "orderHistoryTopText">Kjøpshistorikk</h1>
                 <div class = "OrderHistoryContainer">
                     ${html}
                 </div>
