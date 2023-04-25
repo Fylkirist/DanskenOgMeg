@@ -1231,7 +1231,7 @@ function raiseBid(productId){
     else{
         item.bids[model.app.userId].bid.push(parseInt(model.inputs.product.bidIncrease))
     }
-    model.inputs.product.bidIncrease = 0
+    model.inputs.product.bidIncrease = ""
     setDisplayPrice(productId)
     updateView()
 }

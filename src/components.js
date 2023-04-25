@@ -952,36 +952,34 @@ function profileMenuComponent() {
     else if (model.data.users[model.app.userId].permissions === 'user') {
         html += `
         <div id="dropdownContent">
-                <div onclick="changeView('inboxPage')">Inbox</div>
-                <div class="dropdownContent-line"> </div>
-                <div onclick="changeView('filteredPage')">Alle produkter</div>
-                <div class="dropdownContent-line"> </div>
-                <div onclick="changeView('saleHistoryPage')">Salgshistorikk</div>
-                <div class="dropdownContent-line"> </div>
-                <div onclick="changeView('auctionPage')">Bud</div>
-                <div class="dropdownContent-line"> </div>
-                <div onclick="logout()">Logg ut</div>
+            <div class="dropdownContent-1" onclick="changeView('myProfilePage')">Min Profil</div>
+            <div class="dropdownContent-line"> </div>
+            <div onclick="changeView('filteredPage')">Alle produkter</div>
+            <div class="dropdownContent-line"> </div>
+            <div onclick="changeView('saleHistoryPage')">Salgshistorikk</div>
+            <div class="dropdownContent-line"> </div>
+            <div onclick="changeView('auctionPage')">Bud</div>
+            <div class="dropdownContent-line"> </div>
+            <div onclick="logout()">Logg ut</div>
         </div>`
     }
 
     if (model.data.users[model.app.userId] && model.data.users[model.app.userId].permissions === "admin") {
         html += `
         <div id="dropdownContent">
-                <div class="dropdownContent-1" onclick="changeView('myProfilePage')">Min Profil</div>
-                <div class="dropdownContent-line"> </div>
-                <div class="dropdownContent-1" onclick="changeView('inboxPage')">Innbox</div>
-                <div class="dropdownContent-line"> </div>
-                <div class="dropdownContent-1" onclick="changeView('filteredPage')">Alle produkter</div>
-                <div class="dropdownContent-line"> </div>
-                <div class="dropdownContent-1" onclick="changeView('saleHistoryPage')">Salgshistorikk</div>
-                <div class="dropdownContent-line"> </div>
-                <div class="dropdownContent-1" onclick="changeView('adminAuction')">Bud</div>
-                <div class="dropdownContent-line"> </div>
-                <div class="dropdownContent-1" onclick="changeView('createProduct')">Legg til produkt</div>
-                <div class="dropdownContent-line"> </div>
-                <div class="dropdownContent-1" onclick="changeView('manageMembersPage')">Medlemmer</div>
-                <div class="dropdownContent-line"> </div>
-                <div onclick="logout()">Logg ut</div>
+            <div class="dropdownContent-1" onclick="changeView('adminMessage')">Innbox</div>
+            <div class="dropdownContent-line"> </div>
+            <div class="dropdownContent-1" onclick="changeView('filteredPage')">Alle produkter</div>
+            <div class="dropdownContent-line"> </div>
+            <div class="dropdownContent-1" onclick="changeView('saleHistoryPage')">Salgshistorikk</div>
+            <div class="dropdownContent-line"> </div>
+            <div class="dropdownContent-1" onclick="changeView('adminAuction')">Bud</div>
+            <div class="dropdownContent-line"> </div>
+            <div class="dropdownContent-1" onclick="changeView('createProduct')">Legg til produkt</div>
+            <div class="dropdownContent-line"> </div>
+            <div class="dropdownContent-1" onclick="changeView('manageMembersPage')">Medlemmer</div>
+            <div class="dropdownContent-line"> </div>
+            <div onclick="logout()">Logg ut</div>
         </div>`
     }
     return html += `</div>`
@@ -1089,10 +1087,10 @@ function showWinningBids(){
                             >Trekk bud</button>
                             <div class="winningItemMaxBidShoppingCart">Bud: ${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid}</div>
                             <div class="winningItemDeadlineShoppingCart">Stenges om : ${calculateDeadline(model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id)}</div>
-                            <input class="winningItemIncreaseBidInputShoppingCart" type="number" value = "${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid}" onchange="activeAuctionController('${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id}', 'manuelt', this.value)" />
+                            <input class="winningItemIncreaseBidInputShoppingCart" type="number" value = "${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid}" oninput="model.inputs.product.bidIncrease = this.value" />
                             <button class="winningItemIncreaseBidButtonShoppingCart"
                                 ${model.inputs.shoppingCart.items.auctions.increasedWinningBid > model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid ? '' : 'disabled'}
-                                onclick="activeAuctionController('${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id}', 'manuelt', ${model.inputs.shoppingCart.items.auctions.increasedWinningBid})"
+                                onclick="raiseBid('${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id}')"
                             >Øk bud</button>
                         `}
                     </div>
@@ -1126,12 +1124,12 @@ function showLosingBids(){
                                 min="${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].ItemsMaximumBid}" 
                                 step= 100
                                 value="${model.inputs.shoppingCart.items.auctions.increasedWinningBid || ''}"   
-                                onchange="model.inputs.shoppingCart.items.auctions.increasedWinningBid = this.value, updateView()"
+                                oninput="oninput="model.inputs.product.bidIncrease = this.value""
                             />
                             <button
                                 class="losingItemIncreaseBidButtonShoppingCart"
                                 ${model.inputs.shoppingCart.items.auctions.increasedWinningBid > model.inputs.shoppingCart.items.auctions.usersLosingBids[i].ItemsMaximumBid ? '' : 'disabled'}
-                                onclick="increaseBid(${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].id}, ${model.app.userId}, ${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].ItemsMaximumBid}, ${model.inputs.shoppingCart.items.auctions.increasedWinningBid})"
+                                onclick="raiseBid('${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].id}')"
                             >Øk bud</button>
                             `}
                     </div>
@@ -1581,11 +1579,12 @@ function showFilterBox(){
     <div class = "adminBoxContainer">
         <div class = "brukerBox">
               
-        ${Object.keys(model.data.users).map((key, i) => /*html*/`
+        ${Object.keys(model.data.users).map((key, i) =>{ 
+            return model.data.users[key].permissions == "admin"?"":/*html*/`
             <ul onclick = "showSelectedChat('${key}')">
                 Brukernavn : ${model.data.users[key].username}
             </ul>
-        `).join('')}
+        `}).join('')}
             
         </div>
 
@@ -1603,6 +1602,7 @@ function currentShownChatBox(){
         ${model.data.users[model.app.showChatBox].messages.map(message =>{ 
             return /*html*/ `
             <div class = "${message.type}">
+                ${message.type == "user"?model.data.users[model.app.showChatBox].firstName+": ":`Admin: `}
                 ${message.message}
             </div>
         `}).join('')}
