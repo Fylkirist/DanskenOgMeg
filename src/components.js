@@ -952,7 +952,7 @@ function profileMenuComponent() {
     else if (model.data.users[model.app.userId].permissions === 'user') {
         html += `
         <div id="dropdownContent">
-            <div class="dropdownContent-1" onclick="changeView('myProfilePage')">Min Profil</div>
+            <div class="dropdownContent-1" onclick="changeView('myProfilePage')"><i class="bi bi-person-circle"></i> Min Profil</div>
             <div class="dropdownContent-line"> </div>
             <div onclick="changeView('filteredPage')">Alle produkter</div>
             <div class="dropdownContent-line"> </div>
@@ -967,7 +967,7 @@ function profileMenuComponent() {
     if (model.data.users[model.app.userId] && model.data.users[model.app.userId].permissions === "admin") {
         html += `
         <div id="dropdownContent">
-            <div class="dropdownContent-1" onclick="changeView('adminMessage')">Innbox</div>
+            <div class="dropdownContent-1" onclick="changeView('adminMessage')"><i class="bi bi-chat-dots"></i> Innbox</div>
             <div class="dropdownContent-line"> </div>
             <div class="dropdownContent-1" onclick="changeView('filteredPage')">Alle produkter</div>
             <div class="dropdownContent-line"> </div>
@@ -1217,15 +1217,15 @@ function frontPageProductView(){
         <div id = "frontPageProductDisplay">
             <div class = "frontPageProductDisplayElement">
                 <div><h1>Utstilte auksjoner</h1></div>
-                <div onclick = "changeFrontPageTopProduct(-1)" class = "frontPageLeftArrow"></div>
+                <div onclick = "changeFrontPageTopProduct(-1)" class = "frontPageLeftArrow"><i class="bi bi-caret-left-square"></i></div>
                 ${topElem}
-                <div onclick = "changeFrontPageTopProduct(1)" class = "frontPageRightArrow"></div>
+                <div onclick = "changeFrontPageTopProduct(1)" class = "frontPageRightArrow"><i class="bi bi-caret-right-square"></i></div>
             </div>
             <div class = "frontPageProductDisplayElement">
                 <div><h1>Utstilte varer</h1></div>
-                <div onclick = "changeFrontPageBotProduct(-1)" class = "frontPageLeftArrow"></div>
+                <div onclick = "changeFrontPageBotProduct(-1)" class = "frontPageLeftArrow"><i class="bi bi-caret-left-square"></i></div>
                 ${botElem}
-                <div onclick = "changeFrontPageBotProduct(1)" class = "frontPageRightArrow"></div>
+                <div onclick = "changeFrontPageBotProduct(1)" class = "frontPageRightArrow"><i class="bi bi-caret-right-square"></i></div>
             </div>
         </div>
     ` 
@@ -1325,6 +1325,7 @@ function createSaleView(){
                 <button id = "subCategoryAdd" onclick = "addSubCategory()">Legg til underkategori</button>
             </div>
             <div id = "galleryFrame">Bildegalleri
+                <i class="bi bi-upload"></i>
                 <input value = "${model.inputs.createSale.addImage}" oninput = "uploadImg(event)" type = "file" id = "galleryInput">
                 ${model.inputs.createSale.images.map(img => `<img class = "newProductImageGalleryElement" src = "${img}"></img>`).join('')}
             </div>

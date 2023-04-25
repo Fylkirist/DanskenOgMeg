@@ -68,7 +68,6 @@ html {
 body {
     font-family: 'Abhaya Libre', serif;
     overflow-y: scroll;
-    margin-bottom: 11.1vh;
     background-color: rgba(230, 230, 230, 1);
     font-size: 1vw;
 }
@@ -595,9 +594,8 @@ body {
     font-family: 'Abhaya Libre', serif;
     background-color: rgba(200, 238, 244, 1);
     color: rgba(63, 65, 68, 1);
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    position: relative;
+    bottom: 0vh;
     width: 100vw;
     height: 11.1vh;
     display: flex;  
