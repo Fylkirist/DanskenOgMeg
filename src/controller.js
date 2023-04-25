@@ -522,7 +522,7 @@ function registerUser() {
                 password:model.inputs.register.password,  
                 permissions: 'user',
                 firstName:model.inputs.register.firstName,
-                surname:model.inputs.register.surname,
+                surname:model.inputs.register.surName,
                 address:model.inputs.register.address,
                 city:model.inputs.register.city,
                 zip:model.inputs.register.zip,
@@ -538,7 +538,8 @@ function registerUser() {
                         cardHolderLastName:model.inputs.register.surname,
                         address:model.inputs.register.address,
                         zip:model.inputs.register.zip,
-                        houseNumber:"",                    
+                        houseNumber:"",
+                        cardCity: model.inputs.register.city                
                     }
                 ],
                 messages:[],

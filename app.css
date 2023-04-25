@@ -572,7 +572,7 @@ body {
     max-width: 16vw;
     max-height: 12vw;
     width: 20vw;
-    height: 24vw;
+    height: fit-content;
     margin: 0 auto;
     padding: 1vw;
     position: absolute;
@@ -1742,7 +1742,7 @@ body {
 }
 
 .frontPageCenterElem {
-    width: 100%;
+    width: 70vh;
     max-width: 600px;
     padding: 20px;
     box-sizing: border-box;
