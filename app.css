@@ -1649,7 +1649,7 @@ body {
 .tittleRegister{
     font-size: 30px;
     color: hsl(196, 100%, 71%);
-    font-fargba(21, 0, 123, 0.631)cida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-top: 2px;
 }
   .register-form-container {
     width: 100vw;
