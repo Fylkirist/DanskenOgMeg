@@ -2030,7 +2030,7 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    background-color: #f2f2f2;
+    background-color: #c9bbfa9d;
     padding: 2rem 0;
 }
 
@@ -2067,9 +2067,7 @@ body {
 }
 
 .frontPageAddDisplay {
-    background-color: #346eff9b;
-    color: #ffffff;
-    padding: 0.5rem 1rem;
+    background-color: #FFFAED;    padding: 0.5rem 1rem;
     font-size: 1.2rem;
     border-radius: 0.55rem;
     cursor: pointer;
@@ -2077,8 +2075,7 @@ body {
 }
 
 .frontPageAddDisplay:hover {
-    border:solid rgb(0, 152, 186) 2px;
-    color:rgb(192, 50, 35);
+    border: solid whitesmoke;
 }
 #frontPageTopSettings {
     display: flex;
@@ -2117,11 +2114,12 @@ gap:20px;
 .frontPageSettings button {
     display: flex;
     flex-direction: column;
-    background-color: #dc3545;
-    color: #ffffff;
+    background-color: #FFFAED;
+    
+    color: #000000;
     padding: 0.5rem 1rem;
     font-size: 1rem;
-    border: none;
+    border: black solid 1px;
     border-radius: 0.25rem;
     cursor: pointer;
     height: 10%;
@@ -2131,5 +2129,6 @@ gap:20px;
     
 }
 .frontPageSettings button:hover{
-    color: rgb(203, 214, 217);
+    color: rgba(110, 5, 5, 0.9);
+    border: solid whitesmoke;
 }
