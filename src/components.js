@@ -1240,14 +1240,14 @@ function generateFrontPageElement(item, pic, pos){
     if (model.data.items[item].auction){
         varElems = `
             <label class = "frontPagePriceDescLabel">Høyeste bud: </label>
-            <label class = "frontPagePriceLabel">${model.data.items[item].price}</label>
+            <label class = "frontPagePriceLabel">${model.data.items[item].price},-</label>
             <button class = "frontPageGoToProductButton" onclick = "goToProduct(${item})">Gå til auksjon</button>
         `
     }
     else{
         varElems = `
             <label class = "frontPagePriceDescLabel">Pris: </label>
-            <label class = "frontPagePriceLabel">${model.data.items[item].price}</label>
+            <label class = "frontPagePriceLabel">${model.data.items[item].price},-</label>
             ${model.app.loggedInStatus && model.data.users[model.app.userId].permissions == "admin"?``:`<button class = "frontPageAddProductButton" onclick = "addToShoppingCart('${model.data.items[item].id}')">Legg til i handlekurv</button>`}
             <button class = "frontPageGoToProductButton" onclick = "goToProduct(${item})">Gå til produktside</button>
         `  
