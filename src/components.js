@@ -1439,13 +1439,13 @@ function productDisplay(product){
         images += `<img class = "productDisplayGalleryImage" src = "${model.data.items[product].images[i]}"></img>`
     }      
     return `
+    <h1 class = "productDisplayTitle">${model.data.items[product].title}</h1>
+    <h1 class = "productDisplayDescriptionTitle">Beskrivelse</h1>
     <div class = "productDisplayContainer">
         ${showZoomedPic()}
-        <h1 class = "productDisplayTitle">${model.data.items[product].title}</h1>
         <div class = "productDisplayDescriptionContainer">
-            <img class = "productDisplayImage" src = "${model.data.items[product].images[0]}" onclick = "blowUpGalleryImg(0)"></img>
-            <h1 class = "productDisplayDescriptionTitle">Beskrivelse</h1>
-            <p class = "productDisplayDescription">${model.data.items[product].description}</p>
+        <img class = "productDisplayImage" src = "${model.data.items[product].images[0]}" onclick = "blowUpGalleryImg(0)"></img>
+        <p class = "productDisplayDescription">${model.data.items[product].description}</p>
             ${content}
         </div>
         ${model.app.loggedInStatus && model.data.users[model.app.userId].permissions == "admin"?
