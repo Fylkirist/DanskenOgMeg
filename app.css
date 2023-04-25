@@ -1440,6 +1440,7 @@ body {
     border: solid 2px;
     margin-left: 2px;
     margin-right: 2px;
+    max-height: 409px;
   }
   
   .productPriceAndBuyNow {
@@ -1477,4 +1478,18 @@ body {
     height: auto;
     margin-bottom: 1em;
     cursor: pointer;
+  }
+
+  #productDisplayPriceInput{
+    max-height: 5%;
+  }
+  .productDisplayBuyButton{
+    max-height: 10%;
+    font-size: small;
+    top:-1vw;
+    position: relative;
+    
+  }
+  .productDisplayBuyButton{
+    max-height: 20%;
   }
