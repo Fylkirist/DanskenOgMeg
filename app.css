@@ -407,7 +407,7 @@ body {
     font-family: 'Abhaya Libre', serif;
     background-color: rgba(200, 238, 244, 1);
     color: rgba(63, 65, 68, 1);
-    position: absolute;
+    position: relative;
     bottom: 0;
     left: 0;
     width: 100vw;
@@ -1771,48 +1771,6 @@ body {
     background-color: #E7EBF6;
     margin-top: 2px;
   }
-.CreateSaleContainer {
-     display: flex;
-    flex-direction: column;
-     max-width: 70%;
-    height: 70%;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #0000009d;
-    background-color: #f8f8f8;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-bottom: 50%;
-    align-items: center;
-    gap:10px
-}
-  
-  .createProductTopOfPage {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  
-  .categoryCreateContainer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 15%;
-  }
-
-  
-  .newProductImageGalleryElement {
-    max-width: 150px;
-    max-height: 150px;
-    margin: 5px;
-    border: 1px solid #ccc;
-  }
-  
-  .checkBoxesCreate {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-  }
 
 #filteredPageContainer{
     display: grid;
@@ -1954,4 +1912,133 @@ body {
     top: -2vw;
     padding-bottom: 0;
     margin-bottom: 0;
+}
+
+.CreateSaleContainer {
+    height: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.createProductTopOfPage {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+#productName,
+#priceInput {
+    flex: 1;
+    margin-right: 10px;
+    padding: 10px;
+    font-size: 18px;
+}
+
+#productDescription {
+    width: 100%;
+    height: 150px;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 18px;
+    resize: vertical;
+}
+
+.createSaleCategoryList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.createSaleCategoryElement {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+}
+
+.createSaleCategoryElement button {
+    margin-left: 5px;
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px;
+}
+
+.categoryCreateContainer {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+#categoryMain,
+#categorySub {
+    flex: 1;
+    margin-right: 10px;
+    padding: 10px;
+    font-size: 18px;
+}
+
+#mainCategoryAdd,
+#subCategoryAdd {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 10px;
+}
+
+#galleryFrame {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.newProductImageGalleryElement {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: cover;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.checkBoxesCreate {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#aucionLabel,
+#deadlineLabel,
+#deliveryCheckBoxLabel {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+#deadlineInput,
+#minimumBidInput {
+    margin-right: 10px;
+    padding: 10px;
+    font-size: 18px;
+}
+
+#saveButton {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 10px;
 }

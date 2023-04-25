@@ -1311,7 +1311,7 @@ function createSaleView(){
     }
     model.inputs.createSale.newId = id
     for( let i = 0; i<model.inputs.createSale.categoryList.length; i++){
-        categoryList += ` <li>${model.inputs.createSale.categoryList[i]}<button onclick = "deleteCategory(${i})">X</button></li>`
+        categoryList += ` <li class = "createSaleCategoryElement">${model.inputs.createSale.categoryList[i]}<button onclick = "deleteCategory(${i})">X</button></li>`
     }
     return /*html*/ ` 
         <div class = "CreateSaleContainer">
@@ -1322,7 +1322,7 @@ function createSaleView(){
             </div>
             <input id = "productDescription" type = "text" placeholder = "Beskrivelse" value = "${model.inputs.createSale.description}" oninput = "model.inputs.createSale.description = this.value"/>
             <div id = "categoryListContainer">
-                <ul>${categoryList}</ul>
+                <ul class = "createSaleCategoryList">${categoryList}</ul>
             </div>
             <div class = "categoryCreateContainer">
                 <input id = "categoryMain" type = "text" placeholder = "Hovedkategori" oninput = "model.inputs.createSale.mainCategory = this.value" value = "${model.inputs.createSale.mainCategory}">
