@@ -1344,7 +1344,6 @@ body {
     position: relative;
     top: -6vw;
     left: 28vw;
-    font-size: 1vw;
     background-color: rgba(255, 250, 237, 1);
     border: 0.15vw solid rgba(217, 217, 217, 1);
     border-radius: 1vw;
@@ -1354,3 +1353,322 @@ body {
     cursor: pointer;
     text-decoration: underline;
 }
+
+#checkOutComponentContainer{
+    position: relative;
+    top: 3vw;
+    left: 7vw;
+    width: 80vw;
+    padding: 2vw;
+    border: 0.1vw solid black;
+    background-color: rgba(70, 198, 217, 1);
+    display: grid;
+    grid-template-areas: "leftSide rightSide";
+}
+
+#checkOutLeftSideContainer{
+    grid-area: leftSide;
+    margin-right: 2vw;
+    width: 42vw;
+}
+
+#checkOutAddress{
+    position: relative;
+    background-color: rgba(255, 250, 237, 1);
+    padding: 1vw;
+    font-size: 1vw;
+    margin: 1vw;
+}
+
+#firstNameInputCheckout{
+    position: relative;
+    left: 0.7vw;
+    font-size: 0.8vw;
+    border: 0.1vw solid black;
+    border-radius: 0.3vw;
+}
+
+#lastNameInputCheckout{
+    font-size: 0.8vw;
+    border: 0.1vw solid black;
+    border-radius: 0.3vw;
+}
+
+#addressInputCheckout{
+    position: relative;
+    left: 0.3vw;
+    font-size: 0.8vw;
+    border: 0.1vw solid black;
+    border-radius: 0.3vw;
+}
+
+#zipInputCheckout{
+    position: relative;
+    left: 2.6vw;
+    font-size: 0.8vw;
+    border: 0.1vw solid black;
+    border-radius: 0.3vw;
+}
+
+#emailInputCheckout{
+    position: relative;
+    left: 1.3vw;
+    font-size: 0.8vw;
+    border: 0.1vw solid black;
+    border-radius: 0.3vw;
+}
+
+#mobileInputCheckout{
+    position: relative;
+    left: 1.5vw;
+    font-size: 0.8vw;
+    border: 0.1vw solid black;
+    border-radius: 0.3vw;
+}
+
+#addressCompletedButtonCheckout{
+    font-size: 0.8vw;
+    background-color: rgba(255, 250, 237, 1);
+    border: 0.15vw solid rgba(217, 217, 217, 1);
+    border-radius: 1vw;
+}
+
+#addressCompletedButtonCheckout:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#checkOutDeliveryMethod{
+    position: relative;
+    background-color: rgba(255, 250, 237, 1);
+    padding: 1vw;
+    font-size: 1vw;
+    margin: 1vw;
+}
+
+#deliveryCompletedButtonCheckout{
+    font-size: 0.8vw;
+    background-color: rgba(255, 250, 237, 1);
+    border: 0.15vw solid rgba(217, 217, 217, 1);
+    border-radius: 1vw;
+    margin-top: 1vw;
+}
+
+#deliveryCompletedButtonCheckout:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#checkOutPaymentMethod{
+    position: relative;
+    background-color: rgba(255, 250, 237, 1);
+    padding: 1vw;
+    font-size: 1vw;
+    margin: 1vw;
+}
+
+.cardBoxCheckout{
+    background-color: rgba(217, 217, 217, 1);
+    width: 20vw;
+    padding: 0.1vw;
+}
+
+.cardBoxCheckout:hover{
+    cursor: pointer;
+}
+
+#addNewCardButtonCheckOut{
+    font-size: 0.8vw;
+    background-color: rgba(255, 250, 237, 1);
+    border: 0.15vw solid rgba(217, 217, 217, 1);
+    border-radius: 1vw;
+    margin-top: 1vw;
+}
+
+#addNewCardButtonCheckOut:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.cardNumberInputCheckout{
+    position: relative;
+    left: 1vw;
+    font-size: 0.8vw;
+    border: 0.1vw solid black;
+    border-radius: 0.3vw;
+}
+
+.cardDateInputCheckout{
+    position: relative;
+    left: 0.1vw;
+    font-size: 0.8vw;
+    border: 0.1vw solid black;
+    border-radius: 0.3vw;
+}
+
+.cardCvcInputCheckout{
+    position: relative;
+    left: 0.5vw;
+    font-size: 0.8vw;
+    border: 0.1vw solid black;
+    border-radius: 0.3vw;
+}
+
+.cardFirstNameInputCheckout{
+    position: relative;
+    left: 0.5vw;
+    font-size: 0.8vw;
+    border: 0.1vw solid black;
+    border-radius: 0.3vw;
+}
+
+.cardLastNameInputCheckout{
+    position: relative;
+    left: 0.6vw;
+    font-size: 0.8vw;
+    border: 0.1vw solid black;
+    border-radius: 0.3vw;
+}
+
+#checkOutRightSideContainer{
+    grid-area: rightSide;
+    margin-right: 2vw;
+    width: 35vw;
+    font-size: 1vw;
+}
+
+#paymentOverviewHeader{
+    font-size: 1.5vw;
+    background-color: rgba(255, 250, 237, 1);
+    padding: 0.5vw;
+    text-align: center;
+}
+
+.singleItemInfoCheckout{
+    position: relative;
+    background-color: rgba(255, 250, 237, 1);
+    padding: 1vw;
+    font-size: 1vw;
+    height: 3vw;
+    margin-bottom: 0.5vw;
+}
+
+.singleItemQuantityIncreaseCheckout{
+    position: relative;
+    left: 19.5vw;
+    top: -2.5vw;
+    font-size: 1vw;
+    padding: 0.2vw;
+    background-color: rgba(255, 250, 237, 1);
+    border: 0.1vw solid rgba(217, 217, 217, 1);
+    border-radius: 1vw;
+}
+
+.singleItemQuantityIncreaseCheckout:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.singleItemQuantityCheckout{
+    font-size: 1vw;
+    position: relative;
+    left: 21.5vw;
+    top: -5vw;
+}
+
+.singleItemQuantityDecreaseCheckout{
+    position: relative;
+    left: 23vw;
+    top: -7.5vw;
+    font-size: 1vw;
+    padding: 0.2vw;
+    background-color: rgba(255, 250, 237, 1);
+    border: 0.1vw solid rgba(217, 217, 217, 1);
+    border-radius: 1vw;
+}
+
+.singleItemQuantityDecreaseCheckout:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.singleItemPriceCheckout{
+    font-size: 1.2vw;
+    position: relative;
+    left: 28vw;
+    top: -10.2vw;
+}
+
+.fraktAndMomsContainer{
+    position: relative;
+    background-color: rgba(255, 250, 237, 1);
+    padding: 1vw;
+    font-size: 1vw;
+    height: 3vw;
+    border-top: 0.1vw solid black;
+    border-bottom: 0.1vw solid black;
+    margin-top: 1vw;
+}
+
+.fraktTextPaymentOverview{
+    position: relative;
+    top: -1.5vw;
+}
+
+.fraktPricePaymentOverview{
+    position: relative;
+    top: -4vw;
+    left: 28vw;
+    font-size: 1.2vw;
+}
+
+.vatTextPaymentOverview{
+    position: relative;
+    top: -4.5vw;
+}
+
+.vatpricePaymentOverview{
+    position: relative;
+    top: -7vw;
+    left: 28vw;
+    font-size: 1.2vw;
+}
+
+.totalNokContainerCheckout{
+    position: relative;
+    background-color: rgba(255, 250, 237, 1);
+    padding: 1vw;
+    font-size: 1.5vw;
+    height: 3vw;
+    border-top: 0.1vw solid black;
+    border-bottom: 0.1vw solid black;
+    margin-top: 1vw;
+}
+
+.totalNokTextCheckout{
+    position: relative;
+    top: -1vw;
+}
+
+.totalNokAmountCheckout{
+    position: relative;
+    top: -4.3vw;
+    left: 27vw;
+}
+
+#payButtonCheckout{
+    position: relative;
+    left: 1vw;
+    font-size: 1vw;
+    padding: 1vw;
+    background-color: rgba(255, 250, 237, 1);
+    border: 0.15vw solid rgba(217, 217, 217, 1);
+    border-radius: 0.5vw;
+    margin-top: 1vw;
+}
+
+#payButtonCheckout:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
