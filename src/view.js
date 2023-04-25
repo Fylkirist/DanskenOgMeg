@@ -27,7 +27,7 @@ function updateView(){
             app.innerHTML = createHeaderSection() + profileMenuComponent() + adminMembersPage()
             break
         case "checkoutPage":
-            app.innerHTML = createHeaderSection() + checkOut() + createPageFooter()
+            app.innerHTML = checkOut()
             break
         case "adminAuction":
             app.innerHTML = createHeaderSection() + profileMenuComponent() + adminAuctionPage() + createPageFooter()
@@ -40,6 +40,9 @@ function updateView(){
             break
         case "editUserPage":
             app.innerHTML = createHeaderSection() + profileMenuComponent() + editUserPage() + createPageFooter()
+            break
+        case "adminMessage":
+            app.innerHTML = createHeaderSection() + profileMenuComponent() + adminChatBox() + createPageFooter()
             break
     }
 }
