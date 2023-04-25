@@ -81,7 +81,7 @@ body {
     width: 15vw;
     height: 2vh;
     margin: 0;
-    top:-5vh;
+    top:-4.5vh;
     left: 70vw;
     display: flex;
     flex-wrap: wrap;
@@ -92,20 +92,20 @@ body {
    top: 1vh;
    font-size: 2vh;
    width: 10vw;
-   height: 1.3vw; 
+   height: 1.5vw; 
    font-size: 1.7vh;
    border: 0.01vh solid rgba(63, 65, 68, 1);   
 }
 .SearchBox-2 {
    position: relative;
    top: 1vh;
-   font-size: 1vw;
-   padding: 0.1vh;
+   font-size: 0.9vw;
+   padding: 0.1vw;
    background-color: rgba(225, 225, 210, 0.99);
    border: 0.01vh solid rgba(63, 65, 68, 1);
    color: rgba(63, 65, 68, 1);
    width: 3vw; 
-   height: 1.3vw;    
+   height: 1.5vw;    
 }
 .SearchBox-2:hover{
     cursor: pointer;
