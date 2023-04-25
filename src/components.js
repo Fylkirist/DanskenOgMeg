@@ -723,7 +723,7 @@ function renderFrontPageAdminSettings(){
                 </div>
                 ${model.data.frontPageBottom.map((elem,i) =>{
                     return`
-                        <div>
+                        <div class = "frontPageSettings">
                             ${model.data.items[elem].title}
                             <img src = "${model.data.items[elem].images[0]}"/>
                             <button onclick = "removeFromFrontPageDisplay('bot',${i})">Fjern fra forside</button>

@@ -370,17 +370,7 @@ body {
 
 
  
-#frontPageSettingsContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 10px; 
-}
 
-#frontPageTopSettings,
-#frontPageBotSettings {
-    display: flex;
-    gap: 10px; 
-}
 
 .frontPageSettingsHoverDiv {
     position: relative; 
@@ -417,13 +407,12 @@ body {
     font-family: 'Abhaya Libre', serif;
     background-color: rgba(200, 238, 244, 1);
     color: rgba(63, 65, 68, 1);
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     width: 100vw;
     height: 11.1vh;
-    display: flex;  
-    flex-direction: row;
+   
 }
 
 #pageSloganContainer{
@@ -1896,3 +1885,94 @@ body {
     flex-wrap: wrap;
   }
 
+#frontPageSettingsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: #f2f2f2;
+    padding: 2rem 0;
+}
+
+.frontPageAddProductList{
+  width: 20vw;
+}
+
+#frontPageBotSettings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    background-color: #ffffff;
+    padding: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20%;
+    gap:10px;
+}
+
+.frontPageAddDisplay {
+    background-color: #007BFF;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    border-radius: 0.55rem;
+    cursor: pointer;
+}
+
+.frontPageAddDisplay:hover {
+    background-color: #5795d871;
+}
+#frontPageTopSettings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    background-color: #ffffff;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    gap:10px;
+}
+.frontPageSettings {
+display: flex;
+gap:20px;
+
+
+
+}
+ 
+.frontPageSettings img {
+    width: 50%;
+    max-height: 200px;
+    max-width: 200px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    gap:10px;
+}
+#frontPageBotSettings img {
+    width: 50%;
+    max-height: 200px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.frontPageSettings button {
+    display: flex;
+    flex-direction: column;
+    background-color: #dc3545;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    height: 10%;
+    width: 50%;
+    transition: background-color 0.3s ease;
+    gap: 20px;
+    
+}
+
+.frontPageSettings button:hover {
+    background-color: #c82333;
+}
