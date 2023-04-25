@@ -1773,9 +1773,10 @@ body {
 
 #filteredPageContainer{
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1fr 5fr;
     grid-template-areas: "categoryContainer productListContainer";
     height: 100vh;
+    width: 100vw;
 }
   
 #ShowFilterBoxContainer{
@@ -1864,7 +1865,7 @@ body {
 
 #filteredProductListContainer{
     grid-area: productListContainer;
-    height: 80vh;
+    height: 97vh;
     padding: 1vw;
     margin-top: 2vh;
     border: 0.1vw solid black;
