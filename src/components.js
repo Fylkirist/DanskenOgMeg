@@ -1315,9 +1315,9 @@ function createSaleView(){
     }
     return /*html*/ ` 
         <div class = "CreateSaleContainer">
+        <label id = "productId">Produkt ID: ${model.inputs.createSale.newId}</label>
             <div class = "createProductTopOfPage">
                 <input id = "productName" type = "text" placeholder = "Produkt Navn" value = "${model.inputs.createSale.title}"  oninput = "model.inputs.createSale.title = this.value"/>
-                <label id = "productId">Produkt ID: ${model.inputs.createSale.newId}</label>
                 <input id = "priceInput" type = "text" placeholder = "Pris" value = "${model.inputs.createSale.price}" oninput = "model.inputs.createSale.price = this.value">
             </div>
             <input id = "productDescription" type = "text" placeholder = "Beskrivelse" value = "${model.inputs.createSale.description}" oninput = "model.inputs.createSale.description = this.value"/>

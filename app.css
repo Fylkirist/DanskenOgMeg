@@ -369,95 +369,6 @@ body {
 }
 
 
-.CreateSaleContainer{
-    display: grid;
-}
-
-
-#productName { 
-    
-    
-}
- 
-#productDescription{
-    
-}
-
-#priceInput{
-    
-}
-    
-#categoryListContainer{
-     
-}
-
-
-#categoryMain{
-    
-}
-
-#mainCategoryAdd{
-    
-}
-
-#categorySub{
-    
-}
-
-#subCategoryAdd{
-    
-}
-
-#galleryFrame{
-   
-}
-
-#galleryInput{
-    
-}
-
-#addImageButton{
-    
-}
-
-#mainPicture{
-   
-}
-
-#productId{
-    
-}
-
-#aucionLabel{
-
-}
-#auctionBox{
-   
-}
-
-#deadlineInput{
-   
-}
-
-#minimumBidInput{
-    
-}
-
-#deliveryCheckBoxLabel{
-    
-}
-
-#deliveryBox{
-   
-}
-
-#saveButton{
-    
-}
-
-#deadlineLabel{
-    
-}
  
 #frontPageSettingsContainer {
     display: flex;
@@ -1796,3 +1707,46 @@ body {
 .frontPageLeftArrow:hover{
     background-color: #c9d2eb;
 }
+.CreateSaleContainer {
+     display: flex;
+    flex-direction: column;
+     max-width: 70%;
+    height: 70%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #0000009d;
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 50%;
+    align-items: center;
+    gap:10px
+}
+  
+  .createProductTopOfPage {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  
+  .categoryCreateContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 15%;
+  }
+
+  
+  .newProductImageGalleryElement {
+    max-width: 150px;
+    max-height: 150px;
+    margin: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .checkBoxesCreate {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
