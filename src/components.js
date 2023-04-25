@@ -236,7 +236,6 @@ function addProductDisplayHover(element, i) {
     hoverDiv.innerHTML = `
         <h3 class = "frontPageSettingsHoverTitle">${item.title}</h3>
         <img class = "frontPageSettingsHoverImg" src="${item.images[0]}"/>
-        <p class = "frontPageSettingsHoverDesc" >${item.description}</p>
         <p class = "frontPageSettingsHoverType" >${item.auction ? "Auksjonsvare" : "Fastprisvare"}</p>
         <p class = "frontPageSettingsHoverPrice" >Pris: ${item.price}</p>
     `;
@@ -1090,7 +1089,7 @@ function showWinningBids(){
                             >Trekk bud</button>
                             <div class="winningItemMaxBidShoppingCart">Bud: ${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid}</div>
                             <div class="winningItemDeadlineShoppingCart">Stenges om : ${calculateDeadline(model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id)}</div>
-                            <input class="winningItemIncreaseBidInputShoppingCart" type="number" onchange="activeAuctionController('${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id}', 'manuelt', this.value)" />
+                            <input class="winningItemIncreaseBidInputShoppingCart" type="number" value = "${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid}" onchange="activeAuctionController('${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id}', 'manuelt', this.value)" />
                             <button class="winningItemIncreaseBidButtonShoppingCart"
                                 ${model.inputs.shoppingCart.items.auctions.increasedWinningBid > model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid ? '' : 'disabled'}
                                 onclick="activeAuctionController('${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id}', 'manuelt', ${model.inputs.shoppingCart.items.auctions.increasedWinningBid})"
