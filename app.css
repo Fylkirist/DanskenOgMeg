@@ -1778,7 +1778,7 @@ body {
   .createProductTopOfPage {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
   }
 
   
@@ -1802,4 +1802,95 @@ body {
     align-items: center;
     flex-wrap: wrap;
   }
+
   
+  
+/* Container for the front page settings */
+#frontPageSettingsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: #f2f2f2;
+    padding: 2rem 0;
+}
+
+/* Top and bottom settings container */
+#frontPageTopSettings,
+#frontPageBotSettings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+/* Container for the add product button */
+
+
+/* Add product button */
+.frontPageAddDisplay {
+    display: inline-block;
+    background-color: #007BFF;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Add product button hover effect */
+.frontPageAddDisplay:hover {
+    background-color: #0056b3;
+}
+
+/* Individual front page settings */
+#frontPageTopSettings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    background-color: #ffffff;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+#frontPageBotSettings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    background-color: #ffffff;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+#frontPageBotSettings img{
+    width: 50%;
+    max-height: 200px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.frontPageSettings img {
+    width: 50%;
+    max-height: 200px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.frontPageSettings button {
+    background-color: #dc3545;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.frontPageSettings button:hover {
+    background-color: #c82333;
+}
