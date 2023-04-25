@@ -17,18 +17,18 @@
   .buttonAuctionStart
   {
     display: flex;
-    padding-top: 5px;
-    
-
+    justify-content: center;
+    justify-content: space-evenly;
     flex-direction: row;
-    gap:200px;
     background: #F4F4F4;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.817);
-    padding-inline: 265px;
     border-radius: 8%;
-    width:60vh;
+    width:80vh;
     height:7vh;
- 
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 10px;
+    
 }
   
   .auctionItem-info {
@@ -37,7 +37,7 @@
     grid-gap: 5px;
     background-color: #15301c09;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.89);
-
+    
   }
   
   .auctionItem img {
@@ -594,8 +594,9 @@ body {
     font-family: 'Abhaya Libre', serif;
     background-color: rgba(200, 238, 244, 1);
     color: rgba(63, 65, 68, 1);
-    position: relative;
-    bottom: 0vh;
+    position: absolute;
+    bottom: 0;
+    left: 0;
     width: 100vw;
     height: 11.1vh;
     display: flex;  
@@ -1402,4 +1403,63 @@ body {
   .currentChatBoxContainer button:hover {
     background-color: #0056b3;
   }
+.BannerRegister{
+    text-align: center;
+    height: 8vh;
+    width: 100%;
+    background-color: rgba(200, 238, 244, 1);
+    margin-bottom: 0;
+    position: fixed;
+}
+.tittleRegister{
+    font-size: 30px;
+    color: hsl(196, 100%, 71%);
+    font-fargba(21, 0, 123, 0.631)cida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+  .register-form-container {
+    width: 100vw;
+    height: 100vh;
+    background: rgb(112, 165, 205);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+  }
   
+  .register-form-group {
+    display: flex;
+    flex-direction: row;
+    height: 13vh;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+  .register-Form-Input {
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #171010;
+    border-radius: 5px;
+    background-color: #ffffff;
+    font-size: 16px;
+  }
+
+  .register-form-group .register-Form-Input:focus {
+    border-color: #ffffff;
+  }
+
+  .register-form-btn {
+    padding: 10px 20px;
+    background-color: #4f85dc;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    outline:solid rgb(27, 187, 255) 2px;
+    cursor: pointer;
+    margin: 5px;
+    width: 15vw;
+  }
+
+  .register-form-btn:hover {
+    outline: solid rgb(134, 211, 255);
+  }
