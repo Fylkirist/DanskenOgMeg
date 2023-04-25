@@ -41,6 +41,9 @@ function updateView(){
         case "editUserPage":
             app.innerHTML = createHeaderSection() + profileMenuComponent() + editUserPage() + createPageFooter()
             break
+        case "adminMessage":
+            app.innerHTML = createHeaderSection() + profileMenuComponent() + adminChatBox() + createPageFooter()
+            break
     }
 }
 
