@@ -1774,7 +1774,7 @@ body {
 }
 
 .frontPageLeftArrow{
-    height: 88%;
+    height: 62vh;;
     min-width: 100px;
     background-color: #E7EBF6;
     border-radius: 15px 0px 0px 15px;
@@ -1782,7 +1782,7 @@ body {
 }
 
 .frontPageRightArrow{
-    height: 88%;
+    height: 62vh;;
     min-width: 100px;
     background-color: #E7EBF6;
     border-radius: 0px 15px 15px 0px;
