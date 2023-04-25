@@ -1,21 +1,20 @@
 
 function addToOrderHistory(auksjonsId,userId) {
     const item = model.data.items.find((item) => item.id === auksjonsId);
-    if(auksjonsId)
-     {
-      const date = item.deadline.split("T")[0]
-      model.data.orderHistory.push({
-      itemId: parseInt(auksjonsId),
-      paid: false,
-      price: item.price,
-      date: date,
-      type: 'auksjon',
-      userId: userId,
-      image: item.images[0],
-      title: item.title,      
-      })
-     }
+    if(auksjonsId){
+        const date = item.deadline.split("T")[0]
+        model.data.orderHistory.push({
+        itemId: parseInt(auksjonsId),
+        paid: false,
+        price: item.price,
+        date: date,
+        type: 'auksjon',
+        userId: userId,
+        image: item.images[0],
+        title: item.title,      
+        })
     }
+}
    
   function calculateDeadlineSec(itemsId){
     const item = model.data.items.find((item, index) => {
@@ -186,27 +185,27 @@ if(parseInt(input) > item.price){
 }
 
 function setDisplayPrice(id){
-    console.log(id)
-    let topBid = -Infinity;
+    let topBid = 0;
     const auction = model.data.auctionListe.find((auction) => auction.itemId === id);
     if (auction) {
-    Object.keys(auction.bids).map(val => {
-      if (!auction.bids[val].deleted) {
-        topBid = Math.max(val.bid) > topBid ? Math.max(val.bid) : topBid;
-      }
-    });
-    for (let i = 0; i < model.data.items.length; i++) {
-      if (id == model.data.items[i].id) {
-        if (topBid === -Infinity) {
-          model.data.items[i].price = model.data.items[i].originalPrice;
-        } else {
-          model.data.items[i].price = topBid;
+        Object.keys(auction.bids).map(val => {
+            if (auction.bids[val].deleted == false) {
+                topBid = Math.max(...auction.bids[val].bid) > topBid ? Math.max(...auction.bids[val].bid) : topBid;
+            }
+        });
+        for (let i = 0; i < model.data.items.length; i++) {
+            if (id == model.data.items[i].id) {
+                if(topBid>model.data.items[i].originalPrice){
+                    model.data.items[i].price = topBid
+                }
+                else{
+                    model.data.items[i].price = model.data.items[i].originalPrice
+                }
+                return
+            }
         }
-        return;
-      }
-     }
     }
-  }
+}
 
 function addNewItemToAuctionList(itemId) {
     const auctionExists = model.data.auctionListe.some(auction => auction.itemId === itemId);
@@ -522,7 +521,7 @@ function registerUser() {
                 password:model.inputs.register.password,  
                 permissions: 'user',
                 firstName:model.inputs.register.firstName,
-                surname:model.inputs.register.surname,
+                surname:model.inputs.register.surName,
                 address:model.inputs.register.address,
                 city:model.inputs.register.city,
                 zip:model.inputs.register.zip,
@@ -538,7 +537,8 @@ function registerUser() {
                         cardHolderLastName:model.inputs.register.surname,
                         address:model.inputs.register.address,
                         zip:model.inputs.register.zip,
-                        houseNumber:"",                    
+                        houseNumber:"",
+                        cardCity: model.inputs.register.city                
                     }
                 ],
                 messages:[],
