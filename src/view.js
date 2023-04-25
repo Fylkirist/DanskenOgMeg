@@ -44,6 +44,8 @@ function updateView(){
         case "adminMessage":
             app.innerHTML = createHeaderSection() + profileMenuComponent() + adminChatBox() + createPageFooter()
             break
+        case "saleHistoryPage":
+            app.innerHTML = createHeaderSection() + profileMenuComponent() + orderHistoryView() + createPageFooter()
     }
 }
 
