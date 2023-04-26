@@ -206,12 +206,56 @@ const model = {
                 password:"ikkeadmin",
                 permissions:"user",
                 firstName:"Marie",
-                surName:"benji",
-                address:"GeTOutOfMyVei",
-                city:"Larvik",
-                zip:"1482",
-                email: 'example@gmail.com',
-                mobile: '00000000',
+                surName:"Kodensen",
+                address:"Jernbanegata 6",
+                city:"Ålesund",
+                zip:"6003",
+                email: 'mariek@gmail.com',
+                mobile: '48263574',
+                shoppingCart:[
+                        {
+                            item:"000001",
+                            quantity:1
+                        },
+                    ],
+            
+                paymentInformation:[
+                    {
+                        cardNumber: "133783082430",
+                        expirationDate:"12/25",
+                        cvc: '622',
+                        cardHolderFirstName:"Marie",
+                        cardHolderLastName:"Kodensen",
+                        address:"Jernbanegata 6",
+                        houseNumber:"6",
+                        zip:"6003",
+                        cvc:"622",
+                        city: "Ålesund"
+                    },
+                ],
+                messages:[
+                    {
+                        type:'user',
+                        message: 'hei, jeg er marie!',
+                    },
+                    {
+                        type:'admin',
+                        message: 'hei, jeg er marie!',
+                    }, 
+                ]         
+            },
+            "0000003":{
+                id:"0000003",
+                username:"tommy",
+                password:"tommy",
+                permissions:"user",
+                firstName:"Tommy",
+                surName:"Jensen",
+                address:"Storgata 3",
+                city:"Molde",
+                zip:"6409",
+                email: 'tommyj@gmail.com',
+                mobile: '48304564',
                 shoppingCart:[
                         {
                             item:"000001",
@@ -223,24 +267,68 @@ const model = {
                     {
                         cardNumber: "133780082420",
                         expirationDate:"12/25",
-                        cvc: '123',
-                        cardHolderFirstName:"Nonja",
-                        cardHolderLastName:"Buisness",
-                        address:"Grove Street",
-                        houseNumber:"69",
-                        zip:"6969",
-                        cvc:"123",
-                        city: "Los Santos"
+                        cvc: '552',
+                        cardHolderFirstName:"Tommy",
+                        cardHolderLastName:"Jensen",
+                        address:"Storgata 3",
+                        houseNumber:"3",
+                        zip:"6409",
+                        cvc:"552",
+                        city: "Molde"
                     },
                 ],
                 messages:[
                     {
                         type:'user',
-                        message: 'hei, jeg er marie!',
+                        message: 'hei, har du flere kunst til salgs?',
                     },
                     {
                         type:'admin',
-                        message: 'hei, jeg er marie!',
+                        message: 'hei, skal sjekke på lager',
+                    }, 
+                ]         
+            },
+            "0000004":{
+                id:"0000004",
+                username:"bigbryan",
+                password:"bigbryan",
+                permissions:"user",
+                firstName:"Bryan",
+                surName:"Adams",
+                address:"Queen Street 3",
+                city:"Toronto",
+                zip:"M5H 2N1",
+                email: 'bigbryan@gmail.com',
+                mobile: '48314564',
+                shoppingCart:[
+                        {
+                            item:"000001",
+                            quantity:1
+                        },
+                    ],
+            
+                paymentInformation:[
+                    {
+                        cardNumber: "134520082420",
+                        expirationDate:"12/25",
+                        cvc: '561',
+                        cardHolderFirstName:"Bryan",
+                        cardHolderLastName:"Adams",
+                        address:"Queen Street 3",
+                        houseNumber:"3",
+                        zip:"M5H 2N1",
+                        cvc:"561",
+                        city: "Toronto"
+                    },
+                ],
+                messages:[
+                    {
+                        type:'user',
+                        message: 'Hello. Do you have any more Vintage Guitars for sale?',
+                    },
+                    {
+                        type:'admin',
+                        message: 'I do not have any now but I will have latter.',
                     }, 
                 ]         
             }
