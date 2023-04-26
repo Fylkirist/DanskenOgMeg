@@ -412,6 +412,7 @@ body {
     background-color: rgba(200, 238, 244, 1);
     color: rgba(63, 65, 68, 1);
     position: relative;
+    margin-top: 1vh;
     bottom: 0vh;
     left: 0;
     width: 100vw;
@@ -1108,10 +1109,12 @@ body {
 
 #checkOutComponentContainer{
     position: relative;
-    top: 3vw;
+    top: 1vw;
     left: 7vw;
     width: 85vw;
     padding: 2vw;
+    padding-bottom: 1vh;
+    margin-bottom: 2vh;
     height: 100%;
     border: 0.1vw solid black;
     background-color: rgba(70, 198, 217, 1);
