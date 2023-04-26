@@ -538,7 +538,7 @@ function registerUser() {
                         address:model.inputs.register.address,
                         zip:model.inputs.register.zip,
                         houseNumber:"",
-                        cardCity: model.inputs.register.city                
+                        city: model.inputs.register.city                
                     }
                 ],
                 messages:[],
