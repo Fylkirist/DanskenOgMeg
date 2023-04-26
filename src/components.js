@@ -1091,7 +1091,6 @@ function showWinningBids(){
                             <div class="winningItemDeadlineShoppingCart">Stenges om : ${calculateDeadline(model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id)}</div>
                             <input class="winningItemIncreaseBidInputShoppingCart" type="number" value = "${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid}" oninput="model.inputs.product.bidIncrease = this.value" />
                             <button class="winningItemIncreaseBidButtonShoppingCart"
-                                ${model.inputs.shoppingCart.items.auctions.increasedWinningBid > model.inputs.shoppingCart.items.auctions.usersWinningBids[i].usersMaximumBid ? '' : 'disabled'}
                                 onclick="raiseBid('${model.inputs.shoppingCart.items.auctions.usersWinningBids[i].id}')"
                             >Øk bud</button>
                         `}
@@ -1130,7 +1129,6 @@ function showLosingBids(){
                             />
                             <button
                                 class="losingItemIncreaseBidButtonShoppingCart"
-                                ${model.inputs.shoppingCart.items.auctions.increasedWinningBid > model.inputs.shoppingCart.items.auctions.usersLosingBids[i].ItemsMaximumBid ? '' : 'disabled'}
                                 onclick="raiseBid('${model.inputs.shoppingCart.items.auctions.usersLosingBids[i].id}')"
                             >Øk bud</button>
                             `}
