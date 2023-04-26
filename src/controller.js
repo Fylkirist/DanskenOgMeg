@@ -515,8 +515,16 @@ function registerUser() {
             updateView()
             return
         }
+        let brukerTelling = Object.keys(model.data.users).length +1
+            let newUserID = brukerTelling.toString()
+            while(newUserID.length<7){
+                newUserID = "0" + newUserID
+            }
+        
+        
         if (model.inputs.register.password === model.inputs.register.repeatPassword){ 
             const newUser = { 
+                id:newUserID,
                 username:model.inputs.register.userName,                        
                 password:model.inputs.register.password,  
                 permissions: 'user',
@@ -538,16 +546,13 @@ function registerUser() {
                         address:model.inputs.register.address,
                         zip:model.inputs.register.zip,
                         houseNumber:"",
+                        cvc:model.inputs.register.cvc,
                         city: model.inputs.register.city                
                     }
                 ],
                 messages:[],
             }
-            let brukerTelling = Object.keys(model.data.users).length +1
-            let newUserID = brukerTelling.toString()
-            while(newUserID.length<7){
-                newUserID = "0" + newUserID
-            }
+            
             model.data.users[newUserID] = newUser
             model.app.userId=newUserID;
             model.app.loggedInStatus=true;

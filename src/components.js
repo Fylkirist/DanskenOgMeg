@@ -1193,7 +1193,7 @@ function registerFormView() {
   <div class="register-form-group">
     <label class="invinsible-card">1755245733</label><input type="text" class="register-Form-Input" placeholder="Card info" onchange="model.inputs.register.cardNumber = this.value; isValid(this)">
     <input type="date" class="register-Form-Input" oninput="model.inputs.register.fromDate = this.value;">
-    <input type="text" class="register-Form-Input" placeholder="CVE" oninput="model.inputs.register.cve = this.value;">
+    <input type="text" class="register-Form-Input" placeholder="CVE" oninput="model.inputs.register.cvc = this.value;">
   </div>
   <div class="register-form-group">
   <button class="register-form-btn" onclick="goBackToFrontPage()">Tilbake</button>
