@@ -680,15 +680,17 @@ body {
     left: 0;
     top: 0;
     height: 40vh;
-    width: 52vw; 
+    width: 52vw;
+    overflow-y: auto;
 }
 
 #allItemsBuyNowShoppingCartContainerAnonym{
     position: relative;
     left: 0;
     top: 0;
-    height: 80vh;
+    height: 60vh;
     width: 52vw;
+    overflow-y: auto;
 }
 
 #kanBuyNowHeaders{
@@ -697,13 +699,15 @@ body {
     left: 0;
     height: 2.7vh;
     border-bottom: 0.3vh solid rgba(217, 217, 217, 1);
+    text-align: left;
 }
 
 #canBuyNowTextCart{
     position: relative;
-    top: -0.5vw;
-    left: -20vw;
+    top: -0.2vw;
+    left: 0vw;
     padding: 0;
+    padding-left: 0.5vw;
     margin: 0;
     font-size: 1.2vw;
 }
@@ -711,7 +715,7 @@ body {
 #emptyShoppingCartButton{
     position: relative;
     top: -2vw;
-    left: 20vw;
+    left: 44vw;
     font-size: 0.8vw;
 }
 
@@ -740,14 +744,12 @@ body {
     position: relative;
     top: 0;
     left: 0;
-    border-bottom: 0.3vh solid rgba(217, 217, 217, 1);
     font-size: 1vw;
     padding: 0.5vw;
     padding-right: 0;
     margin-right: 0;
     height: 25vh;
     text-align: start;
-    overflow-y: scroll;
 }
 
 .singleItemCanBuyShoppingCart{
@@ -816,8 +818,9 @@ body {
     left: 0vw;
     padding: 0.2vw;
     margin: 0.2vw;
-    width: 47vw;
+    width: 52vw;
     text-align: start;
+    border-top: 0.3vh solid rgba(217, 217, 217, 1);
 }
 
 #totalTextBuyNowShoppingCart{
@@ -858,7 +861,8 @@ body {
     font-size: 1vw;
     text-align: start;
     margin: 0;
-    margin-top: 1vw;
+    margin-top: 2vw;
+    overflow-y: auto;
 }
 
 #auctionsHeaderShoppingCart{
@@ -892,8 +896,6 @@ body {
     height: 18vh;
     border-bottom: 0.3vh solid rgba(217, 217, 217, 1);
     font-size: 0.8vw;
-    overflow-y: scroll;
-    overflow-x: hidden;
 }
 
 .singleItemContainerInWinningBidsShoppingcart{
@@ -1006,8 +1008,6 @@ body {
     height: 18vh;
     border-bottom: 0.3vh solid rgba(217, 217, 217, 1);
     font-size: 0.8vw;
-    overflow-y: scroll;
-    overflow-x: hidden;
 }
 
 .singleItemContainerInLosingBidsShoppingcart{

@@ -992,13 +992,15 @@ function showShoppingCart(){
         html = /*html*/`
             <div class="handlevognContainer">
                 <div class="handlevognHeader">Handlevogn</div>
-                <div id=${model.app.userId ? "allItemsBuyNowShoppingCartContainer" : "allItemsBuyNowShoppingCartContainerAnonym"}>
-                    <div id="kanBuyNowHeaders"><p id="canBuyNowTextCart">Varer du kan kjøpe nå -</p><span id="emptyShoppingCartButton" onclick="clearShoppingCart()">Tøm handlevogn</span></div>
-                    <div id="priceHeaderShoppingCart">
-                        <span id="priceTextShoppingCart">Pris</span>
-                    </div>
-                    <div id="allItemsContainerShoppingCartBuyNowSection">
-                    ${showItemsCanBuyNow()}
+                <div>
+                    <div id=${model.app.userId ? "allItemsBuyNowShoppingCartContainer" : "allItemsBuyNowShoppingCartContainerAnonym"}>
+                        <div id="kanBuyNowHeaders"><p id="canBuyNowTextCart">Varer du kan kjøpe nå -</p><span id="emptyShoppingCartButton" onclick="clearShoppingCart()">Tøm handlevogn</span></div>
+                        <div id="priceHeaderShoppingCart">
+                            <span id="priceTextShoppingCart">Pris</span>
+                        </div>
+                        <div id="allItemsContainerShoppingCartBuyNowSection">
+                        ${showItemsCanBuyNow()}
+                        </div>
                     </div>
                     <div id="totalPriceContainerShoppingCart">
                         <span id="totalTextBuyNowShoppingCart">Total NOK</span>
