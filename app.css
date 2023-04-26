@@ -866,7 +866,6 @@ body {
     text-align: start;
     margin: 0;
     margin-top: 2vw;
-    overflow-y: auto;
 }
 
 #auctionsHeaderShoppingCart{
@@ -900,6 +899,7 @@ body {
     height: 18vh;
     border-bottom: 0.3vh solid rgba(217, 217, 217, 1);
     font-size: 0.8vw;
+    overflow-y: auto;
 }
 
 .singleItemContainerInWinningBidsShoppingcart{
@@ -1012,6 +1012,7 @@ body {
     height: 18vh;
     border-bottom: 0.3vh solid rgba(217, 217, 217, 1);
     font-size: 0.8vw;
+    overflow-y: auto;
 }
 
 .singleItemContainerInLosingBidsShoppingcart{
