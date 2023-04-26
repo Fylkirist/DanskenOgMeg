@@ -1,9 +1,9 @@
 const model = {
     app:{
         currentView:'frontPage',
-        loggedInStatus: true,
+        loggedInStatus: false,
         wrongUserNamePasswordMessage: '',
-        userId:"0000001",
+        userId:false,
         zoomedPic:false,
         currentProduct:false,
         showChatBox:"",
@@ -298,7 +298,7 @@ const model = {
                 id: "000002",
                 title: 'Bord og stolsett',
                 description: 'Et elegant og funksjonelt bord og stolsett som passer perfekt til både spisestuen og kjøkkenet. Bordet er laget av solid eik og har en vakker finish, mens stolene har komfortable seter og ryggstøtte. Dette settet er ideelt for både daglig bruk og spesielle anledninger.',
-                price: 5000,
+                price: 20000,
                 originalPrice:5000,
                 category:['Møbler','Stoler','Bord'],
                 auction:true,
