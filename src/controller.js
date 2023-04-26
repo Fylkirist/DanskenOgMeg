@@ -1214,18 +1214,20 @@ async function uploadImg(event){
 }
 
 function raiseBid(productId){
+    console.log(productId)
     const regexp = /^\d+$/;
     if(!regexp.test(model.inputs.product.bidIncrease)){
         return
     }
-    const item = model.data.auctionListe.find(elem => elem.itemId == productId)
+    let item = model.data.auctionListe.find(elem => elem.itemId == productId)
     if(item === undefined){
         model.data.auctionListe.push({
             itemId:productId,
             bids:{}
         })
+        item = model.data.auctionListe.find(elem => elem.itemId == productId)
     }
-    if(item.bids[model.app.userId] === undefined){
+    if(!Object.keys(item.bids).includes(model.app.userId)){
         item.bids[model.app.userId]={
             bid:[parseInt(model.inputs.product.bidIncrease)],
             deleted:false,

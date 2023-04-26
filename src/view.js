@@ -27,7 +27,7 @@ function updateView(){
             app.innerHTML = createHeaderSection() + profileMenuComponent() + adminMembersPage()
             break
         case "checkoutPage":
-            app.innerHTML = checkOut()
+            app.innerHTML = createHeaderSection() + checkOut() + createPageFooter()
             break
         case "adminAuction":
             app.innerHTML = createHeaderSection() + profileMenuComponent() + adminAuctionPage() + createPageFooter()

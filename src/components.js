@@ -1492,10 +1492,10 @@ function showAdminProductComponent(product){
                 ${model.data.items[product].auction?
                     `
                     <p>Nåværende minbud: ${model.data.items[product].minBid}</p>
-                    <input type = "number" onchange = "model.inputs.product.adminBidIncrease = this.value; updateView()" min="${model.data.items[product].minBid}" value = "${model.inputs.product.adminBidIncrease}"/><button class="changePriceOrBidButton" ${model.inputs.product.adminBidIncrease > model.data.items[product].minBid ? '' : 'disabled'} onclick = "model.data.items[${product}].minBid = ${model.inputs.product.adminBidIncrease}; updateView()">Endre minimumbudøkning</button>`:
+                    <input type = "number" onchange = "model.inputs.product.adminBidIncrease = this.value; updateView()" min="${model.data.items[product].minBid}" value = "${model.inputs.product.adminBidIncrease}"/><button class="changePriceOrBidButton" onclick = "model.data.items[${product}].minBid = ${model.inputs.product.adminBidIncrease}; updateView()">Endre minimumbudøkning</button>`:
                     `
                     <p>Nåværende pris: ${model.data.items[product].price}</p>
-                    <input type = "number" onchange = "model.inputs.product.adminPriceChange = this.value; updateView()" min="${model.data.items[product].price}" value = "${model.inputs.product.adminPriceChange}"/><button class="changePriceOrBidButton" ${model.inputs.product.adminPriceChange > model.data.items[product].price ? '' : 'disabled'} onclick = "model.data.items[${product}].price = ${model.inputs.product.adminPriceChange}; updateView()">Endre pris</button>`
+                    <input type = "number" onchange = "model.inputs.product.adminPriceChange = this.value; updateView()" min="${model.data.items[product].price}" value = "${model.inputs.product.adminPriceChange}"/><button class="changePriceOrBidButton" onclick = "model.data.items[${product}].price = ${model.inputs.product.adminPriceChange}; updateView()">Endre pris</button>`
                 }
             </div>
             <div>
