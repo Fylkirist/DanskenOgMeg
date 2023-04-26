@@ -1655,7 +1655,7 @@ function editUserPage(){
        <div class = "editUserContainerDiv">
             <div id = "persoinalInfo">
                 <div id = firstLast>
-                    <h1>Personelig Informasjon</h1>
+                    <h1>Personlig Informasjon</h1>
                     <input id ="firstNameChangeBox" type = "text" placeholder = "Fornavn"
                         value  = "${model.data.users[model.app.userId].firstName}" oninput = "model.inputs.register.firstName = this.value">
                     <input id ="lastNameChangeBox" type = "text" placeholder = "Etternavn"
@@ -1722,6 +1722,7 @@ function editUserPage(){
                     <button id = "cardConfirm" onclick = "addBankCard()">Confirm</button>
                 </div>
         </div>
+    </div>
         `
  }
 
