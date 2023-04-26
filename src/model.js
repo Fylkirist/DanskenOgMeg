@@ -3,7 +3,7 @@ const model = {
         currentView:'frontPage',
         loggedInStatus: true,
         wrongUserNamePasswordMessage: '',
-        userId:"0000002",
+        userId:"0000001",
         zoomedPic:false,
         currentProduct:false,
         showChatBox:"",
@@ -169,8 +169,8 @@ const model = {
         profileMenuShowing:false,
         product:{
             bidIncrease:"",
-            adminBidIncrease:"",
-            adminPriceChange:"",
+            adminBidIncrease:0,
+            adminPriceChange:0,
             adminAddSubCategory:"",
             adminChangeMainCategory:""
         },

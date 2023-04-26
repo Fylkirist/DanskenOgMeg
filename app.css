@@ -89,8 +89,8 @@ body {
 
 .SearchBox-1 {
    position: relative;
-   top: 1vh;
-   font-size: 2vh;
+   top: 0.8vh;
+   font-size: 1vw;
    width: 10vw;
    height: 1.5vw; 
    font-size: 1.7vh;
@@ -175,7 +175,7 @@ body {
     background-color: rgba(200, 238, 244, 1);
     color: rgba(63, 65, 68, 1);
     width: 100vw;
-    height: 15vh;
+    height: 17vh;
     position: relative;
     top: 0vh;
     user-select: none;
@@ -238,7 +238,7 @@ body {
 .registerButtonHeaderSection{
     background-color: rgba(70, 198, 217, 1);
     color: rgba(63, 65, 68, 1);
-    font-size: 0.85vw;
+    font-size: 0.8vw;
     border: 0.005vw solid rgba(63, 65, 68, 1);
     margin: 0;
     padding: 0.1vw;
@@ -253,7 +253,7 @@ body {
 .loginButtonHeaderSection{
     background-color: rgba(70, 198, 217, 1);
     color: rgba(63, 65, 68, 1);
-    font-size: 0.85vw;
+    font-size: 0.8vw;
     border: 0.005vw solid rgba(63, 65, 68, 1);
     margin: 0;
     padding: 0.1vw;
@@ -268,7 +268,7 @@ body {
 .userButtonHeaderSection{
     background-color: rgba(70, 198, 217, 1);
     color: rgba(63, 65, 68, 1);
-    font-size: 0.85vw;
+    font-size: 1vw;
     margin: 0vh;
     padding: 0.1vw;
     border: 0.005vw solid rgba(63, 65, 68, 1);
@@ -309,7 +309,7 @@ body {
     border: 0.005vw solid rgba(63, 65, 68, 1);
     width: 5vw;
     position: absolute;
-    top: 3.9vh;
+    top: 4.2vh;
     left: 84.1vw;
 }
 .passwordInputLoginDropdown{    
@@ -321,7 +321,7 @@ body {
     border: 0.005vw solid rgba(63, 65, 68, 1);
     width: 5vw;
     position: absolute;
-    top: 6.2vh;
+    top: 7.1vh;
     left: 84.1vw;
 
 }
@@ -333,8 +333,8 @@ body {
     padding: 0.05vw;
     border: 0.005vw solid rgba(63, 65, 68, 1);
     position: absolute;
-    top: 8.7vh;
-    left: 86.65vw;
+    top: 10.1vh;
+    left: 86.55vw;
 }
 .loginSubmitButtonLoginDropdown:hover{
     text-decoration: underline;
@@ -346,7 +346,7 @@ body {
     margin: 0.005vw;
     padding: 0.005vw;
     position: absolute;
-    top: 11.2vh;
+    top: 13vh;
     left: 81.2vw;
 
 }
@@ -356,7 +356,7 @@ body {
     margin: 0.005vw;
     padding: 0.005vw;
     position: absolute;
-    top: 12.5vh;
+    top: 14.5vh;
     left: 81.2vw;
 }
  
@@ -407,7 +407,7 @@ body {
     background-color: rgba(200, 238, 244, 1);
     color: rgba(63, 65, 68, 1);
     position: relative;
-    bottom: 0;
+    bottom: 0vh;
     left: 0;
     width: 100vw;
     height: 11.1vh;
@@ -1471,94 +1471,13 @@ body {
   .currentChatBoxContainer button:hover {
     background-color: #0056b3;
   }
-
-  .productDisplayContainer {
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    margin: 2em;
-  }
-  
-  .productDisplayDescriptionContainer {
-    display: flex;
-    flex-direction: row;
-    margin-right: 2em;
-  }
-  
-  .productDisplayImage {
-    object-fit: cover;
-    max-width: 550px;
-    height: auto;
-    margin-bottom: 1em;
-    cursor: pointer;
-  }
-  
-  .productDisplayTitle{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .productDisplayDescriptionTitle {
-    font-size: 1.2em;
-    margin-bottom: 0.5em;
-    text-align: center;
-  }
-  
-  .productDisplayDescription {
-    margin: 0;
-    border: solid 2px;
-    margin-left: 2px;
-    margin-right: 2px;
-    max-height: 409px;
-  }
   
   .productPriceAndBuyNow {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
   }
-  
-  .productDisplayPriceLabel {
-    font-weight: bold;
-    font-size: large;
-  }
-  
-  .productDisplayPrice {
-    margin-left: 0.25em;
-    margin-right: 0.25em;
-  }
-  
-  .productDisplayBuyButton {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 0.5em 1em;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 1em;
-    cursor: pointer;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    top:-1vw;
-    position: relative;
-    margin-right: 5px;
-    margin-left: 5px;
-    max-height: 20%;
-    
-  }
-  
-  .productDisplayGalleryImage {
-    max-width: 200px;
-    height: auto;
-    margin-bottom: 1em;
-    cursor: pointer;
-  }
 
-  #productDisplayPriceInput{
-    max-height: 5%;
-  }
   
   .currentChatBoxContainer{
     background-color: #0056b3;
@@ -2131,4 +2050,181 @@ gap:20px;
 .frontPageSettings button:hover{
     color: rgba(110, 5, 5, 0.9);
     border: solid whitesmoke;
+}
+
+#singleProductDisplayContainer{
+    font-size: 1vw;
+    background-color: rgba(70, 198, 217, 1);
+    width: 70vw;
+    height: 70vh;
+    position: relative;
+    padding: 1vw;
+    left: 15vw;
+    border: 0.1vw solid black;
+    overflow-y: scroll;
+}
+
+.productDisplayTitle{
+    margin: 1vw;
+    font-size: 1.8vw;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.productDisplayContainer{
+    position: relative;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    grid-template-areas: "mainImage productDescriptionContainer";
+}
+
+.productDisplayImage{
+    width: 25vw;
+    height: 20vw;
+    border: 0.1vw solid black;
+    grid-area: mainImage;
+}
+
+.productDisplayDescriptionContainer{
+    grid-area: productDescriptionContainer;
+}
+
+.productDisplayDescriptionTitle {
+    font-size: 1.2vw;
+    margin-bottom: 0.5em;
+    text-align: center;
+}
+
+.productDisplayDescription {
+    border: 0.1vw solid black;
+    margin: 1vw;
+    padding: 1vw;
+    text-align: justify;
+    background-color: rgba(255, 250, 237, 1);
+}
+
+#productPriceOrBidContainer{
+    background-color: rgba(255, 250, 237, 1);
+    margin: 1vw;
+    padding: 1vw;
+}
+
+.productDisplayPriceLabel{
+    font-size: 1.2vw;
+    position: relative;
+}
+
+.productDisplayPrice{
+    font-size: 1.2vw;
+    margin-left: 0.5vw;
+}
+
+.productDisplayBuyButton{
+    font-size: 1vw;
+    border: 0.1vw solid black;
+    margin-left: 1vw;
+}
+
+.productDisplayBuyButton:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.productDisplayPriceInput{
+    font-size: 1vw;
+    margin-left: 2vw;
+}
+
+#productDisplayDeadline{
+    font-size: 1vw;
+}
+
+.productDisplayNoBid{
+    font-size: 0.8vw;
+    color: red;
+    margin-bottom: 1vh;
+}
+
+#singleProductAdminComponentsContainer{
+    background-color: rgba(255, 250, 237, 1);
+    margin: 1vw;
+    padding: 1vw;
+}
+
+#adminProductId{
+    font-size: 1vw;
+}
+
+#deadlineChangeOnProductPageAdmin{
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    font-size: 1vw;
+}
+
+#changePriceOrBidProduct{
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    font-size: 1vw;
+}
+
+.changePriceOrBidButton{
+    font-size: 0.8vw;
+    border: 0.1vw solid black;
+    padding: 0.3vw;
+    margin-left: 1vw;
+}
+
+.changePriceOrBidButton:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.removeSubcategoryButton{
+    border: 0.1vw solid black;
+    padding: 0.2vw;
+    border-radius: 1vw;
+    font-size: 0.8vw;
+}
+
+.removeSubcategoryButton:hover{
+    cursor: pointer;
+}
+
+.changeCategoryButton{
+    border: 0.1vw solid black;
+    padding: 0.2vw;
+    border-radius: 0.2vw;
+    font-size: 0.8vw;
+}
+
+.changeCategoryButton:hover{
+    cursor: pointer;
+}
+
+#productDisplayImageGalleryContainer{
+    border: 0.1vw transparent;
+    margin: 1vw;
+    padding: 1vw;
+    width: 40vw;
+    background-color: rgba(255, 250, 237, 1);
+    position: relative;
+    left: 12vw;
+    font-size: 1vw;
+    text-align: center;
+    overflow-x: auto;
+}
+
+.inlineImagesProductDisplay{
+    float: left;
+    margin: 1vw;
+}
+
+.productDisplayGalleryImage{
+    width: 10vw;
+    height: auto;
+}
+
+div.clearAllDiv{
+    clear: both;
 }

@@ -1421,47 +1421,57 @@ function productDisplay(product){
         content = `
             <label class = "productDisplayPriceLabel">Nåværende Bud: </label>
             <label class = "productDisplayPrice">${model.data.items[product].price},-</label>
-            <input id = "productDisplayPriceInput" oninput="model.inputs.product.bidIncrease = this.value">${model.inputs.product.bidIncrease}</input>
+            <input class = "productDisplayPriceInput" oninput="model.inputs.product.bidIncrease = this.value">${model.inputs.product.bidIncrease}</input>
             <button class = "productDisplayBuyButton" onclick = "raiseBid(model.data.items[${product}].id)">Øk bud</button>
-            <div id = "productDisplayDeadline">Auksjonen åpent til: ${model.data.items[product].deadline}</div>`
+            <div id = "productDisplayDeadline">Auksjonen åpent til: ${new Date(model.data.items[product].deadline).toLocaleDateString()}</div>`
     }
     else if(model.data.items[product].auction && !model.app.loggedInStatus){
         content = `
             <label class = "productDisplayPriceLabel">Nåværende Bud: </label>
             <label class = "productDisplayPrice">${model.data.items[product].price},-</label>
-            <label class = "productDisplayNoBid">Du må være innlogget for å by på auksjoner</label>
+            <div class = "productDisplayNoBid">Du må være innlogget for å by på auksjoner</div>
             <button class = "productDisplayNoBidRegister" onclick = "changeView('registerPage')">Registrer</button>
             <button class = "productDisplayNoBidLogin" onclick = "changeView('loginPage')">Logg inn</button>
         `
     }
-    else{
+    else if((!model.data.items[product].auction && !model.app.loggedInStatus) || (!model.data.items[product].auction && model.app.loggedInStatus && model.data.users[model.app.userId].permissions != "admin")){
         content = `
-            <div class = "productPriceAndBuyNow"
                 <label class = "productDisplayPriceLabel">Pris: </label>
                 <label class = "productDisplayPrice">${model.data.items[product].price},-</label>
                 <button class = "productDisplayBuyButton" onclick = "addToShoppingCart('${model.data.items[product].id}')">Legg til i handlekurv</button>
-            </div>
         `
     }
+    else{
+        content = false;
+    }
     for(let i = 1; i<model.data.items[product].images.length;i++){
-        images += `<img class = "productDisplayGalleryImage" src = "${model.data.items[product].images[i]}"></img>`
-    }      
+        images += `<div class="inlineImagesProductDisplay"><img class = "productDisplayGalleryImage" src = "${model.data.items[product].images[i]}"></img></div>`
+    }
+    //${showZoomedPic()}    
     return `
-    <h1 class = "productDisplayTitle">${model.data.items[product].title}</h1>
-    <h1 class = "productDisplayDescriptionTitle">Beskrivelse</h1>
-    <div class = "productDisplayContainer">
-        ${showZoomedPic()}
-        <div class = "productDisplayDescriptionContainer">
-        <img class = "productDisplayImage" src = "${model.data.items[product].images[0]}" onclick = "blowUpGalleryImg(0)"></img>
-        <p class = "productDisplayDescription">${model.data.items[product].description}</p>
-            ${content}
+    <div id="singleProductDisplayContainer">
+        <div class = "productDisplayTitle">${model.data.items[product].title}</div>
+        <div class = "productDisplayContainer">
+            <img class = "productDisplayImage" src = "${model.data.items[product].images[0]}" onclick = "blowUpGalleryImg(0)"></img>
+            <div class = "productDisplayDescriptionContainer">
+                <div class = "productDisplayDescriptionTitle">Beskrivelse</div>
+                <p class = "productDisplayDescription">${model.data.items[product].description}</p>
+                ${content ? `
+                    <div id="productPriceOrBidContainer">
+                        ${content}
+                    </div>`:
+                    ''
+                }
+                ${model.app.loggedInStatus && model.data.users[model.app.userId].permissions == "admin"?
+                    `<div id="singleProductAdminComponentsContainer">${showAdminProductComponent(product)}</div>`:
+                    ``
+                }
+            </div>
         </div>
-        ${model.app.loggedInStatus && model.data.users[model.app.userId].permissions == "admin"?
-            showAdminProductComponent(product):
-            ``
-        }
         <div id = "productDisplayImageGalleryContainer">
-           ${images}
+            <p>Bildegalleri</p>
+            ${images}
+            <div class="clearAllDiv"></div>
         </div>
     </div>`
 }
@@ -1469,44 +1479,59 @@ function productDisplay(product){
 function showAdminProductComponent(product){
     return `
         <div id = "adminProductComponent">
-            <div id = "adminProductId">${model.data.items[product].id}</div>
-            <label>Auksjonsvare: </label>
-            <input type = "checkbox" value = ${model.data.items[product].auction} onchange = "model.data.items[product].auction = this.value"/>
-            <div>
+            <div id = "adminProductId"> Produkt Id: ${model.data.items[product].id}</div>
+            <input type = "checkbox" ${model.data.items[product].auction ? 'checked' : ''} onchange = "model.data.items[${product}].auction = ${!model.data.items[product].auction}"/>
+            <label>Auksjonsvare</label>
+            <div id="deadlineChangeOnProductPageAdmin">
                 <label>Frist: </label>
-                <input type = "datetime-local" value = "${model.data.items[product].deadline}" oninput = "model.data.items[product].deadline = this.value"/>
+                <input type = "datetime-local" value = "${model.data.items[product].deadline}" oninput = "model.data.items[${product}].deadline = this.value"/>
             </div>
-            <div>
+            <div id="changePriceOrBidProduct">
                 ${model.data.items[product].auction?
-                    `<input type = "text" oninput = "model.inputs.product.adminBidIncrease = this.value" value = "${model.data.items[product].minBid}"/><button onclick = "changeMinimumBid(${product})">Endre minimumbudøkning</button>`:
-                    `<input type = "text" oninput = "model.inputs.product.adminPriceChange = this.value" value = "${model.data.items[product].price}"/><button onclick = "changePrice(${product})">Endre pris</button>`
+                    `
+                    <p>Nåværende minbud: ${model.data.items[product].minBid}</p>
+                    <input type = "number" onchange = "model.inputs.product.adminBidIncrease = this.value; updateView()" min="${model.data.items[product].minBid}" value = "${model.inputs.product.adminBidIncrease}"/><button class="changePriceOrBidButton" ${model.inputs.product.adminBidIncrease > model.data.items[product].minBid ? '' : 'disabled'} onclick = "model.data.items[${product}].minBid = ${model.inputs.product.adminBidIncrease}; updateView()">Endre minimumbudøkning</button>`:
+                    `
+                    <p>Nåværende pris: ${model.data.items[product].price}</p>
+                    <input type = "number" onchange = "model.inputs.product.adminPriceChange = this.value; updateView()" min="${model.data.items[product].price}" value = "${model.inputs.product.adminPriceChange}"/><button class="changePriceOrBidButton" ${model.inputs.product.adminPriceChange > model.data.items[product].price ? '' : 'disabled'} onclick = "model.data.items[${product}].price = ${model.inputs.product.adminPriceChange}; updateView()">Endre pris</button>`
                 }
             </div>
             <div>
                 <div>
                     ${populateCategoryList(product)}
                 </div>
-                <label>Endre hovedkategori: </label>
-                <input oninput = "model.inputs.product.adminChangeMainCategory = this.value" type = "text"/>
-                <button onclick = "changeMainCategory(${product})">Endre</button>
-                <label>Legg til underkategori: </label>
-                <input oninput = "model.inputs.product.adminAddSubCategory = this.value" type = "text"/>
-                <button onclick = "addNewSubCategory(${product})">Legg til</button>
+                <div>
+                    <label>Endre hovedkategori: </label>
+                    <input oninput = "model.inputs.product.adminChangeMainCategory = this.value" type = "text"/>
+                    <button class="changeCategoryButton" onclick = "changeMainCategory(${product})">Endre</button>
+                </div>
+                <div>
+                    <label>Legg til underkategori: </label>
+                    <input oninput = "model.inputs.product.adminAddSubCategory = this.value" type = "text"/>
+                    <button class="changeCategoryButton"  onclick = "addNewSubCategory(${product})">Legg til</button>
+                </div>
             </div>
         </div>` 
 }
 
 function populateCategoryList(id){
-    let list = ``
-    for(let i = 0; i < model.data.items[id].category.length; i++){
+    let list = ``;
+    if(model.data.items[id].category.length>0){
         list += `
-            <div>
-                <label>${model.data.items[id].category[i]}</label>
-                ${i == 0?
-                    `   Hovedkategori`:
-                    `<button onclick = "removeCategory(${id},${i})">X</button>`
-                }
-            </div>` 
+                    <div>
+                        Hovedkategori: <label>${model.data.items[id].category[0]}</label>
+                    </div>
+                `;
+    }
+    if(model.data.items[id].category.length>1){
+        list += '<p>Underkategorier:</p>';
+        for(let i = 1; i < model.data.items[id].category.length; i++){
+            list += `
+                <div>
+                    <label>${model.data.items[id].category[i]}</label>
+                    <button class="removeSubcategoryButton" onclick = "removeCategory(${id},${i})">X</button>
+                </div>` 
+        }
     }
     return list
 }
