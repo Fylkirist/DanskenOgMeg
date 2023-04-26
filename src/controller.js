@@ -1216,7 +1216,8 @@ async function uploadImg(event){
 function raiseBid(productId){
     console.log(productId)
     const regexp = /^\d+$/;
-    if(!regexp.test(model.inputs.product.bidIncrease)){
+    let dataItem = model.data.items.find(elem => elem.id == productId)
+    if(!regexp.test(model.inputs.product.bidIncrease) || dataItem.price>model.inputs.product.bidIncrease){
         return
     }
     let item = model.data.auctionListe.find(elem => elem.itemId == productId)
@@ -1227,6 +1228,7 @@ function raiseBid(productId){
         })
         item = model.data.auctionListe.find(elem => elem.itemId == productId)
     }
+    
     if(!Object.keys(item.bids).includes(model.app.userId)){
         item.bids[model.app.userId]={
             bid:[parseInt(model.inputs.product.bidIncrease)],
