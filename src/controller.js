@@ -521,7 +521,7 @@ function registerUser() {
                 password:model.inputs.register.password,  
                 permissions: 'user',
                 firstName:model.inputs.register.firstName,
-                surname:model.inputs.register.lastName,
+                surName:model.inputs.register.lastName,
                 address:model.inputs.register.address,
                 city:model.inputs.register.city,
                 zip:model.inputs.register.zip,
