@@ -328,7 +328,7 @@ const model = {
                     },
                     {
                         type:'admin',
-                        message: 'I do not have any now but I will have latter.',
+                        message: 'I do not have any now but I am going to order a few soon.',
                     },
                     {
                         type:'user',
