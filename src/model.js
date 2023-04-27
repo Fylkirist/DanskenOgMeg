@@ -236,11 +236,11 @@ const model = {
                 messages:[
                     {
                         type:'user',
-                        message: 'hei, jeg er marie!',
+                        message: 'hei, jeg er Marie!',
                     },
                     {
                         type:'admin',
-                        message: 'hei, jeg er marie!',
+                        message: 'hei Marie!',
                     }, 
                 ]         
             },
@@ -280,7 +280,7 @@ const model = {
                 messages:[
                     {
                         type:'user',
-                        message: 'hei, har du flere kunst til salgs?',
+                        message: 'hei, har du mer kunst til salgs?',
                     },
                     {
                         type:'admin',
@@ -329,7 +329,15 @@ const model = {
                     {
                         type:'admin',
                         message: 'I do not have any now but I will have latter.',
-                    }, 
+                    },
+                    {
+                        type:'user',
+                        message: 'Aw, that\'s too bad, could you send me a message once they get in?',
+                    },
+                    {
+                        type:'admin',
+                        message: 'Alright, I can do that.',
+                    },
                 ]         
             }
         },
