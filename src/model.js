@@ -334,10 +334,6 @@ const model = {
                         type:'user',
                         message: 'Aw, that\'s too bad, could you send me a message once they get in?',
                     },
-                    {
-                        type:'admin',
-                        message: 'Alright, I can do that.',
-                    },
                 ]         
             }
         },
