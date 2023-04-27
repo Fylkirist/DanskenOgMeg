@@ -1480,7 +1480,7 @@ function showAdminProductComponent(product){
     return `
         <div id = "adminProductComponent">
             <div id = "adminProductId"> Produkt Id: ${model.data.items[product].id}</div>
-            <input type = "checkbox" ${model.data.items[product].auction ? 'checked' : ''} onchange = "model.data.items[${product}].auction = ${!model.data.items[product].auction}"/>
+            <input type = "checkbox" ${model.data.items[product].auction ? 'checked' : ''} oninput = "model.data.items[${product}].auction = ${!model.data.items[product].auction}" onchange = "updateView()"/>
             <label>Auksjonsvare</label>
             <div id="deadlineChangeOnProductPageAdmin">
                 <label>Frist: </label>
