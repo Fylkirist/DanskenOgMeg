@@ -1309,7 +1309,7 @@ function payAtTheCheckoutPage(){
     let newOrder = {};
     if(model.app.userId){
         model.data.users[model.app.userId].shoppingCart.forEach(itemInUserCart => {
-            newOrder.itemId = parseInt(itemInUserCart.item);
+            newOrder.itemId = itemInUserCart.item;
             newOrder.paid = true;
             newOrder.date = new Date().toLocaleDateString();
             newOrder.userId = model.app.userId;

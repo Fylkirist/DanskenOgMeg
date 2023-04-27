@@ -342,22 +342,22 @@ const model = {
 
                 itemId:"000003",
                 paid: true,
-                price:'10,000,000',
+                price:'15000',
                 date:'03/01/2023',
                 type: 'direkte',
                 userId: '0000002',
-                image : 'assets/kronebilde1.jpg',
-                title: 'Krona Til Drøning'
+                image : 'https://genbrugsauktion.dk/wp-content/uploads/IMG_0038-97-520x347.jpg',
+                title: 'Antikke sølvsmykker'
             },
             {
-                itemId:"000002",
+                itemId:"000004",
                 paid: true,
-                price:'10,000,000',
+                price:'10000',
                 date:'03/01/2023',
                 type: 'direkte',
                 userId: '0000002',
-                image : 'assets/kronebilde1.jpg',
-                title: 'Maling til Peter'
+                image : 'https://images.lauritz.com/images/BCA3EF612A3B993C2D51F822302F65D7',
+                title: 'Klassisk vinylsamling'
             },
         ],
         auctionListe: [
